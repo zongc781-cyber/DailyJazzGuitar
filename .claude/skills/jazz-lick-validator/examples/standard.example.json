@@ -1,0 +1,868 @@
+{
+  "schemaVersion": 1,
+  "kind": "standard",
+  "id": "autumn-leaves",
+  "title": "Autumn Leaves",
+  "composers": [
+    "Joseph Kosma"
+  ],
+  "year": 1945,
+  "origin": "seed",
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": "example fixture (replace with the human reviewer)",
+    "reviewedOn": "2026-10-21"
+  },
+  "sources": [
+    {
+      "title": "The Jazz Theory Book",
+      "author": "Mark Levine",
+      "kind": "book",
+      "year": 1995,
+      "detail": "ii–V–I and minor ii–V–I chapters"
+    }
+  ],
+  "simplified": true,
+  "simplificationNote": "Chords only, in a common jam-session version in G minor; recordings vary in bars 27–29 and in the turnarounds. No melody is reproduced.",
+  "key": {
+    "tonic": "G",
+    "mode": "minor"
+  },
+  "keyCenters": [
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        1,
+        4
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        5,
+        8
+      ]
+    },
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        9,
+        12
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        13,
+        20
+      ]
+    },
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        21,
+        24
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        25,
+        32
+      ]
+    }
+  ],
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 132,
+    "max": 220
+  },
+  "form": {
+    "label": "AABC",
+    "bars": 32,
+    "sections": [
+      {
+        "label": "A1",
+        "bars": 8
+      },
+      {
+        "label": "A2",
+        "bars": 8
+      },
+      {
+        "label": "B",
+        "bars": 8
+      },
+      {
+        "label": "C",
+        "bars": 8
+      }
+    ]
+  },
+  "chart": [
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm7",
+          "beat": 1,
+          "roman": "i7"
+        },
+        {
+          "symbol": "C7",
+          "beat": 3,
+          "roman": "IV7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Fm7",
+          "beat": 1,
+          "roman": "bvii7"
+        },
+        {
+          "symbol": "Bb7",
+          "beat": 3,
+          "roman": "bIII7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "bVImaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        },
+        {
+          "symbol": "D7",
+          "beat": 3,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    }
+  ],
+  "listening": [
+    {
+      "performer": "Cannonball Adderley with Miles Davis",
+      "recording": "Autumn Leaves",
+      "album": "Somethin' Else",
+      "year": 1958,
+      "url": "https://en.wikipedia.org/wiki/Somethin%27_Else_(Cannonball_Adderley_album)",
+      "verifiedOn": "2026-10-21",
+      "note": "Album page; track 1."
+    },
+    {
+      "performer": "Bill Evans Trio",
+      "recording": "Autumn Leaves",
+      "album": "Portrait in Jazz",
+      "year": 1960,
+      "url": "https://en.wikipedia.org/wiki/Portrait_in_Jazz",
+      "verifiedOn": "2026-10-21",
+      "note": "Album page; recorded 1959, released 1960."
+    }
+  ],
+  "analysis": {
+    "summary": "The tune alternates a major ii–V–I in the relative major with a minor ii–V–i in the home key, so the same few shapes cover almost every bar.",
+    "sections": [
+      {
+        "label": "A",
+        "text": "Bars 1–4 are ii–V–I–IV in the relative major; bars 5–8 are iiø–V–i in the home minor key."
+      },
+      {
+        "label": "C",
+        "text": "Bars 27–28 move down in ii–V-like steps, a chromatic slide that returns to the minor ii–V."
+      }
+    ],
+    "variations": [
+      {
+        "name": "Altered dominant",
+        "chords": [
+          {
+            "bar": 6,
+            "beat": 1,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          }
+        ],
+        "text": "Players often play the V of the minor key with a flat 9, which matches the harmonic minor sound."
+      },
+      {
+        "name": "Tonic as m7",
+        "chords": [
+          {
+            "bar": 7,
+            "beat": 1,
+            "symbol": "Gm7",
+            "roman": "i7"
+          }
+        ],
+        "text": "The minor tonic is played as m6 or m7; m6 keeps the major 6th from the melodic minor."
+      }
+    ]
+  },
+  "voicings": [
+    {
+      "symbol": "Cm7",
+      "name": "Root on 5th string",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "C3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "G3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "Bb3",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 4,
+          "finger": 2,
+          "pitch": "Eb4",
+          "degree": "b3"
+        }
+      ]
+    },
+    {
+      "symbol": "F7",
+      "name": "Root on 6th string",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "F2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "Eb3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 2,
+          "finger": 3,
+          "pitch": "A3",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "C4",
+          "degree": "5"
+        }
+      ]
+    },
+    {
+      "symbol": "Bbmaj7",
+      "name": "Root on 5th string",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "Bb2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "F3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 2,
+          "finger": 2,
+          "pitch": "A3",
+          "degree": "7"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "3"
+        }
+      ]
+    },
+    {
+      "symbol": "Am7b5",
+      "name": "Root on 6th string",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 5,
+          "finger": 2,
+          "pitch": "A2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "G3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 5,
+          "finger": 4,
+          "pitch": "C4",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "Eb4",
+          "degree": "b5"
+        }
+      ]
+    },
+    {
+      "symbol": "D7",
+      "name": "Shell, root on 5th string",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 5,
+          "finger": 2,
+          "pitch": "D3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "F#3",
+          "degree": "3"
+        },
+        {
+          "string": 3,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "b7"
+        }
+      ]
+    },
+    {
+      "symbol": "Gm6",
+      "name": "Root on 6th string",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 3,
+          "finger": 2,
+          "pitch": "G2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 2,
+          "finger": 1,
+          "pitch": "E3",
+          "degree": "6"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "Bb3",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "5"
+        }
+      ]
+    }
+  ],
+  "guideToneExercises": [
+    {
+      "title": "3rds and 7ths, bars 1–4",
+      "description": "Two half notes per bar: each chord's 3rd and 7th, moving by the smallest step.",
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "bar": 1,
+          "beat": 1
+        },
+        {
+          "symbol": "F7",
+          "bar": 2,
+          "beat": 1
+        },
+        {
+          "symbol": "Bbmaj7",
+          "bar": 3,
+          "beat": 1
+        },
+        {
+          "symbol": "Ebmaj7",
+          "bar": 4,
+          "beat": 1
+        }
+      ],
+      "bars": [
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 4,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 3,
+              "pitch": "Bb3",
+              "finger": 3,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 2,
+              "pitch": "A3",
+              "finger": 2,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 3,
+              "pitch": "D4",
+              "finger": 3,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 2,
+              "pitch": "A3",
+              "finger": 2,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 0,
+              "pitch": "G3",
+              "finger": 0,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 3,
+              "pitch": "D4",
+              "finger": 3,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "improvisation": [
+    {
+      "title": "One shape per key centre",
+      "text": "Use the relative-major scale for bars 1–4 and harmonic minor of the home key for bars 5–8."
+    },
+    {
+      "title": "Aim for the 3rd",
+      "text": "On every chord change, land on the 3rd on beat one; use the daily lick's enclosure to get there."
+    }
+  ],
+  "practicePlan": [
+    {
+      "day": 1,
+      "focus": "listening",
+      "minutes": 20,
+      "tasks": [
+        "Listen to both recordings and count the form out loud.",
+        "Mark where the soloist breathes."
+      ]
+    },
+    {
+      "day": 2,
+      "focus": "harmony",
+      "minutes": 20,
+      "tasks": [
+        "Say the roman numerals while playing the roots.",
+        "Find the two key centres."
+      ]
+    },
+    {
+      "day": 3,
+      "focus": "comping",
+      "minutes": 25,
+      "tasks": [
+        "Comp the voicings with the recording, two beats per chord."
+      ]
+    },
+    {
+      "day": 4,
+      "focus": "arpeggios",
+      "minutes": 25,
+      "tasks": [
+        "Play each chord's arpeggio up from the root, then down from the 7th."
+      ]
+    },
+    {
+      "day": 5,
+      "focus": "vocabulary",
+      "minutes": 25,
+      "tasks": [
+        "Play this week's licks in both key centres."
+      ],
+      "lickId": "example-ii-v-i-enclosure"
+    },
+    {
+      "day": 6,
+      "focus": "improvisation",
+      "minutes": 30,
+      "tasks": [
+        "Improvise one chorus using only guide tones, then a chorus adding the licks."
+      ]
+    },
+    {
+      "day": 7,
+      "focus": "self-review",
+      "minutes": 20,
+      "tasks": [
+        "Record a chorus, listen back and note one strength and one fix."
+      ]
+    }
+  ],
+  "lickIds": [
+    "example-ii-v-i-enclosure"
+  ]
+}
