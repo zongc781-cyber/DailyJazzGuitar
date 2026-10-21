@@ -176,6 +176,8 @@ export function PlayerProvider({
             scale: scaleFor(width),
             justifyLastSystem: false,
             padding: [8, 12, 8, 12],
+            // Room between the swing marking, chord names and degree labels above the staff.
+            effectBandPaddingBottom: 8,
             resources: themeResources(),
           },
           notation: {

@@ -24,9 +24,17 @@ if (!Number.isInteger(count) || count < 1 || count > 20) {
   process.exit(2);
 }
 
+let generator;
+try {
+  generator = createGenerator();
+} catch (e) {
+  console.error(`${(e as Error).message} See "Lesson generation" in README.md.`);
+  process.exit(1);
+}
+
 let failed = 0;
 for (let i = 1; i <= count; i++) {
-  const result = await generateNextLick({ generator: createGenerator(), dryRun });
+  const result = await generateNextLick({ generator, dryRun });
   const where = result.plan ? `${result.plan.standard.title}, bars ${result.plan.bars.join('–')}, in the style of ${result.plan.guitarist.name}` : '';
   if (result.ok) {
     console.log(`${dryRun ? 'PASSED (dry run, not saved)' : 'PUBLISHED'} ${result.lesson.id}: "${result.lesson.title}" (${where}; attempt ${result.attempts})`);
