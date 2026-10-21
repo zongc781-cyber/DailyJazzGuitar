@@ -1,0 +1,579 @@
+/* Weekly standard */
+
+.facts {
+  margin: 4px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.facts div {
+  display: grid;
+  gap: 1px;
+}
+
+.facts dt {
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sectionHeader h2 {
+  margin-bottom: 0;
+}
+
+.sectionIntro {
+  color: var(--ink-3);
+  margin-bottom: 14px;
+  max-width: 64ch;
+}
+
+.simplified {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-radius: var(--radius-m);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.simplified :global(svg) {
+  flex: none;
+  margin-top: 2px;
+  color: var(--brass);
+}
+
+/* Today's plan day, featured at the top of the week */
+.todayCard h2 {
+  margin-bottom: 12px;
+}
+
+/* Listening */
+.listening {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 760px) {
+  .listening {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.listening li {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.listenLink {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  text-decoration: none;
+  min-height: var(--tap);
+}
+
+.listenLink > :global(svg):first-child {
+  color: var(--brass);
+  margin-top: 2px;
+}
+
+.listenLink:hover .listenText strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.listenText {
+  display: grid;
+  gap: 2px;
+}
+
+.listenNote {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  padding-left: 34px;
+}
+
+.verified {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  padding-left: 34px;
+}
+
+/* Chord chart */
+.chart {
+  display: grid;
+  gap: 16px;
+}
+
+.chartSection {
+  display: grid;
+  gap: 6px;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+
+.sectionLetter {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: var(--button);
+  color: var(--button-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-left: 2px solid var(--ink-2);
+}
+
+@media (min-width: 560px) {
+  .bars {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.bar {
+  position: relative;
+  min-height: 64px;
+  padding: 18px 8px 8px 10px;
+  border-right: 2px solid var(--ink-2);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.barNumber {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  font-size: 0.7rem;
+  color: var(--ink-3);
+}
+
+.barChords {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.chartChord {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.chartSymbol {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
+  font-weight: 650;
+  font-size: 1.12rem;
+  white-space: nowrap;
+}
+
+.roman {
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: var(--ink-2);
+  font-family: var(--font-display);
+}
+
+/* Key-centre tints */
+.kc0 {
+  --kc: var(--role-chord);
+}
+
+.kc1 {
+  --kc: var(--role-tension);
+}
+
+.kc2 {
+  --kc: var(--role-approach);
+}
+
+.kc3 {
+  --kc: var(--role-resolution);
+}
+
+.kc4 {
+  --kc: var(--brass-strong);
+}
+
+.kc5 {
+  --kc: var(--role-scale);
+}
+
+.tinted {
+  background: color-mix(in srgb, var(--kc) 13%, var(--surface));
+  box-shadow: inset 0 -3px 0 var(--kc);
+}
+
+.centreLegend {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.centreLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.centreSwatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--kc) 30%, var(--surface));
+  border: 2px solid var(--kc);
+}
+
+.centreBars {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+/* Harmonic analysis */
+.analysis {
+  display: grid;
+  gap: 18px;
+}
+
+.analysisSection {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.analysisSection h3 {
+  font-size: 1.05rem;
+}
+
+.variations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.variations li {
+  display: grid;
+  gap: 6px;
+}
+
+.variations h4 {
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  font-weight: 650;
+  margin: 0;
+}
+
+.variationChords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.92rem;
+}
+
+/* Voicings */
+.voicings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.voicingCard {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.voicing {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.voicing figcaption {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.voicingSvg {
+  max-width: 100%;
+  height: auto;
+  font-family: var(--font-ui);
+}
+
+.voicingSymbol {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 1.1rem;
+}
+
+.voicingName {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.voicingNote {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+.vNut {
+  fill: var(--ink);
+}
+
+.vFret {
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+}
+
+.vString {
+  stroke: var(--ink-3);
+  stroke-width: 1.2;
+}
+
+.vBase {
+  fill: var(--ink-3);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vMuted {
+  fill: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.vDot {
+  fill: var(--ink);
+}
+
+.vRoot {
+  fill: var(--role-chord);
+}
+
+.vLabel {
+  fill: var(--surface);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* Guide tones */
+.guideTones {
+  display: grid;
+  gap: 14px;
+}
+
+.exerciseText {
+  display: grid;
+  gap: 6px;
+}
+
+.exerciseChords {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* Improvisation ideas */
+.ideas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 900px) {
+  .ideas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ideas li {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+/* Seven-day plan */
+.plan {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.planDay {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.planToday {
+  border-color: var(--brass-strong);
+  box-shadow: 0 0 0 1px var(--brass-strong);
+}
+
+.planFeatured {
+  box-shadow: var(--shadow-2);
+  border-color: var(--line);
+  padding: 18px 20px;
+}
+
+.planHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-bottom: 6px;
+}
+
+.planNumber {
+  font-weight: 700;
+}
+
+.planFocus {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 1.08rem;
+}
+
+.planMinutes {
+  color: var(--ink-3);
+  font-size: 0.88rem;
+}
+
+.planDone {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ink-3);
+}
+
+.planDone :global(svg) {
+  color: var(--ok);
+}
+
+.planTasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.planLick {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* The week's licks */
+.weekLicks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.weekLick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  min-height: 56px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  text-decoration: none;
+}
+
+.weekLick:hover {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.weekLick > :global(svg) {
+  margin-left: auto;
+  color: var(--ink-3);
+}
+
+.weekLickTitle {
+  font-weight: 650;
+}
+
+.weekLickArtist {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+}

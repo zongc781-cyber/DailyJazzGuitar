@@ -22,7 +22,7 @@ A student then hears one thing, reads another and is told a third. Keep everythi
 2. **Render with alphaTab.** Use `@coderline/alphatab` (tested with 1.8.4) for standard
    notation, tablature and playback, with its built-in synth, metronome, count-in, looping and
    tempo control. Generate alphaTex with `lickToAlphaTex()` / `barsToAlphaTex()` from
-   `scripts/lib/alphatex.mjs`. Do not write a custom notation renderer or audio engine, and do
+   `src/lib/music/alphatex.mjs`. Do not write a custom notation renderer or audio engine, and do
    not hand-write alphaTex. See [references/alphatab.md](references/alphatab.md). The fretboard
    diagram is the one view alphaTab does not draw. Build it as a small SVG component that reads
    the same `string`/`fret`/`finger` fields.
@@ -83,8 +83,8 @@ text. The validator flags raw names such as `Bb`, `Cm7`, `C4` or "resolves to G"
 
 ## Building the app around this
 
-- **Shared module.** The app imports `scripts/lib/index.mjs` (or a copy moved to
-  `src/lib/music/` with this skill's scripts re-pointed to it). Keep exactly one copy of the
+- **Shared module.** The validator lives in `src/lib/music/`, and this skill's scripts import it
+  from there (`src/lib/music/index.mjs`). Keep exactly one copy of the
   validator. The renderer, fretboard, transposer and server save path all use it.
 - **Transposition.** Call `transposeLick(lesson, tonic)` and render the result. It moves notes,
   tab, chords and key together, and the analysis follows through tokens. Offer the keys from
@@ -120,12 +120,13 @@ Without credentials, the app runs on the seed library alone.
 
 - `scripts/validate.mjs`: the CLI
 - `scripts/selftest.mjs`: proves each check fires on a deliberate mistake
-- `scripts/lib/theory.mjs`: tuning, pitch spelling, chord symbols, degrees, roman numerals
-- `scripts/lib/rhythm.mjs`: exact durations
-- `scripts/lib/lesson.mjs`: lick and standard validation
-- `scripts/lib/transpose.mjs`: transposition, fingerprints for repeats
-- `scripts/lib/alphatex.mjs`: alphaTex generation
-- `scripts/lib/roundtrip.mjs`: alphaTab parse-back check
-- `scripts/lib/index.mjs`: `validateForPublish()` and re-exports
+- `src/lib/music/theory.mjs`: tuning, pitch spelling, chord symbols, degrees, roman numerals
+- `src/lib/music/rhythm.mjs`: exact durations
+- `src/lib/music/lesson.mjs`: lick and standard validation
+- `src/lib/music/transpose.mjs`: transposition, fingerprints for repeats
+- `src/lib/music/alphatex.mjs`: alphaTex generation
+- `src/lib/music/roundtrip.mjs`: alphaTab parse-back check
+- `src/lib/music/index.mjs`: `validateForPublish()` and re-exports
+- `src/server/generation/`: the generation service (planner, generator, publish pipeline)
 - `examples/lick.example.json`, `examples/standard.example.json`: complete, passing examples.
   Copy their shape. They are format fixtures, not reviewed seed content.

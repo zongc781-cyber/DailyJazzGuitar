@@ -1,0 +1,273 @@
+/* Score sheet */
+
+.paper {
+  position: relative;
+  background: var(--score-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+  padding: 10px 4px 6px;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.score {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  color: var(--score-ink);
+}
+
+.scoreLoading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  background: linear-gradient(90deg, transparent 0%, var(--surface-2) 50%, transparent 100%) var(--score-bg);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.scoreError {
+  padding: 24px;
+  color: var(--danger);
+}
+
+/* alphaTab's playback cursor and highlighted notes */
+.score :global(.at-cursor-bar) {
+  background: var(--score-cursor);
+}
+
+.score :global(.at-cursor-beat) {
+  background: var(--score-beat);
+  width: 3px;
+}
+
+.score :global(.at-highlight *) {
+  fill: var(--score-beat);
+  stroke: var(--score-beat);
+}
+
+.score :global(.at-selection div) {
+  background: var(--score-cursor);
+}
+
+/* Transport */
+
+.transport {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+}
+
+@media (min-width: 760px) {
+  .transport {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+.mainControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.playButton {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  background: var(--button);
+  color: var(--button-ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-2);
+  transition:
+    transform 0.12s ease-out,
+    background-color 0.15s ease-out;
+}
+
+.playButton :global(svg) {
+  margin-left: 2px;
+}
+
+.playButton:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+
+.playButton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.playButton:disabled,
+.roundButton:disabled,
+.stepButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.roundButton,
+.stepButton {
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 0.15s ease-out;
+}
+
+.roundButton:hover:not(:disabled),
+.stepButton:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+
+.status {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  min-width: 9.5em;
+}
+
+.tempo {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tempoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.tempoLabel {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.tempoValue {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.tempoValue span {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.tempoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider {
+  flex: 1;
+  min-width: 0;
+  height: var(--tap);
+  accent-color: var(--brass-strong);
+  cursor: pointer;
+}
+
+.presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out;
+}
+
+.preset span {
+  color: var(--ink-3);
+  margin-left: 2px;
+}
+
+.preset:hover {
+  background: var(--surface-2);
+}
+
+.preset[aria-pressed='true'] {
+  background: var(--brass-soft);
+  border-color: var(--brass-strong);
+  color: var(--ink);
+}
+
+.toggles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 760px) {
+  .toggles {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+.toggle {
+  min-height: 56px;
+  padding: 6px 12px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+.toggle:hover {
+  background: var(--surface-2);
+}
+
+.toggle[aria-pressed='true'] {
+  background: var(--button);
+  border-color: var(--button);
+  color: var(--button-ink);
+}

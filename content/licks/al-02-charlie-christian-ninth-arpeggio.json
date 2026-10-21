@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-02-charlie-christian-ninth-arpeggio",
+  "title": "Swing riff and a 9th arpeggio from the 3rd",
+  "origin": "seed",
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Charlie Christian",
+    "note": "Christian built many of his lines from chord shapes, including 9th-chord forms over dominant chords, and loved short swinging riffs; this phrase borrows both habits."
+  },
+  "sources": [
+    {
+      "title": "Solo Flight: The Genius of Charlie Christian",
+      "kind": "recording",
+      "author": "Charlie Christian",
+      "year": 1972,
+      "detail": "Columbia compilation of recordings made from October 1939 to March 1941, including 'Seven Come Eleven' and 'Solo Flight'.",
+      "url": "https://en.wikipedia.org/wiki/Solo_Flight:_The_Genius_of_Charlie_Christian"
+    },
+    {
+      "title": "Charlie Christian: Going to the Source",
+      "kind": "website",
+      "author": "David Hamburger",
+      "year": 2011,
+      "detail": "TrueFire lesson on how Christian worked from chord shapes rather than scales, including the top four strings of a 9th-chord form and a dominant-9th arpeggio in a II7–V7–I.",
+      "url": "https://blog.truefire.com/guitar-lessons/charlie-christian-source/"
+    },
+    {
+      "title": "The Guitar Chord Shapes of Charlie Christian",
+      "kind": "book",
+      "author": "Joe Weidlich",
+      "detail": "Centerstream (distributed by Hal Leonard): how Christian's riffs grow out of movable chord shapes.",
+      "url": "https://www.halleonard.com/product/viewproduct.action?itemid=388"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 132,
+    "max": 220
+  },
+  "difficulty": 2,
+  "chords": [
+    {
+      "symbol": "Cm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "F7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Bbmaj7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 5,
+          "fret": 10,
+          "pitch": "G3",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 5,
+          "fret": 13,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 5,
+          "fret": 10,
+          "pitch": "G3",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 5,
+          "fret": 13,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "4",
+          "dots": 1,
+          "string": 5,
+          "fret": 12,
+          "pitch": "A3",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 13,
+          "pitch": "Eb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "dots": 1,
+          "string": 3,
+          "fret": 12,
+          "pitch": "G4",
+          "finger": 3,
+          "degree": "9",
+          "role": "tension"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "4",
+          "dots": 1,
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 13,
+          "pitch": "Eb4",
+          "finger": 4,
+          "degree": "4",
+          "role": "passing"
+        },
+        {
+          "dur": "2",
+          "string": 4,
+          "fret": 12,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "A short swing riff on {{chord 1}} hands its b7 down a half step to the 3rd of {{chord 2}}. From that 3rd the line climbs an arpeggio, 3rd–5th–b7–9th: the sound of a ninth chord without its root. The 9th then steps down to the 5th of {{chord 3}} on beat one, and the line keeps walking down to the 3rd.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "text": "The riff uses only the 5th, b7 and root of {{chord 1}}. Over {{chord 2}}, {{note 2.1}}, {{note 2.2}} and {{note 2.3}} are its 3rd, 5th and b7, and {{note 3.1}} and {{note 3.3}} are the 5th and 3rd of {{chord 3}}."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            4
+          ]
+        ],
+        "text": "{{note 2.4}} is the 9th of {{chord 2}}. Starting the arpeggio on the 3rd instead of the root lets an ordinary four-note shape reach it: those four notes also form a half-diminished (m7b5) arpeggio a major 3rd above the root. Hold the 9th and you hear the bright, open colour of a ninth chord."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            3,
+            2
+          ]
+        ],
+        "text": "{{note 3.2}} is a passing note between {{note 3.1}} and {{note 3.3}}, so after the landing the line walks down the scale to the 3rd instead of jumping."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          2.5,
+          3.5,
+          1
+        ],
+        "text": "The riff starts on the 'and' of one and puts its accent on the 'and' of two, a classic swing-era push. The 9th arrives early, on the 'and' of three, and hangs over beat four, so its step down to {{note 3.1}} on beat one feels like a release."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 5th of {{chord 3}}, one step below the 9th. The tension note does not jump away; it falls to the nearest note of the new chord, on the strongest beat of the bar."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "5",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Your ear already knows the sound of a ninth chord, so an arpeggio that spells one sounds right even without the root, which the bass player is covering anyway. Starting on the 3rd puts the chord's most telling note on the downbeat, and the 9th at the top gives the line a bright peak before it steps down into the next chord.",
+  "fingeringNote": "Tenth position: index finger on fret 10, ring finger on fret 12, little finger on fret 13, one finger per fret with no stretch or shift. In bar 1 the index finger rolls from the D string to the A string at fret 10. The arpeggio in bar 2 is the common half-diminished shape with its lowest note on the A string, fingered ring, index, little, ring.",
+  "practiceTask": "Play the lick over bars 1 to 3 of the weekly standard, then over bars 9 to 11 and 21 to 23, where the same ii–V–I comes back. Once it is comfortable, try starting an arpeggio on the 3rd of every dominant chord you play this week.",
+  "variation": {
+    "description": "Aim for the 3rd instead of the 5th: touch the 9th of {{chord 1}} only briefly, fall back to the b7, and let that b7 slip a half step down to the 3rd of {{chord 2}} on beat one.",
+    "chords": [
+      {
+        "symbol": "F7",
+        "bar": 1,
+        "beat": 1
+      },
+      {
+        "symbol": "Bbmaj7",
+        "bar": 2,
+        "beat": 1
+      }
+    ],
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "4",
+            "dots": 1,
+            "string": 5,
+            "fret": 12,
+            "pitch": "A3",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 10,
+            "pitch": "C4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 13,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 12,
+            "pitch": "G4",
+            "finger": 3,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "4",
+            "string": 4,
+            "fret": 13,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "dots": 1,
+            "string": 4,
+            "fret": 12,
+            "pitch": "D4",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "arpeggio superimposition",
+    "9th",
+    "riff",
+    "ii-V-I",
+    "swing"
+  ]
+}

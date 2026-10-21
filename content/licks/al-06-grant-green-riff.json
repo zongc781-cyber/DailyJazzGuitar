@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-06-grant-green-riff",
+  "title": "One riff, three placements, one changed note",
+  "origin": "seed",
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Grant Green",
+    "note": "Green often took a short phrase and repeated it over several bars, shifting where it sat against the beat so the same notes changed their stress, and adjusting it to the chords as they moved. This riff uses that approach on the minor tonic and changes one note when the chord changes."
+  },
+  "sources": [
+    {
+      "title": "Standards",
+      "author": "Grant Green",
+      "kind": "recording",
+      "year": 1998,
+      "url": "https://en.wikipedia.org/wiki/Remembering_(Grant_Green_album)",
+      "detail": "Blue Note CD of the August 29, 1961 trio session with Wilbur Ware and Al Harewood, first issued in Japan as 'Remembering'. On 'I'll Remember April' Green restates one short figure eleven times in his first chorus, changing its rhythm and adjusting it to the chords (analysed by Andrew Scott)."
+    },
+    {
+      "title": "Exploring the Use of a Single Formula in Grant Green's First Chorus Improvisation on 'I'll Remember April' (1961)",
+      "author": "Andrew Scott",
+      "kind": "website",
+      "year": 2009,
+      "url": "https://crj-online.org/v1/CRJ-GrantGreenSolo.php",
+      "detail": "Current Research in Jazz, volume 1. Shows Green using one short formula eleven times over fifty bars, most often syncopated by an eighth rest, sometimes as straight eighths, and in bar 32 lowering part of it a half step to suggest new harmony."
+    },
+    {
+      "title": "Grant Green",
+      "kind": "website",
+      "url": "https://www.mosaicrecords.com/the-great-jazz-artists/grant-green/",
+      "detail": "Mosaic Records artist page. It quotes Bob Blumenthal calling Green 'a master of rhythm accent and displacement' and describes how he 'takes a note or a basic phrase and repeats it over several bars'."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "G",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 132,
+    "max": 220
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Gm6",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "Gm6",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Cm7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 9,
+          "pitch": "E4",
+          "finger": 3,
+          "degree": "6",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 9,
+          "pitch": "E4",
+          "finger": 3,
+          "degree": "6",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "dots": 1,
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "approach-chromatic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "9",
+          "role": "tension"
+        },
+        {
+          "dur": "2",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 2,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "A four-note riff on the minor tonic is played three times. The first statement starts on an off-beat; the second starts on a downbeat, so every note moves to the other half of the beat; and the third crosses the bar line into {{chord 3}} with one note lowered a half step so the riff fits the new chord.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "text": "{{note 1.2}}, {{note 1.3}} and {{note 1.5}} are the 5th, 6th and b3 of {{chord 1}}. The 6th is the colour note of a minor 6 chord and the b3 makes it minor, so the riff sounds like the chord without ever playing its root. Over {{chord 3}}, {{note 3.3}} is the b7."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            3,
+            2
+          ]
+        ],
+        "text": "{{note 3.2}} is the same pitch that was the riff's 5th. Over {{chord 3}} it becomes the 9th, a soft colour, so the riff keeps its sound while the harmony moves under it."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            2,
+            6
+          ]
+        ],
+        "text": "{{note 2.6}} starts the last statement and doubles as a half-step pickup: it rises straight into {{note 3.1}} on the bar line, so the changed note arrives with a push."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          3,
+          1,
+          2.5,
+          4.5,
+          1
+        ],
+        "text": "First statement: it starts on the 'and' of beat one, and its long note lands on beat three. Second: it starts right on beat one, so its long note becomes a push on the 'and' of two. Third: it starts on the 'and' of four and carries the riff across the bar line. The notes stay the same; only their place in the bar moves, with a rest between statements so each one breathes."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "text": "{{note 3.1}} is the riff's 6th lowered a half step, landing on beat one as the b3 of {{chord 3}}. The riff then settles on {{note 3.3}}: it was the b3 of the tonic and is now the b7 of {{chord 3}}."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "b3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "A repeated riff gives the listener something to hold on to, and starting it somewhere new in the bar makes the repeat sound fresh instead of stuck. When the chord changes you do not need a new idea: keep the riff, change the one note that clashes, and the notes that stay take on new jobs in the new chord.",
+  "fingeringNote": "One position, no shifts. As written, the index finger sits at fret 7 on the G string and starts the riff, the third finger plays the 6th two frets higher, and the second finger takes the b3 on the D string. Over {{chord 3}} the second finger moves across to the G string for the lowered note. Pick every note for a crisp, horn-like attack.",
+  "practiceTask": "Play it over bars 7 to 9 of the weekly standard, and again over bars 19 to 21, where two bars of the tonic also lead into the iv chord. Then use it over bars 31 and 32 going back to bar 1, starting the riff on a different beat each time.",
+  "variation": {
+    "description": "The second statement now starts on the 'and' of four, half a beat earlier, so it crosses the bar line exactly the way the last statement does. Heard back to back, the two make the one changed note obvious: {{note 2.1}} in bar 2 becomes {{note 3.1}} in bar 3.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 9,
+            "pitch": "E4",
+            "finger": 3,
+            "degree": "6",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 9,
+            "pitch": "E4",
+            "finger": 3,
+            "degree": "6",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "2",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "approach-chromatic"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "2",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 2,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "riff",
+    "repetition",
+    "rhythmic-displacement",
+    "minor-6",
+    "common-tones"
+  ]
+}

@@ -3,7 +3,7 @@
 
 import { validateLesson, Report } from './lesson.mjs';
 import { transposeLick, tonicsFor, interval, compareTransposition, fingerprint } from './transpose.mjs';
-import { lickToAlphaTex, barsToAlphaTex } from './alphatex.mjs';
+import { lickToAlphaTex, lineToAlphaTex } from './alphatex.mjs';
 import { roundTrip } from './roundtrip.mjs';
 import { parsePitchClass } from './theory.mjs';
 
@@ -45,32 +45,33 @@ export async function validateForPublish(lesson, { library = [], file = '', alph
 async function checkRender(lick, r, requireAlphaTab) {
   for (const variation of [false, true]) {
     const path = variation ? 'variation' : 'bars';
-    let tex;
-    try { tex = lickToAlphaTex(lick, { variation }); } catch (e) { r.error(path, e.message); continue; }
     const bars = variation ? lick.variation.bars : lick.bars;
     const chords = variation ? (lick.variation.chords ?? lick.chords) : lick.chords;
-    await reportRoundTrip(tex, bars, chords, lick, path, r, requireAlphaTab);
+    // Plain score, and the analysis overlay with degree labels, must both survive the round trip.
+    for (const labels of [null, 'degrees']) {
+      let tex;
+      try { tex = lickToAlphaTex(lick, { variation, labels }); } catch (e) { r.error(path, e.message); break; }
+      await reportRoundTrip(tex, bars, chords, lick, path, r, requireAlphaTab, labels);
+    }
   }
 }
 
 async function checkLineRender(bars, chords, lesson, path, r, requireAlphaTab) {
-  let body;
-  try { body = barsToAlphaTex(bars, chords, lesson.timeSignature); } catch (e) { r.error(path, e.message); return; }
-  const swing = lesson.feel === 'swing';
-  const ts = lesson.timeSignature;
-  const tex = `\\tempo ${lesson.tempo.default}\n.\n\\track "Guitar"\n\\staff {score tabs}\n` +
-    body.map((b, i) => `${i === 0 ? `\\ts ${ts[0]} ${ts[1]} ` : ''}\\tf ${swing ? 'triplet8th' : 'none'} ${b}`).join(' |\n') + ' |';
+  let tex;
+  try {
+    tex = lineToAlphaTex({ bars, chords, timeSignature: lesson.timeSignature, feel: lesson.feel, tempo: lesson.tempo.default, key: lesson.key });
+  } catch (e) { r.error(path, e.message); return; }
   await reportRoundTrip(tex, bars, chords, lesson, path, r, requireAlphaTab);
 }
 
-async function reportRoundTrip(tex, bars, chords, lesson, path, r, requireAlphaTab) {
-  const problems = await roundTrip(tex, bars, { swing: lesson.feel === 'swing', chords, ts: lesson.timeSignature });
+async function reportRoundTrip(tex, bars, chords, lesson, path, r, requireAlphaTab, labels = null) {
+  const problems = await roundTrip(tex, bars, { swing: lesson.feel === 'swing', chords, ts: lesson.timeSignature, key: lesson.key, labels });
   if (problems === null) {
-    if (requireAlphaTab) r.error(path, 'alphaTab is not installed, so the render round trip could not run');
+    if (requireAlphaTab) { if (!r.errors.some((e) => e.message.startsWith('alphaTab is not installed'))) r.error(path, 'alphaTab is not installed, so the render round trip could not run'); }
     else if (!r.notes.includes('alphaTab round trip skipped (install @coderline/alphatab to enable)')) r.notes.push('alphaTab round trip skipped (install @coderline/alphatab to enable)');
     return;
   }
-  for (const p of problems) r.error(path, `alphaTab: ${p}`);
+  for (const p of problems) r.error(path, `alphaTab${labels ? ' (analysis overlay)' : ''}: ${p}`);
 }
 
 function checkAllKeys(lick, r) {

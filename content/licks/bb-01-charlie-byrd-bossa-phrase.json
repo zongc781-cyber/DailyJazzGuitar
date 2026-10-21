@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "bb-01-charlie-byrd-bossa-phrase",
+  "title": "Singable bossa phrase that anticipates the beat",
+  "origin": "seed",
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "blue-bossa",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Charlie Byrd",
+    "note": "Byrd, a classically trained fingerstyle player on nylon-string guitar, kept his bossa nova solos low-key and melodic (hear his solo on 'Desafinado' from Jazz Samba). This phrase borrows that plain, singable chord-tone melody and sets it in bossa rhythm, with notes that arrive just ahead of the beat."
+  },
+  "sources": [
+    {
+      "title": "Jazz Samba",
+      "author": "Stan Getz and Charlie Byrd",
+      "kind": "recording",
+      "year": 1962,
+      "url": "https://en.wikipedia.org/wiki/Jazz_Samba",
+      "detail": "'Desafinado': Byrd's nylon-string guitar solo on the album version (the single edit left it out)"
+    },
+    {
+      "title": "Bossa Nova Pelos Passaros",
+      "author": "Charlie Byrd",
+      "kind": "recording",
+      "year": 1962,
+      "detail": "Byrd's own bossa nova album for Riverside, from the same year as Jazz Samba"
+    },
+    {
+      "title": "The Brazilian Guitar Book",
+      "author": "Nelson Faria",
+      "kind": "book",
+      "year": 1995,
+      "url": "https://www.shermusic.com/1883217024.php",
+      "detail": "Sher Music method for samba, bossa nova and other Brazilian styles: their rhythm patterns and syncopation on guitar"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "C",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "straight",
+  "tempo": {
+    "min": 50,
+    "default": 110,
+    "max": 180
+  },
+  "difficulty": 1,
+  "chords": [
+    {
+      "symbol": "Cm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "Cm7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Fm7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 5,
+          "pitch": "C4",
+          "finger": 3,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 4,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 3,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 1,
+          "fret": 3,
+          "pitch": "G4",
+          "finger": 1,
+          "tie": true
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 4,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 3,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 6,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 1,
+          "fret": 6,
+          "pitch": "Bb4",
+          "finger": 4,
+          "tie": true
+        },
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 3,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "approach-diatonic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "dots": 1,
+          "string": 1,
+          "fret": 4,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Two short arpeggio motifs with the same rhythm, the second one chord tone higher. Each ends by anticipating beat 3: its last note arrives on the 'and' of 2 and is tied over, the classic bossa push. A pickup on the 'and' of 4 then steps up a half step into the 3rd of {{chord 3}}, right on beat 1.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "text": "Everything over {{chord 1}} is a chord tone. The first motif climbs root, 3rd and 5th ({{note 1.2}}, {{note 1.3}}, {{note 1.4}}). The second keeps the shape but starts one chord tone higher, so it climbs 3rd, 5th and 7th, and the phrase rises to its peak on {{note 2.4}}."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            2,
+            7
+          ]
+        ],
+        "text": "{{note 2.7}} is the 5th of {{chord 2}}, and it sits a half step below the 3rd of {{chord 3}}. Played as a pickup on the 'and' of 4, it leans straight into the new chord."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          2.5,
+          2.5,
+          4.5,
+          1
+        ],
+        "text": "Both motifs start on the 'and' of 1 and put their last note on the 'and' of 2, tied over beat 3. Arriving half a beat early is the bossa anticipation: count 'one and two AND (three)' and let the note ring through the beat. After the pickup on the 'and' of 4, the landing comes squarely on beat 1, which makes it sound settled."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 3rd of {{chord 3}}, the note that tells the ear the chord has changed. It is only a half step above the 5th of {{chord 1}}, so the smallest possible move brings the biggest change of colour."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "b3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Every note before the landing is a chord tone, so nothing can sound wrong; the interest comes from rhythm. Notes that arrive half a beat early and ring across the beat give bossa nova its gentle forward lean. The last move is the smallest one possible: a half step from the 5th of the old chord to the 3rd of the new one.",
+  "fingeringNote": "One position, one finger per fret (third position in the lesson's original key). The first notes run diagonally across the G string, the B string and the high E string: ring finger, middle finger, then the index finger on the 5th. The pinky reaches up for the 7th, and the landing note is under the middle finger. No shifts or stretches.",
+  "practiceTask": "Play the lick over bars 1 to 3 of the weekly standard and rest in bar 4. Count out loud ('one and two AND, three') until the tied notes feel natural, then play the variation, which pushes the landing ahead of the bar line.",
+  "variation": {
+    "description": "The landing moves half a beat earlier: {{note 2.8}} is played on the 'and' of 4 and tied over the bar line, so the 3rd of {{chord 3}} is already sounding when the chord arrives. That bar-line anticipation is one of the most typical bossa nova rhythms. For that half beat the note sits over {{chord 2}} as its b13, which is where the forward push comes from. To make room, the held 7th is shortened and the pickup moves to beat 4.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 5,
+            "pitch": "C4",
+            "finger": 3,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 4,
+            "pitch": "Eb4",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 3,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 1,
+            "fret": 3,
+            "pitch": "G4",
+            "finger": 1,
+            "tie": true
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 4,
+            "pitch": "Eb4",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 3,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 6,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 6,
+            "pitch": "Bb4",
+            "finger": 4,
+            "tie": true
+          },
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 3,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "5",
+            "role": "approach-diatonic"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 4,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b13",
+            "role": "tension"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "dots": 1,
+            "string": 1,
+            "fret": 4,
+            "pitch": "Ab4",
+            "finger": 2,
+            "tie": true
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "bossa-nova",
+    "anticipation",
+    "syncopation",
+    "arpeggio",
+    "minor"
+  ]
+}

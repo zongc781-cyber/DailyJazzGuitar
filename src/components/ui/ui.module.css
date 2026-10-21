@@ -1,0 +1,240 @@
+/* Shared building blocks: buttons, badges, cards, segmented controls. */
+
+.button {
+  min-height: var(--tap);
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out,
+    color 0.15s ease-out;
+}
+
+.button:hover {
+  background: var(--surface-2);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: var(--button);
+  border-color: var(--button);
+  color: var(--button-ink);
+}
+
+.primary:hover {
+  background: var(--button);
+  filter: brightness(1.12);
+}
+
+.done {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+  color: var(--ink);
+}
+
+.done :global(svg) {
+  color: var(--ok);
+}
+
+.done:hover {
+  background: var(--ok-soft);
+}
+
+.danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.small {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.88rem;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge :global(svg) {
+  flex: none;
+}
+
+.badgeSeed {
+  background: var(--ok-soft);
+  border-color: color-mix(in srgb, var(--ok) 35%, transparent);
+  color: var(--ink);
+}
+
+.badgeGenerated {
+  background: var(--brass-soft);
+  border-color: color-mix(in srgb, var(--brass-strong) 45%, transparent);
+  color: var(--ink);
+}
+
+.badgeReview {
+  background: transparent;
+  border-style: dashed;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+  padding: 18px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.segment {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out;
+}
+
+.segment:hover {
+  color: var(--ink);
+}
+
+.segment[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.select {
+  min-height: var(--tap);
+  padding: 0 40px 0 14px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--line-strong);
+  background-color: var(--surface);
+  font-size: 1rem;
+  font-weight: 500;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%), linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 52%,
+    calc(100% - 14px) 52%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 14px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.empty {
+  padding: 28px 20px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-m);
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.error {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  padding: 20px;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+}
+
+.skeleton {
+  border-radius: var(--radius-m);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: skeleton 1.4s linear infinite;
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

@@ -1,11 +1,12 @@
 // Optional check: parse the generated alphaTex with the real alphaTab importer and confirm
-// every beat, pitch, string, fret, finger, chord name and the swing setting survived.
+// every beat, pitch, string, fret, finger, spelling, chord name, the tuning, key signature,
+// instrument and the swing setting survived.
 // Runs when @coderline/alphatab is installed in the project; otherwise reports "skipped".
 
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
-import { toAlphaTexFinger } from './alphatex.mjs';
-import { fretToMidi } from './theory.mjs';
+import { toAlphaTexFinger, toAlphaTexAccidental, toAlphaTexKeySignature, KEY_SIGNATURES, GUITAR_PROGRAM, degreeLabel } from './alphatex.mjs';
+import { STANDARD_TUNING, fretToMidi } from './theory.mjs';
 
 let alphaTabPromise;
 export function loadAlphaTab(fromDir = process.cwd()) {
@@ -21,8 +22,11 @@ export function loadAlphaTab(fromDir = process.cwd()) {
   return alphaTabPromise;
 }
 
+// alphaTab's NoteAccidentalMode values for the modes alphatex.mjs writes.
+const ACCIDENTAL_MODE_VALUES = { forcenatural: 2, forcesharp: 3, forcedoublesharp: 4, forceflat: 5, forcedoubleflat: 6 };
+
 /** Returns a list of mismatch messages, or null when alphaTab is not installed. */
-export async function roundTrip(tex, bars, { swing, chords = [], ts }) {
+export async function roundTrip(tex, bars, { swing, chords = [], ts, key, labels = null }) {
   const at = await loadAlphaTab();
   if (!at) return null;
   const problems = [];
@@ -34,7 +38,19 @@ export async function roundTrip(tex, bars, { swing, chords = [], ts }) {
   } catch (e) {
     return [`alphaTab could not parse the generated alphaTex: ${e.message}`];
   }
-  const staff = score.tracks[0].staves[0];
+  const track = score.tracks[0];
+  const staff = track.staves[0];
+  if (track.playbackInfo.program !== GUITAR_PROGRAM) problems.push(`instrument is program ${track.playbackInfo.program}, not jazz guitar (${GUITAR_PROGRAM})`);
+  const tuning = [1, 2, 3, 4, 5, 6].map((s) => STANDARD_TUNING[s]);
+  if (staff.tuning.join(',') !== tuning.join(',')) problems.push(`tuning differs: ${staff.tuning.join(',')} vs standard ${tuning.join(',')}`);
+  const ks = toAlphaTexKeySignature(key);
+  if (ks) {
+    const minor = ks.endsWith('minor');
+    const want = KEY_SIGNATURES[minor ? 'minor' : 'major'][ks.slice(0, -'minor'.length)];
+    staff.bars.forEach((b, i) => {
+      if (b.keySignature !== want || b.keySignatureType !== (minor ? 1 : 0)) problems.push(`bar ${i + 1}: key signature differs (${b.keySignature}/${b.keySignatureType}, expected ${ks})`);
+    });
+  }
   if (staff.bars.length !== bars.length) problems.push(`alphaTab sees ${staff.bars.length} bars, lesson has ${bars.length}`);
   score.masterBars.forEach((mb, i) => {
     if (mb.tripletFeel !== (swing ? 2 : 0)) problems.push(`bar ${i + 1}: swing setting differs (tripletFeel ${mb.tripletFeel})`);
@@ -58,6 +74,8 @@ export async function roundTrip(tex, bars, { swing, chords = [], ts }) {
       if (n.isTieDestination !== Boolean(ev.tie)) problems.push(`${where}: tie differs`);
       if (n.realValue !== fretToMidi(ev.string, ev.fret)) problems.push(`${where}: alphaTab plays MIDI ${n.realValue}, lesson says ${ev.pitch}`);
       if (!ev.tie && ev.fret > 0 && n.leftHandFinger !== toAlphaTexFinger(ev.finger) - 1) problems.push(`${where}: finger differs`);
+      if (!ev.tie && n.accidentalMode !== ACCIDENTAL_MODE_VALUES[toAlphaTexAccidental(ev.pitch)]) problems.push(`${where}: spelling of ${ev.pitch} differs (accidental mode ${n.accidentalMode})`);
+      if (labels === 'degrees' && !ev.tie && (b.text ?? null) !== degreeLabel(ev.degree)) problems.push(`${where}: degree label differs`);
     });
   });
   const want = chords.map((c) => c.symbol);
