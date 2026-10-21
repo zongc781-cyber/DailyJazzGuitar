@@ -1,0 +1,517 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "example-ii-v-i-enclosure",
+  "title": "ii–V–I with an enclosure into the 3rd",
+  "origin": "seed",
+  "review": {
+    "status": "reviewed",
+    "reviewedBy": "example fixture (replace with the human reviewer)",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "original",
+    "note": "Written as a format example; bebop enclosure vocabulary as taught in the cited book."
+  },
+  "sources": [
+    {
+      "title": "The Jazz Theory Book",
+      "author": "Mark Levine",
+      "kind": "book",
+      "year": 1995,
+      "detail": "Chapter on bebop scales and approach notes"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "difficulty": 2,
+  "chords": [
+    {
+      "symbol": "Cm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "F7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Bbmaj7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 5,
+          "pitch": "G3",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 5,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 4,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 4,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "11",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 4,
+          "degree": "b3",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "13",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 5,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "11",
+          "role": "enclosure"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 6,
+          "pitch": "G#3",
+          "finger": 2,
+          "degree": "#9",
+          "role": "enclosure"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 7,
+          "pitch": "A3",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 5,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 6,
+          "pitch": "Db4",
+          "finger": 2,
+          "degree": "b13",
+          "role": "approach-chromatic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "4",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 5,
+          "pitch": "A4",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 4,
+          "degree": "9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 5,
+          "pitch": "A4",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "4",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "tie": true
+        },
+        {
+          "dur": "2",
+          "rest": true,
+          "dots": 1
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Bar 1 outlines {{chord 1}} as a rising arpeggio, bar 2 encloses the 3rd of {{chord 2}}, and a half-step approach lands on the 3rd of {{chord 3}} on beat one.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "text": "The 5th, 7th, root and 3rd of {{chord 1}} spell the chord in one sweep."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "text": "The 11th on {{chord 1}}, the 13th on {{chord 2}} and the 9th on {{chord 3}} add colour without hiding the harmony."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "{{note 2.3}} and {{note 2.4}} surround the 3rd from above and below; {{note 2.8}} slides a half step into the next chord."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1
+        ],
+        "text": "The line starts on the and of one, so it sounds like a pickup, and the resolution falls on a downbeat."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 3rd of {{chord 3}}, the note that tells the ear the cadence has arrived."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Each chord gets its own sound: an arpeggio for {{chord 1}}, a surround-the-target move for {{chord 2}}, and a strong landing on the 3rd of {{chord 3}}. Approach notes are only half or whole steps away, so even the 'wrong' notes lead somewhere clear.",
+  "fingeringNote": "Stay in fifth position the whole time; the index finger sits at fret 5.",
+  "practiceTask": "Play the lick over bars 1 to 3 of the weekly standard, then move it to bars 5 to 7 using the transpose control.",
+  "variation": {
+    "description": "Start with a triplet and leave space on beat four of {{chord 1}}; the second bar holds the 3rd of {{chord 2}} longer.",
+    "chords": [
+      {
+        "symbol": "Cm7",
+        "bar": 1,
+        "beat": 1
+      },
+      {
+        "symbol": "F7",
+        "bar": 2,
+        "beat": 1
+      }
+    ],
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 5,
+            "pitch": "G3",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone",
+            "tuplet": 3
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone",
+            "tuplet": 3
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 5,
+            "pitch": "C4",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone",
+            "tuplet": 3
+          },
+          {
+            "dur": "4",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 4,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 6,
+            "pitch": "F4",
+            "finger": 2,
+            "degree": "11",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b3",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 4,
+            "fret": 7,
+            "pitch": "A3",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 3,
+            "fret": 5,
+            "pitch": "C4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "ii-V-I",
+    "enclosure",
+    "bebop"
+  ]
+}
