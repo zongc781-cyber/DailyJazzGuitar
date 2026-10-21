@@ -5,15 +5,15 @@
   "title": "Long bebop line that steps back home",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
   "inspiration": {
     "type": "in-the-style-of",
     "artist": "Jimmy Raney",
-    "note": "Raney's long, flowing eighth-note lines that move smoothly from one chord to the next (Ira Gitler's liner notes for 2 Guitars contrast his long, linear lines with Kenny Burrell's choppier phrasing). This phrase borrows that habit: one unbroken line that keeps the chord tones on the beats, slips chromatic passing notes in between and steps by half step into the next chord."
+    "note": "Raney was known for long, flowing eighth-note lines that move smoothly from one chord to the next; in his liner notes for 2 Guitars, Ira Gitler writes that Raney plays a long melodic line while Kenny Burrell is choppier. This phrase borrows that habit: one unbroken line that keeps the chord tones on the beats, slips chromatic passing notes in between and steps by half step into the next chord."
   },
   "sources": [
     {
@@ -29,7 +29,7 @@
       "author": "Kenny Burrell and Jimmy Raney",
       "kind": "recording",
       "year": 1957,
-      "url": "https://en.wikipedia.org/wiki/2_Guitars",
+      "url": "https://thejazztome.info/kenny-burrell-jimmy-raney-2-guitars/",
       "detail": "Raney's solo on 'Blue Duke', which Ira Gitler's liner notes single out; the notes contrast Raney's long melodic lines with Burrell's choppier phrasing."
     },
     {
@@ -390,7 +390,7 @@
   "fingeringNote": "Eighth position in the lesson's original key, index finger at fret 8, starting with the ring finger on the D string. Bar 1 climbs the chord one string at a time with fingers 3, 4, 3, 2 and 1, and the pinky reaches up to fret 11 for the top note. In bar 2 fingers 4, 3 and 2 walk down the B string; on {{note 2.6}} the index drops back one fret (marked as a shift) and the last three notes sit in seventh position.",
   "practiceTask": "Play the lick over bars 11 to 13 of the weekly standard: the two bars of the major chord a half step above the tonic, then the first chord of the closing ii–V. Then sing the last note of the lick's second bar and the landing note while the chords play, so you hear the half step into bar 13 before you play it.",
   "variation": {
-    "description": "The variation changes the approach. Bar 2 skips the 4th, so the last two notes become an enclosure: {{note 2.7}}, a step above the target, and {{note 2.8}}, the root of {{chord 1}}, a half step below it. The old root then rises a half step into the new one ({{note 3.1}}), which is the voice leading of the whole passage in a single step.",
+    "description": "The variation changes the approach. Bar 2 skips the 4th, so the last two notes become an enclosure: {{note 2.7}}, a step above the target, and {{note 2.8}}, the root of {{chord 1}}, a half step below it. The old root then rises a half step into the new one ({{note 3.1}}), which is the voice leading of the whole passage in a single step. Without the bebop passing note the 3rd moves to the 'and' of 3 and the 9th lands on beat 4; that is fine here, because the beat-4 note is part of the enclosure.",
     "bars": [
       {
         "events": [

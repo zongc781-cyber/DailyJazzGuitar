@@ -71,9 +71,10 @@ browser: picks today's lick and this week's standard from the local date ◀─�
 
 The seed library has 2 standards (Autumn Leaves and Blue Bossa) and 14 daily licks, 7 for each.
 
-- Every seed lesson was written by Claude and passed the validator. Their `review` blocks say they
-  are **awaiting a human play-through**. Please play each lick from the tab, listen in two keys,
-  and then put your name in `reviewedBy` (see `content/README.md`).
+- Every seed lesson was written by Claude, passed the validator and then had an independent
+  musical read-through. None has been played on a guitar yet, so each one's `review.status` is
+  `awaiting-play-through` and the lesson page says so. Please play each lick from the tab and
+  listen in two keys, then set `status` to `reviewed` with your name (see `content/README.md`).
 - Licks are original phrases **in the style of** a named guitarist, never transcriptions. Each one
   cites recordings and teaching material that were opened and checked.
 - Standards contain chord changes, form, analysis and original exercises. They never contain the

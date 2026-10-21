@@ -5,8 +5,8 @@
   "title": "Minor ii–V–i: wide leaps and the b9 falling to the 5th",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
@@ -60,7 +60,7 @@
   "tempo": {
     "min": 60,
     "default": 132,
-    "max": 220
+    "max": 200
   },
   "difficulty": 3,
   "chords": [
@@ -247,7 +247,7 @@
     }
   ],
   "analysis": {
-    "summary": "Over {{chord 1}} the line leaps down through the chord in wide intervals, then a chromatic note pushes up into the 3rd of {{chord 2}}. Bar 2 climbs a diminished-7th arpeggio from that 3rd (3rd, 5th, 7th, b9) and comes back down, and the b9 at the end of the bar falls a half step to the 5th of {{chord 3}} on beat 1.",
+    "summary": "Over {{chord 1}} the line leaps down through the chord in wide intervals, then a half-step approach pushes up into the 3rd of {{chord 2}}. Bar 2 climbs a diminished-7th arpeggio from that 3rd (3rd, 5th, 7th, b9) and comes back down, and the b9 at the end of the bar falls a half step to the 5th of {{chord 3}} on beat 1.",
     "points": [
       {
         "topic": "chord-tones",
@@ -301,7 +301,7 @@
             7
           ]
         ],
-        "text": "Until its last note, bar 1 uses only the four notes of {{chord 1}} (root, b3, b5 and b7), played as three downward leaps: root to b5, 7th to b3, b5 to 7th. Bar 2 starts on the 3rd of {{chord 2}} ({{note 2.1}}) and stacks its 5th and 7th on top."
+        "text": "Until its last note, bar 1 uses only the four notes of {{chord 1}} (root, b3, b5 and b7) in a zigzag: three downward leaps (root to b5, 7th to b3, b5 to 7th) with a rising 3rd between them. Bar 2 starts on the 3rd of {{chord 2}} ({{note 2.1}}) and stacks its 5th and 7th on top."
       },
       {
         "topic": "tensions",
@@ -325,7 +325,7 @@
             8
           ]
         ],
-        "text": "{{note 1.8}} is a chromatic note a half step below the 3rd of {{chord 2}}. Played on the 'and' of 4, it pushes into the new chord so the 3rd arrives right on beat 1."
+        "text": "{{note 1.8}} sits a half step below the 3rd of {{chord 2}}, right after the 7th of {{chord 1}} a half step above it, so the two notes squeeze the 3rd from both sides. Played on the 'and' of 4, it pushes into the new chord so the 3rd arrives right on beat 1."
       },
       {
         "topic": "rhythm",
@@ -380,7 +380,7 @@
       "onsetBeat": 1
     }
   },
-  "whyItWorks": "Each chord gets its own shape: wide leaps for {{chord 1}}, a climbing diminished arpeggio for {{chord 2}}. The moves that carry the cadence are both half steps, a chromatic note into the 3rd of the V and the b9 down to the 5th of the i. Half steps pull the hardest, so the line sounds inevitable even though it leaps a lot.",
+  "whyItWorks": "Each chord gets its own shape: wide leaps for {{chord 1}}, a climbing diminished arpeggio for {{chord 2}}. The moves that carry the cadence are both half steps, a half-step approach into the 3rd of the V and the b9 down to the 5th of the i. Half steps pull the hardest, so the line sounds inevitable even though it leaps a lot.",
   "fingeringNote": "Eighth position in the lesson's original key, one finger per fret, starting with the ring finger on the high E string. Bar 1 skips a string twice, so pick it slowly at first. In bar 2 the pinky reaches one fret above the position three times, once on the D string and twice on the B string; let the hand lean up the neck for those notes, then come back for the landing note under the index finger.",
   "practiceTask": "Play the lick over bars 5 to 7 of the weekly standard, then over bars 13 to 15, which have the same chords. Practise bar 1 alone and slowly until the string skips sound even, then join it to bar 2.",
   "variation": {

@@ -61,6 +61,7 @@ await expectError('generated lesson claiming transcription', lick, (l) => { l.or
 await expectError('transcription without recording source', lick, (l) => { l.inspiration = { type: 'transcription', artist: 'Wes Montgomery', recording: 'Four on Six' }; }, 'cite the recording');
 await expectError('simplified not stated', lick, (l) => { delete l.simplified; }, 'simplified must be');
 await expectError('seed without review', lick, (l) => { delete l.review; }, 'seed lessons need review');
+await expectError('seed with an unknown review status', lick, (l) => { l.review.status = 'checked'; }, 'seed lessons need review');
 // Transposition
 await expectError('open string blocks transposition', lick, (l) => { Object.assign(l.bars[3].events[0], { tie: undefined, string: 2, fret: 0, pitch: 'B3', finger: 0, degree: 'b9', role: 'scale' }); }, 'open strings');
 const up = transposeLick(lick, 'E');

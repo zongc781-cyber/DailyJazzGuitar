@@ -5,8 +5,8 @@
   "title": "The blue note as a passing tone",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
@@ -335,7 +335,7 @@
   "fingeringNote": "Second minor-pentatonic box (tenth position in the lesson's original key): index finger on the lowest fret of the shape, one finger per fret, with the middle finger on the blue note. At the end of bar 1 the ring finger slides up one fret into the landing note. The hand moves up with it, so play the answer from there with the index and ring fingers.",
   "practiceTask": "Play the lick over bars 2 to 4 of the weekly standard. Start with bar 1 alone at a slow tempo and listen to the blue note pass, then add the slide and the answer. Finally try the variation, where the blue note passes on the way up.",
   "variation": {
-    "description": "The blue note now passes on the way up. The arpeggio falls to the 3rd of {{chord 1}}, then the line climbs 4th, flat 5th and 5th ({{note 1.6}}, {{note 1.7}}, {{note 1.8}}) and keeps rising into the slide. {{note 1.7}} is still a passing tone between the 5th and the 4th, just in the other direction.",
+    "description": "The blue note now passes on the way up. The arpeggio falls to the 3rd of {{chord 1}}, then the line climbs 4th, flat 5th and 5th ({{note 1.6}}, {{note 1.7}}, {{note 1.8}}) and keeps rising into the slide. {{note 1.7}} is still a passing tone between the 5th and the 4th, just in the other direction; it now falls on beat 4 instead of an offbeat, so keep it light and keep moving.",
     "bars": [
       {
         "events": [

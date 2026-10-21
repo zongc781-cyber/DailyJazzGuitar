@@ -5,8 +5,8 @@
   "title": "One minor sound for each chord",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",

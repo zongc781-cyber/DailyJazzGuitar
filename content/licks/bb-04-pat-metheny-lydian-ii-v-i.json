@@ -5,8 +5,8 @@
   "title": "Singing ii–V–I with a Lydian finish",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
@@ -172,7 +172,8 @@
           "pitch": "Ab4",
           "finger": 2,
           "degree": "1",
-          "role": "chord-tone"
+          "role": "chord-tone",
+          "technique": "p"
         },
         {
           "dur": "8",
@@ -344,7 +345,7 @@
     }
   },
   "whyItWorks": "Wide leaps sound lyrical when the important moves are small. Here the big intervals are framed by half-step guide-tone moves at both chord changes, so the harmony stays clear. Arriving on the 3rd and then reaching the #11 lets the ear hear the plain major chord first and the Lydian colour second.",
-  "fingeringNote": "Eighth position in the lesson's original key, one finger per fret. In bar 1 the index finger reaches up one fret for the long top note, then slides back down one fret into bar 2, which brings the hand back to its position. The last two notes sit on the same fret on neighbouring strings: roll the index finger from the high E string to the B string.",
+  "fingeringNote": "Eighth position in the lesson's original key, one finger per fret. In bar 1 the jump to the long top note skips the B string, and the index finger reaches up one fret for it, then slides back down one fret into bar 2, which brings the hand back to its position. In bar 2, pull off from the pinky to the middle finger on the B string for the note on beat 4. The last two notes sit on the same fret on neighbouring strings: roll the index finger from the high E string to the B string.",
   "practiceTask": "Play the lick over bars 9 to 11 of the weekly standard and let the last note ring through bar 12. Keep that note in your ear as the tune returns to its home key in bar 13: it is the 5th of that key.",
   "variation": {
     "description": "Skip the 3rd and land straight on the colour note: the root of {{chord 2}} falls a half step onto the #11 of {{chord 3}} ({{note 3.1}}) on beat 1, and it rings for three beats. Landing on the #11 is a bolder, more modern sound; compare it with the lick, where the 3rd lands first and the #11 comes last.",
@@ -439,7 +440,8 @@
             "pitch": "Ab4",
             "finger": 2,
             "degree": "1",
-            "role": "chord-tone"
+            "role": "chord-tone",
+            "technique": "p"
           }
         ]
       },

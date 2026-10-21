@@ -7,7 +7,7 @@ import ui from '@/components/ui/ui.module.css';
 
 export function OriginBadge({ origin }: { origin: Lesson['origin'] }) {
   return origin === 'seed' ? (
-    <span className={`${ui.badge} ${ui.badgeSeed}`} title="Part of the reviewed seed library">
+    <span className={`${ui.badge} ${ui.badgeSeed}`} title="Part of the seed library that ships with the app">
       <Icon name="book" size={14} />
       Seed library
     </span>
@@ -47,6 +47,15 @@ export function Provenance({ lesson }: { lesson: Lesson }) {
         validator as the seed library (rhythm, string and fret pitches, fingering, analysis, transposition and an alphaTab round trip) before it
         was published, but no person has played through it yet. The recordings listed are listening suggestions for the style, chosen by a
         person; the notes do not come from them.
+      </p>
+    );
+  }
+  if (lesson.review?.status === 'awaiting-play-through') {
+    return (
+      <p>
+        Seed library lesson, checked on {formatDate(lesson.review.reviewedOn)} by {lesson.review.reviewedBy}. Every note passed the validator
+        (rhythm, string and fret pitches, fingering, analysis, transposition and an alphaTab round trip), but nobody has played it through on
+        a guitar yet.
       </p>
     );
   }

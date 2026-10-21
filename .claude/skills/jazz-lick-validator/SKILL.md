@@ -98,7 +98,8 @@ text. The validator flags raw names such as `Bb`, `Cm7`, `C4` or "resolves to G"
   published assignment, so a reload or a new generated lesson never swaps today's lesson. Never
   assign a lick ID or fingerprint already used.
 - **Labels.** Show "Seed library" or "Generated" from `origin`, show "Simplified arrangement"
-  when `simplified` is true, and show `sources` and `inspiration` on every lesson.
+  when `simplified` is true, and show `sources` and `inspiration` on every lesson. Say when a
+  seed lesson's `review.status` is `awaiting-play-through`.
 
 ## Generation service
 

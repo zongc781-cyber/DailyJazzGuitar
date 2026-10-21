@@ -5,15 +5,15 @@
   "title": "Turnaround launch with a slurred triplet",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
   "inspiration": {
     "type": "in-the-style-of",
     "artist": "George Benson",
-    "note": "Benson's bebop runs, which Premier Guitar's Cecil Alexander describes as dense chromatic lines with chromatic enclosures and 'blazing triplets', and, as in a JazzGuitar.be study of his licks, the major-7th arpeggio played from the b3 of a minor chord for a minor-9th sound. This phrase borrows the arpeggio, the quick triplet and the chromatic enclosure for a turnaround."
+    "note": "Premier Guitar's Cecil Alexander describes Benson's bebop as dense chromatic lines and 'blazing triplets', with targets reached by chromatic enclosure, and a JazzGuitar.be study of his licks shows him playing the major-7th arpeggio from the b3 of a minor chord for a minor-9th sound. This phrase borrows the arpeggio, the quick triplet and the chromatic enclosure for a turnaround."
   },
   "sources": [
     {
@@ -77,7 +77,7 @@
       "beat": 1
     },
     {
-      "symbol": "G7alt",
+      "symbol": "G7b9",
       "bar": 2,
       "beat": 3
     },
@@ -330,7 +330,7 @@
             6
           ]
         ],
-        "text": "{{note 1.5}} is the 9th of {{chord 1}}: with the three notes before it, it forms the major-7th arpeggio a minor 3rd above the root, a rootless minor-9th sound. {{note 2.6}} is the b9 of {{chord 3}}, the altered note the chart's own b9 dominant names, so the line also fits that plainer chord."
+        "text": "{{note 1.5}} is the 9th of {{chord 1}}: with the three notes before it, it forms the major-7th arpeggio a minor 3rd above the root, a rootless minor-9th sound. {{note 2.6}} is the b9 of {{chord 3}}, the dark note that marks the V chord of a minor key."
       },
       {
         "topic": "approach",
@@ -344,7 +344,7 @@
             9
           ]
         ],
-        "text": "The last two notes of the triplet, {{note 2.8}} and {{note 2.9}}, sit a half step above and a half step below the b3 of {{chord 4}}: a chromatic enclosure. They are not part of the altered chord; they are there only to point at the landing note."
+        "text": "The last two notes of the triplet, {{note 2.8}} and {{note 2.9}}, sit a half step above and a half step below the b3 of {{chord 4}}: a chromatic enclosure. Over {{chord 3}} they are its 13th and 5th, both in the half-whole diminished scale that suits a b9 dominant, so they pass smoothly while they point at the landing note."
       },
       {
         "topic": "rhythm",

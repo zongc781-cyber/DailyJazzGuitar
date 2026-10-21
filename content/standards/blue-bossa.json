@@ -9,8 +9,8 @@
   "year": 1963,
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "sources": [
@@ -81,11 +81,12 @@
       "title": "Drop 2 Chords",
       "kind": "website",
       "url": "https://www.jazzguitar.be/blog/drop-2-chords/",
-      "detail": "Jazz Guitar Online: drop 2 shapes on adjacent string sets, and how each chord type differs from the maj7 shape by one fret."
+      "detail": "Jazz Guitar Online: drop 2 shapes on adjacent string sets, and how other chord types come from the maj7 shape by moving one or more of its notes by one fret.",
+      "author": "Dirk Laukens"
     }
   ],
   "simplified": true,
-  "simplificationNote": "One common version of the chord changes in C minor, 16 bars. Lead sheets and recordings differ: the V chord is written as G7b9, G7 or G7alt; some versions put a C7 (V7 of the iv chord) in bar 2 or a Bb7 in bar 4, while the composer's 1967 live version stays on the iv chord in bar 4; the tonic is often played as Cm6 or Cm(maj7); and the last-bar turnaround is often reharmonised. The eight-bar bass introduction of the first recording is not included. Chords only: no melody is included.",
+  "simplificationNote": "One common version of the chord changes in C minor, 16 bars. Lead sheets and recordings differ: the V chord is written as G7b9, G7 or G7alt; the first recording moves to Bb7 in bar 4, while the composer's 1967 live version and many lead sheets stay on the iv chord; some versions put a C7 (V7 of the iv chord) in bar 2; the tonic is often played as Cm6 or Cm(maj7); and the last-bar turnaround is often reharmonised. The eight-bar bass introduction of the first recording is not included. Chords only: no melody is included.",
   "key": {
     "tonic": "C",
     "mode": "minor"
@@ -322,9 +323,9 @@
       "recording": "Blue Bossa",
       "album": "Blue Bossa in the Bronx: Live from the Blue Morocco",
       "year": 2025,
-      "url": "https://jazzleadsheets.com/blue-bossa-bronx.html",
+      "url": "https://resonancerecords.org/product/kenny-dorhamblue-bossa-in-the-bronx-live-from-the-blue-morocco/",
       "verifiedOn": "2026-10-21",
-      "note": "The composer live in 1967 with Sonny Red, Cedar Walton, Paul Chambers and Denis Charles, released by Resonance. In this version bar 4 stays on the iv chord."
+      "note": "The composer live at the Blue Morocco in the Bronx in 1967 with Sonny Red, Cedar Walton, Paul Chambers and Denis Charles, released by Resonance in 2025; track 1. In this version bar 4 stays on the iv chord."
     },
     {
       "performer": "Joe Henderson",
@@ -350,7 +351,7 @@
     "sections": [
       {
         "label": "A",
-        "text": "Bars 1–4 set up the home key with two bars of {{chord 1}} and two bars of {{chord 3}}, the i and iv chords. Bars 5–8 are a iiø–V7b9–i in {{key}}; the b9 of the V chord is the b6 of the key, borrowed from harmonic minor, and it falls a half step to the 5th of the tonic."
+        "text": "Bars 1–4 set up the home key with two bars of {{chord 1}} and two bars of {{chord 3}}, the i and iv chords. Bars 5–8 are a iiø–V7b9–i in {{key}}. The V chord takes its major 3rd from harmonic minor (the raised 7th of the key, which rises a half step to the tonic), and its b9 is the b6 of the key, which falls a half step to the 5th of the tonic."
       },
       {
         "label": "B",
@@ -434,7 +435,7 @@
             "roman": "bVII7"
           }
         ],
-        "text": "Some versions change the second bar of the iv chord to {{chord 1}}. It shares three notes with the iiø7 that follows, so it leads smoothly into bar 5. Lead sheets disagree here, and the composer's 1967 live recording stays on the iv chord."
+        "text": "Dorham's original bass line, heard on the first recording, moves to {{chord 1}} in the second bar of the iv chord; the composer's own 1967 live recording and many lead sheets stay on the iv chord, as this chart does. {{chord 1}} shares three notes with the iiø7 that follows, so it leads smoothly into bar 5."
       },
       {
         "name": "Tritone-substitute turnaround in bar 16",
@@ -478,14 +479,14 @@
         {
           "string": 3,
           "fret": 8,
-          "finger": 4,
+          "finger": 3,
           "pitch": "Eb4",
           "degree": "b3"
         },
         {
           "string": 2,
           "fret": 8,
-          "finger": 1,
+          "finger": 3,
           "pitch": "G4",
           "degree": "5"
         }
@@ -583,14 +584,14 @@
         {
           "string": 3,
           "fret": 1,
-          "finger": 4,
+          "finger": 3,
           "pitch": "Ab3",
           "degree": "b3"
         },
         {
           "string": 2,
           "fret": 1,
-          "finger": 1,
+          "finger": 3,
           "pitch": "C4",
           "degree": "5"
         }
@@ -828,14 +829,14 @@
         {
           "string": 3,
           "fret": 11,
-          "finger": 4,
+          "finger": 3,
           "pitch": "Gb4",
           "degree": "b3"
         },
         {
           "string": 2,
           "fret": 11,
-          "finger": 1,
+          "finger": 3,
           "pitch": "Bb4",
           "degree": "5"
         }
@@ -1050,7 +1051,7 @@
           "degree": "b3"
         }
       ],
-      "note": "Start of the line cliché: the root on the 3rd string walks down one fret at a time through the mMaj7, m7 and m6 voicings at the same fret."
+      "note": "Start of the line cliché: the root on the 3rd string walks down one fret at a time through the mMaj7, m7 and m6 voicings in the same position."
     },
     {
       "symbol": "CmMaj7",
@@ -1506,7 +1507,7 @@
     },
     {
       "title": "3rds and 7ths in half notes, bars 1–8 (first half)",
-      "description": "The 3rd of each chord on beat 1 and its 7th on beat 3, in third position. The line hardly moves: the 7th of {{chord 2}} ({{note 2.2}}) falls a whole step to the b3 of {{chord 3}}, and in the minor ii–V–i {{note 6.2}}, the 7th of {{chord 6}}, falls a whole step to {{note 7.1}}, the b3 of the tonic. Count the straight eighths in your head even though every note is a half note.",
+      "description": "The 3rd and 7th of each chord in half notes, in third position. Each bar starts on the guide tone nearest the last note, so at every bar line the line holds a note or moves by step: the b3 of {{chord 2}} ({{note 2.2}}) is held as the 7th of {{chord 3}}, the 7th of {{chord 4}} ({{note 4.2}}) rises a whole step to the b3 of {{chord 5}}, {{note 5.2}} falls a half step to the 3rd of {{chord 6}}, and {{note 6.2}}, the 7th of {{chord 6}}, falls a whole step to {{note 7.1}}, the b3 of the tonic. Count the straight eighths in your head even though every note is a half note.",
       "chords": [
         {
           "symbol": "Cm7",
@@ -1576,20 +1577,20 @@
           "events": [
             {
               "dur": "2",
-              "string": 2,
-              "fret": 4,
-              "pitch": "Eb4",
-              "finger": 2,
-              "degree": "b3",
-              "role": "chord-tone"
-            },
-            {
-              "dur": "2",
               "string": 3,
               "fret": 3,
               "pitch": "Bb3",
               "finger": 1,
               "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 2,
+              "degree": "b3",
               "role": "chord-tone"
             }
           ]
@@ -1598,20 +1599,20 @@
           "events": [
             {
               "dur": "2",
-              "string": 4,
-              "fret": 6,
-              "pitch": "Ab3",
-              "finger": 4,
-              "degree": "b3",
-              "role": "chord-tone"
-            },
-            {
-              "dur": "2",
               "string": 2,
               "fret": 4,
               "pitch": "Eb4",
               "finger": 2,
               "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 6,
+              "pitch": "Ab3",
+              "finger": 4,
+              "degree": "b3",
               "role": "chord-tone"
             }
           ]
@@ -1708,20 +1709,20 @@
           "events": [
             {
               "dur": "2",
-              "string": 2,
-              "fret": 4,
-              "pitch": "Eb4",
-              "finger": 2,
-              "degree": "b3",
-              "role": "chord-tone"
-            },
-            {
-              "dur": "2",
               "string": 3,
               "fret": 3,
               "pitch": "Bb3",
               "finger": 1,
               "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 2,
+              "degree": "b3",
               "role": "chord-tone"
             }
           ]
@@ -1849,20 +1850,20 @@
           "events": [
             {
               "dur": "2",
-              "string": 2,
-              "fret": 6,
-              "pitch": "F4",
-              "finger": 3,
-              "degree": "3",
-              "role": "chord-tone"
-            },
-            {
-              "dur": "2",
               "string": 3,
               "fret": 5,
               "pitch": "C4",
               "finger": 2,
               "degree": "7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 6,
+              "pitch": "F4",
+              "finger": 3,
+              "degree": "3",
               "role": "chord-tone"
             }
           ]
@@ -1973,7 +1974,7 @@
     },
     {
       "title": "Straight eighths and anticipations",
-      "text": "Play even, straight eighth notes with a light attack. Anticipate some chord changes by an eighth note, landing on the new chord's 3rd on the \"and\" of beat 4 before the bar line, as the bossa phrase lick does. Leave space: a phrase that rests on beat 1 lets the bossa groove breathe."
+      "text": "Play even, straight eighth notes with a light attack. Anticipate some chord changes by an eighth note, landing on the new chord's 3rd on the \"and\" of beat 4 before the bar line, as the variation of the bossa phrase lick does. Leave space: a phrase that rests on beat 1 lets the bossa groove breathe."
     },
     {
       "title": "Use this week's licks",
@@ -2006,7 +2007,7 @@
       "focus": "comping",
       "minutes": 25,
       "tasks": [
-        "Comp bars 1–8 with the mid-neck voicings, two beats per chord with a metronome.",
+        "Comp bars 1–8 with the mid-neck voicings, striking each chord on beats 1 and 3 with a metronome.",
         "Learn the bossa pattern: thumb on the root and 5th on beats 1 and 3, fingers on the off-beats.",
         "Comp bars 9–16 with the low voicings, then the whole form with a play-along, working up to 120 bpm."
       ]

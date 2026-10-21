@@ -5,8 +5,8 @@
   "title": "One small motif, bent to fit four chords",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -320,7 +320,7 @@
           4,
           1
         ],
-        "text": "The first three statements start on the 'and' of one and hold their last note over beat three, with a rest after each one. The fourth statement starts on beat four instead, so its last note lands squarely on the downbeat of {{chord 4}}. Moving a motif to a new place in the bar like this is called rhythmic displacement."
+        "text": "The first three statements start on the 'and' of one and hold their last note over beat three; the first two are followed by a rest. The fourth statement starts on beat four, straight after the third, so its last note lands squarely on the downbeat of {{chord 4}}. Moving a motif to a new place in the bar like this is called rhythmic displacement."
       },
       {
         "topic": "resolution",
@@ -346,21 +346,21 @@
   "fingeringNote": "Fifth position: index finger on fret 5, ring finger on fret 7, little finger on fret 8, one finger per fret. Everything is on the G string and the D string, with no stretches and no shifts. In bar 3 the ring finger rolls across from the D string to the G string at fret 7.",
   "practiceTask": "Play the lick over bars 1 to 4 of the weekly standard, then over bars 9 to 12 and 21 to 24, which have the same chords. Then invent your own three-note motif over {{chord 1}} and bend it to fit the next three chords, moving only the notes that clash.",
   "variation": {
-    "description": "Same notes, new place in the bar: the first three statements now start on beat two instead of the 'and' of one, so their long notes land on beat three and sound calmer. The last statement still comes in on beat four and lands on the downbeat of {{chord 4}}.",
+    "description": "Same notes, but each statement is played in reverse order, so it climbs instead of falling, and its long note is the top of the motif. The notes that change are still the guide tones: the first note moves from the b7 of {{chord 1}} to the 3rd of {{chord 2}}, and the long note from the b7 of {{chord 2}} to the 3rd of {{chord 3}}. The last statement still comes in on beat four and now lands on the 7th of {{chord 4}}.",
     "bars": [
       {
         "events": [
           {
-            "dur": "4",
+            "dur": "8",
             "rest": true
           },
           {
             "dur": "8",
-            "string": 3,
+            "string": 4,
             "fret": 8,
-            "pitch": "Eb4",
+            "pitch": "Bb3",
             "finger": 4,
-            "degree": "b3",
+            "degree": "b7",
             "role": "chord-tone"
           },
           {
@@ -373,29 +373,34 @@
             "role": "chord-tone"
           },
           {
-            "dur": "2",
-            "string": 4,
+            "dur": "4",
+            "string": 3,
             "fret": 8,
-            "pitch": "Bb3",
+            "pitch": "Eb4",
             "finger": 4,
-            "degree": "b7",
-            "role": "chord-tone"
+            "degree": "b3",
+            "role": "chord-tone",
+            "dots": 1
+          },
+          {
+            "dur": "4",
+            "rest": true
           }
         ]
       },
       {
         "events": [
           {
-            "dur": "4",
+            "dur": "8",
             "rest": true
           },
           {
             "dur": "8",
-            "string": 3,
-            "fret": 8,
-            "pitch": "Eb4",
-            "finger": 4,
-            "degree": "b7",
+            "string": 4,
+            "fret": 7,
+            "pitch": "A3",
+            "finger": 3,
+            "degree": "3",
             "role": "chord-tone"
           },
           {
@@ -408,29 +413,34 @@
             "role": "chord-tone"
           },
           {
-            "dur": "2",
-            "string": 4,
-            "fret": 7,
-            "pitch": "A3",
-            "finger": 3,
-            "degree": "3",
-            "role": "chord-tone"
+            "dur": "4",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone",
+            "dots": 1
+          },
+          {
+            "dur": "4",
+            "rest": true
           }
         ]
       },
       {
         "events": [
           {
-            "dur": "4",
+            "dur": "8",
             "rest": true
           },
           {
             "dur": "8",
-            "string": 3,
+            "string": 4,
             "fret": 7,
-            "pitch": "D4",
+            "pitch": "A3",
             "finger": 3,
-            "degree": "3",
+            "degree": "7",
             "role": "chord-tone"
           },
           {
@@ -444,20 +454,21 @@
           },
           {
             "dur": "4",
-            "string": 4,
-            "fret": 7,
-            "pitch": "A3",
-            "finger": 3,
-            "degree": "7",
-            "role": "chord-tone"
-          },
-          {
-            "dur": "8",
             "string": 3,
             "fret": 7,
             "pitch": "D4",
             "finger": 3,
             "degree": "3",
+            "role": "chord-tone",
+            "dots": 1
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 4,
+            "degree": "1",
             "role": "chord-tone"
           },
           {
@@ -475,13 +486,13 @@
         "events": [
           {
             "dur": "2",
-            "dots": 1,
-            "string": 4,
-            "fret": 8,
-            "pitch": "Bb3",
-            "finger": 4,
-            "degree": "5",
-            "role": "chord-tone"
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 3,
+            "degree": "7",
+            "role": "chord-tone",
+            "dots": 1
           },
           {
             "dur": "4",

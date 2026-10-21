@@ -5,8 +5,8 @@
   "title": "One riff, three placements, one changed note",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -54,7 +54,7 @@
     "default": 132,
     "max": 220
   },
-  "difficulty": 3,
+  "difficulty": 2,
   "chords": [
     {
       "symbol": "Gm6",
@@ -171,7 +171,7 @@
           "pitch": "D4",
           "finger": 1,
           "degree": "5",
-          "role": "approach-chromatic"
+          "role": "approach-diatonic"
         }
       ]
     },
@@ -292,7 +292,7 @@
           4.5,
           1
         ],
-        "text": "First statement: it starts on the 'and' of beat one, and its long note lands on beat three. Second: it starts right on beat one, so its long note becomes a push on the 'and' of two. Third: it starts on the 'and' of four and carries the riff across the bar line. The notes stay the same; only their place in the bar moves, with a rest between statements so each one breathes."
+        "text": "First statement: it starts on the 'and' of beat one, and its long note lands on beat three. Second: it starts right on beat one, so its long note becomes a push on the 'and' of two. Third: it starts on the 'and' of four and carries the riff across the bar line. Apart from the one note the last statement lowers, the notes stay the same; only their place in the bar moves, with a rest between statements so each one breathes."
       },
       {
         "topic": "resolution",
@@ -421,7 +421,7 @@
             "pitch": "D4",
             "finger": 1,
             "degree": "5",
-            "role": "approach-chromatic"
+            "role": "approach-diatonic"
           }
         ]
       },

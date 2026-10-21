@@ -5,8 +5,8 @@
   "title": "Blues slide from the #9 into the 3rd",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -349,11 +349,11 @@
       "onsetBeat": 1
     }
   },
-  "whyItWorks": "The minor pentatonic of the ii chord fits the whole ii–V, so you can sound bluesy without hitting wrong notes. The #9 of the V is the blues' minor 3rd: sliding it into the major 3rd gives the ear a moment of grit and then the right note, which is what makes blues phrasing sound vocal.",
+  "whyItWorks": "Over {{chord 1}}, the minor pentatonic scale built on its root sounds bluesy with no clashing notes. On {{chord 2}} the #9 is the blues' minor 3rd: sliding it up into the major 3rd gives the ear a moment of grit and then the right note, which is what makes blues phrasing sound vocal.",
   "fingeringNote": "Eighth position: index finger on fret 8, little finger on fret 11; bar 1 sits in the minor pentatonic box here. For the slide in bar 2, put the middle finger on fret 9 of the B string, pick once and slide it up to fret 10 while the rest of the hand stays put; the index finger is then ready for fret 8 on the high E string.",
   "practiceTask": "Play the lick over bars 9 to 11 of the weekly standard, then over bars 1 to 3 and 21 to 23, which use the same chords. Practise the slide on its own first: pick the #9 exactly on the beat and arrive on the 3rd exactly on the 'and'.",
   "variation": {
-    "description": "Slide into the landing as well: {{note 1.6}} now slides up a half step into {{note 2.1}}, the 3rd of {{chord 2}}, just as the #9 slid into the 3rd of {{chord 1}}. Use the middle finger for both slides, and both arrivals sound sung rather than picked.",
+    "description": "Slide into the landing as well: {{note 1.6}} now slides up a half step into {{note 2.1}}, the 3rd of {{chord 2}}, just as the #9 slid into the 3rd of {{chord 1}}. Use the middle finger for both slides, and both arrivals sound sung rather than picked. Only these last two bars change; play the first bar as written.",
     "chords": [
       {
         "symbol": "F7",

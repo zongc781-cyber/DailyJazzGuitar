@@ -5,8 +5,8 @@
   "title": "3-to-9 arpeggios over the major 7th chords",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -334,7 +334,7 @@
           4,
           1
         ],
-        "text": "The line starts on the 'and' of beat one, so the first arpeggio feels like a pickup. In bar 2 every beat carries a guide tone of {{chord 2}}: 3rd, 7th, 3rd, 7th, with the 9th, the 5th and one passing note on the off-beats. The landing note falls on beat one and is held for two beats."
+        "text": "The line starts on the 'and' of beat one, just after the downbeat, so the first arpeggio pushes up towards the 9th on beat three. In bar 2 every beat carries a guide tone of {{chord 2}}: 3rd, 7th, 3rd, 7th, with the 9th, the 5th and one passing note on the off-beats. The landing note falls on beat one and is held for two beats."
       },
       {
         "topic": "resolution",

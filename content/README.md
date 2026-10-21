@@ -34,10 +34,11 @@ calls the same `validateForPublish()` before it saves anything.
 
 ## Seed lesson rules
 
-- `origin: "seed"` and a `review` block. Seed lessons in this first version were written and
-  checked by Claude (validator plus a musical read-through), so `reviewedBy` says so. A person
-  should play each lick from the tab, listen in two keys, and then put their own name in
-  `reviewedBy`. See the accuracy review in the skill's `references/content-rules.md`.
+- `origin: "seed"` and a `review` block. Seed lessons in this first version were written by
+  Claude and checked by the validator and an independent musical read-through, so their
+  `review.status` is `"awaiting-play-through"`. A person should play each lick from the tab and
+  listen in two keys, then set `status` to `"reviewed"`, put their own name in `reviewedBy` and
+  update `reviewedOn`. See the accuracy review in the skill's `references/content-rules.md`.
 - Licks are original phrases `in-the-style-of` a named guitarist. They are not transcriptions,
   because nobody has checked them note for note against a recording. `inspiration.note` says
   which habit of that player the phrase borrows, and `sources` cites real recordings and

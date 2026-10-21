@@ -5,15 +5,15 @@
   "title": "Singable bossa phrase that anticipates the beat",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "blue-bossa",
   "inspiration": {
     "type": "in-the-style-of",
     "artist": "Charlie Byrd",
-    "note": "Byrd, a classically trained fingerstyle player on nylon-string guitar, kept his bossa nova solos low-key and melodic (hear his solo on 'Desafinado' from Jazz Samba). This phrase borrows that plain, singable chord-tone melody and sets it in bossa rhythm, with notes that arrive just ahead of the beat."
+    "note": "Byrd, a classically trained fingerstyle player on nylon-string guitar, kept his bossa nova solos low-key and melodic (hear his solo on 'Desafinado' from Jazz Samba). This phrase borrows that plain, singable chord-tone approach and sets it in bossa rhythm, with notes that arrive just ahead of the beat."
   },
   "sources": [
     {
@@ -22,7 +22,7 @@
       "kind": "recording",
       "year": 1962,
       "url": "https://en.wikipedia.org/wiki/Jazz_Samba",
-      "detail": "'Desafinado': Byrd's nylon-string guitar solo on the album version (the single edit left it out)"
+      "detail": "'Desafinado', with Byrd's nylon-string guitar solo."
     },
     {
       "title": "Bossa Nova Pelos Passaros",

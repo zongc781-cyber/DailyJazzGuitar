@@ -9,8 +9,8 @@
   "year": 1945,
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "sources": [
@@ -516,7 +516,7 @@
     }
   ],
   "analysis": {
-    "summary": "Autumn Leaves is built almost entirely from ii–V progressions. Each half of the first A section pairs a major ii–V–I–IV in the relative major with a minor iiø–V–i in {{key}}, and the roots fall in 5ths around the diatonic cycle, so the same few shapes cover nearly every bar. The main exception is the tritone drop from the IV chord to the iiø, where the relative major hands over to the minor key; it sounds smooth because the IVmaj7 of the relative major is the same chord as the bVImaj7 of the home key.",
+    "summary": "Autumn Leaves is built almost entirely from ii–V progressions. The first A section pairs a major ii–V–I–IV in the relative major (bars 1–4) with a minor iiø–V–i in {{key}} (bars 5–8), and the roots fall in 5ths around the diatonic cycle, so the same few shapes cover nearly every bar. The main exception is the tritone drop from the IV chord to the iiø, where the relative major hands over to the minor key; it sounds smooth because the IVmaj7 of the relative major is the same chord as the bVImaj7 of the home key.",
     "sections": [
       {
         "label": "A1",
@@ -532,7 +532,7 @@
       },
       {
         "label": "C",
-        "text": "Section C begins with a iiø–V in {{key}} (bars 25–26) that does not resolve. Instead, bar 27 holds a i7–IV7, which works as a ii–V a whole step lower, and bar 28 holds another ii–V a whole step lower again, landing on {{chord 31}}, the bVImaj7 of the home key. The 3rds and 7ths of these two-beat chords fall by half steps, a chromatic inner line. Bars 30–32 finish with a quick iiø–V, two beats per chord, and two bars of the tonic."
+        "text": "Section C begins with the same iiø–V in {{key}} (bars 25–26), but the tonic it reaches lasts only two beats: {{chord 27}} immediately becomes the ii of a new ii–V. Bar 27 holds that i7–IV7, which works as a ii–V a whole step lower, and bar 28 holds another ii–V a whole step lower again, landing on {{chord 31}}, the bVImaj7 of the home key. One guide-tone line falls by half steps through these two-beat chords (the 7th of {{chord 27}}, the 3rd of {{chord 28}}, the 7th of {{chord 29}} and the 3rd of {{chord 30}}, which becomes the 7th of {{chord 31}}); the other holds each note across a ii–V and then steps down. Bars 30–32 finish with a quick iiø–V, two beats per chord, and two bars of the tonic."
       }
     ],
     "variations": [
@@ -636,7 +636,7 @@
             "roman": "i6"
           }
         ],
-        "text": "Over two bars of the tonic, move one inner voice down by half steps from the root: {{chord 1}}, {{chord 2}}, {{chord 3}}, {{chord 4}}. The same idea fits bars 19–20 and 31–32, and one more half step down lands on the b3 of the ii7 that follows."
+        "text": "Over two bars of the tonic, move one inner voice down by half steps from the root: {{chord 1}}, {{chord 2}}, {{chord 3}}, {{chord 4}}. The same idea fits bars 15–16, 19–20 and 31–32. After bars 7–8, 19–20 and 31–32, one more half step down lands on the b3 of the ii7 that follows; after bars 15–16 it lands on the b5 of the iiø7."
       },
       {
         "name": "Turnaround in the last two bars",
@@ -1855,7 +1855,7 @@
     },
     {
       "title": "One guide tone per chord, bars 25–32 (section C)",
-      "description": "One guide tone per chord, chosen so the line falls by half steps: the 7th of {{chord 1}}, the 3rd of {{chord 2}}, the 7th of {{chord 3}}, the 3rd of {{chord 4}}, the 7th of {{chord 5}} and the 3rd of {{chord 6}}, which is held as the 7th of {{chord 7}}. This is the inner voice that makes bars 27–28 sound like a slide. In bar 6 of the exercise, {{note 6.1}} is the b3 of {{chord 8}} and stays as the 7th of {{chord 9}} before falling a whole step to the b3 of the tonic. Stay in fifth position throughout.",
+      "description": "One guide tone per chord, chosen so the line falls by half steps: the 7th of {{chord 1}}, the 3rd of {{chord 2}}, the 7th of {{chord 3}}, the 3rd of {{chord 4}}, the 7th of {{chord 5}} and the 3rd of {{chord 6}}, which is played again as the 7th of {{chord 7}}. This is the inner voice that makes bars 27–28 sound like a slide. In bar 6 of the exercise, {{note 6.1}} is the b3 of {{chord 8}} and stays as the 7th of {{chord 9}} before falling a whole step to the b3 of the tonic. Stay in fifth position throughout.",
       "chords": [
         {
           "symbol": "Am7b5",
@@ -2339,7 +2339,7 @@
   "improvisation": [
     {
       "title": "One scale per key centre",
-      "text": "Use the major scale of the relative major for bars 1–4, 9–12 and 21–24; it has the same notes as the natural minor of {{key}}. Over each iiø–V, switch to harmonic minor of the home key: its raised 7th is the 3rd of the V chord and its b6 is the b9 of the V chord. On the tonic, try melodic minor, whose natural 6th matches the 6th in {{chord 7}}."
+      "text": "Use the major scale of the relative major for bars 1–4, 9–12 and 21–24; it has the same notes as the natural minor of {{key}}. Over each iiø–V, switch to harmonic minor of the home key: its raised 7th is the 3rd of the V chord and its b6 is the b9 of the V chord. On the tonic, try melodic minor, whose natural 6th matches the 6th in {{chord 7}}. Bars 27–28 are the exception: the key centre stays {{key}}, but each pair of chords there works as a ii–V of its own, so over {{chord 27}} and {{chord 28}} use the major scale built a whole step below the tonic of {{key}}, and over {{chord 29}} and {{chord 30}} the major scale a whole step lower again, which is also the major scale of {{chord 31}} in bar 29."
     },
     {
       "title": "Land on the 3rd",
@@ -2351,7 +2351,7 @@
     },
     {
       "title": "Use this week's licks",
-      "text": "Place the licks where their chords fall in the tune: the arpeggio lick over bars 3–5, 11–13 and 23–25, the riff over bars 7–9, 19–21 and 31–32, and the descending ii–V lick over bars 27–29. Use the diminished minor ii–V lick wherever the iiø–V–i comes back, and take the motif lick through every ii–V of a chorus, changing only the notes needed to fit each chord."
+      "text": "Place the licks where their chords fall in the tune: the Charlie Christian and Wes Montgomery licks over bars 1–3, 9–11 and 21–23; the Barney Kessel arpeggio lick over bars 3–5, 11–13 and 23–25; the Grant Green riff over bars 7–9, 19–21 and 31–32; and the Joe Pass descending ii–V lick over bars 27–29. Use the Django minor ii–V lick wherever the iiø–V–i comes back, and take the Jim Hall motif lick through every ii–V of a chorus, changing only the notes needed to fit each chord."
     },
     {
       "title": "Develop one motif",
@@ -2362,9 +2362,9 @@
     {
       "day": 1,
       "focus": "listening",
-      "minutes": 20,
+      "minutes": 30,
       "tasks": [
-        "Listen to the Somethin' Else and Portrait in Jazz versions with the chart open, counting the 32 bars and saying each section name as it starts.",
+        "Listen to the Somethin' Else and Portrait in Jazz versions with the chart open, counting the 32 bars and saying each section name as it starts. Start counting when the melody comes in: the Somethin' Else version opens with an introduction that is not part of the form.",
         "Listen to the Jim Hall and Ron Carter duo and notice when the guitar comps behind the bass and when it plays single lines.",
         "Sing the root of each chord along with one chorus of a recording."
       ]
@@ -2375,7 +2375,7 @@
       "minutes": 20,
       "tasks": [
         "Play the root of every chord on one string while saying its roman numeral out loud.",
-        "Mark the key centres on the chart: the relative major in bars 1–4, 9–12 and 21–24, and {{key}} everywhere else.",
+        "Mark the key centres on the chart: the relative major in bars 1–4, 9–12 and 21–24, and {{key}} everywhere else. Then circle bars 27 and 28, where each pair of chords works as a ii–V of its own.",
         "Play the first guide-tone exercise slowly, then sing the 3rds while you play the roots."
       ]
     },
@@ -2384,9 +2384,9 @@
       "focus": "comping",
       "minutes": 25,
       "tasks": [
-        "Comp bars 1–8 with the mid-neck voicings, alternating root-on-6th and root-on-5th shapes, two beats per chord with the metronome on beats 2 and 4.",
+        "Comp bars 1–8 with the mid-neck voicings, alternating root-on-6th and root-on-5th shapes: play each chord twice per bar, on beats 1 and 3, while the metronome clicks on beats 2 and 4.",
         "Comp the whole form with a play-along, starting slowly and working up to 120 bpm, four light beats per bar.",
-        "Learn both paths through bars 27–30, the low shapes and the high shapes, and keep the 3rd-string notes moving by half steps."
+        "Learn both paths through bars 27–30, the low shapes and the high shapes. On the high path the 3rd-string notes fall by half steps from bar 27 to bar 29; on the low path the 3rd string keeps one note through each ii–V and drops a whole step between them."
       ]
     },
     {
@@ -2395,7 +2395,7 @@
       "minutes": 25,
       "tasks": [
         "Play each chord's arpeggio up from the root (1–3–5–7) through bars 1–8 in one position.",
-        "Start each arpeggio on the 3rd instead (3–5–7–9), the sound of this week's arpeggio lick.",
+        "Start each arpeggio on the 3rd instead (3–5–7–9), the sound of the Charlie Christian and Barney Kessel licks. Use the b9 on {{chord 6}}, which gives the diminished shape of the Django lick, play 3–5–6–9 on {{chord 7}}, and stop at the 7th on {{chord 5}}, where the 9th from the key is a clashing b9.",
         "Connect the arpeggios in eighth notes: when the chord changes, move to the nearest chord tone of the new chord."
       ]
     },
@@ -2416,7 +2416,7 @@
       "minutes": 30,
       "tasks": [
         "Improvise one chorus using only guide tones (3rds and 7ths), then a chorus that adds chromatic approach notes.",
-        "Solo over the whole form with one scale per key centre, fitting in two of this week's licks.",
+        "Solo over the whole form with one scale per key centre, switching to the two ii–V scales in bars 27–28, and fit in two of this week's licks.",
         "Try the tritone substitutes in bars 27–28 while a play-along keeps the original chords, and listen to the extra tension."
       ]
     },

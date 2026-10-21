@@ -67,7 +67,8 @@ export interface Source {
 }
 
 export interface Review {
-  status: 'reviewed';
+  /** "reviewed" once a person has played the lesson through; until then "awaiting-play-through". */
+  status: 'reviewed' | 'awaiting-play-through';
   reviewedBy: string;
   reviewedOn: string;
 }

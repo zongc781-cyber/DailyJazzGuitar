@@ -5,8 +5,8 @@
   "title": "Diminished flourish into the minor 6 chord",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -55,7 +55,7 @@
     "default": 140,
     "max": 220
   },
-  "difficulty": 2,
+  "difficulty": 3,
   "chords": [
     {
       "symbol": "Am7b5",
@@ -283,7 +283,7 @@
             4
           ]
         ],
-        "text": "{{note 3.4}} is a passing note that fills the step between the root and the 6th, so the last three notes walk down instead of jumping."
+        "text": "{{note 3.4}} is a passing note that fills the gap of a minor 3rd between the root and the 6th, so the last three notes walk down instead of jumping."
       },
       {
         "topic": "rhythm",
@@ -342,7 +342,7 @@
   "fingeringNote": "Eighth position: index finger on fret 8, little finger on fret 11, one finger per fret with no stretch or shift. The triplet in bar 2 puts one note on each of three strings (little, ring, index), which suits one smooth downward sweep of the pick; the little finger then takes the b9 on the high E string.",
   "practiceTask": "Play the lick over bars 5 to 7 of the weekly standard, then over bars 13 to 15 and 17 to 19, where the same minor ii–V–i returns.",
   "variation": {
-    "description": "Keep the triplets going: the diminished arpeggio runs up, down and up again, so the b9 arrives on beat four, right before it falls into {{chord 2}}. Only the rhythm of the first bar changes.",
+    "description": "Keep the triplets going over {{chord 1}}: the diminished arpeggio runs up, down and up again, so the b9 arrives on beat four, right before it falls into {{chord 2}}. The variation starts at the dominant bar: play the iiø bar as before, and the {{chord 2}} bar is unchanged.",
     "chords": [
       {
         "symbol": "D7b9",

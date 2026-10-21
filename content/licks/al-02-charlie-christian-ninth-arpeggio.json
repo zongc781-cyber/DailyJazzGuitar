@@ -5,8 +5,8 @@
   "title": "Swing riff and a 9th arpeggio from the 3rd",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -307,7 +307,7 @@
             1
           ]
         ],
-        "text": "{{note 3.1}} is the 5th of {{chord 3}}, one step below the 9th. The tension note does not jump away; it falls to the nearest note of the new chord, on the strongest beat of the bar."
+        "text": "{{note 3.1}} is the 5th of {{chord 3}}, one step below the 9th. The tension note does not jump away; it steps down to a note of the new chord, on the strongest beat of the bar."
       }
     ],
     "resolution": {
@@ -323,7 +323,7 @@
   "fingeringNote": "Tenth position: index finger on fret 10, ring finger on fret 12, little finger on fret 13, one finger per fret with no stretch or shift. In bar 1 the index finger rolls from the D string to the A string at fret 10. The arpeggio in bar 2 is the common half-diminished shape with its lowest note on the A string, fingered ring, index, little, ring.",
   "practiceTask": "Play the lick over bars 1 to 3 of the weekly standard, then over bars 9 to 11 and 21 to 23, where the same ii–V–I comes back. Once it is comfortable, try starting an arpeggio on the 3rd of every dominant chord you play this week.",
   "variation": {
-    "description": "Aim for the 3rd instead of the 5th: touch the 9th of {{chord 1}} only briefly, fall back to the b7, and let that b7 slip a half step down to the 3rd of {{chord 2}} on beat one.",
+    "description": "Aim for the 3rd instead of the 5th: touch the 9th of {{chord 1}} only briefly, fall back to the b7, and let that b7 slip a half step down to the 3rd of {{chord 2}} on beat one. Only these last two bars change; play the riff bar first, as written.",
     "chords": [
       {
         "symbol": "F7",

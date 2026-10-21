@@ -5,8 +5,8 @@
   "title": "Chromatic guide tones through descending ii–Vs",
   "origin": "seed",
   "review": {
-    "status": "reviewed",
-    "reviewedBy": "Claude (AI-written and validator-checked; awaiting a human play-through)",
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
     "reviewedOn": "2026-10-21"
   },
   "standardId": "autumn-leaves",
@@ -35,7 +35,7 @@
       "author": "Dirk Laukens",
       "kind": "website",
       "url": "https://jazzguitar.be/blog/joe-pass-jazz-guitar-licks",
-      "detail": "Jazz Guitar Online lesson on Pass's vocabulary. It points out his enclosures and approach notes ('characteristic of Joe's improvisations') and ends with a study over the changes of 'Autumn Leaves'."
+      "detail": "Jazz Guitar Online lesson on Pass's vocabulary. It points out an enclosure around the b7 of a dominant chord (lick 12) and approach notes that are 'characteristic of Joe's improvisations' (lick 3), and ends with a study over the changes of 'Autumn Leaves'."
     }
   ],
   "simplified": false,
@@ -248,7 +248,7 @@
     }
   ],
   "analysis": {
-    "summary": "A non-stop eighth-note line through two quick ii–Vs. Every beat carries a chord tone, and at every chord change a 3rd or 7th moves by half steps into the next chord: the 7th of {{chord 1}} falls to the 3rd of {{chord 2}}, the 7th of {{chord 2}} slides down two half steps to the b3 of {{chord 3}}, the 7th of {{chord 3}} falls to the 3rd of {{chord 4}}, and an enclosure delivers the 3rd of {{chord 5}} on beat one.",
+    "summary": "A non-stop eighth-note line through two quick ii–Vs. After the opening rest, every beat carries a chord tone, and at every chord change a 3rd or 7th moves by half steps into the next chord: the 7th of {{chord 1}} falls to the 3rd of {{chord 2}}, the 7th of {{chord 2}} slides down two half steps to the b3 of {{chord 3}}, the 7th of {{chord 3}} falls to the 3rd of {{chord 4}}, and an enclosure delivers the 3rd of {{chord 5}} on beat one.",
     "points": [
       {
         "topic": "chord-tones",
@@ -353,7 +353,7 @@
           4,
           1
         ],
-        "text": "The line starts on the 'and' of beat one and runs in unbroken eighth notes to the landing. A chord tone sits on every beat, and the chromatic and passing notes all fall on the 'ands', where they sound like movement rather than wrong notes."
+        "text": "The line starts on the 'and' of beat one and runs in unbroken eighth notes to the landing. From beat two on, a chord tone sits on every beat, and the chromatic and passing notes all fall on the 'ands', where they sound like movement rather than wrong notes."
       },
       {
         "topic": "resolution",
