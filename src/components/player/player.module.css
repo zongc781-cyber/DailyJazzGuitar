@@ -9,6 +9,8 @@
   padding: 10px 4px 6px;
   min-height: 200px;
   overflow: hidden;
+  /* alphaTab gives its playback cursors a high z-index; keep them below the fixed tab bar. */
+  isolation: isolate;
 }
 
 .score {
