@@ -9,7 +9,7 @@
   padding: 10px 4px 6px;
   min-height: 200px;
   overflow: hidden;
-  /* alphaTab gives its playback cursors a high z-index; keep them below the fixed tab bar. */
+  /* alphaTab gives its playback cursors a high z-index; keep them inside the score sheet. */
   isolation: isolate;
 }
 
@@ -67,25 +67,46 @@
 
 /* Transport */
 
+/* The controls follow the width of their own card, so they never overlap in a narrow window:
+   one row when there is room, otherwise play and toggles above the tempo. */
 .transport {
-  display: grid;
-  gap: 18px;
-  padding: 18px;
+  container-type: inline-size;
+  padding: 16px 18px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
   box-shadow: var(--shadow-1);
 }
 
-@media (min-width: 760px) {
-  .transport {
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 24px;
+.transportGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'main toggles'
+    'tempo tempo';
+  align-items: center;
+  gap: 16px 24px;
+}
+
+@container (min-width: 1000px) {
+  .transportGrid {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'main tempo toggles';
+  }
+}
+
+@container (max-width: 559px) {
+  .transportGrid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'main'
+      'tempo'
+      'toggles';
   }
 }
 
 .mainControls {
+  grid-area: main;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -146,13 +167,35 @@
   background: var(--surface-2);
 }
 
-.status {
-  font-size: 0.9rem;
-  color: var(--ink-3);
+.statusBlock {
+  display: grid;
+  gap: 2px;
   min-width: 9.5em;
 }
 
+.status {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+.shortcut {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+.shortcut kbd {
+  font: inherit;
+  font-weight: 600;
+  padding: 0 5px;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+
 .tempo {
+  grid-area: tempo;
   display: grid;
   gap: 8px;
   min-width: 0;
@@ -160,8 +203,9 @@
 
 .tempoHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
 }
 
 .tempoLabel {
@@ -170,9 +214,11 @@
 }
 
 .tempoValue {
+  margin-left: auto;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .tempoValue span {
@@ -198,18 +244,18 @@
 
 .presets {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .preset {
-  min-height: 40px;
-  padding: 0 14px;
+  min-height: 32px;
+  padding: 0 12px;
   border-radius: 999px;
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--ink-2);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition:
     background-color 0.15s ease-out,
@@ -232,15 +278,10 @@
 }
 
 .toggles {
+  grid-area: toggles;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   gap: 8px;
-}
-
-@media (min-width: 760px) {
-  .toggles {
-    grid-template-columns: repeat(3, auto);
-  }
 }
 
 .toggle {

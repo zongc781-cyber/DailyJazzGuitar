@@ -37,7 +37,7 @@ npm run selftest   # proves the validator catches each kind of mistake
 npm run typecheck
 npm run lint
 npm test           # unit tests: scheduling, generation pipeline, lesson store, progress
-npm run test:e2e   # Playwright on a phone and a desktop viewport (builds and serves on port 3100)
+npm run test:e2e   # Playwright in a 1440×900 and a 900×700 window (builds and serves on port 3100)
 ```
 
 `dev`, `build`, `test` and `typecheck` first run `npm run library`, which validates every seed

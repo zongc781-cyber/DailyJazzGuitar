@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// End-to-end tests run against a production build, on a phone and a desktop viewport.
+// End-to-end tests run against a production build in Mac-sized browser windows: a 13-inch
+// MacBook screen and a narrow window, where the side rail shrinks to icons.
 // `npm run test:e2e` builds and starts the app on port 3100 unless one is already running there.
 
 export default defineConfig({
@@ -17,7 +18,7 @@ export default defineConfig({
     timeout: 600_000,
   },
   projects: [
-    { name: 'phone', use: { ...devices['Pixel 7'] } },
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1366, height: 900 } } },
+    { name: 'mac', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 } },
+    { name: 'mac-narrow', use: { ...devices['Desktop Chrome'], viewport: { width: 900, height: 700 }, deviceScaleFactor: 2 } },
   ],
 });

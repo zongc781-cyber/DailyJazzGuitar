@@ -41,7 +41,7 @@ interface KeyOption {
 function KeySelect({ options, value, written, mode, onChange }: { options: KeyOption[]; value: string; written: string; mode: string; onChange: (tonic: string) => void }) {
   const id = useId();
   return (
-    <div className={ui.field}>
+    <div className={`${ui.field} ${styles.toolField}`}>
       <label htmlFor={id}>Key</label>
       <select id={id} className={ui.select} value={value} onChange={(e) => onChange(e.target.value)} data-testid="key-select">
         {options.map((k) => (
@@ -150,15 +150,17 @@ export function LickLesson({
             </>
           ) : null}
         </p>
-        <p className={styles.progression} data-testid="chords">
-          <span className="visually-hidden">Chords: </span>
-          {current.chords.map((c, i) => (
-            <span key={i} className={styles.progressionChord}>
-              {prettyChord(c.symbol)}
-            </span>
-          ))}
-        </p>
-        <LessonBadges lesson={lesson} review={review} />
+        <div className={styles.chordsRow}>
+          <p className={styles.progression} data-testid="chords">
+            <span className="visually-hidden">Chords: </span>
+            {current.chords.map((c, i) => (
+              <span key={i} className={styles.progressionChord}>
+                {prettyChord(c.symbol)}
+              </span>
+            ))}
+          </p>
+          <LessonBadges lesson={lesson} review={review} />
+        </div>
         <LessonActions
           id={lesson.id}
           dateKey={dateKey}
@@ -168,7 +170,7 @@ export function LickLesson({
 
       <div className={styles.toolbar}>
         <KeySelect options={options} value={selected.tonic} written={lesson.key.tonic} mode={lesson.key.mode} onChange={setTonic} />
-        <div className={ui.field}>
+        <div className={`${ui.field} ${styles.toolField}`}>
           <span aria-hidden="true">Line</span>
           <Segmented
             label="Line"
@@ -205,16 +207,18 @@ export function LickLesson({
         <section className={styles.player} aria-label="Notation and playback">
           <PlayerScore />
           <Transport onPlayed={() => dateKey && markPracticeItem(dateKey, lesson.id, 'listen')} />
-          <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
-          {current.fingeringNote ? (
-            <div className={styles.fingering}>
-              <h3>Fingering</h3>
-              <Prose text={current.fingeringNote} ctx={lickCtx} />
-              {selected.tonic !== lesson.key.tonic ? (
-                <p className={styles.fingeringKey}>Any fret numbers in this note are for the written key, {prettyKey(lesson.key)}.</p>
-              ) : null}
-            </div>
-          ) : null}
+          <div className={styles.fretRow}>
+            <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
+            {current.fingeringNote ? (
+              <div className={styles.fingering}>
+                <h3>Fingering</h3>
+                <Prose text={current.fingeringNote} ctx={lickCtx} />
+                {selected.tonic !== lesson.key.tonic ? (
+                  <p className={styles.fingeringKey}>Any fret numbers in this note are for the written key, {prettyKey(lesson.key)}.</p>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
         </section>
       </PlayerProvider>
 

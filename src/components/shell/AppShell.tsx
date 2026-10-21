@@ -1,7 +1,7 @@
 'use client';
 
-// App chrome: a side rail on wide screens and a bottom tab bar on phones. The layout keeps it
-// mounted across navigations, so it never re-renders the page content.
+// App chrome: a side rail, which shrinks to icons with small labels in a narrow window. The
+// layout keeps it mounted across navigations, so it never re-renders the page content.
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -32,7 +32,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className={styles.shell}>
       <nav className={styles.nav} aria-label="Main">
-        <Link href="/" className={styles.brand}>
+        <Link href="/" className={styles.brand} aria-label="Daily Jazz Guitar">
           <BrandMark />
           <span className={styles.brandText}>
             <span className={styles.brandName}>Daily Jazz Guitar</span>

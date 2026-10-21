@@ -1,65 +1,42 @@
+/* Desktop shell: a side rail. In a narrow window the rail shrinks to icons with small labels. */
+
 .shell {
-  min-height: 100dvh;
+  --rail: 84px;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  min-height: 100vh;
+  min-width: 720px;
+  /* The rail's colour and edge run the full height of a long page, behind the sticky nav. */
+  background: linear-gradient(to right, var(--surface) calc(var(--rail) - 1px), var(--line) calc(var(--rail) - 1px) var(--rail), transparent var(--rail));
 }
 
 .main {
   min-width: 0;
-  padding: 20px var(--gutter) calc(var(--nav-h) + 40px + env(safe-area-inset-bottom));
+  padding: 28px 28px 56px;
   outline: none;
 }
 
-/* Phone: bottom tab bar */
 .nav {
-  position: fixed;
-  inset: auto 0 0 0;
-  z-index: 20;
-  background: color-mix(in srgb, var(--surface) 96%, transparent);
-  backdrop-filter: saturate(1.4) blur(12px);
-  -webkit-backdrop-filter: saturate(1.4) blur(12px);
-  border-top: 1px solid var(--line);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.brand,
-.footnote {
-  display: none;
-}
-
-.links {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0 4px;
-  max-width: 560px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.link {
-  min-height: var(--nav-h);
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
+  padding: 20px 10px;
+}
+
+.brand {
+  display: flex;
   justify-content: center;
-  gap: 3px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: var(--ink-3);
+  padding: 4px;
   text-decoration: none;
   border-radius: var(--radius-s);
-  transition: color 0.15s ease-out;
 }
 
-.link:hover {
-  color: var(--ink);
-}
-
-.link[aria-current='page'] {
-  color: var(--brass);
-}
-
-.link[aria-current='page'] :global(svg) {
-  stroke-width: 2.2;
+.brandText,
+.footnote {
+  display: none;
 }
 
 .mark {
@@ -67,40 +44,65 @@
   flex: none;
 }
 
-/* Wide screens: side rail */
-@media (min-width: 960px) {
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.link {
+  min-height: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: var(--radius-s);
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out;
+}
+
+.link:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.link[aria-current='page'] {
+  background: var(--brass-soft);
+  color: var(--ink);
+}
+
+.link[aria-current='page'] :global(svg) {
+  color: var(--brass);
+  stroke-width: 2.2;
+}
+
+@media (min-width: 1100px) {
   .shell {
-    display: grid;
-    grid-template-columns: 248px minmax(0, 1fr);
+    --rail: 232px;
   }
 
   .main {
-    padding: 36px 40px 64px;
+    padding: 32px 40px 64px;
   }
 
   .nav {
-    position: sticky;
-    top: 0;
-    inset: auto;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
     gap: 28px;
-    padding: 28px 18px;
-    background: var(--surface);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-top: none;
-    border-right: 1px solid var(--line);
+    padding: 28px 16px;
   }
 
   .brand {
-    display: flex;
+    justify-content: flex-start;
     align-items: center;
     gap: 12px;
     padding: 4px 8px;
-    text-decoration: none;
-    border-radius: var(--radius-s);
   }
 
   .brandText {
@@ -120,15 +122,6 @@
     color: var(--ink-3);
   }
 
-  .links {
-    margin: 0;
-    padding: 0;
-    max-width: none;
-    display: grid;
-    grid-template-columns: none;
-    gap: 4px;
-  }
-
   .link {
     min-height: var(--tap);
     flex-direction: row;
@@ -136,20 +129,6 @@
     gap: 12px;
     padding: 0 12px;
     font-size: 0.98rem;
-    color: var(--ink-2);
-  }
-
-  .link:hover {
-    background: var(--surface-2);
-  }
-
-  .link[aria-current='page'] {
-    background: var(--brass-soft);
-    color: var(--ink);
-  }
-
-  .link[aria-current='page'] :global(svg) {
-    color: var(--brass);
   }
 
   .footnote {

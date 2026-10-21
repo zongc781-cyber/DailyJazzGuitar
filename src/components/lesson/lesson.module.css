@@ -1,8 +1,11 @@
 /* Lesson pages: daily lick and the parts shared with the weekly standard. */
 
+/* A size container has no width of its own, so it is given one rather than shrunk to fit. */
 .lesson {
+  container: lesson / inline-size;
   display: grid;
-  gap: 28px;
+  gap: 24px;
+  width: 100%;
   max-width: var(--content);
   margin: 0 auto;
   min-width: 0;
@@ -19,7 +22,27 @@
 }
 
 .title {
-  max-width: 22ch;
+  max-width: 30ch;
+}
+
+/* In a wide window the Learned and Favourite buttons sit beside the title. */
+@container lesson (min-width: 860px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 32px;
+  }
+
+  .header > * {
+    grid-column: 1;
+  }
+
+  .header > .actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
 }
 
 .byline {
@@ -29,6 +52,13 @@
 
 .byline a {
   font-weight: 600;
+}
+
+.chordsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
 }
 
 .progression {
@@ -83,12 +113,18 @@
 .toolbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 14px 20px;
+  align-items: center;
+  gap: 14px 24px;
 }
 
 .toolbar > * {
   min-width: 0;
+}
+
+.toolbar > .toolField {
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .analysisToggle[aria-expanded='true'] {
@@ -120,6 +156,20 @@
   min-width: 0;
 }
 
+/* The fretboard, with the fingering note beside it when there is room. */
+.fretRow {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
+@container lesson (min-width: 860px) {
+  .fretRow {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 24px;
+  }
+}
+
 .fingering {
   display: grid;
   gap: 4px;
@@ -147,7 +197,7 @@
   align-items: start;
 }
 
-@media (min-width: 1100px) {
+@container lesson (min-width: 820px) {
   .columns {
     grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
     gap: 40px;

@@ -24,6 +24,37 @@ test('today shows a lick with notation, tab, a fretboard and working playback', 
   expect(errors).toEqual([]);
 });
 
+// Controls that overlap are hard to hit and hide each other's labels; the transport once did at
+// some window widths.
+async function overlaps(page: Page, container: string) {
+  return page.locator(container).evaluate((root) => {
+    const boxes = [...root.querySelectorAll('a, button, input, output, label')].map((el) => ({ name: el.textContent?.trim() || el.getAttribute('aria-label') || el.tagName, r: el.getBoundingClientRect() }));
+    const hits: string[] = [];
+    for (let i = 0; i < boxes.length; i++)
+      for (let j = i + 1; j < boxes.length; j++) {
+        const a = boxes[i].r;
+        const b = boxes[j].r;
+        if (a.width && b.width && a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1) hits.push(`${boxes[i].name} / ${boxes[j].name}`);
+      }
+    return hits;
+  });
+}
+
+test('the playback controls and the side rail never overlap, at any window width', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mac', 'the test sets its own window sizes');
+  const nav = page.getByRole('navigation', { name: 'Main' });
+  for (const path of ['/', '/week']) {
+    await page.goto(path);
+    await expect(page.getByRole('group', { name: 'Playback' })).toBeVisible();
+    for (const width of [720, 820, 900, 1024, 1100, 1180, 1280, 1440, 1728, 2048]) {
+      await page.setViewportSize({ width, height: 900 });
+      expect(await overlaps(page, '[role=group][aria-label=Playback]'), `${path} at ${width}px`).toEqual([]);
+      expect(await overlaps(page, 'nav[aria-label=Main]'), `rail at ${width}px`).toEqual([]);
+      for (const name of ['Today', 'This Week', 'Library', 'Progress']) await expect(nav.getByRole('link', { name, exact: true })).toBeVisible();
+    }
+  }
+});
+
 test('changing the key moves the chords, notation and tab together', async ({ page }) => {
   await openToday(page);
   const before = await chordChips(page).allInnerTexts();
@@ -89,7 +120,7 @@ test('preferences apply straight away and survive a reload', async ({ page }) =>
 });
 
 test('every lesson in the library opens', async ({ page, request }, info) => {
-  test.skip(info.project.name !== 'desktop', 'one viewport is enough for this sweep');
+  test.skip(info.project.name !== 'mac', 'one window size is enough for this sweep');
   const { entries } = (await (await request.get('/api/catalog')).json()) as { entries: { id: string; kind: string; title: string }[] };
   expect(entries.length).toBeGreaterThan(0);
   const errors: string[] = [];
