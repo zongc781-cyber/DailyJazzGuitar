@@ -11,6 +11,9 @@ next-env.d.ts
 public/vendor/alphatab/
 src/generated/
 
+# the Mac installer's private Node.js and settings
+/.mac/
+
 # tests
 test-results/
 playwright-report/

@@ -29,6 +29,25 @@ npm run dev        # validates the library, then serves http://localhost:3000
 npm run build && npm start
 ```
 
+## Use it on your Mac
+
+```bash
+git clone https://github.com/zongc781-cyber/DailyJazzGuitar.git ~/Code/DailyJazzGuitar
+~/Code/DailyJazzGuitar/scripts/mac/install.sh
+```
+
+The installer builds the app and adds **Daily Jazz Guitar** to `~/Applications`, with its own
+icon; open it from there, from Spotlight or from the Dock. It starts the app's server on this Mac
+(port 4747, not reachable from other computers) and opens http://localhost:4747 in your browser.
+Your progress is saved in that browser, so keep using the same one. For a window of its own, choose
+**File > Add to Dock** in Safari.
+
+The installer needs no admin rights. If the Mac has no Node.js 22.6 or later, it downloads a
+checksum-verified copy into `.mac/` for this app only. To update, run `git pull` and the installer
+again. `scripts/mac/stop.sh` stops the server; the server log is
+`~/Library/Logs/DailyJazzGuitar.log`. To remove the app, run `scripts/mac/stop.sh`, then delete the
+app from `~/Applications` and this folder.
+
 ## Checks
 
 ```bash
@@ -148,7 +167,8 @@ src/components/               player (alphaTab, transport, fretboard), lesson, s
 src/lib/music/                lesson format, validator, transposition, alphaTex (shared with the skill's CLI)
 src/lib/progress/             browser progress store
 src/server/                   published library, lesson store, generation service
-scripts/                      library build, alphaTab copy, generation CLI
+scripts/                      library build, alphaTab copy, generation CLI, icons
+scripts/mac/                  Mac installer and the app's start and stop scripts
 tests/                        unit (node:test) and end-to-end (Playwright) tests
 .claude/skills/               jazz-lick-validator, plus the Vercel agent skills used to build the UI
 ```
