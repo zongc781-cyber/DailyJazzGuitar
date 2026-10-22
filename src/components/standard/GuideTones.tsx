@@ -1,18 +1,53 @@
 'use client';
 
-// Guide-tone exercises (3rds and 7ths through the changes), played and drawn like a lick.
+// Guide-tone exercises (3rds and 7ths through the changes), drawn and played like Today's lick: the
+// score and its playback bar on one sheet, then the fretboard with the how-to beside it.
 
 import { useMemo, useState } from 'react';
 import type { Standard } from '@/lib/music/types';
 import { lineToAlphaTex } from '@/lib/music/alphatex.mjs';
+import { prettyChord } from '@/lib/music/pretty';
 import { PlayerProvider, type NoteHighlight } from '@/components/player/PlayerProvider';
-import { PlayerScore } from '@/components/player/PlayerScore';
+import { PlayerScore, ScoreSheet } from '@/components/player/PlayerScore';
 import { Transport } from '@/components/player/Transport';
 import { Fretboard } from '@/components/player/Fretboard';
 import { Segmented } from '@/components/ui/Segmented';
+import lessonStyles from '@/components/lesson/lesson.module.css';
 import { Prose, lineContext } from '@/components/lesson/Prose';
-import { prettyChord } from '@/lib/music/pretty';
+import { curly, typeset } from './text';
 import styles from './standard.module.css';
+
+type Exercise = Standard['guideToneExercises'][number];
+
+/** "Bars 1–8" from a title such as "Guide tones in half notes, bars 1–8 (first A section)". */
+function shortName(ex: Exercise, i: number) {
+  const m = /bars?\s+(\d+)\s*[–-]\s*(\d+)/i.exec(ex.title);
+  return m ? `${i + 1} · Bars ${m[1]}–${m[2]}` : `Exercise ${i + 1}`;
+}
+
+/** The exercise's changes bar by bar, as on the chart: | Gm7 C7 | Fm7 B♭7 |. */
+function ExerciseChanges({ ex }: { ex: Exercise }) {
+  const bars = ex.bars.map((_, i) => ex.chords.filter((c) => c.bar === i + 1));
+  return (
+    <p className={styles.exerciseChanges}>
+      <span className="visually-hidden">Chords, bar by bar: </span>
+      {bars.map((chords, i) => (
+        <span key={i} className={styles.exerciseBar}>
+          {chords.length ? (
+            chords.map((c) => prettyChord(c.symbol)).join(' ')
+          ) : (
+            <>
+              {/* A bar with no new chord repeats the last one, written with the simile mark. */}
+              <span aria-hidden="true">%</span>
+              <span className="visually-hidden">same chord</span>
+            </>
+          )}
+          <span className="visually-hidden">{i < bars.length - 1 ? '; ' : ''}</span>
+        </span>
+      ))}
+    </p>
+  );
+}
 
 export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: Standard; showAnalysis: boolean; leftHanded: boolean }) {
   const [index, setIndex] = useState(0);
@@ -34,24 +69,30 @@ export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: S
   const ctx = useMemo(() => lineContext(ex.bars, ex.chords, standard.key), [ex, standard.key]);
 
   return (
-    <div className={styles.guideTones}>
+    <div className={styles.guide}>
       {exercises.length > 1 ? (
-        <Segmented
-          label="Exercise"
-          value={String(index)}
-          options={exercises.map((e, i) => ({ value: String(i), label: `Exercise ${i + 1}` }))}
-          onChange={(v) => setIndex(Number(v))}
-        />
+        <div className={styles.guidePicker}>
+          <Segmented label="Exercise" value={String(index)} options={exercises.map((e, i) => ({ value: String(i), label: shortName(e, i) }))} onChange={(v) => setIndex(Number(v))} />
+        </div>
       ) : null}
-      <div className={styles.exerciseText}>
-        <h3>{ex.title}</h3>
-        <p className={styles.exerciseChords}>{ex.chords.map((c) => prettyChord(c.symbol)).join(' · ')}</p>
-        {ex.description ? <Prose text={ex.description} ctx={ctx} /> : null}
+      <div className={styles.guideHead}>
+        <h3 className={styles.guideTitle}>{curly(ex.title)}</h3>
+        <ExerciseChanges ex={ex} />
       </div>
-      <PlayerProvider key={index} tex={tex} tempo={standard.tempo} label={`${ex.title}: standard notation and tablature`} highlights={highlights}>
-        <PlayerScore />
-        <Transport />
-        <Fretboard bars={ex.bars} showAnalysis={showAnalysis} leftHanded={leftHanded} />
+      <PlayerProvider key={index} tex={tex} tempo={standard.tempo} label={`${ex.title}: standard notation and tablature${showAnalysis ? ' with chord degrees' : ''}`} highlights={highlights}>
+        <ScoreSheet>
+          <PlayerScore />
+          <Transport />
+        </ScoreSheet>
+        <div className={lessonStyles.fretRow}>
+          <Fretboard bars={ex.bars} showAnalysis={showAnalysis} leftHanded={leftHanded} />
+          {ex.description ? (
+            <div className={styles.guideNote}>
+              <h4>How to play it</h4>
+              <Prose text={typeset(ex.description)} ctx={ctx} />
+            </div>
+          ) : null}
+        </div>
       </PlayerProvider>
     </div>
   );

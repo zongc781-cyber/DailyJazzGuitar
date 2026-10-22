@@ -1,72 +1,140 @@
 'use client';
 
-// The weekly standard: listening, chart, harmonic analysis, voicings, guide tones, improvisation
-// ideas, the seven-day plan and the week's licks.
+// The weekly standard, set out like a lead sheet: a title block with the feel at the left and the
+// composer at the right over a staff, then sections marked with rehearsal letters in order: today's
+// practice, listening, the chord chart, voicings, guide tones, improvisation ideas, the seven-day
+// plan and the week's licks. Each section takes its own shape (a featured card, track lists, a
+// chart, a picker, a score sheet, numbered notes, a timeline) from the same tokens and parts.
 
 import Link from 'next/link';
-import { Activity, useId, useMemo, useState } from 'react';
-import type { Standard } from '@/lib/music/types';
-import { prettyChord, prettyKey, prettyRoman } from '@/lib/music/pretty';
+import { Activity, useId, useMemo, useState, type ReactNode } from 'react';
+import type { Inspiration, PlanDay, Standard } from '@/lib/music/types';
+import { prettyKey } from '@/lib/music/pretty';
 import { formatDate } from '@/lib/format';
 import { useLocalDate } from '@/lib/client/useLocalDate';
 import { useProgress } from '@/lib/progress/store';
 import { Icon } from '@/components/ui/Icon';
+import { Pencil, RehearsalHeading } from '@/components/ui/Pencil';
 import ui from '@/components/ui/ui.module.css';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { LessonActions } from '@/components/lesson/LessonActions';
 import { LessonBadges, Provenance } from '@/components/lesson/LessonBadges';
 import { NotesField } from '@/components/lesson/NotesField';
-import { Prose, lineContext, type ProseContext } from '@/components/lesson/Prose';
+import { Prose, type ProseContext } from '@/components/lesson/Prose';
 import { SourceList } from '@/components/lesson/SourceList';
 import { ChordChart } from './ChordChart';
-import { ChordDiagram } from './ChordDiagram';
 import { GuideTones } from './GuideTones';
-import { PlanDayCard, PracticePlan, type PlanLick } from './PracticePlan';
+import { HarmonicAnalysis } from './HarmonicAnalysis';
+import { PracticePlan, TodayPractice, type DayAction, type PlanLick } from './PracticePlan';
+import { Voicings } from './Voicings';
+import { count, curly, listJoin, typeset } from './text';
 import styles from './standard.module.css';
 
 export interface WeekLick extends PlanLick {
   artist?: string;
+  /** How the lick relates to the artist; "in the style of" when not given. */
+  inspirationType?: Inspiration['type'];
   /** "today", "done" (assigned on an earlier day), or "upcoming". */
   status?: 'today' | 'done' | 'upcoming';
 }
 
-function StandardAnalysis({ standard, ctx, id }: { standard: Standard; ctx: ProseContext; id: string }) {
-  const { analysis } = standard;
+type SectionKey = 'today' | 'listen' | 'chart' | 'voicings' | 'guide-tones' | 'ideas' | 'plan' | 'licks';
+
+const SECTIONS: Record<SectionKey, { title: string; short: string }> = {
+  today: { title: 'Today’s practice', short: 'Today' },
+  listen: { title: 'Listen', short: 'Listen' },
+  chart: { title: 'Chord chart', short: 'Chart' },
+  voicings: { title: 'Voicings', short: 'Voicings' },
+  'guide-tones': { title: 'Guide-tone exercises', short: 'Guide tones' },
+  ideas: { title: 'Improvisation ideas', short: 'Ideas' },
+  plan: { title: 'Seven-day plan', short: 'Plan' },
+  licks: { title: 'Licks for this tune', short: 'Licks' },
+};
+
+interface Mark {
+  id: SectionKey;
+  letter: string;
+  title: string;
+  short: string;
+}
+
+/** A section with its boxed rehearsal letter. "split" sets the heading beside the content. */
+function Section({ mark, intro, aside, layout = 'stack', children }: { mark: Mark; intro?: ReactNode; aside?: ReactNode; layout?: 'stack' | 'split'; children: ReactNode }) {
   return (
-    <section className={styles.analysis} id={id} aria-labelledby={`${id}-title`}>
-      <h2 id={`${id}-title`}>Harmonic analysis</h2>
-      <Prose text={analysis.summary} ctx={ctx} className={lessonStyles.lead} />
-      {analysis.sections?.map((s, i) => (
-        <div key={i} className={styles.analysisSection}>
-          <h3>{s.label}</h3>
-          <Prose text={s.text} ctx={ctx} />
+    <section className={layout === 'split' ? styles.split : styles.section} aria-labelledby={mark.id}>
+      <div className={styles.sectionHead}>
+        <div className={styles.headingRow}>
+          <RehearsalHeading letter={mark.letter} id={mark.id}>
+            {mark.title}
+          </RehearsalHeading>
+          {aside}
         </div>
-      ))}
-      <div className={styles.analysisSection}>
-        <h3>Common variations</h3>
-        <ul className={styles.variations}>
-          {analysis.variations.map((v, i) => (
-            <li key={i}>
-              <h4>{v.name}</h4>
-              <p className={styles.variationChords}>
-                {v.chords.map((c, k) => (
-                  <span key={k}>
-                    <span className="num">Bar {c.bar}</span> <strong>{prettyChord(c.symbol)}</strong> <span className={styles.roman}>{prettyRoman(c.roman)}</span>
-                  </span>
-                ))}
-              </p>
-              <Prose text={v.text} ctx={lineContext([], v.chords, standard.key)} />
-            </li>
-          ))}
-        </ul>
+        {intro ? <p className={styles.intro}>{intro}</p> : null}
       </div>
+      {children}
     </section>
   );
+}
+
+/** The page's road map: every rehearsal letter, as links down the page. */
+function RoadMap({ marks }: { marks: Mark[] }) {
+  return (
+    <nav className={styles.roadmap} aria-label="Sections on this page">
+      <ol>
+        {marks.map((m) => (
+          <li key={m.id}>
+            <a href={`#${m.id}`}>
+              <span className={styles.roadmapMark} aria-hidden="true">
+                {m.letter}
+              </span>
+              {m.short}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+/** A quarter note, for the tempo marking: ♩ = 120. */
+function QuarterNote() {
+  return (
+    <svg className={styles.quarter} viewBox="0 0 12 26" aria-hidden="true" focusable="false">
+      <ellipse cx="5" cy="21" rx="4.6" ry="3.3" transform="rotate(-22 5 21)" fill="currentColor" />
+      <path d="M9.1 20V2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Where today's work happens on this page (or the day's lick), for the one primary button. */
+function dayAction(day: PlanDay, lick: PlanLick | undefined, has: (k: SectionKey) => boolean): DayAction {
+  const go = (key: SectionKey, label: string): DayAction => ({ href: `#${key}`, label, icon: 'chevronDown' });
+  switch (day.focus) {
+    case 'listening':
+      return has('listen') ? go('listen', 'Start with the recordings') : go('chart', 'Open the chord chart');
+    case 'comping':
+      return has('voicings') ? go('voicings', 'Open the voicings') : go('chart', 'Open the chord chart');
+    case 'vocabulary':
+      if (lick) return { href: lick.href, label: 'Open the day’s lick', icon: 'chevronRight' };
+      return has('licks') ? go('licks', 'See this week’s licks') : go('chart', 'Open the chord chart');
+    case 'improvisation':
+      return has('ideas') ? go('ideas', 'Read the improvisation ideas') : go('chart', 'Open the chord chart');
+    case 'self-review':
+      return { href: '#notes', label: 'Write your review', icon: 'chevronDown' };
+    default:
+      return go('chart', 'Open the chord chart');
+  }
+}
+
+function lickByline(l: WeekLick) {
+  if (!l.artist) return null;
+  return !l.inspirationType || l.inspirationType === 'in-the-style-of' ? `In the style of ${l.artist}` : `After ${l.artist}`;
 }
 
 export function StandardLesson({
   standard,
   eyebrow,
+  aside,
   weekKey,
   todayDay,
   licks,
@@ -74,6 +142,8 @@ export function StandardLesson({
 }: {
   standard: Standard;
   eyebrow: string;
+  /** Shown at the right of the label row, e.g. a link to today's lick. */
+  aside?: ReactNode;
   /** ISO week the plan ticks belong to. */
   weekKey: string | null;
   /** Today's day of the plan when this is the current week's standard. */
@@ -94,81 +164,123 @@ export function StandardLesson({
   }, [standard]);
   const lickMap = useMemo(() => new Map(licks.map((l) => [l.id, l])), [licks]);
   const today = todayDay ? standard.practicePlan.find((d) => d.day === todayDay) : undefined;
+  const todayLick = today?.lickId ? lickMap.get(today.lickId) : undefined;
+
+  // Sections run A, B, C… in order; a section with nothing to show is left out and the letters close up.
+  const present: Record<SectionKey, boolean> = {
+    today: Boolean(today),
+    listen: standard.listening.length > 0,
+    chart: true,
+    voicings: standard.voicings.length > 0,
+    'guide-tones': standard.guideToneExercises.length > 0,
+    ideas: standard.improvisation.length > 0,
+    plan: standard.practicePlan.length > 0,
+    licks: licks.length > 0,
+  };
+  const marks: Mark[] = (Object.keys(SECTIONS) as SectionKey[])
+    .filter((k) => present[k])
+    .map((k, i) => ({ id: k, letter: String.fromCharCode(65 + i), ...SECTIONS[k] }));
+  const mark = (k: SectionKey) => marks.find((m) => m.id === k)!;
+
   const centres = [...new Set(standard.keyCenters.map((c) => prettyKey(c)))];
+  const [beats, unit] = standard.timeSignature;
+  const minutes = standard.practicePlan.map((d) => d.minutes);
+  const [fewest, most] = [Math.min(...minutes), Math.max(...minutes)];
+  const voicedChords = new Set(standard.voicings.map((v) => v.symbol)).size;
 
   return (
-    <article className={lessonStyles.lesson}>
-      <header className={lessonStyles.header}>
-        <p className={ui.eyebrow}>{eyebrow}</p>
+    <article className={styles.week}>
+      <header className={styles.head}>
+        <div className={lessonStyles.eyebrowRow}>
+          <p className={ui.eyebrow}>{eyebrow}</p>
+          {aside}
+        </div>
         <h1 className={lessonStyles.title}>{standard.title}</h1>
-        <p className={lessonStyles.byline}>
-          {standard.composers.join(' and ')} · {standard.year}
-        </p>
-        <dl className={styles.facts}>
-          <div>
-            <dt>Form</dt>
-            <dd>
-              {standard.form.label}, {standard.chart.length} bars
-            </dd>
+        {/* The head of a lead sheet: the feel at the left, the composer at the right, then the staff. */}
+        <div className={styles.chartHead}>
+          <p className={styles.feel}>
+            {standard.feel === 'swing' ? 'Swing' : 'Straight eighths'}
+            <span className={styles.tempoMark} aria-hidden="true">
+              <QuarterNote /> = {standard.tempo.default}
+            </span>
+            <span className="visually-hidden">, around {standard.tempo.default} beats per minute</span>
+          </p>
+          <p className={styles.composer}>
+            {listJoin(standard.composers)}, {standard.year}
+          </p>
+        </div>
+        <div className={`${ui.staffRule} ${styles.headStaff}`} aria-hidden="true" />
+        <div className={styles.metaRow}>
+          <div className={styles.metaFacts}>
+            <dl className={styles.facts}>
+              <div>
+                <dt>Form</dt>
+                <dd>
+                  {standard.form.label}, {standard.chart.length} bars
+                </dd>
+              </div>
+              <div>
+                <dt>{centres.length === 1 ? 'Key' : 'Key centres'}</dt>
+                <dd>{listJoin(centres)}</dd>
+              </div>
+            </dl>
+            <LessonBadges lesson={standard} review={review} />
           </div>
-          <div>
-            <dt>Key centres</dt>
-            <dd>{centres.join(', ')}</dd>
-          </div>
-          <div>
-            <dt>Feel</dt>
-            <dd>
-              {standard.feel === 'swing' ? 'Swing' : 'Straight eighths'}, around {standard.tempo.default} BPM
-            </dd>
-          </div>
-        </dl>
-        <LessonBadges lesson={standard} review={review} />
-        <LessonActions id={standard.id} dateKey={dateKey} entry={{ kind: 'standard', title: standard.title, origin: standard.origin }} />
+          <LessonActions id={standard.id} dateKey={dateKey} entry={{ kind: 'standard', title: standard.title, origin: standard.origin }} />
+        </div>
+        <RoadMap marks={marks} />
       </header>
 
       {today ? (
-        <section className={styles.todayCard} aria-labelledby={`${analysisId}-today`}>
-          <h2 id={`${analysisId}-today`}>Today’s practice</h2>
-          <PlanDayCard standardId={standard.id} day={today} weekKey={weekKey} today ctx={chartCtx} lick={today.lickId ? lickMap.get(today.lickId) : undefined} featured />
-        </section>
+        <Section mark={mark('today')}>
+          <TodayPractice
+            standardId={standard.id}
+            day={today}
+            weekKey={weekKey}
+            ctx={chartCtx}
+            lick={todayLick}
+            action={dayAction(today, todayLick, (k) => present[k])}
+            next={standard.practicePlan.find((d) => d.day === today.day + 1)}
+          />
+        </Section>
       ) : null}
 
-      {standard.simplified && standard.simplificationNote ? (
-        <p className={styles.simplified}>
-          <Icon name="info" size={20} />
-          <span>
-            <strong>Simplified arrangement.</strong> {standard.simplificationNote}
-          </span>
-        </p>
-      ) : null}
-
-      <section aria-labelledby={`${analysisId}-listen`}>
-        <h2 id={`${analysisId}-listen`}>Listen</h2>
-        <ul className={styles.listening}>
-          {standard.listening.map((l, i) => (
-            <li key={i}>
-              <a href={l.url} target="_blank" rel="noopener noreferrer" className={styles.listenLink}>
-                <Icon name="headphones" />
-                <span className={styles.listenText}>
-                  <strong>{l.performer}</strong>
-                  <span>
-                    {l.recording}
-                    {l.album ? `, from ${l.album}` : ''} ({l.year})
-                  </span>
+      {present.listen ? (
+        <Section
+          mark={mark('listen')}
+          layout="split"
+          intro={`${count(standard.listening.length, 'recording')} to know. Put the chord chart in front of you and count the bars as they go by; each note says what to listen for.`}
+        >
+          <ol className={styles.tracks}>
+            {standard.listening.map((l, i) => (
+              <li key={i} className={styles.track}>
+                <span className={styles.trackNumber} aria-hidden="true">
+                  {i + 1}
                 </span>
-                <Icon name="external" size={18} />
-                <span className="visually-hidden"> (opens in a new tab)</span>
-              </a>
-              {l.note ? <p className={styles.listenNote}>{l.note}</p> : null}
-              <p className={styles.verified}>Link checked {formatDate(l.verifiedOn)}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className={styles.trackMain}>
+                  <p className={styles.trackArtist}>{curly(l.performer)}</p>
+                  <p className={styles.trackAlbum}>
+                    <a href={l.url} target="_blank" rel="noopener noreferrer">
+                      {curly(l.album ?? l.recording)}
+                      <Icon name="external" size={15} className={styles.trackOut} />
+                      <span className="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                    {l.album && l.recording !== standard.title ? <span className={styles.trackRecording}> · {curly(l.recording)}</span> : null}
+                  </p>
+                  {l.note ? <p className={styles.trackNote}>{typeset(l.note)}</p> : null}
+                  <p className={styles.trackChecked}>Link checked {formatDate(l.verifiedOn)}</p>
+                </div>
+                <span className={`${styles.trackYear} num`}>{l.year}</span>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      ) : null}
 
-      <section aria-labelledby={`${analysisId}-chart`}>
-        <div className={styles.sectionHeader}>
-          <h2 id={`${analysisId}-chart`}>Chord chart</h2>
+      <Section
+        mark={mark('chart')}
+        intro={`${standard.form.label} form: ${standard.chart.length} bars of ${beats}/${unit}. Each slash is a beat, and a chord lasts until the next one is written.`}
+        aside={
           <button
             type="button"
             className={`${ui.button} ${lessonStyles.analysisToggle}`}
@@ -180,74 +292,119 @@ export function StandardLesson({
             <Icon name={showAnalysis ? 'eyeOff' : 'eye'} />
             {showAnalysis ? 'Hide analysis' : 'Show analysis'}
           </button>
-        </div>
+        }
+      >
         <ChordChart standard={standard} showAnalysis={showAnalysis} />
-        {showAnalysis ? null : <p className={lessonStyles.analysisHint}>Show the analysis to add roman numerals, key-centre shading and the harmonic analysis with common variations.</p>}
-      </section>
+        {standard.simplified && standard.simplificationNote ? (
+          <p className={styles.footnote}>
+            <Icon name="info" size={18} />
+            <span>
+              <strong>One version of the changes.</strong> {typeset(standard.simplificationNote)}
+            </span>
+          </p>
+        ) : null}
+        {showAnalysis ? null : (
+          <p className={lessonStyles.analysisHint}>
+            The analysis is hidden so you can hear and name the changes yourself first. Show it to write the roman numerals under the chords, shade each
+            key centre and read how the form works
+            {standard.analysis.variations.length ? `, with ${count(standard.analysis.variations.length, 'common variation')}` : ''}.
+          </p>
+        )}
+        <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
+          <HarmonicAnalysis standard={standard} ctx={chartCtx} id={analysisId} />
+        </Activity>
+      </Section>
 
-      <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
-        <StandardAnalysis standard={standard} ctx={chartCtx} id={analysisId} />
-      </Activity>
+      {present.voicings ? (
+        <Section
+          mark={mark('voicings')}
+          intro={`${count(standard.voicings.length, 'shape')} for ${count(voicedChords, 'chord')}, for comping through the form. Choose a chord to see its shapes, where it comes in the chart and where each shape leads.`}
+        >
+          <Voicings standard={standard} showAnalysis={showAnalysis} leftHanded={leftHanded} />
+        </Section>
+      ) : null}
 
-      <section aria-labelledby={`${analysisId}-voicings`}>
-        <h2 id={`${analysisId}-voicings`}>Voicings</h2>
-        <p className={styles.sectionIntro}>Compact shapes for comping through the form. {showAnalysis ? 'Dots show chord degrees.' : 'Numbers are fingers; × means the string is not played.'}</p>
-        <div className={styles.voicings}>
-          {standard.voicings.map((v, i) => (
-            <div key={i} className={styles.voicingCard}>
-              <ChordDiagram voicing={v} showAnalysis={showAnalysis} leftHanded={leftHanded} />
-              {v.note ? <p className={styles.voicingNote}>{v.note}</p> : null}
-            </div>
-          ))}
-        </div>
-      </section>
+      {present['guide-tones'] ? (
+        <Section
+          mark={mark('guide-tones')}
+          intro="The 3rd and 7th of each chord name its sound, and they move by step from one chord to the next. Loop an exercise at the Slow tempo and sing along before you play it."
+        >
+          <GuideTones standard={standard} showAnalysis={showAnalysis} leftHanded={leftHanded} />
+        </Section>
+      ) : null}
 
-      <section aria-labelledby={`${analysisId}-guide`}>
-        <h2 id={`${analysisId}-guide`}>Guide-tone exercises</h2>
-        <GuideTones standard={standard} showAnalysis={showAnalysis} leftHanded={leftHanded} />
-      </section>
+      {present.ideas ? (
+        <Section mark={mark('ideas')} intro={`${count(standard.improvisation.length, 'way')} into a solo on these changes. Take one per chorus rather than all at once.`}>
+          <ol className={styles.ideas}>
+            {standard.improvisation.map((idea, i) => (
+              <li key={i} className={styles.idea}>
+                <span className={styles.ideaNumber} aria-hidden="true">
+                  {i + 1}
+                </span>
+                <div className={styles.ideaBody}>
+                  <h3>{curly(idea.title)}</h3>
+                  <Prose text={typeset(idea.text)} ctx={chartCtx} />
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      ) : null}
 
-      <section aria-labelledby={`${analysisId}-impro`}>
-        <h2 id={`${analysisId}-impro`}>Improvisation ideas</h2>
-        <ul className={styles.ideas}>
-          {standard.improvisation.map((idea, i) => (
-            <li key={i}>
-              <h3>{idea.title}</h3>
-              <Prose text={idea.text} ctx={chartCtx} />
-            </li>
-          ))}
-        </ul>
-      </section>
+      {present.plan ? (
+        <Section
+          mark={mark('plan')}
+          intro={`${count(standard.practicePlan.length, 'session')} of ${fewest === most ? fewest : `${fewest} to ${most}`} minutes. Tick each task as you finish it; your ticks are saved in this browser for this week.`}
+        >
+          <PracticePlan standard={standard} weekKey={weekKey} todayDay={todayDay} ctx={chartCtx} licks={lickMap} />
+        </Section>
+      ) : null}
 
-      <section aria-labelledby={`${analysisId}-plan`}>
-        <h2 id={`${analysisId}-plan`}>Seven-day plan</h2>
-        <PracticePlan standard={standard} weekKey={weekKey} todayDay={todayDay} ctx={chartCtx} licks={lickMap} />
-      </section>
-
-      {licks.length ? (
-        <section aria-labelledby={`${analysisId}-licks`}>
-          <h2 id={`${analysisId}-licks`}>Licks for this tune</h2>
-          <p className={styles.sectionIntro}>One a day, each written over a passage of these changes.</p>
-          <ul className={styles.weekLicks}>
-            {licks.map((l) => (
+      {present.licks ? (
+        <Section
+          mark={mark('licks')}
+          intro="One lick a day, each written over a passage of these changes. Open one to read it in notation and tab, hear it and loop it."
+        >
+          <ol className={styles.setlist}>
+            {licks.map((l, i) => (
               <li key={l.id}>
-                <Link href={l.href} className={styles.weekLick}>
-                  <span className={styles.weekLickTitle}>{l.title}</span>
-                  {l.artist ? <span className={styles.weekLickArtist}>In the style of {l.artist}</span> : null}
-                  {l.status === 'today' ? <span className={`${ui.badge} ${ui.badgeSeed}`}>Today</span> : l.status === 'done' ? <span className={ui.badge}>Played</span> : null}
+                <Link href={l.href} className={styles.setRow}>
+                  <span className={`${styles.setNumber} num`} aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <span className={styles.setTitle}>{curly(l.title)}</span>
+                  {l.artist ? <span className={styles.setArtist}>{lickByline(l)}</span> : <span />}
+                  <span className={styles.setStatus}>
+                    {l.status === 'today' ? (
+                      <span className={styles.setToday}>
+                        Today’s lick
+                        <Pencil kind="underline" className={styles.setUnderline} />
+                      </span>
+                    ) : l.status === 'done' ? (
+                      <span className={styles.setPlayed}>
+                        <Pencil kind="tick" className={styles.setTick} />
+                        Played
+                      </span>
+                    ) : null}
+                  </span>
                   <Icon name="chevronRight" size={18} />
                 </Link>
               </li>
             ))}
-          </ul>
-        </section>
+          </ol>
+        </Section>
       ) : null}
 
-      <NotesField lessonId={standard.id} placeholder="Which recording grabbed you? Which voicings sit well? What will you work on next week?" />
+      <div id="notes" className={styles.notes}>
+        <NotesField lessonId={standard.id} placeholder="Which recording grabbed you? Which voicings sit well? What will you fix next week?" />
+      </div>
 
       <footer className={lessonStyles.credits}>
         <h2>Sources and credits</h2>
-        <p>Chord changes, analysis and exercises are written for this app. The melody and lyrics are not reproduced; learn the melody from the recordings above.</p>
+        <p>
+          The chord changes, analysis, voicings and exercises on this page are written for this app. The melody and lyrics are not reproduced: learn the
+          melody by ear from the recordings above.
+        </p>
         <SourceList sources={standard.sources} />
         <Provenance lesson={standard} />
       </footer>

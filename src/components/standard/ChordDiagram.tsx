@@ -1,9 +1,11 @@
 // A guitar chord box for one voicing: low E on the left, high E on the right (mirrored for
-// left-handed players). Dots show fingers, or chord degrees when the analysis is on.
+// left-handed players). Dots show fingers, or chord degrees when the analysis is on. The caption
+// names the shape and says where it leads.
 
 import type { Voicing, VoicingNote } from '@/lib/music/types';
 import { degreeLabel } from '@/lib/music/alphatex.mjs';
 import { prettyChord, prettyPitch } from '@/lib/music/pretty';
+import { typeset } from './text';
 import styles from './standard.module.css';
 
 const STRING_X = 26; // room on the left for the base fret number
@@ -75,9 +77,9 @@ export function ChordDiagram({ voicing, showAnalysis, leftHanded }: { voicing: V
             );
           })}
       </svg>
-      <figcaption>
-        <span className={styles.voicingSymbol}>{prettyChord(voicing.symbol)}</span>
-        {voicing.name ? <span className={styles.voicingName}>{voicing.name}</span> : null}
+      <figcaption className={styles.voicingCaption}>
+        <span className={styles.voicingName}>{voicing.name ?? prettyChord(voicing.symbol)}</span>
+        {voicing.note ? <span className={styles.voicingNote}>{typeset(voicing.note)}</span> : null}
       </figcaption>
     </figure>
   );

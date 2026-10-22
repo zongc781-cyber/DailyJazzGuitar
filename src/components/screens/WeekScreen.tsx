@@ -1,7 +1,9 @@
 'use client';
 
-// This Week: the weekly standard with today's day of the seven-day plan first.
+// This Week: the weekly standard with today's day of the seven-day plan first, and a link back to
+// today's lick at the top right (as Today links here).
 
+import Link from 'next/link';
 import { Suspense, ViewTransition, use, useMemo } from 'react';
 import type { CatalogEntry } from '@/lib/music/types';
 import { licksFor } from '@/lib/catalog';
@@ -11,9 +13,21 @@ import { formatShortDate } from '@/lib/format';
 import { weekDates } from '@/lib/schedule';
 import { useProgress } from '@/lib/progress/store';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import { Icon } from '@/components/ui/Icon';
 import { StandardLesson, type WeekLick } from '@/components/standard/StandardLesson';
 import { LessonSkeleton, ScreenSkeleton } from './Skeletons';
 import styles from './screens.module.css';
+
+/** Today's lick, as a small link at the top right of the week. */
+function TodayLickLink({ lick, review }: { lick: CatalogEntry; review: boolean }) {
+  return (
+    <Link href="/" className={styles.weekStrip}>
+      <span className={styles.weekStripLabel}>{review ? 'Today’s lick (review)' : 'Today’s lick'}</span>
+      <span className={styles.weekStripTitle}>{lick.title}</span>
+      <Icon name="chevronRight" size={16} />
+    </Link>
+  );
+}
 
 function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: CatalogEntry[] }) {
   const standardId = schedule.week.standardId!;
@@ -31,9 +45,11 @@ function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: Cata
     id: l.id,
     title: l.title,
     artist: l.artist,
+    inspirationType: l.inspirationType,
     href: l.id === schedule.day.lickId ? '/' : `/lessons/${l.id}`,
     status: l.id === schedule.day.lickId ? 'today' : played.has(l.id) ? 'done' : 'upcoming',
   }));
+  const todayLick = schedule.day.lickId ? catalog.find((e) => e.id === schedule.day.lickId && e.kind === 'lick') : undefined;
   const days = weekDates(schedule.dateKey);
   const eyebrow = `${schedule.week.review ? 'Review week' : 'This week'} · ${formatShortDate(days[0])} to ${formatShortDate(days[6])} · Day ${schedule.planDay} of 7`;
   return (
@@ -41,6 +57,7 @@ function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: Cata
       key={standard.id}
       standard={standard}
       eyebrow={eyebrow}
+      aside={todayLick ? <TodayLickLink lick={todayLick} review={schedule.day.review} /> : null}
       weekKey={schedule.weekKey}
       todayDay={schedule.planDay}
       licks={licks}
