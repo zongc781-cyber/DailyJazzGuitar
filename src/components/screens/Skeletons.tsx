@@ -13,14 +13,16 @@ export function ScreenSkeleton({ label }: { label: string }) {
   );
 }
 
+/** The shape of a lesson page: label, headline, byline, chords, then the score sheet. */
 export function LessonSkeleton() {
   return (
     <div className={styles.skeleton} aria-hidden="true">
-      <div className={ui.skeleton} style={{ width: '40%', height: 14 }} />
-      <div className={ui.skeleton} style={{ width: '70%', height: 40 }} />
-      <div className={ui.skeleton} style={{ width: '50%', height: 18 }} />
-      <div className={ui.skeleton} style={{ width: '100%', height: 260 }} />
-      <div className={ui.skeleton} style={{ width: '100%', height: 120 }} />
+      <div className={ui.skeleton} style={{ width: '28%', height: 14 }} />
+      <div className={ui.skeleton} style={{ width: '72%', height: 64, marginTop: 6 }} />
+      <div className={ui.skeleton} style={{ width: '38%', height: 26 }} />
+      <div className={ui.skeleton} style={{ width: '34%', height: 38, marginTop: 8 }} />
+      <div className={ui.skeleton} style={{ width: '100%', height: 40, marginTop: 36 }} />
+      <div className={ui.skeleton} style={{ width: '100%', height: 420, marginTop: 10, borderRadius: 'var(--radius-l)' }} />
     </div>
   );
 }

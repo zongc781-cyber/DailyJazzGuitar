@@ -218,10 +218,10 @@ select {
   color: var(--ink);
 }
 
+/* The ring follows each control's own shape: round for Play, a pill for buttons. */
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 6px;
 }
 
 ::selection {

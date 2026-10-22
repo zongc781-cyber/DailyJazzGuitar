@@ -107,8 +107,10 @@
   color: var(--accent);
 }
 
+/* The note under the buttons wraps to their width instead of widening the row. */
 .learnedNote {
   flex-basis: 100%;
+  contain: inline-size;
   font-size: 0.85rem;
   color: var(--ink-3);
   min-height: 1.3em;
