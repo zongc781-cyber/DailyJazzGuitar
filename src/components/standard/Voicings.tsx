@@ -9,7 +9,7 @@ import type { Standard } from '@/lib/music/types';
 import { prettyChord } from '@/lib/music/pretty';
 import { Pencil } from '@/components/ui/Pencil';
 import { ChordDiagram } from './ChordDiagram';
-import { barRuns, curly, listJoin } from './text';
+import { barRuns, curly, listJoin } from '@/lib/text';
 import styles from './standard.module.css';
 
 /** The voiced chords: those in the chart in order of first appearance, then the variations' chords. */

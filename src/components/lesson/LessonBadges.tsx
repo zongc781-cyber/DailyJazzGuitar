@@ -29,8 +29,9 @@ export function LessonBadges({ lesson, review }: { lesson: Lesson; review?: bool
         </span>
       ) : null}
       {lesson.kind === 'lick' && lesson.difficulty ? (
-        <span className={ui.badge} aria-label={`Difficulty ${lesson.difficulty} of 5`}>
+        <span className={ui.badge}>
           <span aria-hidden="true">{'●'.repeat(lesson.difficulty) + '○'.repeat(5 - lesson.difficulty)}</span>
+          <span className="visually-hidden">{`Difficulty ${lesson.difficulty} of 5`}</span>
         </span>
       ) : null}
       {review ? <span className={`${ui.badge} ${ui.badgeReview}`}>Review day</span> : null}

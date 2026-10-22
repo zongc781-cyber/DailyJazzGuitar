@@ -5,7 +5,7 @@
 import type { Voicing, VoicingNote } from '@/lib/music/types';
 import { degreeLabel } from '@/lib/music/alphatex.mjs';
 import { prettyChord, prettyPitch } from '@/lib/music/pretty';
-import { typeset } from './text';
+import { typeset } from '@/lib/text';
 import styles from './standard.module.css';
 
 const STRING_X = 26; // room on the left for the base fret number

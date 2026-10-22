@@ -72,11 +72,16 @@ Space: 4px grid. Sections are 72px apart in a wide window and 48px in a narrow o
   sheet runs on below it, so Play is always in reach.
 - **Playback bar**: the blue Play (the page's primary action), an outline Stop, tempo presets (the
   chosen one circled in pencil), a thin slider that fills with blue, and pill toggles for loop,
-  count-in and metronome: filled when on, an empty outline when off.
+  count-in and metronome: filled when on, an empty outline when off. It follows its own width: one
+  row when there is room, play and toggles over a one-line tempo in a narrower window, and
+  everything stacked below 560px.
 - **Pencil marks**: hand-drawn SVG strokes in `--accent`: a tick (draws itself when you tick a
   task), an underline (active tab, current place) and a circle.
 - **Staff rule**: five hairlines, used sparingly as an ornament between major parts.
 - **Labels**: 12px uppercase Instrument Sans, `--ink-3`.
+- **Copy**: lesson text is set with real flats and sharps on degrees and roman numerals ("the ♭9",
+  "V7♭9") and curly quotes, by `typeset` in `src/lib/text.ts`. Chord symbols are drawn by
+  `prettyChord`. Lesson data itself stays in ASCII.
 
 ## Screens
 
@@ -87,11 +92,24 @@ Space: 4px grid. Sections are 72px apart in a wide window and 48px in a narrow o
   the whole sheet is on the first screen. Then the fretboard with the fingering note, the liner
   notes ("Why this works", with a drop cap) and the practice task beside the checklist and a
   ruled notes field, the line as text, and the credits.
-- **This Week**: the tune's title block (feel at the left, composer at the right, as on a lead
-  sheet), then sections A to H: today's practice, listening as a track list, the chord chart,
-  voicings, guide tones, improvisation ideas as numbered notes, the seven-day plan as a timeline,
-  and the week's licks as a track list.
-- **Library**: a catalogue: tabs with a pencil underline, rows with the title in serif and the
-  details in small type.
-- **Progress**: big serif numbers for the streak and counts, the practice calendar in shades of
-  blue, notes, preferences and your data.
+- **This Week**: the tune's title block (feel and tempo handwritten at the left, composer and
+  year at the right, over a staff rule), links to each section by its rehearsal letter, then
+  sections A to H. A: today's practice as a card with the day circled in pencil and one blue
+  button that depends on the day. B: the recordings as a track list. C: the chord chart copied out
+  by hand, one slash per beat, with boxed section marks; with the analysis shown, roman numerals
+  under the staff and key centres shaded in green and purple (never the accent blue), then how
+  the changes work and common variations. D: voicings as a chord picker with the shapes of the
+  chosen chord. E: guide-tone exercises on a score sheet. F: improvisation ideas as numbered
+  notes. G: the seven-day plan as a timeline with today circled. H: the week's licks as a set
+  list.
+- **Library** ("Your back catalogue"): serif tabs with a pencil underline and counts as
+  superscripts. History files each day's lick under its week's standard with today's date
+  circled; Learned is grouped by month; Favourites is a two-column shelf; All lessons groups the
+  book by standard under rehearsal letters, with search and filters. Learned ticks and favourite
+  hearts line up in one column.
+- **Progress** ("The woodshed"): the streak as a big serif number with one blue button, a
+  six-month practice calendar in shades of blue with today circled, lessons learned drawn as
+  filled note heads on a staff, then notes, preferences (with small previews) and your data
+  (import and reset each ask first).
+- **Not found and errors**: a multi-bar rest marked 404, and a line with the wrong note circled;
+  one sentence and one primary button each.

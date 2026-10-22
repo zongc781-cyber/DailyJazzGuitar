@@ -440,10 +440,10 @@ a.track:hover .chevron {
 
 .whenCircle {
   position: absolute;
-  left: -10px;
-  top: -9px;
-  width: calc(100% + 20px);
-  height: calc(100% + 16px);
+  left: -11px;
+  top: -12px;
+  width: calc(100% + 22px);
+  height: calc(100% + 21px);
 }
 
 .trackNo {

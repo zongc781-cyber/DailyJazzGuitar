@@ -21,8 +21,11 @@ export function PracticeChecklist({ lessonId, dateKey, items, title = 'Practice 
     <div className={styles.checklist}>
       <div className={styles.checklistHeader}>
         <h3>{title}</h3>
-        <span className={`${styles.checklistCount} num`} aria-label={`${count} of ${items.length} done today`}>
-          {count}/{items.length}
+        <span className={`${styles.checklistCount} num`}>
+          <span aria-hidden="true">
+            {count}/{items.length}
+          </span>
+          <span className="visually-hidden">{`${count} of ${items.length} done today`}</span>
         </span>
       </div>
       <ul>

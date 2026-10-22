@@ -1,4 +1,5 @@
 import type { Inspiration, Source } from '@/lib/music/types';
+import { curly, typeset } from '@/lib/text';
 import { Icon } from '@/components/ui/Icon';
 import styles from './lesson.module.css';
 
@@ -13,7 +14,7 @@ const KIND: Record<Source['kind'], string> = {
 
 export function InspirationNote({ inspiration }: { inspiration: Inspiration }) {
   const { type, artist, recording, year, at, note } = inspiration;
-  const listen = recording ? `${recording}${year ? ` (${year})` : ''}${at ? `, around ${at}` : ''}` : null;
+  const listen = recording ? `${curly(recording)}${year ? ` (${year})` : ''}${at ? `, around ${at}` : ''}` : null;
   return (
     <div className={styles.inspiration}>
       {type === 'in-the-style-of' ? (
@@ -38,7 +39,7 @@ export function InspirationNote({ inspiration }: { inspiration: Inspiration }) {
         </p>
       )}
       {type !== 'transcription' && listen ? <p>Hear the vocabulary in context: {listen}.</p> : null}
-      {note ? <p>{note}</p> : null}
+      {note ? <p>{typeset(note)}</p> : null}
     </div>
   );
 }
@@ -52,16 +53,16 @@ export function SourceList({ sources }: { sources: Source[] }) {
           <span>
             {s.url ? (
               <a href={s.url} target="_blank" rel="noopener noreferrer">
-                {s.title}
+                {curly(s.title)}
                 <Icon name="external" size={14} className={styles.externalIcon} />
                 <span className="visually-hidden"> (opens in a new tab)</span>
               </a>
             ) : (
-              <cite>{s.title}</cite>
+              <cite>{curly(s.title)}</cite>
             )}
             {s.author ? ` · ${s.author}` : ''}
             {s.year ? ` · ${s.year}` : ''}
-            {s.detail ? <span className={styles.sourceDetail}> {s.detail}</span> : null}
+            {s.detail ? <span className={styles.sourceDetail}> {typeset(s.detail)}</span> : null}
           </span>
         </li>
       ))}

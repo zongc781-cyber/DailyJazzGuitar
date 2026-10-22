@@ -14,7 +14,7 @@ import { Fretboard } from '@/components/player/Fretboard';
 import { Segmented } from '@/components/ui/Segmented';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { Prose, lineContext } from '@/components/lesson/Prose';
-import { curly, typeset } from './text';
+import { curly, typeset } from '@/lib/text';
 import styles from './standard.module.css';
 
 type Exercise = Standard['guideToneExercises'][number];

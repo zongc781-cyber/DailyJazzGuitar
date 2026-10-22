@@ -5,6 +5,7 @@
 import { Fragment, type ReactNode } from 'react';
 import type { Bar, ChordPlacement, LessonKey, NoteEvent } from '@/lib/music/types';
 import { prettyChord, prettyKey, prettyPitch } from '@/lib/music/pretty';
+import { typeset } from '@/lib/text';
 import styles from './lesson.module.css';
 
 export interface ProseContext {
@@ -63,9 +64,9 @@ function renderTokens(text: string, ctx: ProseContext): ReactNode[] {
   return out;
 }
 
-/** Paragraphs separated by blank lines; tokens filled in. */
+/** Paragraphs separated by blank lines; tokens filled in, with curly quotes and real accidentals. */
 export function Prose({ text, ctx, className }: { text: string; ctx: ProseContext; className?: string }) {
-  const paragraphs = text.split(/\n\s*\n/);
+  const paragraphs = typeset(text).split(/\n\s*\n/);
   return (
     <div className={`${styles.prose} ${className ?? ''}`}>
       {paragraphs.map((p, i) => (
@@ -77,5 +78,5 @@ export function Prose({ text, ctx, className }: { text: string; ctx: ProseContex
 
 /** One line of prose without a paragraph wrapper (list items, table cells). */
 export function InlineProse({ text, ctx }: { text: string; ctx: ProseContext }) {
-  return <Fragment>{renderTokens(text, ctx)}</Fragment>;
+  return <Fragment>{renderTokens(typeset(text), ctx)}</Fragment>;
 }

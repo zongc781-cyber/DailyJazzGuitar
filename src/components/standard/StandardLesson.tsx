@@ -27,7 +27,7 @@ import { GuideTones } from './GuideTones';
 import { HarmonicAnalysis } from './HarmonicAnalysis';
 import { PracticePlan, TodayPractice, type DayAction, type PlanLick } from './PracticePlan';
 import { Voicings } from './Voicings';
-import { count, curly, listJoin, typeset } from './text';
+import { count, curly, listJoin, typeset } from '@/lib/text';
 import styles from './standard.module.css';
 
 export interface WeekLick extends PlanLick {

@@ -1,4 +1,4 @@
-// Small text helpers for the weekly standard's copy.
+// Small text helpers for lesson copy: typographer's quotes, real accidentals, counts and lists.
 
 /** Typographer's quotes: "and" -> “and”, Somethin' -> Somethin’, 'Autumn Leaves' -> ‘Autumn Leaves’. */
 export function curly(text: string): string {

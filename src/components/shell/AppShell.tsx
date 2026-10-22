@@ -37,7 +37,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <BrandMark />
           <span className={styles.brandText}>
             <span className={styles.brandName}>Daily Jazz Guitar</span>
-            <span className={styles.brandTag}>A standard a week, a lick a day</span>
+            <span className={styles.brandTag}>
+              <span>A standard a week,</span> <span>a lick a day</span>
+            </span>
           </span>
         </Link>
         <ul className={styles.links}>

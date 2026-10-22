@@ -6,7 +6,7 @@
 import type { CSSProperties } from 'react';
 import type { Standard } from '@/lib/music/types';
 import { prettyChord, prettyKey, prettyRoman } from '@/lib/music/pretty';
-import { barRuns } from './text';
+import { barRuns } from '@/lib/text';
 import styles from './standard.module.css';
 
 const TINTS = ['kc0', 'kc1', 'kc2', 'kc3', 'kc4', 'kc5'] as const;

@@ -221,7 +221,7 @@ export function LickLesson({
             <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
             {current.fingeringNote ? (
               <div className={styles.fingering}>
-                <h3>Fingering</h3>
+                <h2>Fingering</h2>
                 <Prose text={current.fingeringNote} ctx={lickCtx} />
                 {selected.tonic !== lesson.key.tonic ? (
                   <p className={styles.fingeringKey}>Any fret numbers in this note are for the written key, {prettyKey(lesson.key)}.</p>

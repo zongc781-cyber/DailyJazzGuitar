@@ -203,9 +203,12 @@
   color: var(--ink-2);
 }
 
-.fingering h3 {
+.fingering h2 {
+  margin: 0;
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 600;
+  line-height: 1.3;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);

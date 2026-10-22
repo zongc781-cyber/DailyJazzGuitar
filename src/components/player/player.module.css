@@ -276,6 +276,16 @@
   min-width: 0;
 }
 
+/* With the tempo on a row of its own, the presets and the slider share one line, which keeps the
+   bar low over the score. */
+@container (min-width: 640px) and (max-width: 1039px) {
+  .tempo {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 28px;
+  }
+}
+
 .tempoHeader {
   display: flex;
   flex-wrap: wrap;

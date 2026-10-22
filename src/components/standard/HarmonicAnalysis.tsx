@@ -5,7 +5,7 @@ import type { Standard } from '@/lib/music/types';
 import { prettyChord, prettyRoman } from '@/lib/music/pretty';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { Prose, lineContext, type ProseContext } from '@/components/lesson/Prose';
-import { curly, typeset } from './text';
+import { curly, typeset } from '@/lib/text';
 import styles from './standard.module.css';
 
 type Variation = Standard['analysis']['variations'][number];

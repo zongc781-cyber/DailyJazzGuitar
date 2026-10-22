@@ -140,6 +140,11 @@
     text-wrap: balance;
   }
 
+  /* If the motto wraps, it breaks between its two halves. */
+  .brandTag > span {
+    white-space: nowrap;
+  }
+
   .links {
     gap: 2px;
   }

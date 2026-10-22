@@ -13,7 +13,7 @@ import { Pencil } from '@/components/ui/Pencil';
 import ui from '@/components/ui/ui.module.css';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { InlineProse, type ProseContext } from '@/components/lesson/Prose';
-import { curly, typeset } from './text';
+import { curly, typeset } from '@/lib/text';
 import styles from './standard.module.css';
 
 export const FOCUS_LABEL: Record<PlanFocus, string> = {
