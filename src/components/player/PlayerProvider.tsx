@@ -9,12 +9,13 @@
 
 import { createContext, use, useCallback, useEffect, useEffectEvent, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { AlphaTabApi, model } from '@coderline/alphatab';
-import { loadAlphaTab, ALPHATAB_BASE, type AlphaTab } from '@/lib/alphatab/load';
+import { loadAlphaTab, loadEngraving, ALPHATAB_BASE, MUSIC_FONT_BASE, type AlphaTab } from '@/lib/alphatab/load';
 import { useProgress } from '@/lib/progress/store';
 import { setPreference } from '@/lib/progress/actions';
 import { cssVar, useResolvedTheme } from '@/lib/theme';
 import type { NotationMode } from '@/lib/progress/state';
 import type { Role } from '@/lib/music/types';
+import { prettyChord } from '@/lib/music/pretty';
 
 export interface NoteHighlight {
   role: Role | null;
@@ -65,11 +66,10 @@ export function useScoreTarget() {
 
 const STAVE: Record<NotationMode, number> = { 'score-tab': 1, score: 2, tab: 3 };
 
+// The notation grows with the sheet, so a four-bar line usually fits on one system in a Mac
+// window. Steps of 0.04 keep a window resize from redrawing the score on every pixel.
 function scaleFor(width: number) {
-  if (width < 420) return 0.88;
-  if (width < 640) return 0.98;
-  if (width < 900) return 1.08;
-  return 1.18;
+  return Math.round(Math.min(1.18, Math.max(0.88, width / 860)) * 25) / 25;
 }
 
 function themeResources() {
@@ -93,6 +93,11 @@ const ROLE_VARS: Record<Role, string> = {
   neighbor: '--role-approach',
   scale: '--role-scale',
 };
+
+/** Chord names as the chord chips show them: "Bbmaj7" becomes "B♭maj7". */
+function prettyChordNames(score: model.Score) {
+  for (const staff of score.tracks[0]?.staves ?? []) for (const chord of staff.chords?.values() ?? []) chord.name = prettyChord(chord.name);
+}
 
 function colorize(at: AlphaTab, score: model.Score, highlights: NoteHighlight[][] | null) {
   if (!highlights) return;
@@ -147,7 +152,10 @@ export function PlayerProvider({
 
   // alphaTab calls these from its own events; effect events always see the latest props.
   const currentTex = useEffectEvent(() => tex);
-  const onScoreLoaded = useEffectEvent((at: AlphaTab, score: model.Score) => colorize(at, score, highlights));
+  const onScoreLoaded = useEffectEvent((at: AlphaTab, score: model.Score) => {
+    prettyChordNames(score);
+    colorize(at, score, highlights);
+  });
   const onPlayerReady = useEffectEvent((api: AlphaTabApi) => {
     api.playbackSpeed = bpm / tempo.default;
     api.isLooping = prefs.loop;
@@ -163,11 +171,14 @@ export function PlayerProvider({
     let cancelled = false;
     let api: AlphaTabApi | null = null;
     loadAlphaTab()
-      .then((at) => {
+      // The score is drawn in Petaluma when its metrics load, otherwise in alphaTab's Bravura.
+      .then(async (at) => [at, await loadEngraving(at).catch(() => null)] as const)
+      .then(([at, engraving]) => {
         if (cancelled) return;
         atRef.current = at;
         const width = element.clientWidth || 800;
-        api = new at.AlphaTabApi(element, {
+        const settings = new at.Settings();
+        settings.fillFromJson({
           // Lines are a few bars long, so draw them in full rather than as they scroll into view.
           core: { fontDirectory: `${ALPHATAB_BASE}font/`, logLevel: at.LogLevel.Warning, useWorkers: true, enableLazyLoading: false },
           display: {
@@ -201,6 +212,14 @@ export function PlayerProvider({
             enableUserInteraction: true,
           },
         });
+        if (engraving) {
+          settings.core.smuflFontSources = new Map([[at.FontFileFormat.Woff2, `${MUSIC_FONT_BASE}petaluma.woff2`]]);
+          settings.display.resources.engravingSettings = engraving;
+        }
+        // Chord names in the same Real Book handwriting as the chord chips.
+        const hand = cssVar('--font-hand');
+        if (hand) settings.display.resources.elementFonts.set(at.NotationElement.EffectChordNames, at.model.Font.fromJson(`17px ${hand}`)!);
+        api = new at.AlphaTabApi(element, settings);
         apiRef.current = api;
         api.scoreLoaded.on((score) => onScoreLoaded(at, score));
         api.renderStarted.on(() => setRendered(false));

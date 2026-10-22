@@ -1,4 +1,5 @@
-/* Desktop shell: a side rail. In a narrow window the rail shrinks to icons with small labels. */
+/* Desktop shell: a side rail on the same paper as the page, divided by a hairline. In a narrow
+   window the rail shrinks to icons with small labels. */
 
 .shell {
   --rail: 84px;
@@ -6,13 +7,13 @@
   grid-template-columns: var(--rail) minmax(0, 1fr);
   min-height: 100vh;
   min-width: 720px;
-  /* The rail's colour and edge run the full height of a long page, behind the sticky nav. */
-  background: linear-gradient(to right, var(--surface) calc(var(--rail) - 1px), var(--line) calc(var(--rail) - 1px) var(--rail), transparent var(--rail));
+  /* The rail's edge runs the full height of a long page, behind the sticky nav. */
+  background: linear-gradient(to right, transparent calc(var(--rail) - 1px), var(--line) calc(var(--rail) - 1px) var(--rail), transparent var(--rail));
 }
 
 .main {
   min-width: 0;
-  padding: 28px 28px 56px;
+  padding: 28px 28px 72px;
   outline: none;
 }
 
@@ -22,8 +23,8 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 10px;
+  gap: 24px;
+  padding: 22px 10px;
 }
 
 .brand {
@@ -40,7 +41,7 @@
 }
 
 .mark {
-  color: var(--brass-strong);
+  color: var(--accent);
   flex: none;
 }
 
@@ -58,9 +59,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 550;
   color: var(--ink-2);
   text-decoration: none;
   border-radius: var(--radius-s);
@@ -75,67 +76,91 @@
 }
 
 .link[aria-current='page'] {
-  background: var(--brass-soft);
   color: var(--ink);
+  font-weight: 650;
 }
 
 .link[aria-current='page'] :global(svg) {
-  color: var(--brass);
-  stroke-width: 2.2;
+  color: var(--accent);
+}
+
+.label {
+  position: relative;
+}
+
+/* The pencil underline under the current page's name. */
+.current {
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  bottom: -6px;
+  height: 7px;
+  width: calc(100% + 6px);
 }
 
 @media (min-width: 1100px) {
   .shell {
-    --rail: 232px;
+    --rail: 248px;
   }
 
   .main {
-    padding: 32px 40px 64px;
+    padding: 36px 48px 88px;
   }
 
   .nav {
-    gap: 28px;
-    padding: 28px 16px;
+    gap: 40px;
+    padding: 32px 20px 28px 24px;
   }
 
   .brand {
     justify-content: flex-start;
     align-items: center;
     gap: 12px;
-    padding: 4px 8px;
+    padding: 0;
   }
 
   .brandText {
     display: grid;
-    line-height: 1.2;
+    line-height: 1.1;
   }
 
   .brandName {
     font-family: var(--font-display);
-    font-variation-settings: 'opsz' 24;
-    font-weight: 650;
-    font-size: 1.08rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
   }
 
   .brandTag {
-    font-size: 0.78rem;
+    margin-top: 3px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1rem;
     color: var(--ink-3);
+  }
+
+  .links {
+    gap: 2px;
   }
 
   .link {
     min-height: var(--tap);
     flex-direction: row;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 14px;
     padding: 0 12px;
-    font-size: 0.98rem;
+    font-size: 1rem;
+  }
+
+  .current {
+    bottom: -5px;
   }
 
   .footnote {
     display: block;
     margin-top: auto;
-    padding: 0 8px;
+    padding: 0 12px;
     font-size: 0.8rem;
+    line-height: 1.5;
     color: var(--ink-3);
   }
 }

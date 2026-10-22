@@ -2,7 +2,7 @@
 
 import { togglePracticeItem } from '@/lib/progress/actions';
 import { useProgress } from '@/lib/progress/store';
-import { Icon } from '@/components/ui/Icon';
+import { Pencil } from '@/components/ui/Pencil';
 import styles from './lesson.module.css';
 
 export interface PracticeItem {
@@ -13,7 +13,7 @@ export interface PracticeItem {
 
 const EMPTY: string[] = [];
 
-/** Today's practice steps for a lesson. Ticks are kept per local day, so tomorrow starts fresh. */
+/** Today's practice steps for a lesson, ticked in blue pencil. Ticks are kept per local day, so tomorrow starts fresh. */
 export function PracticeChecklist({ lessonId, dateKey, items, title = 'Practice checklist' }: { lessonId: string; dateKey: string | null; items: PracticeItem[]; title?: string }) {
   const done = useProgress((s) => (dateKey ? s.practice[dateKey]?.[lessonId] : undefined) ?? EMPTY);
   const count = items.filter((i) => done.includes(i.id)).length;
@@ -33,7 +33,7 @@ export function PracticeChecklist({ lessonId, dateKey, items, title = 'Practice 
               <label className={styles.checkItem}>
                 <input type="checkbox" checked={checked} disabled={!dateKey} onChange={() => dateKey && togglePracticeItem(dateKey, lessonId, item.id)} />
                 <span className={styles.checkBox} aria-hidden="true">
-                  {checked ? <Icon name="check" size={16} /> : null}
+                  {checked ? <Pencil kind="tick" draw className={styles.tick} /> : null}
                 </span>
                 <span className={styles.checkText}>
                   <span>{item.label}</span>

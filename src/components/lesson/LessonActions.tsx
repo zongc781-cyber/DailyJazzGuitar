@@ -8,6 +8,7 @@ import { useProgress } from '@/lib/progress/store';
 import type { LearnedEntry } from '@/lib/progress/state';
 import { formatDate } from '@/lib/format';
 import { Icon } from '@/components/ui/Icon';
+import { Pencil } from '@/components/ui/Pencil';
 import ui from '@/components/ui/ui.module.css';
 import styles from './lesson.module.css';
 
@@ -21,7 +22,7 @@ export function LessonActions({ id, entry, dateKey }: { id: string; entry: Omit<
       {learned ? (
         <>
           <span className={`${ui.button} ${ui.done} ${styles.learnedState}`} data-testid="learned-state">
-            <Icon name="checkCircle" />
+            <Pencil kind="tick" draw className={styles.learnedTick} />
             Learned
           </span>
           <button type="button" className={`${ui.button} ${ui.ghost} ${ui.small}`} onClick={() => setLearned(id, null)} aria-label="Undo learned">
@@ -32,7 +33,7 @@ export function LessonActions({ id, entry, dateKey }: { id: string; entry: Omit<
       ) : (
         <button
           type="button"
-          className={`${ui.button} ${ui.primary}`}
+          className={ui.button}
           disabled={!dateKey}
           onClick={() => dateKey && setLearned(id, { ...entry, learnedOn: dateKey })}
           data-testid="learned"

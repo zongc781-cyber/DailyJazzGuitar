@@ -1,5 +1,15 @@
 /* Score sheet */
 
+/* The score and its playback bar on one sheet: the one card on a page with a soft shadow.
+   (overflow: clip rounds the corners without stopping the playback bar from sticking.) */
+.sheet {
+  background: var(--score-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-2);
+  overflow: clip;
+}
+
 .paper {
   position: relative;
   background: var(--score-bg);
@@ -11,6 +21,13 @@
   overflow: hidden;
   /* alphaTab gives its playback cursors a high z-index; keep them inside the score sheet. */
   isolation: isolate;
+}
+
+.sheet > .paper {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 16px 16px 8px;
 }
 
 .score {
@@ -67,15 +84,40 @@
 
 /* Transport */
 
-/* The controls follow the width of their own card, so they never overlap in a narrow window:
+/* The controls follow the width of their own bar, so they never overlap in a narrow window:
    one row when there is room, otherwise play and toggles above the tempo. */
 .transport {
   container-type: inline-size;
-  padding: 16px 18px;
+  padding: 16px 20px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
   box-shadow: var(--shadow-1);
+}
+
+/* On the sheet, the playback bar stays at the bottom of the window while a long score runs
+   below it, so Play is always in reach. */
+.sheet > .transport {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  container-type: inline-size scroll-state;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 18px 24px;
+}
+
+@container scroll-state(stuck: bottom) {
+  .transportGrid::before {
+    content: '';
+    position: absolute;
+    inset: -13px 0 auto;
+    height: 12px;
+    background: linear-gradient(to top, color-mix(in srgb, var(--ink) 8%, transparent), transparent);
+    pointer-events: none;
+  }
 }
 
 .transportGrid {
@@ -88,7 +130,7 @@
   gap: 16px 24px;
 }
 
-@container (min-width: 1000px) {
+@container (min-width: 1040px) {
   .transportGrid {
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas: 'main tempo toggles';
@@ -109,22 +151,25 @@
   grid-area: main;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
+/* The primary action on the page: a blue button. */
 .playButton {
-  width: 68px;
-  height: 68px;
+  position: relative;
+  flex: none;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: none;
   display: grid;
   place-items: center;
-  background: var(--button);
-  color: var(--button-ink);
+  background: var(--accent);
+  color: var(--accent-ink);
   cursor: pointer;
-  box-shadow: var(--shadow-2);
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent) 70%, transparent);
   transition:
-    transform 0.12s ease-out,
+    transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1),
     background-color 0.15s ease-out;
 }
 
@@ -132,12 +177,33 @@
   margin-left: 2px;
 }
 
+.playButton[data-playing='true'] :global(svg) {
+  margin-left: 0;
+}
+
 .playButton:hover:not(:disabled) {
-  transform: scale(1.04);
+  background: var(--accent-strong);
+  transform: scale(1.05);
 }
 
 .playButton:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: scale(0.96);
+}
+
+/* While it plays, a dashed ring turns around the button like a record. */
+.playButton[data-playing='true']::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--accent);
+  animation: turn 9s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .playButton:disabled,
@@ -153,29 +219,38 @@
   height: var(--tap);
   border-radius: 50%;
   border: 1px solid var(--line-strong);
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
   display: grid;
   place-items: center;
   cursor: pointer;
   flex: none;
-  transition: background-color 0.15s ease-out;
+  transition:
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out;
 }
 
 .roundButton:hover:not(:disabled),
 .stepButton:hover:not(:disabled) {
   background: var(--surface-2);
+  border-color: var(--line-control);
+}
+
+.stepButton {
+  width: 34px;
+  height: 34px;
 }
 
 .statusBlock {
   display: grid;
   gap: 2px;
-  min-width: 9.5em;
+  min-width: 8.5em;
 }
 
 .status {
-  font-size: 0.9rem;
-  color: var(--ink-3);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .shortcut {
@@ -190,14 +265,14 @@
   border: 1px solid var(--line-strong);
   border-bottom-width: 2px;
   border-radius: 4px;
-  background: var(--surface-2);
+  background: var(--paper);
   color: var(--ink-2);
 }
 
 .tempo {
   grid-area: tempo;
   display: grid;
-  gap: 8px;
+  gap: 2px;
   min-width: 0;
 }
 
@@ -205,27 +280,32 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 14px;
+  gap: 6px 12px;
 }
 
 .tempoLabel {
+  font-size: 0.75rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
 .tempoValue {
-  margin-left: auto;
+  flex: none;
+  min-width: 3.3em;
+  text-align: right;
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.2;
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
 .tempoValue span {
   font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--ink-3);
-  font-weight: 500;
 }
 
 .tempoRow {
@@ -234,28 +314,75 @@
   gap: 10px;
 }
 
+/* A thin rule that fills with blue up to the thumb. */
 .slider {
+  --fill: 50%;
   flex: 1;
   min-width: 0;
   height: var(--tap);
-  accent-color: var(--brass-strong);
+  margin: 0;
+  appearance: none;
+  background: transparent;
   cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--line-control) var(--fill));
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7.5px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  transition: transform 0.15s ease-out;
+}
+
+.slider:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.slider::-moz-range-track {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-control);
+}
+
+.slider::-moz-range-progress {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
 }
 
 .presets {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   flex-wrap: wrap;
 }
 
 .preset {
+  position: relative;
   min-height: 32px;
-  padding: 0 12px;
+  padding: 0 10px;
   border-radius: 999px;
-  border: 1px solid var(--line-strong);
+  border: none;
   background: transparent;
   color: var(--ink-2);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
   transition:
     background-color 0.15s ease-out,
@@ -264,39 +391,48 @@
 
 .preset span {
   color: var(--ink-3);
+  font-weight: 500;
   margin-left: 2px;
 }
 
 .preset:hover {
   background: var(--surface-2);
+  color: var(--ink);
 }
 
 .preset[aria-pressed='true'] {
-  background: var(--brass-soft);
-  border-color: var(--brass-strong);
   color: var(--ink);
+}
+
+.preset[aria-pressed='true'] span {
+  color: var(--ink-2);
+}
+
+.presetMark {
+  position: absolute;
+  inset: -3px -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 6px);
 }
 
 .toggles {
   grid-area: toggles;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .toggle {
-  min-height: 56px;
-  padding: 6px 12px;
-  border-radius: var(--radius-s);
+  min-height: var(--tap);
+  padding: 0 14px 0 11px;
+  border-radius: 999px;
   border: 1px solid var(--line-strong);
-  background: var(--surface);
+  background: transparent;
   color: var(--ink-2);
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  font-size: 0.82rem;
+  gap: 7px;
+  font-size: 0.86rem;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -307,10 +443,16 @@
 
 .toggle:hover {
   background: var(--surface-2);
+  color: var(--ink);
 }
 
+/* On: filled and blue-marked. Off: an empty outline. */
 .toggle[aria-pressed='true'] {
-  background: var(--button);
-  border-color: var(--button);
-  color: var(--button-ink);
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.toggle[aria-pressed='true'] :global(svg) {
+  color: var(--accent);
 }

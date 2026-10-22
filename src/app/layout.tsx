@@ -5,19 +5,33 @@ import { AppShell } from '@/components/shell/AppShell';
 import { STORAGE_KEY } from '@/lib/progress/state';
 import './globals.css';
 
-const fraunces = localFont({
-  src: '../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-standard-normal.woff2',
-  variable: '--font-fraunces',
-  weight: '100 900',
+// Instrument Serif for headlines, Instrument Sans for everything else, and Petaluma Script
+// (Steinberg's Real Book-style handwriting) for chord symbols. All are OFL and served locally.
+const serif = localFont({
+  src: [
+    { path: '../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-serif',
   display: 'swap',
   adjustFontFallback: 'Times New Roman',
 });
 
-const inter = localFont({
-  src: '../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2',
-  variable: '--font-inter',
-  weight: '100 900',
+const sans = localFont({
+  src: [
+    { path: '../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-standard-normal.woff2', weight: '400 700', style: 'normal' },
+    { path: '../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-standard-italic.woff2', weight: '400 700', style: 'italic' },
+  ],
+  variable: '--font-sans',
   display: 'swap',
+});
+
+const hand = localFont({
+  src: '../../node_modules/@vexflow-fonts/petalumascript/petalumascript.woff2',
+  variable: '--font-hand',
+  weight: '400',
+  display: 'swap',
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -30,8 +44,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f1e7' },
-    { media: '(prefers-color-scheme: dark)', color: '#14120f' },
+    { media: '(prefers-color-scheme: light)', color: '#f5f2ea' },
+    { media: '(prefers-color-scheme: dark)', color: '#111214' },
   ],
 };
 
@@ -40,7 +54,7 @@ const THEME_SCRIPT = `try{var p=JSON.parse(localStorage.getItem(${JSON.stringify
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>

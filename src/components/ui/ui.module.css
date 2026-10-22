@@ -1,5 +1,6 @@
-/* Shared building blocks: buttons, badges, cards, segmented controls. */
+/* Shared building blocks: buttons, labels, chips, badges, cards, fields and segmented controls. */
 
+/* Buttons: a blue pill for the one primary action, ink outlines for the rest. */
 .button {
   min-height: var(--tap);
   padding: 0 18px;
@@ -8,22 +9,27 @@
   justify-content: center;
   gap: 8px;
   border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
+  border: 1px solid var(--ink);
+  background: transparent;
   color: var(--ink);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   transition:
     background-color 0.15s ease-out,
     border-color 0.15s ease-out,
-    color 0.15s ease-out;
+    color 0.15s ease-out,
+    transform 0.15s ease-out;
 }
 
 .button:hover {
   background: var(--surface-2);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .button:disabled {
@@ -32,28 +38,28 @@
 }
 
 .primary {
-  background: var(--button);
-  border-color: var(--button);
-  color: var(--button-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .primary:hover {
-  background: var(--button);
-  filter: brightness(1.12);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .done {
-  background: var(--ok-soft);
-  border-color: var(--ok);
+  background: var(--accent-soft);
+  border-color: var(--accent);
   color: var(--ink);
 }
 
 .done :global(svg) {
-  color: var(--ok);
+  color: var(--accent);
 }
 
 .done:hover {
-  background: var(--ok-soft);
+  background: var(--accent-soft);
 }
 
 .danger {
@@ -67,29 +73,110 @@
 }
 
 .small {
-  min-height: 40px;
+  min-height: 34px;
   padding: 0 14px;
   font-size: 0.88rem;
+}
+
+/* Small uppercase labels: eyebrows above headlines, field names, table heads. */
+.eyebrow,
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.eyebrow {
+  color: var(--ink-2);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+/* A boxed rehearsal letter and a serif heading, like the section marks on a chart. */
+.rehearsal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rehearsal h2 {
+  margin: 0;
+}
+
+.rehearsalMark {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1;
+}
+
+/* Five staff lines, as an ornament between major parts of a page. */
+.staffRule {
+  height: 25px;
+  background: var(--staff);
+  opacity: 0.8;
+}
+
+/* A chord symbol in Real Book-style handwriting. */
+.chord {
+  font-family: var(--font-chord);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.chordChip {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 2px 12px 0;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  font-family: var(--font-chord);
+  font-size: 1.45rem;
+  line-height: 1.45;
+  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.chordChip:nth-child(odd):hover {
+  transform: rotate(-2deg);
+}
+
+.chordChip:nth-child(even):hover {
+  transform: rotate(2deg);
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-height: 26px;
   padding: 0 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  background: transparent;
   color: var(--ink-2);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
@@ -98,19 +185,16 @@
 }
 
 .badgeSeed {
-  background: var(--ok-soft);
-  border-color: color-mix(in srgb, var(--ok) 35%, transparent);
-  color: var(--ink);
+  color: var(--ink-2);
 }
 
 .badgeGenerated {
-  background: var(--brass-soft);
-  border-color: color-mix(in srgb, var(--brass-strong) 45%, transparent);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   color: var(--ink);
 }
 
 .badgeReview {
-  background: transparent;
   border-style: dashed;
 }
 
@@ -118,40 +202,28 @@
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
-  box-shadow: var(--shadow-1);
-  padding: 18px;
+  padding: 24px;
 }
 
-.eyebrow {
-  font-size: 0.8rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brass);
-}
-
-.muted {
-  color: var(--ink-3);
-}
-
+/* Segmented control: a quiet track; the chosen option is marked in blue. */
 .segmented {
   display: inline-flex;
   padding: 3px;
   gap: 2px;
   border-radius: 999px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
+  background: transparent;
+  border: 1px solid var(--line-control);
 }
 
 .segment {
-  min-height: 42px;
+  min-height: 34px;
   padding: 0 16px;
   border-radius: 999px;
   border: none;
   background: transparent;
   color: var(--ink-2);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition:
     background-color 0.15s ease-out,
@@ -160,31 +232,38 @@
 
 .segment:hover {
   color: var(--ink);
+  background: var(--surface-2);
 }
 
 .segment[aria-pressed='true'] {
-  background: var(--surface);
+  background: var(--accent-soft);
   color: var(--ink);
-  box-shadow: var(--shadow-1);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .field {
   display: grid;
   gap: 6px;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
 .select {
   min-height: var(--tap);
   padding: 0 40px 0 14px;
   border-radius: var(--radius-s);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line-control);
   background-color: var(--surface);
-  font-size: 1rem;
+  color: var(--ink);
+  font-size: 0.98rem;
   font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%), linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%);
   background-position:
     calc(100% - 20px) 52%,
     calc(100% - 14px) 52%;
@@ -193,20 +272,24 @@
   cursor: pointer;
 }
 
+.select:hover {
+  border-color: var(--ink-2);
+}
+
 .textarea {
   width: 100%;
   min-height: 120px;
   padding: 12px 14px;
   border-radius: var(--radius-s);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line-control);
   background: var(--surface);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.55;
   resize: vertical;
 }
 
 .empty {
-  padding: 28px 20px;
+  padding: 32px 24px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius-m);
   color: var(--ink-3);
@@ -217,7 +300,7 @@
   display: grid;
   gap: 12px;
   justify-items: start;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid var(--danger);
   border-radius: var(--radius-m);
   background: var(--surface);
@@ -236,5 +319,29 @@
   }
   to {
     background-position: -100% 0;
+  }
+}
+
+/* Pencil marks: hand-drawn strokes in the accent colour. */
+.pencil {
+  display: block;
+  overflow: visible;
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+/* A stroke that draws itself, from its start to its end. */
+.draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pencil-draw 0.45s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+
+@keyframes pencil-draw {
+  to {
+    stroke-dashoffset: 0;
   }
 }

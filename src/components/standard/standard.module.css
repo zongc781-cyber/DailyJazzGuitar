@@ -58,7 +58,7 @@
 .simplified :global(svg) {
   flex: none;
   margin-top: 2px;
-  color: var(--brass);
+  color: var(--accent);
 }
 
 /* Today's plan day, featured at the top of the week */
@@ -95,7 +95,7 @@
 }
 
 .listenLink > :global(svg):first-child {
-  color: var(--brass);
+  color: var(--accent);
   margin-top: 2px;
 }
 
@@ -195,7 +195,6 @@
 
 .chartSymbol {
   font-family: var(--font-display);
-  font-variation-settings: 'opsz' 24;
   font-weight: 650;
   font-size: 1.12rem;
   white-space: nowrap;
@@ -226,7 +225,7 @@
 }
 
 .kc4 {
-  --kc: var(--brass-strong);
+  --kc: var(--accent);
 }
 
 .kc5 {
@@ -460,8 +459,8 @@
 }
 
 .planToday {
-  border-color: var(--brass-strong);
-  box-shadow: 0 0 0 1px var(--brass-strong);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .planFeatured {

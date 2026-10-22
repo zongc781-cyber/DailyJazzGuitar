@@ -1,9 +1,9 @@
 'use client';
 
-// Today: the daily lick, with this week's standard and today's plan day above it.
+// Today: the daily lick, with a link to this week's standard and today's plan day.
 
 import Link from 'next/link';
-import { Suspense, ViewTransition, use, useMemo } from 'react';
+import { Suspense, ViewTransition, use, useMemo, type ReactNode } from 'react';
 import type { CatalogEntry } from '@/lib/music/types';
 import { lessonPromise } from '@/lib/client/lessons';
 import { useSchedule, type Schedule } from '@/lib/client/useSchedule';
@@ -15,6 +15,7 @@ import { FOCUS_LABEL } from '@/components/standard/PracticePlan';
 import { LessonSkeleton, ScreenSkeleton } from './Skeletons';
 import styles from './screens.module.css';
 
+// This week's standard and today's plan day, as a small link at the top right of the lesson.
 function WeekStrip({ standardId, schedule }: { standardId: string; schedule: Schedule }) {
   const standard = use(lessonPromise(standardId));
   if (standard.kind !== 'standard') return null;
@@ -25,20 +26,20 @@ function WeekStrip({ standardId, schedule }: { standardId: string; schedule: Sch
       <span className={styles.weekStripTitle}>{standard.title}</span>
       {day ? (
         <span className={styles.weekStripDay}>
-          Day {day.day} of 7 · {FOCUS_LABEL[day.focus]}, {day.minutes} min
+          day {day.day} of 7, {FOCUS_LABEL[day.focus].toLowerCase()}
         </span>
       ) : null}
-      <Icon name="chevronRight" size={20} />
+      <Icon name="chevronRight" size={16} />
     </Link>
   );
 }
 
-function TodayLick({ id, schedule, standard }: { id: string; schedule: Schedule; standard: CatalogEntry | undefined }) {
+function TodayLick({ id, schedule, standard, week }: { id: string; schedule: Schedule; standard: CatalogEntry | undefined; week: ReactNode }) {
   const lesson = use(lessonPromise(id));
   if (lesson.kind !== 'lick') throw new Error('Today’s lesson is not a lick.');
   const eyebrow = `${schedule.day.review ? 'Review lick' : 'Today’s lick'} · ${formatLongDate(schedule.dateKey)}`;
   const forStandard = lesson.standardId && lesson.standardId === standard?.id ? { title: standard.title, href: '/week' } : null;
-  return <LickLesson key={lesson.id} lesson={lesson} eyebrow={eyebrow} standard={forStandard} review={schedule.day.review} />;
+  return <LickLesson key={lesson.id} lesson={lesson} eyebrow={eyebrow} aside={week} standard={forStandard} review={schedule.day.review} />;
 }
 
 export function TodayScreen({ catalog }: { catalog: CatalogEntry[] }) {
@@ -61,16 +62,22 @@ export function TodayScreen({ catalog }: { catalog: CatalogEntry[] }) {
   return (
     <ViewTransition enter="page-in" exit="page-out" default="none">
       <div className={styles.screen}>
-        {week.standardId ? (
-          <ErrorBoundary>
-            <Suspense fallback={<div className={styles.weekStripPlaceholder} aria-hidden="true" />}>
-              <WeekStrip standardId={week.standardId} schedule={schedule} />
-            </Suspense>
-          </ErrorBoundary>
-        ) : null}
         <ErrorBoundary>
           <Suspense fallback={<LessonSkeleton />}>
-            <TodayLick id={day.lickId} schedule={schedule} standard={week.standardId ? byId.get(week.standardId) : undefined} />
+            <TodayLick
+              id={day.lickId}
+              schedule={schedule}
+              standard={week.standardId ? byId.get(week.standardId) : undefined}
+              week={
+                week.standardId ? (
+                  <ErrorBoundary fallback={null}>
+                    <Suspense fallback={null}>
+                      <WeekStrip standardId={week.standardId} schedule={schedule} />
+                    </Suspense>
+                  </ErrorBoundary>
+                ) : null
+              }
+            />
           </Suspense>
         </ErrorBoundary>
       </div>

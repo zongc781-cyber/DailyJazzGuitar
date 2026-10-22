@@ -2,6 +2,10 @@
 // public/vendor/alphatab/<version>/, so the browser loads them as static, long-cached files. The
 // version is the one pinned in package.json, and the copy is regenerated on every install (it is
 // not committed). src/generated/alphatab.json tells the app where the files are.
+//
+// The score is drawn in Petaluma, Steinberg's handwritten music font after the Real Book. It is
+// copied beside alphaTab with its licence and the SMuFL metrics alphaTab reads (anchors and
+// bounding boxes; the alternates, ligatures and optional glyphs are left out).
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
@@ -43,6 +47,28 @@ for (const f of ['Bravura.woff2', 'Bravura.woff', 'Bravura.otf', 'Bravura-OFL.tx
 mkdirSync(join(out, 'soundfont'));
 for (const f of ['sonivox.sf3', 'sonivox.sf2', 'LICENSE', 'README.md']) cpSync(join(dist, 'soundfont', f), join(out, 'soundfont', f));
 cpSync(join(pkgDir, 'LICENSE'), join(out, 'LICENSE'));
+
+const petalumaDir = dirname(require.resolve('@vexflow-fonts/petaluma/metadata.json'));
+const petaluma = JSON.parse(readFileSync(join(petalumaDir, 'package.json'), 'utf8')).version;
+const musicFont = `petaluma-${petaluma}`;
+mkdirSync(join(out, musicFont));
+for (const f of ['petaluma.woff2', 'LICENSE.txt']) cpSync(join(petalumaDir, f), join(out, musicFont, f));
+const smufl = JSON.parse(readFileSync(join(petalumaDir, 'metadata.json'), 'utf8'));
+const optional = new Set(Object.keys(smufl.optionalGlyphs ?? {}));
+const ANCHORS = ['stemDownNW', 'stemDownSW', 'stemUpSE', 'stemUpNW', 'repeatOffset'];
+const glyphsWithAnchors = {};
+for (const [name, anchors] of Object.entries(smufl.glyphsWithAnchors)) {
+  const kept = Object.fromEntries(ANCHORS.filter((a) => anchors[a]).map((a) => [a, anchors[a]]));
+  if (!optional.has(name) && Object.keys(kept).length) glyphsWithAnchors[name] = kept;
+}
+const glyphBBoxes = {};
+for (const [name, { bBoxNE, bBoxSW }] of Object.entries(smufl.glyphBBoxes)) if (!optional.has(name)) glyphBBoxes[name] = { bBoxNE, bBoxSW };
+const metrics = { fontName: smufl.fontName, fontVersion: smufl.fontVersion, engravingDefaults: smufl.engravingDefaults, glyphsWithAnchors, glyphBBoxes };
+writeFileSync(join(out, musicFont, 'metadata.json'), JSON.stringify(metrics));
+
 mkdirSync(join(root, 'src', 'generated'), { recursive: true });
-writeFileSync(join(root, 'src', 'generated', 'alphatab.json'), JSON.stringify({ version, base: `/vendor/alphatab/${version}/` }, null, 2) + '\n');
-console.log(`copy-alphatab: alphaTab ${version} copied to public/vendor/alphatab/${version}`);
+writeFileSync(
+  join(root, 'src', 'generated', 'alphatab.json'),
+  JSON.stringify({ version, base: `/vendor/alphatab/${version}/`, musicFont: `/vendor/alphatab/${version}/${musicFont}/` }, null, 2) + '\n',
+);
+console.log(`copy-alphatab: alphaTab ${version} and Petaluma ${petaluma} copied to public/vendor/alphatab/${version}`);

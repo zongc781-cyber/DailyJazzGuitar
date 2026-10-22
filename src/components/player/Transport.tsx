@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useId } from 'react';
+import { useEffect, useId, type CSSProperties } from 'react';
 import { Icon } from '@/components/ui/Icon';
+import { Pencil } from '@/components/ui/Pencil';
 import { usePlayer } from './PlayerProvider';
 import styles from './player.module.css';
 
@@ -50,12 +51,13 @@ export function Transport({ onPlayed }: { onPlayed?: (bpm: number) => void }) {
             disabled={disabled}
             aria-label={state.playing ? 'Pause' : 'Play'}
             aria-describedby={statusId}
+            data-playing={state.playing}
             data-testid="play"
           >
-            <Icon name={state.playing ? 'pause' : 'play'} size={30} />
+            <Icon name={state.playing ? 'pause' : 'play'} size={28} />
           </button>
           <button type="button" className={styles.roundButton} onClick={actions.stop} disabled={disabled} aria-label="Stop">
-            <Icon name="stop" size={22} />
+            <Icon name="stop" size={20} />
           </button>
           <div className={styles.statusBlock}>
             <div className={styles.status} id={statusId} aria-live="polite">
@@ -78,28 +80,28 @@ export function Transport({ onPlayed }: { onPlayed?: (bpm: number) => void }) {
             <label htmlFor={tempoId} className={styles.tempoLabel}>
               Tempo
             </label>
+            {/* The chosen preset is circled in pencil. */}
             <div className={styles.presets}>
               {PRESETS.map((p) => {
                 const bpm = Math.min(max, Math.max(min, Math.round((meta.tempo.default * p.percent) / 100)));
+                const chosen = state.bpm === bpm;
                 return (
-                  <button key={p.label} type="button" className={styles.preset} aria-pressed={state.bpm === bpm} onClick={() => actions.setBpm(bpm)}>
+                  <button key={p.label} type="button" className={styles.preset} aria-pressed={chosen} onClick={() => actions.setBpm(bpm)}>
                     {p.label} <span className="num">{bpm}</span>
+                    {chosen ? <Pencil kind="circle" draw className={styles.presetMark} /> : null}
                   </button>
                 );
               })}
             </div>
-            <output htmlFor={tempoId} className={`${styles.tempoValue} num`} data-testid="bpm">
-              {state.bpm}
-              <span> BPM</span>
-            </output>
           </div>
           <div className={styles.tempoRow}>
             <button type="button" className={styles.stepButton} onClick={() => actions.setBpm(state.bpm - 5)} aria-label="Slower by 5 BPM" disabled={state.bpm <= min}>
-              <Icon name="minus" />
+              <Icon name="minus" size={18} />
             </button>
             <input
               id={tempoId}
               className={styles.slider}
+              style={{ '--fill': `${((state.bpm - min) / Math.max(1, max - min)) * 100}%` } as CSSProperties}
               type="range"
               min={min}
               max={max}
@@ -109,22 +111,26 @@ export function Transport({ onPlayed }: { onPlayed?: (bpm: number) => void }) {
               aria-valuetext={`${state.bpm} beats per minute`}
             />
             <button type="button" className={styles.stepButton} onClick={() => actions.setBpm(state.bpm + 5)} aria-label="Faster by 5 BPM" disabled={state.bpm >= max}>
-              <Icon name="plus" />
+              <Icon name="plus" size={18} />
             </button>
+            <output htmlFor={tempoId} className={`${styles.tempoValue} num`} data-testid="bpm">
+              {state.bpm}
+              <span> BPM</span>
+            </output>
           </div>
         </div>
 
         <div className={styles.toggles}>
           <button type="button" className={styles.toggle} aria-pressed={settings.loop} onClick={() => actions.setLoop(!settings.loop)}>
-            <Icon name="loop" />
+            <Icon name="loop" size={19} />
             <span>Loop</span>
           </button>
           <button type="button" className={styles.toggle} aria-pressed={settings.countIn} onClick={() => actions.setCountIn(!settings.countIn)}>
-            <Icon name="countIn" />
+            <Icon name="countIn" size={19} />
             <span>Count-in</span>
           </button>
           <button type="button" className={styles.toggle} aria-pressed={settings.metronome} onClick={() => actions.setMetronome(!settings.metronome)}>
-            <Icon name="metronome" />
+            <Icon name="metronome" size={19} />
             <span>Metronome</span>
           </button>
         </div>

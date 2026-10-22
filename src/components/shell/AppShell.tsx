@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { Icon, type IconName } from '@/components/ui/Icon';
+import { Pencil } from '@/components/ui/Pencil';
 import styles from './shell.module.css';
 
 const NAV: { href: string; label: string; icon: IconName; match: (path: string) => boolean }[] = [
@@ -18,11 +19,11 @@ const NAV: { href: string; label: string; icon: IconName; match: (path: string) 
 
 function BrandMark() {
   return (
-    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false" className={styles.mark}>
+    <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" focusable="false" className={styles.mark}>
       <path d="M16 2.5c7 0 12.5 3 12.5 7.8 0 6.4-7.4 15.6-12.5 19.2C10.9 25.9 3.5 16.7 3.5 10.3 3.5 5.5 9 2.5 16 2.5z" fill="currentColor" />
-      <path d="M13.4 20.2V10.6l7.2-1.6v8.6" fill="none" stroke="var(--button-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="11.6" cy="20.3" r="2.1" fill="var(--button-ink)" />
-      <circle cx="18.8" cy="17.7" r="2.1" fill="var(--button-ink)" />
+      <path d="M13.4 20.2V10.6l7.2-1.6v8.6" fill="none" stroke="var(--paper)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="11.6" cy="20.3" r="2.1" fill="var(--paper)" />
+      <circle cx="18.8" cy="17.7" r="2.1" fill="var(--paper)" />
     </svg>
   );
 }
@@ -45,8 +46,11 @@ export function AppShell({ children }: { children: ReactNode }) {
             return (
               <li key={item.href}>
                 <Link href={item.href} className={styles.link} aria-current={current ? 'page' : undefined}>
-                  <Icon name={item.icon} size={24} />
-                  <span>{item.label}</span>
+                  <Icon name={item.icon} size={22} />
+                  <span className={styles.label}>
+                    {item.label}
+                    {current ? <Pencil kind="underline" className={styles.current} /> : null}
+                  </span>
                 </Link>
               </li>
             );

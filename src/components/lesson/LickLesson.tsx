@@ -5,7 +5,7 @@
 // notation, tab, audio, fretboard and analysis together.
 
 import Link from 'next/link';
-import { Activity, useId, useMemo, useState } from 'react';
+import { Activity, useId, useMemo, useState, type ReactNode } from 'react';
 import type { Lick } from '@/lib/music/types';
 import { lickToAlphaTex } from '@/lib/music/alphatex.mjs';
 import { tonicsFor, transposeLick } from '@/lib/music/transpose.mjs';
@@ -14,7 +14,7 @@ import { useLocalDate } from '@/lib/client/useLocalDate';
 import { markPracticeItem } from '@/lib/progress/actions';
 import { useProgress } from '@/lib/progress/store';
 import { PlayerProvider, type NoteHighlight } from '@/components/player/PlayerProvider';
-import { PlayerScore } from '@/components/player/PlayerScore';
+import { PlayerScore, ScoreSheet } from '@/components/player/PlayerScore';
 import { Transport } from '@/components/player/Transport';
 import { Fretboard } from '@/components/player/Fretboard';
 import { Icon } from '@/components/ui/Icon';
@@ -97,11 +97,14 @@ function useLickView(lesson: Lick, tonic: string, part: Part, showAnalysis: bool
 export function LickLesson({
   lesson,
   eyebrow,
+  aside,
   standard,
   review,
 }: {
   lesson: Lick;
   eyebrow: string;
+  /** Shown at the right of the label row, e.g. a link to this week's standard. */
+  aside?: ReactNode;
   /** The standard this lick prepares, with where to open it. */
   standard?: { title: string; href: string } | null;
   review?: boolean;
@@ -139,7 +142,10 @@ export function LickLesson({
   return (
     <article className={styles.lesson}>
       <header className={styles.header}>
-        <p className={ui.eyebrow}>{eyebrow}</p>
+        <div className={styles.eyebrowRow}>
+          <p className={ui.eyebrow}>{eyebrow}</p>
+          {aside}
+        </div>
         <h1 className={styles.title}>{lesson.title}</h1>
         <p className={styles.byline}>
           {byline}
@@ -150,22 +156,24 @@ export function LickLesson({
             </>
           ) : null}
         </p>
-        <div className={styles.chordsRow}>
-          <p className={styles.progression} data-testid="chords">
-            <span className="visually-hidden">Chords: </span>
-            {current.chords.map((c, i) => (
-              <span key={i} className={styles.progressionChord}>
-                {prettyChord(c.symbol)}
-              </span>
-            ))}
-          </p>
-          <LessonBadges lesson={lesson} review={review} />
+        <div className={styles.metaRow}>
+          <div className={styles.chordsRow}>
+            <p className={styles.progression} data-testid="chords">
+              <span className="visually-hidden">Chords: </span>
+              {current.chords.map((c, i) => (
+                <span key={i} className={styles.progressionChord}>
+                  {prettyChord(c.symbol)}
+                </span>
+              ))}
+            </p>
+            <LessonBadges lesson={lesson} review={review} />
+          </div>
+          <LessonActions
+            id={lesson.id}
+            dateKey={dateKey}
+            entry={{ kind: 'lick', title: lesson.title, origin: lesson.origin, artist: inspiration.artist, key: prettyKey(current.key) }}
+          />
         </div>
-        <LessonActions
-          id={lesson.id}
-          dateKey={dateKey}
-          entry={{ kind: 'lick', title: lesson.title, origin: lesson.origin, artist: inspiration.artist, key: prettyKey(current.key) }}
-        />
       </header>
 
       <div className={styles.toolbar}>
@@ -205,8 +213,10 @@ export function LickLesson({
 
       <PlayerProvider tex={tex} tempo={lesson.tempo} label={label} highlights={highlights}>
         <section className={styles.player} aria-label="Notation and playback">
-          <PlayerScore />
-          <Transport onPlayed={() => dateKey && markPracticeItem(dateKey, lesson.id, 'listen')} />
+          <ScoreSheet>
+            <PlayerScore />
+            <Transport onPlayed={() => dateKey && markPracticeItem(dateKey, lesson.id, 'listen')} />
+          </ScoreSheet>
           <div className={styles.fretRow}>
             <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
             {current.fingeringNote ? (
@@ -228,6 +238,12 @@ export function LickLesson({
             <h2 id={`${analysisId}-why`}>Why this works</h2>
             <Prose text={current.whyItWorks} ctx={lickCtx} />
           </section>
+          {current.practiceTask ? (
+            <section className={styles.task}>
+              <h2>{standard ? `Use it on ${standard.title}` : 'Practice task'}</h2>
+              <Prose text={current.practiceTask} ctx={lickCtx} />
+            </section>
+          ) : null}
           <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
             <LickAnalysis lick={current} ctx={lickCtx} id={analysisId} />
           </Activity>
@@ -239,12 +255,6 @@ export function LickLesson({
           )}
         </div>
         <aside className={styles.sideColumn} aria-label="Practice">
-          {current.practiceTask ? (
-            <section className={styles.task}>
-              <h2>{standard ? `Use it on ${standard.title}` : 'Practice task'}</h2>
-              <Prose text={current.practiceTask} ctx={lickCtx} />
-            </section>
-          ) : null}
           <PracticeChecklist lessonId={lesson.id} dateKey={dateKey} items={items} />
           <NotesField lessonId={lesson.id} placeholder="What felt awkward? Which fingering worked? Where will you use it?" />
         </aside>

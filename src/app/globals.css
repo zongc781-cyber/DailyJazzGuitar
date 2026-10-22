@@ -1,122 +1,128 @@
-/* Daily Jazz Guitar: design tokens and base styles.
-   Warm "practice notebook" palette in light mode, a late-night club palette in dark mode. */
+/* Daily Jazz Guitar: design tokens and base styles. The look is a jazz lead sheet marked up with
+   a blue pencil (see docs/design.md): cream paper, ink type, one blue accent. */
 
 :root {
   color-scheme: light;
-  --paper: #f6f1e7;
-  --surface: #fffdf8;
-  --surface-2: #efe8da;
-  --surface-3: #e6dccb;
-  --ink: #1d1a16;
-  --ink-2: #4a433a;
-  --ink-3: #6f6557;
-  --line: #ddd2c0;
-  --line-strong: #c9bba4;
-  --brass: #8a5a0f;
-  --brass-soft: #f1e2c2;
-  --brass-strong: #c08a2d;
-  --focus: #b77a14;
-  --button: #1d1a16;
-  --button-ink: #fffdf8;
-  --danger: #a3341f;
-  --ok: #2b6e47;
-  --ok-soft: #dcefe2;
+  --paper: #f5f2ea;
+  --surface: #fbf9f4;
+  --surface-2: #ede9df;
+  --surface-3: #e3ded2;
+  --ink: #15161a;
+  --ink-2: #44464d;
+  --ink-3: #66676d;
+  --line: #dedacf;
+  --line-strong: #c5c0b4;
+  /* Borders of inputs and other controls: 3:1 against the paper. */
+  --line-control: #857f74;
+
+  /* The blue pencil: the primary action, the current place, focus and pencil marks. */
+  --accent: #2450d8;
+  --accent-strong: #1a3db0;
+  --accent-soft: #e4eafb;
+  --accent-ink: #ffffff;
+
+  --focus: var(--accent);
+  --button: var(--ink);
+  --button-ink: var(--paper);
+  --danger: #b3261e;
+  --ok: var(--accent);
+  --ok-soft: var(--accent-soft);
 
   /* Analysis roles: colour plus a shape on the fretboard, so colour is never the only cue. */
-  --role-chord: #1f5fa8;
-  --role-tension: #8136a3;
-  --role-approach: #b9531a;
-  --role-scale: #5c6657;
-  --role-resolution: #2b6e47;
+  --role-chord: #2450d8;
+  --role-tension: #8e3a9d;
+  --role-approach: #b4531f;
+  --role-scale: #6e6f74;
+  --role-resolution: #17734f;
 
-  /* Score "paper" that alphaTab draws on. */
-  --score-bg: #fffdf8;
-  --score-ink: #1d1a16;
-  --score-line: #4a433a;
-  --score-cursor: rgba(192, 138, 45, 0.18);
-  --score-beat: #c08a2d;
+  /* The score sheet alphaTab draws on. */
+  --score-bg: #fbf9f4;
+  --score-ink: #15161a;
+  --score-line: #44464d;
+  --score-cursor: rgba(36, 80, 216, 0.1);
+  --score-beat: #2450d8;
 
-  --radius-s: 8px;
-  --radius-m: 14px;
-  --radius-l: 22px;
-  --shadow-1: 0 1px 2px rgba(48, 36, 18, 0.06), 0 2px 8px rgba(48, 36, 18, 0.05);
-  --shadow-2: 0 2px 4px rgba(48, 36, 18, 0.06), 0 12px 32px rgba(48, 36, 18, 0.08);
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --shadow-1: 0 1px 0 rgba(21, 22, 26, 0.04);
+  --shadow-2: 0 1px 2px rgba(21, 22, 26, 0.05), 0 18px 40px -18px rgba(21, 22, 26, 0.18);
 
-  --font-display: var(--font-fraunces), 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --font-ui: var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-serif), 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-ui: var(--font-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Chord symbols, in Real Book-style handwriting. */
+  --font-chord: var(--font-hand), var(--font-serif), serif;
+
+  /* Five staff lines, for the staff rule and other ornaments. */
+  --staff: repeating-linear-gradient(to bottom, var(--line-strong) 0 1px, transparent 1px 6px);
 
   --tap: 40px;
   --content: 1120px;
+  --section-gap: 72px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
-    --paper: #14120f;
-    --surface: #1c1915;
-    --surface-2: #26221c;
-    --surface-3: #312b23;
-    --ink: #f2ebdd;
-    --ink-2: #d2c8b6;
-    --ink-3: #a59a88;
-    --line: #3a342b;
-    --line-strong: #4d453a;
-    --brass: #e7b356;
-    --brass-soft: #3a2e1a;
-    --brass-strong: #e0a845;
-    --focus: #f0c063;
-    --button: #f2ebdd;
-    --button-ink: #14120f;
-    --danger: #f08a73;
-    --ok: #7ccf9c;
-    --ok-soft: #1f3327;
-    --role-chord: #7fb0ec;
-    --role-tension: #cf98ea;
-    --role-approach: #f2a065;
-    --role-scale: #aab6a3;
-    --role-resolution: #7ccf9c;
-    --score-bg: #1c1915;
-    --score-ink: #f2ebdd;
-    --score-line: #b8ad99;
-    --score-cursor: rgba(224, 168, 69, 0.22);
-    --score-beat: #e0a845;
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.35);
+    --paper: #111214;
+    --surface: #18191c;
+    --surface-2: #202125;
+    --surface-3: #2a2b30;
+    --ink: #eeebe4;
+    --ink-2: #c9c6bf;
+    --ink-3: #9c9a94;
+    --line: #2e2f34;
+    --line-strong: #44454b;
+    --line-control: #6e6c72;
+    --accent: #8ba3ff;
+    --accent-strong: #b0c1ff;
+    --accent-soft: #1d2646;
+    --accent-ink: #0b0d14;
+    --danger: #ff8a7a;
+    --role-chord: #8ba3ff;
+    --role-tension: #d9a0e6;
+    --role-approach: #f0a271;
+    --role-scale: #a9aaaf;
+    --role-resolution: #76cfa6;
+    --score-bg: #18191c;
+    --score-ink: #eeebe4;
+    --score-line: #b9b6af;
+    --score-cursor: rgba(139, 163, 255, 0.14);
+    --score-beat: #8ba3ff;
+    --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.6);
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --paper: #14120f;
-  --surface: #1c1915;
-  --surface-2: #26221c;
-  --surface-3: #312b23;
-  --ink: #f2ebdd;
-  --ink-2: #d2c8b6;
-  --ink-3: #a59a88;
-  --line: #3a342b;
-  --line-strong: #4d453a;
-  --brass: #e7b356;
-  --brass-soft: #3a2e1a;
-  --brass-strong: #e0a845;
-  --focus: #f0c063;
-  --button: #f2ebdd;
-  --button-ink: #14120f;
-  --danger: #f08a73;
-  --ok: #7ccf9c;
-  --ok-soft: #1f3327;
-  --role-chord: #7fb0ec;
-  --role-tension: #cf98ea;
-  --role-approach: #f2a065;
-  --role-scale: #aab6a3;
-  --role-resolution: #7ccf9c;
-  --score-bg: #1c1915;
-  --score-ink: #f2ebdd;
-  --score-line: #b8ad99;
-  --score-cursor: rgba(224, 168, 69, 0.22);
-  --score-beat: #e0a845;
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --paper: #111214;
+  --surface: #18191c;
+  --surface-2: #202125;
+  --surface-3: #2a2b30;
+  --ink: #eeebe4;
+  --ink-2: #c9c6bf;
+  --ink-3: #9c9a94;
+  --line: #2e2f34;
+  --line-strong: #44454b;
+  --line-control: #6e6c72;
+  --accent: #8ba3ff;
+  --accent-strong: #b0c1ff;
+  --accent-soft: #1d2646;
+  --accent-ink: #0b0d14;
+  --danger: #ff8a7a;
+  --role-chord: #8ba3ff;
+  --role-tension: #d9a0e6;
+  --role-approach: #f0a271;
+  --role-scale: #a9aaaf;
+  --role-resolution: #76cfa6;
+  --score-bg: #18191c;
+  --score-ink: #eeebe4;
+  --score-line: #b9b6af;
+  --score-cursor: rgba(139, 163, 255, 0.14);
+  --score-beat: #8ba3ff;
+  --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.6);
 }
 
 *,
@@ -136,37 +142,50 @@ body {
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: 17px;
-  line-height: 1.55;
-  font-feature-settings: 'cv11', 'ss01';
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
   margin: 0;
   text-wrap: balance;
   scroll-margin-top: 24px;
 }
 
+/* Headlines are set in the serif; small headings stay in the text face for weight. */
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+
 h1 {
-  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 2.9rem);
-  font-variation-settings: 'opsz' 96;
+  font-size: clamp(2.8rem, 1.9rem + 2.4vw, 4rem);
 }
 
 h2 {
-  font-size: clamp(1.35rem, 1.15rem + 0.9vw, 1.75rem);
-  font-variation-settings: 'opsz' 48;
+  font-size: clamp(1.9rem, 1.6rem + 0.8vw, 2.25rem);
+}
+
+h3,
+h4 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 h3 {
-  font-size: 1.15rem;
-  font-variation-settings: 'opsz' 24;
+  font-size: 1.06rem;
+}
+
+h4 {
+  font-size: 0.98rem;
 }
 
 p {
@@ -176,12 +195,14 @@ p {
 
 a {
   color: inherit;
-  text-decoration-color: var(--line-strong);
+  text-decoration-color: var(--line-control);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease-out;
 }
 
 a:hover {
-  text-decoration-color: currentColor;
+  text-decoration-color: var(--accent);
 }
 
 button,
@@ -198,13 +219,13 @@ select {
 }
 
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
 ::selection {
-  background: var(--brass-soft);
+  background: var(--accent-soft);
 }
 
 .visually-hidden {
@@ -225,9 +246,9 @@ select {
   top: -64px;
   z-index: 100;
   padding: 10px 16px;
-  border-radius: var(--radius-s);
-  background: var(--button);
-  color: var(--button-ink);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: 600;
   text-decoration: none;
   transition: top 0.15s ease-out;
