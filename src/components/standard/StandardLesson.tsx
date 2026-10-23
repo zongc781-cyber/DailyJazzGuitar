@@ -76,7 +76,7 @@ function dayAction(day: PlanDay, lick: PlanLick | undefined, has: (k: RowKey) =>
 /** The first screen's button: down the page to a row or the chart, or on to the day's lick. */
 function ActionLink({ action }: { action: DayAction }) {
   const inPage = action.href.startsWith('#');
-  const className = `${ui.button} ${ui.onField} ${ui.large} ${inPage ? '' : styles.across}`;
+  const className = `${ui.button} ${ui.onField} ${ui.large}`;
   const body = (
     <>
       {action.label}

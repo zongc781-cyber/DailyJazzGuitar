@@ -34,11 +34,6 @@
   color: var(--ink);
 }
 
-/* A button that leads to another page: its arrow moves along, not down. */
-a.across:hover :global(svg) {
-  transform: translateX(4px);
-}
-
 /* ---------------------------------------------------------------------------------------------
    The sections that stay open: 01 Today and 02 The chart. Their content starts at the title's left
    edge, as a row's details do, and the chart's section marks sit in the index column. */

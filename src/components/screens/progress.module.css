@@ -9,11 +9,6 @@
   min-width: 0;
 }
 
-/* The first screen's action leads away, so its arrow moves on along the line. */
-a.heroAction:hover :global(svg) {
-  transform: translateX(4px);
-}
-
 /* What a section or row opens on sits under its title, not under its index. */
 .body {
   display: grid;

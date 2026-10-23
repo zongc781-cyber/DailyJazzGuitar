@@ -75,8 +75,9 @@ a very wide window so content stays within `--wide`, 1560px). Sections sit 72–
 - **NextLink** (`NextLink.tsx`): the end of a page: a blue band with a small label, the next
   place's name at `--text-display`, a line under it and a white circle with an arrow.
 - **Buttons** (`ui.module.css`): `button` is a quiet pill on `--surface-2`; `primary` is blue;
-  `onField` is white with blue words; `large` for a first screen's action; `small` for minor
-  actions. One primary action per screen.
+  `onField` is white with blue words; `large` for a first screen's action, whose arrow moves down
+  when it leads into the page and along when it leads to another page; `small` for minor actions.
+  One primary action per screen.
 - **Chosen words**: a segmented control, tempo presets and similar choices are plain words; the
   chosen one is blue with a 2px underline that grows from the left.
 - **Checkboxes**: a ring that fills with blue and shows a white check.
@@ -101,5 +102,6 @@ a very wide window so content stays within `--wide`, 1560px). Sections sit 72–
   as rows on hairlines: the title large, the details small, learned and favourite marks in one
   column.
 - **Progress**: the streak as the title of a blue first screen, then the practice calendar in
-  shades of blue, and rows for what you have learned, your notes, preferences and your data.
+  shades of blue, and rows for what you have learned, your notes, preferences and your data. The
+  page ends on a blue band that leads to today's lick.
 - **Not found and errors**: a blue first screen with a big title, one sentence and one button.

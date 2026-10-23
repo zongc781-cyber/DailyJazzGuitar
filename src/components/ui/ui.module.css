@@ -1,4 +1,4 @@
-/* Shared building blocks: buttons, labels, chords, badges, fields and segmented controls. Nothing
+/* Shared building blocks: buttons, badges, fields and segmented controls. Nothing
    is boxed: controls are filled shapes or plain words, and lines only divide. */
 
 /* Buttons: a blue pill for the one primary action, quiet tinted pills for the rest. */
@@ -64,6 +64,11 @@
   transform: translateY(3px);
 }
 
+/* An arrow that leads on to another page moves along the line instead. */
+.large:hover :global(svg[data-icon='arrowRight']) {
+  transform: translateX(4px);
+}
+
 /* The primary action on a blue field: white, with blue words. */
 .onField {
   background: var(--field-ink);
@@ -83,12 +88,6 @@
 .done:hover {
   background: var(--accent-soft);
   color: var(--accent);
-}
-
-.danger {
-  background: transparent;
-  box-shadow: inset 0 0 0 1.5px var(--danger);
-  color: var(--danger);
 }
 
 .ghost {
@@ -124,66 +123,6 @@
   transform: translateX(4px);
 }
 
-/* Small uppercase labels: above titles, beside fields. */
-.eyebrow,
-.label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.eyebrow {
-  color: var(--ink-2);
-}
-
-.muted {
-  color: var(--ink-3);
-}
-
-/* A section mark: a small letter in the accent beside a title. */
-.rehearsal {
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
-}
-
-.rehearsal h2 {
-  margin: 0;
-}
-
-.rehearsalMark {
-  flex: none;
-  min-width: 1.6em;
-  font-family: var(--font-ui);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--accent);
-}
-
-/* Five staff lines, as an ornament. */
-.staffRule {
-  height: 25px;
-  background: var(--staff);
-  opacity: 0.8;
-}
-
-/* A chord symbol in Real Book-style handwriting. */
-.chord {
-  font-family: var(--font-chord);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-.chordChip {
-  display: inline-block;
-  font-family: var(--font-chord);
-  font-size: 1.6rem;
-  line-height: 1.2;
-}
-
 /* Facts about a lesson, as small words in a row. */
 .badges {
   display: flex;
@@ -212,10 +151,6 @@
 .badgeGenerated,
 .badgeReview {
   color: inherit;
-}
-
-.card {
-  padding: 0;
 }
 
 /* Segmented control: the words themselves; the chosen one is blue and underlined. */
@@ -322,12 +257,6 @@
   border-bottom-color: var(--accent);
 }
 
-.empty {
-  padding: 24px 0;
-  color: var(--ink-3);
-  font-size: var(--text-lead);
-}
-
 .error {
   display: grid;
   gap: 12px;
@@ -349,29 +278,5 @@
   }
   to {
     background-position: -100% 0;
-  }
-}
-
-/* Pencil marks: hand-drawn strokes in the accent colour. */
-.pencil {
-  display: block;
-  overflow: visible;
-  fill: none;
-  stroke: var(--accent);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-
-/* A stroke that draws itself, from its start to its end. */
-.draw path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: pencil-draw 0.45s cubic-bezier(0.6, 0, 0.3, 1) forwards;
-}
-
-@keyframes pencil-draw {
-  to {
-    stroke-dashoffset: 0;
   }
 }

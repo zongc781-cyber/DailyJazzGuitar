@@ -11,7 +11,7 @@ export default function NotFound() {
         top={<span>404</span>}
         title="This page isn’t in the book"
         actions={
-          <Link href="/" className={`${ui.button} ${ui.onField} ${ui.large} ${styles.onwards}`}>
+          <Link href="/" className={`${ui.button} ${ui.onField} ${ui.large}`}>
             Back to today’s lick
             <Icon name="arrowRight" />
           </Link>

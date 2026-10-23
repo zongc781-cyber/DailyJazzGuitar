@@ -149,6 +149,7 @@ export function Icon({ name, size = 22, className }: { name: IconName; size?: nu
       aria-hidden="true"
       focusable="false"
       className={className}
+      data-icon={name}
     >
       {PATHS[name]}
     </svg>

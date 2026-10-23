@@ -92,7 +92,7 @@ function StreakHero({ counts, today }: { counts: Map<string, number>; today: str
       }
       title={n === 0 ? 'Start your streak today' : `${n} ${n === 1 ? 'day' : 'days'} in a row`}
       actions={
-        <Link href="/" className={`${ui.button} ${ui.onField} ${ui.large} ${styles.heroAction}`}>
+        <Link href="/" className={`${ui.button} ${ui.onField} ${ui.large}`}>
           {done ? 'Open today’s lick' : 'Practise today'}
           <Icon name="arrowRight" />
         </Link>

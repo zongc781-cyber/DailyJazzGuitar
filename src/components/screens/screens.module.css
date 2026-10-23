@@ -52,12 +52,8 @@
   }
 }
 
-/* Not found and error pages: a blue first screen with one action. The action leads away, so its
-   arrow moves on along the line; the way back to Today is a quieter link beside it. */
-a.onwards:hover :global(svg) {
-  transform: translateX(4px);
-}
-
+/* Not found and error pages: a blue first screen with one action; the way back to Today is a
+   quieter link beside it. */
 .quietLink {
   display: inline-flex;
   align-items: center;
