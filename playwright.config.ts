@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 // End-to-end tests run against a production build in Mac-sized browser windows: a 13-inch
-// MacBook screen and a narrow window, where the side rail shrinks to icons.
+// MacBook screen and a narrow window.
 // `npm run test:e2e` builds and starts the app on port 3100 unless one is already running there.
 
 export default defineConfig({

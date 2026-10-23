@@ -40,7 +40,7 @@ async function overlaps(page: Page, container: string) {
   });
 }
 
-test('the playback controls and the side rail never overlap, at any window width', async ({ page }, info) => {
+test('the playback controls and the top bar never overlap, at any window width', async ({ page }, info) => {
   test.skip(info.project.name !== 'mac', 'the test sets its own window sizes');
   const nav = page.getByRole('navigation', { name: 'Main' });
   for (const path of ['/', '/week']) {
@@ -49,7 +49,7 @@ test('the playback controls and the side rail never overlap, at any window width
     for (const width of [720, 820, 900, 1024, 1100, 1180, 1280, 1440, 1728, 2048]) {
       await page.setViewportSize({ width, height: 900 });
       expect(await overlaps(page, '[role=group][aria-label=Playback]'), `${path} at ${width}px`).toEqual([]);
-      expect(await overlaps(page, 'nav[aria-label=Main]'), `rail at ${width}px`).toEqual([]);
+      expect(await overlaps(page, 'nav[aria-label=Main]'), `top bar at ${width}px`).toEqual([]);
       for (const name of ['Today', 'This Week', 'Library', 'Progress']) await expect(nav.getByRole('link', { name, exact: true })).toBeVisible();
     }
   }
