@@ -1,21 +1,26 @@
 'use client';
 
-// Progress: the practice streak beside a calendar of practice days, what has been learned, the
-// learner's notes, preferences, and export, import or reset of the data kept in this browser.
+// Progress: the practice streak as the title of a blue first screen, then a calendar of practice
+// days, then big titles that open what has been learned, the learner's notes, preferences, and
+// export, import or reset of the data kept in this browser. The page ends on today's lick.
 
 import Link from 'next/link';
 import { Fragment, ViewTransition, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type ChangeEvent, type ReactNode } from 'react';
 import type { CatalogEntry } from '@/lib/music/types';
 import { addDays, daysBetween, isoWeekKey, weekDates } from '@/lib/schedule';
-import { formatDate, formatShortDate } from '@/lib/format';
+import { formatDate, formatLongDate, formatShortDate } from '@/lib/format';
 import { useLocalDate } from '@/lib/client/useLocalDate';
 import { getProgress, replaceProgress, useHydrated, useProgress } from '@/lib/progress/store';
 import { setPreference } from '@/lib/progress/actions';
 import { emptyState, migrate, STATE_VERSION, type NotationMode, type ProgressState, type ThemePref } from '@/lib/progress/state';
+import { Hero, SectionHead } from '@/components/ui/Hero';
 import { Icon } from '@/components/ui/Icon';
-import { Pencil, RehearsalHeading } from '@/components/ui/Pencil';
+import { NextLink } from '@/components/ui/NextLink';
+import { Reveal, RevealList } from '@/components/ui/Reveal';
+import blocks from '@/components/ui/blocks.module.css';
 import ui from '@/components/ui/ui.module.css';
-import styles from './screens.module.css';
+import { LessonSkeleton } from './Skeletons';
+import styles from './progress.module.css';
 
 /** Half a year of practice days. */
 const WEEKS_SHOWN = 26;
@@ -61,34 +66,44 @@ function longestRun(counts: Map<string, number>): number {
   return best;
 }
 
-/** The current streak in a big serif number, what to do next, and the page's one blue action. */
-function Streak({ counts, today }: { counts: Map<string, number>; today: string | null }) {
-  const n = today ? streak(counts, today) : null;
-  const done = today ? counts.has(today) : false;
-  const note =
-    n === null
-      ? ' '
-      : n === 0
-        ? 'Tick one practice step on today’s lick to start a run.'
-        : done
-          ? `You’ve practised today. Come back tomorrow to make it ${n + 1}.`
-          : `Tick a practice step today to make it ${n + 1}.`;
+/** The line under the streak: what to do today, and the longest run so far. */
+function streakLine(n: number, longest: number, done: boolean): string {
+  if (n === 0) {
+    return longest > 0
+      ? `Your longest run is ${plural(longest, 'day')}. Tick one step on today’s lick to start a new one.`
+      : 'Tick one practice step on today’s lick and the count begins.';
+  }
+  const best = n >= longest;
+  if (done) return best ? 'You’ve practised today, and this is your longest run yet.' : `You’ve practised today. Your longest run is ${plural(longest, 'day')}.`;
+  return best ? `Tick one step today to make it ${n + 1}, your longest run yet.` : `Tick one step today to make it ${n + 1}. Your longest run is ${plural(longest, 'day')}.`;
+}
+
+/** The first screen: the current streak as the title, and the page's one action. */
+function StreakHero({ counts, today }: { counts: Map<string, number>; today: string }) {
+  const n = streak(counts, today);
+  const done = counts.has(today);
   return (
-    <div className={styles.streak}>
-      <p className={ui.eyebrow}>Current streak</p>
-      <p className={styles.streakFigure}>
-        <span className={`${styles.streakNumber} num`}>{n ?? '–'}</span>
-        <span className={styles.streakUnit}>{n === 1 ? 'day in a row' : 'days in a row'}</span>
-      </p>
-      <p className={styles.streakNote}>{note}</p>
-      <Link href="/" className={`${ui.button} ${ui.primary}`}>
-        {done ? 'Open today’s lick' : 'Practise today’s lick'}
-      </Link>
-    </div>
+    <Hero
+      top={
+        <>
+          <span>Progress</span>
+          <span>{formatLongDate(today)}</span>
+        </>
+      }
+      title={n === 0 ? 'Start your streak today' : `${n} ${n === 1 ? 'day' : 'days'} in a row`}
+      actions={
+        <Link href="/" className={`${ui.button} ${ui.onField} ${ui.large} ${styles.heroAction}`}>
+          {done ? 'Open today’s lick' : 'Practise today'}
+          <Icon name="arrowRight" />
+        </Link>
+      }
+    >
+      <p>{streakLine(n, longestRun(counts), done)}</p>
+    </Hero>
   );
 }
 
-/** One square a day, Monday at the top, shaded by how many practice steps were ticked. */
+/** One dot a day, Monday at the top, a darker blue for more practice steps ticked. */
 function Calendar({ counts, today }: { counts: Map<string, number>; today: string }) {
   const lastMonday = weekDates(today)[0];
   const weeks = Array.from({ length: WEEKS_SHOWN }, (_, w) => weekDates(addDays(lastMonday, (w - WEEKS_SHOWN + 1) * 7)));
@@ -102,60 +117,63 @@ function Calendar({ counts, today }: { counts: Map<string, number>; today: strin
     return roomy ? monthShort(days[0]) : '';
   });
   return (
-    <figure className={styles.calendar}>
-      <figcaption className={styles.calendarHead}>
-        <span className={ui.eyebrow}>Practice days, last six months</span>
-        <span className={styles.calendarKey} aria-hidden="true">
-          <span>
-            <span className={styles.day} />
-            None
-          </span>
-          <span>
-            <span className={`${styles.day} ${styles.l1}`} />
-            1–2 steps
-          </span>
-          <span>
-            <span className={`${styles.day} ${styles.l2}`} />
-            3–5
-          </span>
-          <span>
-            <span className={`${styles.day} ${styles.l3}`} />6 or more
-          </span>
-        </span>
-      </figcaption>
+    <div className={styles.calendar}>
       <div
         className={styles.calendarGrid}
         style={{ '--weeks': WEEKS_SHOWN } as CSSProperties}
         role="img"
-        aria-label={`Practice calendar for the last ${WEEKS_SHOWN} weeks: you practised on ${plural(active, 'day')} out of ${span}. Today, ${formatDate(today)}, is circled.`}
+        aria-label={`Practice calendar for the last ${WEEKS_SHOWN} weeks: you practised on ${plural(active, 'day')} out of ${span}. Today, ${formatDate(today)}, has a ring around it.`}
       >
         <span />
         {WEEKDAYS.map((d, i) => (
-          <span key={i} className={styles.calendarWeekday}>
+          <span key={i} className={styles.weekday}>
             {d}
           </span>
         ))}
         {weeks.map((days, w) => (
           <Fragment key={days[0]}>
-            <span className={styles.calendarMonth}>{months[w]}</span>
+            <span className={styles.month}>{months[w]}</span>
             {days.map((d) => {
               const n = counts.get(d) ?? 0;
               const level = d > today ? styles.future : n === 0 ? '' : n < 3 ? styles.l1 : n < 6 ? styles.l2 : styles.l3;
               return (
-                <span key={d} className={`${styles.day} ${level}`} title={d > today ? undefined : `${formatDate(d)}: ${n === 0 ? 'no practice' : plural(n, 'practice step')}`}>
-                  {d === today ? <Pencil kind="circle" draw className={styles.todayCircle} /> : null}
-                </span>
+                <span
+                  key={d}
+                  className={`${styles.day} ${level} ${d === today ? styles.today : ''}`}
+                  title={d > today ? undefined : `${formatDate(d)}: ${n === 0 ? 'no practice' : plural(n, 'practice step')}`}
+                />
               );
             })}
           </Fragment>
         ))}
       </div>
-    </figure>
+      <p className={styles.key} aria-hidden="true">
+        <span>
+          <span className={styles.day} />
+          None
+        </span>
+        <span>
+          <span className={`${styles.day} ${styles.l1}`} />
+          1–2 steps
+        </span>
+        <span>
+          <span className={`${styles.day} ${styles.l2}`} />
+          3–5
+        </span>
+        <span>
+          <span className={`${styles.day} ${styles.l3}`} />6 or more
+        </span>
+        <span>
+          <span className={`${styles.day} ${styles.today}`} />
+          Today
+        </span>
+      </p>
+    </div>
   );
 }
 
 /**
- * A scale of note heads on a staff, up and back down, filled in ink for each lesson learned: the
+ * A staff of note heads, up the scale and back down, filled with blue for each lesson learned: the
  * tune you complete as you learn. Long libraries are drawn to scale, at most 32 notes.
  */
 function Melody({ total, filled, offset = 0 }: { total: number; filled: number; offset?: number }) {
@@ -168,14 +186,12 @@ function Melody({ total, filled, offset = 0 }: { total: number; filled: number; 
     return 40 - (p <= 8 ? p : 16 - p) * 4;
   };
   return (
-    <svg className={styles.melody} viewBox={`0 0 ${width} 48`} style={{ '--melody-width': `${Math.round(width * 1.35)}px` } as CSSProperties} aria-hidden="true" focusable="false">
+    <svg className={styles.melody} viewBox={`0 0 ${width} 48`} style={{ '--melody-width': `${Math.round(width * 1.4)}px` } as CSSProperties} aria-hidden="true" focusable="false">
       {[8, 16, 24, 32, 40].map((ly) => (
         <line key={ly} x1="0" x2={width} y1={ly} y2={ly} className={styles.melodyStaff} />
       ))}
-      <line x1="0.6" x2="0.6" y1="8" y2="40" className={styles.melodyBar} />
-      <line x1={width - 0.6} x2={width - 0.6} y1="8" y2="40" className={styles.melodyBar} />
       {Array.from({ length: n }, (_, i) => {
-        const cx = 15 + i * step;
+        const cx = 12 + i * step;
         const cy = y(i);
         return <ellipse key={i} cx={cx} cy={cy} rx="5.4" ry="3.9" transform={`rotate(-22 ${cx} ${cy})`} className={i < lit ? styles.noteOn : styles.noteOff} />;
       })}
@@ -183,21 +199,39 @@ function Melody({ total, filled, offset = 0 }: { total: number; filled: number; 
   );
 }
 
-// The two themes as small sheets of paper. These show each theme whichever one is in use, so they
-// use the theme colours directly rather than the tokens.
+function Tally({ count, total, label, offset }: { count: number | null; total: number; label: string; offset?: number }) {
+  return (
+    <div className={styles.tallyItem}>
+      <p className={styles.tallyFigure}>
+        <span className={`${styles.tallyNumber} num`}>{count ?? '–'}</span>
+        <span className={styles.tallyOf}>of {total}</span>
+      </p>
+      <p className={styles.tallyLabel}>{label}</p>
+      <Melody total={total} filled={count ?? 0} offset={offset} />
+    </div>
+  );
+}
+
+// The two themes as small pages: a blue first screen, the page under it and the blue band at the
+// end. They show each theme whichever one is in use, so they use its colours rather than tokens.
+const FIELD = '#1f3dff';
 const SHEETS = {
-  light: { paper: '#f5f2ea', ink: '#15161a', line: '#c5c0b4', accent: '#2450d8' },
-  dark: { paper: '#111214', ink: '#eeebe4', line: '#44454b', accent: '#8ba3ff' },
+  light: { paper: '#ffffff', ink: '#0b0d12', line: '#cdd2de', accent: '#1f3dff' },
+  dark: { paper: '#0a1033', ink: '#ffffff', line: '#2e3870', accent: '#8ea0ff' },
 };
 
 function Sheet({ c }: { c: (typeof SHEETS)['light'] }) {
   return (
     <>
-      <rect width="88" height="58" fill={c.paper} />
-      <rect x="10" y="11" width="44" height="7" rx="1.5" fill={c.ink} />
-      <rect x="10" y="25" width="64" height="2" rx="1" fill={c.line} />
-      <rect x="10" y="31" width="54" height="2" rx="1" fill={c.line} />
-      <rect x="10" y="41" width="22" height="8" rx="4" fill={c.accent} />
+      <rect width="96" height="64" fill={c.paper} />
+      <rect width="96" height="26" fill={FIELD} />
+      <rect x="10" y="7" width="16" height="2.5" rx="1" fill="#dbe0ff" />
+      <rect x="10" y="13" width="44" height="7" rx="1.5" fill="#ffffff" />
+      <rect x="10" y="31" width="34" height="5" rx="1.5" fill={c.ink} />
+      <rect x="10" y="40" width="54" height="2" rx="1" fill={c.line} />
+      <rect x="70" y="31" width="16" height="5" rx="2.5" fill={c.accent} />
+      <rect y="50" width="96" height="14" fill={FIELD} />
+      <circle cx="84" cy="57" r="3.5" fill="#ffffff" />
     </>
   );
 }
@@ -205,12 +239,12 @@ function Sheet({ c }: { c: (typeof SHEETS)['light'] }) {
 function ThemePreview({ mode }: { mode: ThemePref }) {
   const clip = `split-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   return (
-    <svg viewBox="0 0 88 58" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 96 64" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <Sheet c={mode === 'dark' ? SHEETS.dark : SHEETS.light} />
       {mode === 'system' ? (
         <>
           <clipPath id={clip}>
-            <path d="M88 0V58H0z" />
+            <path d="M96 0V64H0z" />
           </clipPath>
           <g clipPath={`url(#${clip})`}>
             <Sheet c={SHEETS.dark} />
@@ -221,7 +255,7 @@ function ThemePreview({ mode }: { mode: ThemePref }) {
   );
 }
 
-/** Notation, tab or both, drawn small. */
+/** Notation, tab or both, drawn small in the colour of the word under it. */
 function NotationPreview({ mode }: { mode: NotationMode }) {
   const lines = (top: number, gap: number, count: number) =>
     Array.from({ length: count }, (_, i) => <line key={`${top}-${i}`} x1="8" x2="80" y1={top + i * gap} y2={top + i * gap} className={styles.notationLines} />);
@@ -239,7 +273,7 @@ function NotationPreview({ mode }: { mode: NotationMode }) {
       </text>
     ));
   return (
-    <svg viewBox="0 0 88 58" aria-hidden="true" focusable="false">
+    <svg viewBox="-4 -3 96 64" aria-hidden="true" focusable="false">
       {mode === 'score' ? (
         <>
           {lines(17, 6, 5)}
@@ -292,7 +326,7 @@ function Choices<T extends string>({ labelledBy, value, options, preview, onChan
       {options.map((o) => (
         <button key={o.value} type="button" className={styles.choice} aria-pressed={o.value === value} onClick={() => onChange(o.value)}>
           <span className={styles.choicePreview}>{preview(o.value)}</span>
-          {o.label}
+          <span className={styles.choiceLabel}>{o.label}</span>
         </button>
       ))}
     </div>
@@ -344,17 +378,13 @@ function StartTempo({ value }: { value: number }) {
           </label>
           <span className={styles.prefHint}>Each lick opens at this share of its target tempo.</span>
         </span>
-        {/* The chosen preset is circled in pencil, as on the playback bar. */}
+        {/* The chosen preset is blue and underlined, as on the playback bar. */}
         <div className={styles.presets} role="group" aria-label="Starting tempo presets">
-          {TEMPO_PRESETS.map((p) => {
-            const chosen = value === p.percent;
-            return (
-              <button key={p.label} type="button" className={styles.preset} aria-pressed={chosen} onClick={() => setPreference('startTempoPercent', p.percent)}>
-                {p.label} <span className="num">{p.percent}%</span>
-                {chosen ? <Pencil kind="circle" draw className={styles.presetMark} /> : null}
-              </button>
-            );
-          })}
+          {TEMPO_PRESETS.map((p) => (
+            <button key={p.label} type="button" className={styles.preset} aria-pressed={value === p.percent} onClick={() => setPreference('startTempoPercent', p.percent)}>
+              {p.label} <span className="num">{p.percent}%</span>
+            </button>
+          ))}
         </div>
       </div>
       <div className={styles.tempoRow}>
@@ -386,10 +416,7 @@ function Preferences() {
   return (
     <div className={styles.prefs}>
       <div className={styles.prefGroup}>
-        <div className={styles.prefGroupHead}>
-          <h3>On the page</h3>
-          <p>How lessons look in this browser.</p>
-        </div>
+        <h3 className={styles.prefGroupTitle}>On the page</h3>
         <div className={styles.pref}>
           <span className={styles.prefText}>
             <span id={themeId} className={styles.prefName}>
@@ -414,7 +441,7 @@ function Preferences() {
             <span id={notationId} className={styles.prefName}>
               Notation
             </span>
-            <span className={styles.prefHint}>What the score sheet shows above the playback bar.</span>
+            <span className={styles.prefHint}>What the score shows above the playback bar.</span>
           </span>
           <Choices<NotationMode>
             labelledBy={notationId}
@@ -437,10 +464,7 @@ function Preferences() {
         <Switch label="Left-handed diagrams" hint="Mirror the fretboard and the chord diagrams." checked={prefs.leftHanded} onChange={(v) => setPreference('leftHanded', v)} />
       </div>
       <div className={styles.prefGroup}>
-        <div className={styles.prefGroupHead}>
-          <h3>Playback</h3>
-          <p>The Loop, Count-in and Metronome buttons on the playback bar change these too.</p>
-        </div>
+        <h3 className={styles.prefGroupTitle}>Playback</h3>
         <StartTempo value={prefs.startTempoPercent} />
         <Switch label="Count-in" hint="A bar of clicks before the line starts." checked={prefs.countIn} onChange={(v) => setPreference('countIn', v)} />
         <Switch label="Metronome" hint="A click on every beat while it plays." checked={prefs.metronome} onChange={(v) => setPreference('metronome', v)} />
@@ -515,7 +539,7 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
   };
 
   return (
-    <div className={styles.data}>
+    <>
       <div className={styles.dataActions}>
         <button type="button" className={ui.button} onClick={exportData}>
           Export a copy
@@ -543,7 +567,7 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
           <p id={`${confirmId}-import`} className={styles.confirmTitle}>
             Replace your progress with {pendingImport.name}?
           </p>
-          <p id={`${confirmId}-import-text`}>
+          <p id={`${confirmId}-import-text`} className={styles.confirmText}>
             The file holds {holdings(pendingImport.state) ?? 'no learned lessons, favourites, notes or practice'}. What is in this browser now is replaced, so
             export a copy first if you want to keep it.
           </p>
@@ -570,14 +594,14 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
           <p id={`${confirmId}-title`} className={styles.confirmTitle}>
             Erase your progress?
           </p>
-          <p id={`${confirmId}-text`}>
+          <p id={`${confirmId}-text`} className={styles.confirmText}>
             This erases {held ? `${held}, along with your lesson history,` : 'your lesson history'} from this browser. Your preferences stay. It cannot be undone,
             so export a copy first if you might want it back.
           </p>
           <div className={styles.dataActions}>
             <button
               type="button"
-              className={`${ui.button} ${ui.danger}`}
+              className={`${ui.button} ${styles.erase}`}
               onClick={() => {
                 replaceProgress({ ...emptyState(), prefs: getProgress().prefs });
                 setConfirmReset(false);
@@ -596,8 +620,14 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
       <p className={styles.dataMessage} role="status">
         {message ?? ''}
       </p>
-    </div>
+    </>
   );
+}
+
+/** Whose style a lick is in, as in a lesson's byline. */
+function byline(e: CatalogEntry): string {
+  if (!e.artist) return 'Original line';
+  return e.inspirationType === 'in-the-style-of' ? `In the style of ${e.artist}` : `After ${e.artist}`;
 }
 
 export function ProgressScreen({ catalog }: { catalog: CatalogEntry[] }) {
@@ -606,6 +636,7 @@ export function ProgressScreen({ catalog }: { catalog: CatalogEntry[] }) {
   const state = useProgress((s) => s);
   const byId = useMemo(() => new Map(catalog.map((e) => [e.id, e])), [catalog]);
   const counts = useMemo(() => practiceCounts(state), [state]);
+  const calendarId = useId();
 
   const today = hydrated && dateKey ? dateKey : null;
   const lickTotal = catalog.filter((e) => e.kind === 'lick').length;
@@ -618,22 +649,18 @@ export function ProgressScreen({ catalog }: { catalog: CatalogEntry[] }) {
   const lastSeven = today ? Array.from({ length: 7 }, (_, i) => addDays(today, -i)).filter((d) => counts.has(d)).length : 0;
   const longest = longestRun(counts);
   const held = today ? holdings(state) : null;
+  const todaysLick = today && state.daily[today] ? byId.get(state.daily[today].lickId) : undefined;
 
   return (
     <ViewTransition enter="page-in" exit="page-out" default="none">
-      <div className={`${styles.screen} ${styles.page}`}>
-        <header className={styles.pageHeader}>
-          <p className={ui.eyebrow}>Progress</p>
-          <h1 className={styles.headline}>The woodshed</h1>
-          <p className={styles.pageIntro}>Tick one practice step a day to keep the run going. Every day you do is pencilled in below.</p>
-        </header>
+      <div className={styles.progress}>
+        {today ? <StreakHero counts={counts} today={today} /> : <LessonSkeleton />}
 
-        <section className={styles.practice} aria-labelledby="practice-title">
-          <h2 id="practice-title" className="visually-hidden">
-            Practice
-          </h2>
-          <Streak counts={counts} today={today} />
-          <div className={styles.calendarColumn}>
+        <section className={blocks.section} aria-labelledby={calendarId}>
+          <SectionHead index="01" id={calendarId}>
+            Your calendar
+          </SectionHead>
+          <div className={styles.body}>
             {today ? (
               <>
                 <Calendar counts={counts} today={today} />
@@ -650,7 +677,7 @@ export function ProgressScreen({ catalog }: { catalog: CatalogEntry[] }) {
                     </dd>
                   </div>
                   <div>
-                    <dt>Last 7 days</dt>
+                    <dt>Last seven days</dt>
                     <dd className="num">
                       {lastSeven}
                       <span> of 7</span>
@@ -660,93 +687,65 @@ export function ProgressScreen({ catalog }: { catalog: CatalogEntry[] }) {
                     <dt>This week’s plan</dt>
                     <dd className="num">
                       {weekTicks}
-                      <span> {weekTicks === 1 ? 'task' : 'tasks'} ticked</span>
+                      <span> {weekTicks === 1 ? 'task' : 'tasks'}</span>
                     </dd>
                   </div>
                 </dl>
               </>
             ) : (
-              <div className={ui.skeleton} style={{ height: 260 }} aria-hidden="true" />
+              <div className={`${ui.skeleton} ${styles.calendarSkeleton}`} aria-hidden="true" />
             )}
           </div>
         </section>
 
-        <section className={styles.tally} aria-labelledby="learned-title">
-          <h2 id="learned-title" className="visually-hidden">
-            Learned
-          </h2>
-          <div className={styles.tallyItem}>
-            <p className={styles.tallyFigure}>
-              <span className={`${styles.tallyNumber} num`}>{today ? licksLearned : '–'}</span>
-              <span className={styles.tallyOf}>of {lickTotal}</span>
-              <span className={styles.tallyLabel}>licks learned</span>
-            </p>
-            <Melody total={lickTotal} filled={today ? licksLearned : 0} />
-          </div>
-          <div className={styles.tallyItem}>
-            <p className={styles.tallyFigure}>
-              <span className={`${styles.tallyNumber} num`}>{today ? standardsLearned : '–'}</span>
-              <span className={styles.tallyOf}>of {standardTotal}</span>
-              <span className={styles.tallyLabel}>{standardTotal === 1 ? 'standard' : 'standards'} learned</span>
-            </p>
-            <Melody total={standardTotal} filled={today ? standardsLearned : 0} offset={2} />
-          </div>
-          <p className={styles.tallyLink}>
-            <Link href="/library?tab=learned" className={styles.arrowLink}>
-              See what you learned and when
-              <Icon name="chevronRight" size={16} />
-            </Link>
-          </p>
-        </section>
+        <RevealList className={styles.rows}>
+          <Reveal id="learned" index="02" title="What you’ve learned" meta={today ? `${licksLearned + standardsLearned} of ${lickTotal + standardTotal}` : null}>
+            <div className={styles.tally}>
+              <Tally count={today ? licksLearned : null} total={lickTotal} label={lickTotal === 1 ? 'lick learned' : 'licks learned'} />
+              <Tally count={today ? standardsLearned : null} total={standardTotal} label={standardTotal === 1 ? 'standard learned' : 'standards learned'} offset={2} />
+              <p className={styles.tallyLink}>
+                <Link href="/library?tab=learned" className={ui.arrowLink}>
+                  See what you learned and when
+                  <Icon name="arrowRight" size={18} />
+                </Link>
+              </p>
+            </div>
+          </Reveal>
 
-        <section className={styles.section} aria-labelledby="notes-title">
-          <div className={styles.sectionHead}>
-            <RehearsalHeading letter="A" id="notes-title">
-              Your notes
-            </RehearsalHeading>
-            <p className={styles.sectionIntro}>What you wrote under each lesson, newest first. Open a lesson to add to its note.</p>
-          </div>
-          {!today ? null : notes.length === 0 ? (
-            <p className={styles.emptyText}>Nothing yet. Notes you write beside a lesson’s practice checklist show up here, so you can read them back before you play.</p>
-          ) : (
-            <ul className={styles.notes}>
-              {notes.map(([id, note]) => {
-                const entry = byId.get(id);
-                return (
-                  <li key={id} className={styles.note}>
-                    <div className={styles.noteHead}>
+          <Reveal id="notes" index="03" title="Your notes" meta={today && notes.length ? plural(notes.length, 'note') : null}>
+            {notes.length === 0 ? (
+              <p className={styles.lead}>Nothing yet. What you write under a lesson shows up here, so you can read it back before you play.</p>
+            ) : (
+              <ul className={styles.notes}>
+                {notes.map(([id, note]) => {
+                  const entry = byId.get(id);
+                  return (
+                    <li key={id} className={styles.note}>
+                      <p className={styles.noteDate}>{formatShortDate(note.updatedAt)}</p>
                       <h3 className={styles.noteTitle}>{entry ? <Link href={`/lessons/${id}`}>{entry.title}</Link> : id}</h3>
-                      <span className={styles.noteDate}>{formatShortDate(note.updatedAt)}</span>
-                    </div>
-                    <p className={styles.noteText}>{note.text.length > 320 ? `${note.text.slice(0, 320).trimEnd()}…` : note.text}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </section>
+                      <p className={styles.noteText}>{note.text.length > 320 ? `${note.text.slice(0, 320).trimEnd()}…` : note.text}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Reveal>
 
-        <section className={styles.section} aria-labelledby="prefs-title">
-          <div className={styles.sectionHead}>
-            <RehearsalHeading letter="B" id="prefs-title">
-              Preferences
-            </RehearsalHeading>
-            <p className={styles.sectionIntro}>Changes apply straight away and are kept in this browser.</p>
-          </div>
-          <Preferences />
-        </section>
+          <Reveal id="preferences" index="04" title="Preferences">
+            <Preferences />
+          </Reveal>
 
-        <section className={styles.section} aria-labelledby="data-title">
-          <div className={styles.sectionHead}>
-            <RehearsalHeading letter="C" id="data-title">
-              Your data
-            </RehearsalHeading>
-            <p className={styles.sectionIntro}>
-              Your progress lives in this browser, not on a server{held ? <>: {held}</> : null}. Export a copy to move it to another browser or to keep a backup.
-            </p>
-          </div>
-          {today ? <DataControls dateKey={today} state={state} /> : null}
-        </section>
+          <Reveal id="data" index="05" title="Your data" meta="In this browser">
+            <div className={styles.data}>
+              <p className={styles.lead}>
+                Your progress lives in this browser, not on a server{held ? <>: {held}</> : null}. Export a copy to back it up or to move it to another browser.
+              </p>
+              {today ? <DataControls dateKey={today} state={state} /> : null}
+            </div>
+          </Reveal>
+        </RevealList>
+
+        <NextLink href="/" label={todaysLick ? 'Today’s lick' : 'Back to practice'} title={todaysLick?.title ?? 'Today’s lick'} meta={todaysLick ? byline(todaysLick) : undefined} />
       </div>
     </ViewTransition>
   );

@@ -1,0 +1,698 @@
+/* Progress: the streak as the title of a blue first screen, then the practice calendar in shades
+   of blue under "01 Your calendar", then big titles that open what you've learned, your notes,
+   preferences and your data, and a blue band on to today's lick. Nothing is boxed. */
+
+/* A size container has no width of its own, so it is given one. */
+.progress {
+  container: progress / inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+/* The first screen's action leads away, so its arrow moves on along the line. */
+a.heroAction:hover :global(svg) {
+  transform: translateX(4px);
+}
+
+/* What a section or row opens on sits under its title, not under its index. */
+.body {
+  display: grid;
+  gap: clamp(36px, 4.4vw, 64px);
+  padding-left: calc(3.5rem + 24px);
+  min-width: 0;
+}
+
+/* The practice calendar: a dot a day for half a year, Monday at the top, darker blue for more
+   practice. Today has a ring around it. */
+.calendar {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: auto repeat(var(--weeks), minmax(0, 1fr));
+  grid-template-rows: auto repeat(7, auto);
+  grid-auto-flow: column;
+  gap: clamp(3px, 0.5vw, 8px);
+  max-width: 1280px;
+}
+
+.month {
+  height: 1.8em;
+  overflow: visible;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--ink-3);
+}
+
+.weekday {
+  align-self: center;
+  padding-right: 14px;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+/* A day with practice is a full circle; a day without is a small dot in its place. */
+.day {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.day::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transform: scale(0.34);
+}
+
+.l1::before,
+.l2::before,
+.l3::before {
+  transform: none;
+}
+
+.l1::before {
+  background: color-mix(in srgb, var(--accent) 38%, var(--paper));
+}
+
+.l2::before {
+  background: color-mix(in srgb, var(--accent) 68%, var(--paper));
+}
+
+.l3::before {
+  background: var(--accent);
+}
+
+.future::before {
+  content: none;
+}
+
+.today {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 4px var(--ink);
+}
+
+/* The key: what each shade means, and the ring for today. */
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  font-size: 0.875rem;
+  color: var(--ink-3);
+}
+
+.key > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.key .day {
+  width: 14px;
+  height: 14px;
+}
+
+/* A few facts under the calendar: a large number over a small label. */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px clamp(40px, 6vw, 104px);
+  max-width: 1280px;
+  margin: 0;
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--line);
+}
+
+.facts > div {
+  display: grid;
+  gap: 8px;
+}
+
+.facts dt {
+  order: 2;
+  font-size: 0.95rem;
+  color: var(--ink-3);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.facts dd span {
+  color: var(--ink-3);
+}
+
+.calendarSkeleton {
+  aspect-ratio: 27 / 8.5;
+  max-width: 1280px;
+}
+
+/* The big titles that open the details. */
+.rows {
+  margin: clamp(88px, 10vw, 152px) var(--page-inline) clamp(88px, 10vw, 152px);
+}
+
+/* Text set large, for the one idea a row opens on. */
+.lead {
+  max-width: 34em;
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* What you've learned: a count set very large over a staff of note heads, filled with blue for
+   each one learned. */
+.tally {
+  display: grid;
+  gap: 48px 72px;
+}
+
+@container progress (min-width: 900px) {
+  .tally {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tallyItem {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+
+.tallyFigure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+}
+
+.tallyNumber {
+  font-size: var(--text-display);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.tallyOf {
+  font-size: var(--text-title);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink-3);
+}
+
+.tallyLabel {
+  font-size: var(--text-lead);
+  color: var(--ink-2);
+}
+
+.melody {
+  display: block;
+  width: 100%;
+  max-width: var(--melody-width, 420px);
+  height: auto;
+  margin-top: 10px;
+  overflow: visible;
+}
+
+.melodyStaff {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.noteOn {
+  fill: var(--accent);
+}
+
+.noteOff {
+  fill: var(--paper);
+  stroke: var(--ink-3);
+  stroke-width: 1.4;
+}
+
+.tallyLink {
+  grid-column: 1 / -1;
+}
+
+/* Your notes, read back on ruled lines like the notes field under a lesson. */
+.notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 56px 72px;
+}
+
+@container progress (min-width: 900px) {
+  .notes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.note {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.noteDate {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.noteTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1rem + 1vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.noteTitle a {
+  text-decoration: none;
+}
+
+.noteText {
+  margin-top: 4px;
+  font-size: 1.1rem;
+  line-height: 32px;
+  white-space: pre-line;
+  color: var(--ink-2);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--line-strong) 31px 32px);
+  overflow-wrap: anywhere;
+}
+
+/* Preferences: two columns of settings on hairlines. The chosen option is a blue word with a line
+   under it, and a switch fills with blue when it is on. */
+.prefs {
+  display: grid;
+  gap: 56px 80px;
+}
+
+@container progress (min-width: 1000px) {
+  .prefs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.prefGroup {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+}
+
+.prefGroupTitle {
+  padding-bottom: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.pref {
+  display: grid;
+  gap: 18px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+
+.prefLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 28px;
+}
+
+.prefText {
+  display: grid;
+  gap: 4px;
+}
+
+.prefName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.prefHint {
+  max-width: 34em;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+/* Theme and notation: a small picture of each, and its name as a word that is blue and
+   underlined when chosen. */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+}
+
+.choice {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+
+.choicePreview {
+  display: block;
+  width: 96px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.choicePreview svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.choiceLabel {
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.choiceLabel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.choice:hover {
+  color: var(--ink);
+}
+
+.choice:hover .choicePreview {
+  transform: translateY(-4px);
+}
+
+.choice[aria-pressed='true'] {
+  color: var(--accent);
+}
+
+.choice[aria-pressed='true'] .choiceLabel::after {
+  transform: scaleX(1);
+}
+
+/* The notation pictures are drawn in the colour of their word. */
+.notationLines {
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.notationInk {
+  fill: currentColor;
+}
+
+.notationStem {
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+.notationFret {
+  fill: currentColor;
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 650;
+}
+
+/* A switch: an outline when off, filled with blue when on. */
+.switch {
+  appearance: none;
+  flex: none;
+  position: relative;
+  width: 52px;
+  height: 30px;
+  margin: 0;
+  border: 1.5px solid var(--line-control);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 19px;
+  height: 19px;
+  margin-top: -9.5px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 0.15s ease-out;
+}
+
+.switch:hover:not(:checked) {
+  border-color: var(--ink-2);
+}
+
+.switch:checked {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.switch:checked::after {
+  transform: translateX(22px);
+  background: var(--accent-ink);
+}
+
+.switch:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Starting tempo: the playback bar's presets as words, a thin line that fills with blue, and the
+   value set large. */
+.tempoTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 28px;
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+}
+
+.preset {
+  position: relative;
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+
+.preset::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.preset span {
+  margin-left: 2px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.preset:hover {
+  color: var(--ink);
+}
+
+.preset[aria-pressed='true'] {
+  color: var(--accent);
+}
+
+.preset[aria-pressed='true'] span {
+  color: inherit;
+}
+
+.preset[aria-pressed='true']::after {
+  transform: scaleX(1);
+}
+
+.tempoRow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.slider {
+  --fill: 50%;
+  flex: 1;
+  min-width: 0;
+  height: var(--tap);
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--line-control) var(--fill));
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -8.5px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--paper);
+  transition: transform 0.15s ease-out;
+}
+
+.slider:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.slider::-moz-range-track {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-control);
+}
+
+.slider::-moz-range-progress {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--paper);
+}
+
+.tempoValue {
+  flex: none;
+  min-width: 2.6em;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+.tempoValue span {
+  font-size: 0.5em;
+  letter-spacing: 0;
+  color: var(--ink-3);
+}
+
+/* Your data: what is kept, then export, import and reset. Import and reset each ask first. */
+.data {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+}
+
+.dataActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+}
+
+.confirm {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  max-width: 44rem;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.confirmTitle {
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.confirmText {
+  font-size: 1.05rem;
+  color: var(--ink-2);
+}
+
+/* Erasing is the one action in red, filled rather than outlined. (The element in the selector
+   puts it ahead of the shared button styles, whichever loads first.) */
+button.erase {
+  background: var(--danger);
+  color: var(--paper);
+}
+
+button.erase:hover {
+  background: color-mix(in srgb, var(--danger) 86%, var(--ink));
+  color: var(--paper);
+}
+
+.dataMessage {
+  min-height: 1.5em;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}

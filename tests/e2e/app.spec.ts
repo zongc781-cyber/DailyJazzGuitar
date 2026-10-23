@@ -114,6 +114,7 @@ test('this week shows the standard, its chart and a seven-day plan that remember
 
 test('preferences apply straight away and survive a reload', async ({ page }) => {
   await page.goto('/progress');
+  await page.getByRole('button', { name: 'Preferences' }).click();
   await page.getByRole('button', { name: 'Dark' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();

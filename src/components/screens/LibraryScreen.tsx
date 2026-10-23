@@ -1,9 +1,9 @@
 'use client';
 
-// Library: every lesson, set out like a record shop's catalogue. History files each day's lick
-// under that week's standard, Learned lists what was marked as learned with the date and the key,
-// Favourites is a shelf of hearted lessons, and All lessons is the whole book, grouped by standard
-// under rehearsal letters, with search and filters.
+// Library: every lesson, under a huge title on a white page. History files each day's lick under
+// that week's standard, Learned lists what was marked as learned with the date and the key,
+// Favourites lists the hearted lessons, and All lessons is the whole book, grouped by standard,
+// with search and filters. Each list is rows on hairlines, and every row is a link.
 
 import Link from 'next/link';
 import { ViewTransition, useCallback, useDeferredValue, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
@@ -14,11 +14,11 @@ import { formatShortDate, formatWeekday } from '@/lib/format';
 import { addDays, isoWeekKey, weekDates } from '@/lib/schedule';
 import { useLocalDate } from '@/lib/client/useLocalDate';
 import { useHydrated, useProgress } from '@/lib/progress/store';
+import { Hero } from '@/components/ui/Hero';
 import { Icon } from '@/components/ui/Icon';
-import { Pencil } from '@/components/ui/Pencil';
 import { Segmented } from '@/components/ui/Segmented';
 import ui from '@/components/ui/ui.module.css';
-import styles from './screens.module.css';
+import styles from './library.module.css';
 
 export type LibraryTab = 'history' | 'learned' | 'favourites' | 'all';
 
@@ -59,7 +59,7 @@ function byline(e: CatalogEntry): string | null {
 
 function Details({ parts, difficulty }: { parts: (string | null | undefined)[]; difficulty?: number }) {
   return (
-    <span className={styles.trackMeta}>
+    <span className={styles.details}>
       {parts.filter(Boolean).join(' · ')}
       {difficulty ? (
         <>
@@ -85,26 +85,42 @@ function usePlace(dateKey: string | null) {
   );
 }
 
-/** Learned is a blue pencil tick, favourite an ink heart. Empty slots keep the marks in line. */
+function LearnedMark() {
+  return (
+    <span className={`${styles.mark} ${styles.learned}`}>
+      <Icon name="check" size={15} />
+    </span>
+  );
+}
+
+function FavouriteMark() {
+  return (
+    <span className={`${styles.mark} ${styles.favourite}`}>
+      <Icon name="heartFilled" size={21} />
+    </span>
+  );
+}
+
+/** Learned and favourite, in one column. Empty slots keep the marks in line down a list. */
 function Marks({ id, learned: showLearned = true, favourite: showFavourite = true }: { id: string; learned?: boolean; favourite?: boolean }) {
-  const learned = useProgress((s) => Boolean(s.learned[id]));
-  const favourite = useProgress((s) => Boolean(s.favourites[id]));
+  const learned = useProgress((s) => showLearned && Boolean(s.learned[id]));
+  const favourite = useProgress((s) => showFavourite && Boolean(s.favourites[id]));
   return (
     <span className={styles.marks}>
-      <span title={showLearned && learned ? 'Learned' : undefined}>
-        {showLearned && learned ? (
+      <span title={learned ? 'Learned' : undefined}>
+        {learned ? (
           <>
-            <Pencil kind="tick" className={styles.markTick} />
+            <LearnedMark />
             <span className="visually-hidden">, learned</span>
           </>
         ) : null}
       </span>
-      <span title={showFavourite && favourite ? 'Favourite' : undefined}>
-        {showFavourite && favourite ? (
-          <span className={styles.markHeart}>
-            <Icon name="heartFilled" size={18} />
+      <span title={favourite ? 'Favourite' : undefined}>
+        {favourite ? (
+          <>
+            <FavouriteMark />
             <span className="visually-hidden">, favourite</span>
-          </span>
+          </>
         ) : null}
       </span>
     </span>
@@ -116,15 +132,13 @@ function Legend({ learned = true, favourite = true }: { learned?: boolean; favou
     <span className={styles.legend} aria-hidden="true">
       {learned ? (
         <span>
-          <Pencil kind="tick" className={styles.markTick} />
+          <LearnedMark />
           Learned
         </span>
       ) : null}
       {favourite ? (
         <span>
-          <span className={styles.markHeart}>
-            <Icon name="heartFilled" size={16} />
-          </span>
+          <FavouriteMark />
           Favourite
         </span>
       ) : null}
@@ -132,30 +146,64 @@ function Legend({ learned = true, favourite = true }: { learned?: boolean; favou
   );
 }
 
-function PanelBar({ children, legend }: { children: ReactNode; legend?: ReactNode }) {
+/** What a tab holds, in one line, with a key to its marks. */
+function Intro({ children, legend }: { children: ReactNode; legend?: ReactNode }) {
   return (
-    <div className={styles.panelBar}>
+    <div className={styles.intro}>
       <p>{children}</p>
       {legend}
     </div>
   );
 }
 
-/** One row of a track list: an index column (a date or a track number), the title over its details, then marks. */
-function Track({ href, index, kicker, title, meta, marks, now }: { href?: string; index?: ReactNode; kicker?: string; title: string; meta?: ReactNode; marks?: ReactNode; now?: string | null }) {
-  const className = index === undefined ? `${styles.track} ${styles.trackPlain}` : styles.track;
+/**
+ * One line of a list: a small index, the title over its details, today's place, the marks and an
+ * arrow that appears on hover. With an href the whole line is a link. With a headingId it is the
+ * head of a group, set very large, and its kicker and title are the group's heading.
+ */
+function Line({
+  href,
+  index,
+  kicker,
+  title,
+  details,
+  now,
+  marks,
+  headingId,
+}: {
+  href?: string;
+  index?: ReactNode;
+  kicker?: string;
+  title: string;
+  details?: ReactNode;
+  now?: string | null;
+  marks?: ReactNode;
+  headingId?: string;
+}) {
+  const className = `${styles.line} ${headingId ? styles.groupLine : styles.row}`;
+  const name = (
+    <>
+      {kicker ? <span className={styles.kicker}>{kicker}</span> : null}
+      <span className={styles.title}>{title}</span>
+    </>
+  );
   const body = (
     <>
-      {index}
-      <span className={styles.trackMain}>
-        {kicker ? <span className={styles.trackKicker}>{kicker}</span> : null}
-        <span className={styles.trackTitle}>{title}</span>
-        {meta}
-      </span>
-      <span className={styles.trackSide}>
-        {now ? <span className={styles.now}>{now}</span> : null}
-        {marks}
-        {href ? <Icon name="chevronRight" size={18} className={styles.chevron} /> : null}
+      <span className={styles.index}>{index}</span>
+      <div className={styles.main}>
+        {headingId ? (
+          <h2 id={headingId} className={styles.heading}>
+            {name}
+          </h2>
+        ) : (
+          name
+        )}
+        {details}
+      </div>
+      <span className={styles.now}>{now}</span>
+      {marks ?? <span />}
+      <span className={styles.arrow} aria-hidden="true">
+        {href ? <Icon name="arrowRight" size={30} /> : null}
       </span>
     </>
   );
@@ -168,42 +216,22 @@ function Track({ href, index, kicker, title, meta, marks, now }: { href?: string
   );
 }
 
-/** The date column: weekday over the day of the month. Today's is circled in pencil. */
-function When({ date, today = false }: { date: string; today?: boolean }) {
+/** A row's date: "Thu 22" on screen, the full date for screen readers. Today's is blue. */
+function When({ date, today = false, short = false }: { date: string; today?: boolean; short?: boolean }) {
   return (
-    <span className={styles.when}>
-      <span className={styles.whenDay} aria-hidden="true">
-        {formatWeekday(date)}
-      </span>
-      <span className={styles.whenDate} aria-hidden="true">
-        {Number(date.slice(8, 10))}
-      </span>
-      <span className="visually-hidden">{`${formatWeekday(date)} ${formatShortDate(date)}${today ? ', today' : ''}: `}</span>
-      {today ? <Pencil kind="circle" draw className={styles.whenCircle} /> : null}
+    <span className={today ? styles.today : undefined}>
+      <span aria-hidden="true">{short ? formatShortDate(date) : `${formatWeekday(date)} ${Number(date.slice(8, 10))}`}</span>
+      <span className="visually-hidden">{`${formatWeekday(date)} ${formatShortDate(date)}: `}</span>
     </span>
   );
 }
 
-/** A bar's rest on a short staff: nothing has been played here yet. */
-function RestArt() {
-  return (
-    <svg className={styles.emptyArt} viewBox="0 0 104 40" aria-hidden="true" focusable="false">
-      {[4, 12, 20, 28, 36].map((y) => (
-        <line key={y} x1="0" x2="104" y1={y} y2={y} stroke="currentColor" strokeOpacity="0.45" />
-      ))}
-      <line x1="0.75" x2="0.75" y1="4" y2="36" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="103.25" x2="103.25" y1="4" y2="36" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="44" y="12" width="16" height="6" fill="currentColor" />
-    </svg>
-  );
-}
-
-function Empty({ title, children, action }: { title: string; children: ReactNode; action?: ReactNode }) {
+/** Nothing here yet: one big sentence and what to do about it. */
+function Empty({ children, hint, action }: { children: ReactNode; hint?: string; action: ReactNode }) {
   return (
     <div className={styles.empty}>
-      <RestArt />
-      <p className={styles.emptyTitle}>{title}</p>
       <p className={styles.emptyText}>{children}</p>
+      {hint ? <p className={styles.emptyHint}>{hint}</p> : null}
       {action}
     </div>
   );
@@ -211,12 +239,12 @@ function Empty({ title, children, action }: { title: string; children: ReactNode
 
 function Loading() {
   return (
-    <div className={styles.rowsSkeleton} aria-busy="true">
+    <div className={styles.loading} aria-busy="true">
       <p className="visually-hidden" role="status">
         Loading your progress…
       </p>
       {[0, 1, 2, 3].map((i) => (
-        <div key={i} className={styles.skeletonRow} aria-hidden="true">
+        <div key={i} className={styles.loadingRow} aria-hidden="true">
           <span className={ui.skeleton} />
           <span className={ui.skeleton} />
         </div>
@@ -226,7 +254,7 @@ function Loading() {
 }
 
 const todaysLick = (
-  <Link href="/" className={`${ui.button} ${ui.primary}`}>
+  <Link href="/" className={`${ui.button} ${ui.primary} ${ui.large}`}>
     Open today’s lick
   </Link>
 );
@@ -251,18 +279,12 @@ function History({ byId, dateKey }: { byId: Map<string, CatalogEntry>; dateKey: 
       .map((w) => ({ ...w, monday: weekDates(w.days[0]?.[0] ?? weekly[w.weekKey]?.assignedOn ?? dateKey)[0] }));
   }, [daily, weekly, byId, dateKey]);
 
-  if (weeks.length === 0) {
-    return (
-      <Empty title="Nothing filed yet" action={todaysLick}>
-        Each day’s lick is filed here, under that week’s standard, as soon as you open it on Today.
-      </Empty>
-    );
-  }
+  if (weeks.length === 0) return <Empty action={todaysLick}>Open today’s lick and it is filed here, under this week’s standard.</Empty>;
   const thisWeek = isoWeekKey(dateKey);
   const lastWeek = isoWeekKey(addDays(dateKey, -7));
   return (
     <>
-      <PanelBar legend={<Legend />}>Each day’s lick under that week’s standard, newest first.</PanelBar>
+      <Intro legend={<Legend />}>Each day’s lick under that week’s standard, newest first.</Intro>
       <div className={styles.groups}>
         {weeks.map((w) => {
           const id = `${headId}-${w.weekKey}`;
@@ -272,32 +294,27 @@ function History({ byId, dateKey }: { byId: Map<string, CatalogEntry>; dateKey: 
           const kicker = [w.standard ? recent : null, w.standard ? range : recent, w.review ? 'review week' : null].filter(Boolean).join(' · ');
           return (
             <section key={w.weekKey} className={styles.group} aria-labelledby={id}>
-              <div className={styles.groupHead}>
-                <h2 id={id} className={styles.groupTitle}>
-                  {kicker ? <span className={styles.groupKicker}>{kicker}</span> : null}
-                  {w.standard ? <Link href={w.weekKey === thisWeek ? '/week' : `/lessons/${w.standard.id}`}>{w.standard.title}</Link> : <span>Week of {range}</span>}
-                </h2>
-                {w.standard ? (
-                  <div className={styles.groupSide}>
-                    <span>{[byline(w.standard), prettyKey(w.standard.key)].filter(Boolean).join(' · ')}</span>
-                    <Marks id={w.standard.id} />
-                    <span className={styles.chevronSpace} />
-                  </div>
-                ) : null}
-              </div>
+              <Line
+                headingId={id}
+                href={w.standard ? (w.weekKey === thisWeek ? '/week' : `/lessons/${w.standard.id}`) : undefined}
+                kicker={kicker || undefined}
+                title={w.standard ? w.standard.title : `Week of ${range}`}
+                details={w.standard ? <Details parts={[byline(w.standard), prettyKey(w.standard.key)]} /> : null}
+                marks={w.standard ? <Marks id={w.standard.id} /> : null}
+              />
               {w.days.length ? (
-                <ul className={styles.tracks}>
+                <ul className={styles.rows}>
                   {w.days.map(([d, a]) => {
                     const entry = byId.get(a.lickId);
                     if (!entry) return null;
                     const isToday = d === dateKey;
                     return (
                       <li key={d}>
-                        <Track
+                        <Line
                           href={isToday ? '/' : `/lessons/${entry.id}`}
                           index={<When date={d} today={isToday} />}
                           title={entry.title}
-                          meta={<Details parts={[byline(entry), prettyKey(entry.key), a.review ? 'review' : null]} />}
+                          details={<Details parts={[byline(entry), prettyKey(entry.key), a.review ? 'review' : null]} />}
                           now={isToday ? 'Today' : null}
                           marks={<Marks id={entry.id} />}
                         />
@@ -329,26 +346,15 @@ function Learned({ byId, dateKey, place }: { byId: Map<string, CatalogEntry>; da
     return out;
   }, [learned]);
 
-  if (months.length === 0) {
-    return (
-      <Empty title="Nothing marked as learned yet" action={todaysLick}>
-        When a lick sits under your fingers at the target tempo, press <strong>Mark lick as learned</strong> on it. It is noted here with the date and the key you played it in.
-      </Empty>
-    );
-  }
+  if (months.length === 0) return <Empty action={todaysLick}>Mark a lick as learned and it is kept here, with the date and the key.</Empty>;
   return (
     <>
-      <PanelBar legend={<Legend learned={false} />}>Newest first, with the key you were playing in when you marked it.</PanelBar>
+      <Intro legend={<Legend learned={false} />}>Newest first, with the key you were playing in when you marked it.</Intro>
       <div className={styles.groups}>
         {months.map(({ month, items }) => (
           <section key={month} className={styles.group} aria-labelledby={`${headId}-${month}`}>
-            <div className={styles.groupHead}>
-              <h2 id={`${headId}-${month}`} className={styles.groupTitle}>
-                {monthName(month, dateKey)}
-              </h2>
-              <p className={styles.groupSide}>{items.length} learned</p>
-            </div>
-            <ul className={styles.tracks}>
+            <Line headingId={`${headId}-${month}`} title={monthName(month, dateKey)} details={<span className={styles.details}>{`${items.length} learned`}</span>} />
+            <ul className={styles.rows}>
               {items.map(([id, e]) => {
                 const entry = byId.get(id);
                 const standard = entry?.standardId ? byId.get(entry.standardId) : undefined;
@@ -360,7 +366,14 @@ function Learned({ byId, dateKey, place }: { byId: Map<string, CatalogEntry>; da
                 const where = entry ? place(entry) : null;
                 return (
                   <li key={id}>
-                    <Track href={where?.href} index={<When date={e.learnedOn} />} title={e.title} meta={<Details parts={parts} />} now={where?.now} marks={<Marks id={id} learned={false} />} />
+                    <Line
+                      href={where?.href}
+                      index={<When date={e.learnedOn} />}
+                      title={e.title}
+                      details={<Details parts={parts} />}
+                      now={where?.now}
+                      marks={<Marks id={id} learned={false} />}
+                    />
                   </li>
                 );
               })}
@@ -372,37 +385,44 @@ function Learned({ byId, dateKey, place }: { byId: Map<string, CatalogEntry>; da
   );
 }
 
-function Favourites({ byId, place }: { byId: Map<string, CatalogEntry>; place: ReturnType<typeof usePlace> }) {
+function Favourites({ byId, place, onBrowse }: { byId: Map<string, CatalogEntry>; place: ReturnType<typeof usePlace>; onBrowse: () => void }) {
   const favourites = useProgress((s) => s.favourites);
   const entries = useMemo(
     () =>
       Object.entries(favourites)
         .sort(([, a], [, b]) => b.addedOn.localeCompare(a.addedOn))
-        .map(([id]) => byId.get(id))
-        .filter((e): e is CatalogEntry => Boolean(e)),
+        .map(([id, f]) => ({ entry: byId.get(id), addedOn: f.addedOn }))
+        .filter((f): f is { entry: CatalogEntry; addedOn: string } => Boolean(f.entry)),
     [favourites, byId],
   );
   if (entries.length === 0) {
     return (
-      <Empty title="No favourites yet">
-        Press <strong>Favourite</strong> on any lick or standard and it goes on this shelf, so the ones you love are always one click away.
+      <Empty
+        action={
+          <button type="button" className={`${ui.button} ${ui.primary} ${ui.large}`} onClick={onBrowse}>
+            Browse all lessons
+          </button>
+        }
+      >
+        Heart a lick or a standard and it waits for you here.
       </Empty>
     );
   }
   return (
     <>
-      <PanelBar legend={<Legend favourite={false} />}>The lessons you marked with the heart, newest first.</PanelBar>
-      <ul className={styles.shelf}>
-        {entries.map((e) => {
+      <Intro legend={<Legend favourite={false} />}>The lessons you marked with the heart, newest first.</Intro>
+      <ul className={`${styles.rows} ${styles.flat}`}>
+        {entries.map(({ entry: e, addedOn }) => {
           const standard = e.kind === 'lick' && e.standardId ? byId.get(e.standardId) : undefined;
           const where = place(e);
           return (
             <li key={e.id}>
-              <Track
+              <Line
                 href={where.href}
+                index={<When date={addedOn} short />}
                 kicker={e.kind === 'standard' ? 'Standard' : standard ? `Lick · ${standard.title}` : 'Lick'}
                 title={e.title}
-                meta={<Details parts={[byline(e), prettyKey(e.key)]} />}
+                details={<Details parts={[byline(e), prettyKey(e.key)]} />}
                 now={where.now}
                 marks={<Marks id={e.id} favourite={false} />}
               />
@@ -419,7 +439,7 @@ type Origin = 'all' | 'seed' | 'generated';
 
 function SearchIcon() {
   return (
-    <svg className={styles.searchIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" focusable="false">
+    <svg className={styles.searchIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" focusable="false">
       <circle cx="10.5" cy="10.5" r="6.5" />
       <path d="M15.5 15.5l5 5" />
     </svg>
@@ -484,11 +504,11 @@ function AllLessons({ catalog, place }: { catalog: CatalogEntry[]; place: Return
     const where = place(entry);
     return (
       <li key={entry.id}>
-        <Track
+        <Line
           href={where.href}
-          index={<span className={styles.trackNo}>{n}</span>}
+          index={String(n).padStart(2, '0')}
           title={entry.title}
-          meta={<Details parts={[byline(entry), prettyKey(entry.key), entry.origin === 'generated' ? 'generated' : null]} difficulty={entry.difficulty} />}
+          details={<Details parts={[byline(entry), prettyKey(entry.key), entry.origin === 'generated' ? 'generated' : null]} difficulty={entry.difficulty} />}
           now={where.now}
           marks={<Marks id={entry.id} />}
         />
@@ -501,7 +521,7 @@ function AllLessons({ catalog, place }: { catalog: CatalogEntry[]; place: Return
       <div className={styles.toolbar}>
         <div className={`${ui.field} ${styles.toolField}`}>
           <label htmlFor={searchId}>Search</label>
-          <span className={styles.searchBox}>
+          <span className={styles.searchLine}>
             <SearchIcon />
             <input
               ref={searchRef}
@@ -551,14 +571,14 @@ function AllLessons({ catalog, place }: { catalog: CatalogEntry[]; place: Return
 
       {shown === 0 ? (
         <Empty
-          title={deferred ? `Nothing matches “${query.trim()}”` : 'Nothing matches these filters'}
+          hint="Try a guitarist, a tune or a key, such as Wes, Blue Bossa or B♭."
           action={
-            <button type="button" className={ui.button} onClick={clear}>
+            <button type="button" className={`${ui.button} ${ui.primary} ${ui.large}`} onClick={clear}>
               Clear the search
             </button>
           }
         >
-          Try a guitarist, a tune or a key, such as Wes, Blue Bossa or B♭.
+          {deferred ? `Nothing matches “${query.trim()}”.` : 'Nothing matches these filters.'}
         </Empty>
       ) : (
         <div className={styles.groups}>
@@ -567,36 +587,23 @@ function AllLessons({ catalog, place }: { catalog: CatalogEntry[]; place: Return
             const where = place(g.standard);
             return (
               <section key={g.standard.id} className={styles.group} aria-labelledby={id}>
-                <div className={`${styles.groupHead} ${styles.groupHeadLettered}`}>
-                  <span className={ui.rehearsalMark} aria-hidden="true">
-                    {g.letter}
-                  </span>
-                  <h2 id={id} className={styles.groupTitle}>
-                    <Link href={where.href}>{g.standard.title}</Link>
-                  </h2>
-                  <div className={styles.groupSide}>
-                    {where.now ? <span className={styles.now}>{where.now}</span> : null}
-                    <span>{[byline(g.standard), prettyKey(g.standard.key), plural(g.total, 'lick')].filter(Boolean).join(' · ')}</span>
-                    <Marks id={g.standard.id} />
-                    <span className={styles.chevronSpace} />
-                  </div>
-                </div>
-                {g.licks.length ? <ul className={styles.tracks}>{g.licks.map(row)}</ul> : null}
+                <Line
+                  headingId={id}
+                  href={where.href}
+                  index={g.letter}
+                  title={g.standard.title}
+                  details={<Details parts={[byline(g.standard), prettyKey(g.standard.key), plural(g.total, 'lick')]} />}
+                  now={where.now}
+                  marks={<Marks id={g.standard.id} />}
+                />
+                {g.licks.length ? <ul className={styles.rows}>{g.licks.map(row)}</ul> : null}
               </section>
             );
           })}
           {other.length ? (
             <section className={styles.group} aria-labelledby={`${headId}-other`}>
-              <div className={`${styles.groupHead} ${styles.groupHeadLettered}`}>
-                <span className={ui.rehearsalMark} aria-hidden="true">
-                  {otherLetter}
-                </span>
-                <h2 id={`${headId}-other`} className={styles.groupTitle}>
-                  Other licks
-                </h2>
-                <div className={styles.groupSide}>{plural(other.length, 'lick')}</div>
-              </div>
-              <ul className={styles.tracks}>{other.map(row)}</ul>
+              <Line headingId={`${headId}-other`} index={otherLetter} title="Other licks" details={<span className={styles.details}>{plural(other.length, 'lick')}</span>} />
+              <ul className={styles.rows}>{other.map(row)}</ul>
             </section>
           ) : null}
         </div>
@@ -610,6 +617,7 @@ export function LibraryScreen({ catalog, initialTab }: { catalog: CatalogEntry[]
   const dateKey = useLocalDate();
   const hydrated = useHydrated();
   const byId = useMemo(() => new Map(catalog.map((e) => [e.id, e])), [catalog]);
+  const historyCount = useProgress((s) => Object.values(s.daily).filter((a) => byId.has(a.lickId)).length);
   const learnedCount = useProgress((s) => Object.keys(s.learned).length);
   const favouriteCount = useProgress((s) => Object.keys(s.favourites).filter((id) => byId.has(id)).length);
   const place = usePlace(dateKey);
@@ -639,48 +647,61 @@ export function LibraryScreen({ catalog, initialTab }: { catalog: CatalogEntry[]
   };
 
   // Counts that depend on this browser's progress appear once it has been read.
-  const counts: Partial<Record<LibraryTab, number>> = hydrated ? { learned: learnedCount, favourites: favouriteCount, all: catalog.length } : { all: catalog.length };
+  const counts: Partial<Record<LibraryTab, number>> = hydrated
+    ? { history: historyCount, learned: learnedCount, favourites: favouriteCount, all: catalog.length }
+    : { all: catalog.length };
+  const standards = catalog.filter((e) => e.kind === 'standard').length;
+
+  const tabs = (
+    <div className={styles.tabs} role="tablist" aria-label="Library" onKeyDown={onKeyDown}>
+      {TABS.map((t, i) => {
+        const selected = tab === t.id;
+        const count = counts[t.id];
+        return (
+          <button
+            key={t.id}
+            ref={(el) => {
+              refs.current[i] = el;
+            }}
+            type="button"
+            role="tab"
+            id={`${tabsId}-${t.id}`}
+            aria-selected={selected}
+            aria-controls={`${tabsId}-panel`}
+            tabIndex={selected ? 0 : -1}
+            className={styles.tab}
+            onClick={() => select(t.id)}
+          >
+            <span className={styles.tabLabel}>{t.label}</span>
+            {count !== undefined ? (
+              <span className={styles.tabCount}>
+                <span className="visually-hidden"> (</span>
+                {count}
+                <span className="visually-hidden">)</span>
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </div>
+  );
 
   return (
     <ViewTransition enter="page-in" exit="page-out" default="none">
-      <div className={`${styles.screen} ${styles.page}`}>
-        <header className={styles.pageHeader}>
-          <p className={ui.eyebrow}>Library</p>
-          <h1 className={styles.headline}>Your back catalogue</h1>
-          <p className={styles.pageIntro}>Find any lick or standard again: by the week you played it, the day you learned it, or in the whole book.</p>
-        </header>
-        <div className={styles.tabs} role="tablist" aria-label="Library" onKeyDown={onKeyDown}>
-          {TABS.map((t, i) => {
-            const selected = tab === t.id;
-            const count = counts[t.id];
-            return (
-              <button
-                key={t.id}
-                ref={(el) => {
-                  refs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`${tabsId}-${t.id}`}
-                aria-selected={selected}
-                aria-controls={`${tabsId}-panel`}
-                tabIndex={selected ? 0 : -1}
-                className={styles.tab}
-                onClick={() => select(t.id)}
-              >
-                {t.label}
-                {count !== undefined ? (
-                  <span className={styles.tabCount}>
-                    <span className="visually-hidden"> (</span>
-                    {count}
-                    <span className="visually-hidden">)</span>
-                  </span>
-                ) : null}
-                {selected ? <Pencil kind="underline" draw className={styles.tabMark} /> : null}
-              </button>
-            );
-          })}
-        </div>
+      <div className={styles.library}>
+        <Hero
+          tone="plain"
+          top={
+            <>
+              <span>Back catalogue</span>
+              <span>{`${plural(standards, 'standard')} · ${plural(catalog.length - standards, 'lick')}`}</span>
+            </>
+          }
+          title="Library"
+          actions={tabs}
+        >
+          <p>Everything you’ve played, learned and loved.</p>
+        </Hero>
         <div role="tabpanel" id={`${tabsId}-panel`} aria-labelledby={`${tabsId}-${tab}`} className={styles.panel}>
           {tab === 'all' ? (
             <AllLessons catalog={catalog} place={place} />
@@ -691,7 +712,14 @@ export function LibraryScreen({ catalog, initialTab }: { catalog: CatalogEntry[]
           ) : tab === 'learned' ? (
             <Learned byId={byId} dateKey={dateKey} place={place} />
           ) : (
-            <Favourites byId={byId} place={place} />
+            <Favourites
+              byId={byId}
+              place={place}
+              onBrowse={() => {
+                select('all');
+                refs.current[TABS.length - 1]?.focus();
+              }}
+            />
           )}
         </div>
       </div>
