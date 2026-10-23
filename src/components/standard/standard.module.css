@@ -1,56 +1,19 @@
-/* This Week: the weekly standard, set out like a lead sheet marked up with a blue pencil (see
-   docs/design.md). Every section takes its own shape (a featured card, track lists, the chart, a
-   chord picker, a score sheet, numbered notes, a timeline) from the same tokens and parts. */
+/* This Week, and a standard opened from the library (see docs/design.md): a blue first screen, then
+   today's tasks and the chord chart, always open, then big titles that open the rest. Nothing is
+   boxed: hairlines divide, and blue marks what is chosen or done. */
 
 /* The page. A size container named like the lesson page, so the fretboard row shared with
    lesson.module.css follows its width too. */
 .week {
   container: lesson / inline-size;
-  display: grid;
-  row-gap: var(--section-gap);
   width: 100%;
-  max-width: var(--content);
-  margin: 0 auto;
   min-width: 0;
 }
 
-@media (max-width: 1099px) {
-  .week {
-    row-gap: 48px;
-  }
-}
-
 /* ---------------------------------------------------------------------------------------------
-   Title block: the head of a lead sheet. The feel at the left and the composer at the right sit on
-   a staff; the facts, badges and the Learned and Favourite buttons follow, then the road map. */
+   The first screen: the composer, feel and tempo, then today's focus, white on blue. */
 
-.head {
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-}
-
-.chartHead {
-  justify-self: stretch;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 4px 32px;
-  margin-top: 12px;
-}
-
-/* The feel and tempo, handwritten as at the top left of a chart. */
-.feel {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 20px;
-  font-family: var(--font-chord);
-  font-size: 1.6rem;
-  line-height: 1.2;
-}
-
+/* The tempo as it is marked on a chart: ♩ = 120. */
 .tempoMark {
   display: inline-flex;
   align-items: baseline;
@@ -65,189 +28,43 @@
   transform: translateY(0.12em);
 }
 
-/* The composer, at the top right. */
-.composer {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.5rem;
-  line-height: 1.25;
-  color: var(--ink-2);
-}
-
-.headStaff {
-  justify-self: stretch;
-  margin-bottom: 10px;
-}
-
-/* The facts and badges at the left, the Learned and Favourite buttons at the right, as on Today.
-   The facts wrap inside their own column, so the buttons never drop under them on a wide page. */
-.metaRow {
-  justify-self: stretch;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 16px 32px;
-}
-
-/* In a narrow window the buttons go under the facts. */
-@container lesson (max-width: 719px) {
-  .metaRow {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: start;
-  }
-}
-
-.metaFacts {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 24px;
-  min-width: 0;
-}
-
-.facts {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-}
-
-.facts div {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.facts dt {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.facts dd {
-  margin: 0;
-  font-weight: 600;
-}
-
-/* The road map: every rehearsal letter on the page, as a link to its section. */
-.roadmap {
-  justify-self: stretch;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.roadmap ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 6px;
-}
-
-.roadmap a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: var(--tap);
-  padding: 0 14px 0 8px;
-  border-radius: 999px;
-  color: var(--ink-2);
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    background-color 0.15s ease-out,
-    color 0.15s ease-out;
-}
-
-.roadmap a:hover {
-  background: var(--surface-2);
+.heroFocus {
+  font-size: var(--text-lead);
+  line-height: 1.3;
   color: var(--ink);
 }
 
-.roadmapMark {
-  display: inline-grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
-  color: var(--ink);
-  font-size: 0.76rem;
-  font-weight: 650;
-  line-height: 1;
-  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
-}
-
-.roadmap a:hover .roadmapMark {
-  transform: rotate(-6deg);
+/* A button that leads to another page: its arrow moves along, not down. */
+a.across:hover :global(svg) {
+  transform: translateX(4px);
 }
 
 /* ---------------------------------------------------------------------------------------------
-   Sections: a rehearsal heading, a line of introduction, then the content. A split section sets
-   the heading beside its content and keeps it in view while the content scrolls by. */
+   The sections that stay open: 01 Today and 02 The chart. Their content starts at the title's left
+   edge, as a row's details do, and the chart's section marks sit in the index column. */
 
-.section,
-.split {
+.section {
+  --indent: calc(3.5rem + 24px);
   display: grid;
-  gap: 28px;
-  align-content: start;
+  gap: 36px;
+  padding: clamp(72px, 9vw, 136px) var(--page-inline) 0;
   min-width: 0;
 }
 
-.sectionHead {
+.indent {
+  margin-left: var(--indent);
+}
+
+/* 01 Today: what the day is for at the left, its tasks at the right. */
+.today {
   display: grid;
-  gap: 14px;
-  align-content: start;
+  gap: 32px 72px;
+  margin-left: var(--indent);
   min-width: 0;
 }
 
-.headingRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 24px;
-}
-
-.intro {
-  max-width: 64ch;
-  color: var(--ink-2);
-  font-size: 1.04rem;
-}
-
-@container lesson (min-width: 880px) {
-  .split {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    gap: 64px;
-    align-items: start;
-  }
-
-  .split > .sectionHead {
-    position: sticky;
-    top: 32px;
-  }
-}
-
-/* ---------------------------------------------------------------------------------------------
-   A. Today's practice: the day's number circled in pencil, what the day is for, the one primary
-   action, and the day's tasks ticked in pencil. */
-
-.todayCard {
-  display: grid;
-  gap: 24px 56px;
-  padding: 28px 32px 22px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-}
-
-@container lesson (min-width: 760px) {
-  .todayCard {
+@container lesson (min-width: 1000px) {
+  .today {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     align-items: start;
   }
@@ -255,97 +72,69 @@
 
 .todayLead {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   align-content: start;
   justify-items: start;
   min-width: 0;
 }
 
-.todayTitleRow {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-.todayNumeral {
-  position: relative;
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 52px;
-  font-family: var(--font-display);
-  font-size: 2.6rem;
-  line-height: 1;
-}
-
-.todayCircle {
-  position: absolute;
-  inset: -4px -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 8px);
-}
-
-.todayTitles {
-  display: grid;
-  gap: 4px;
-}
-
 .todayDay {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
 .todayFocus {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 2.5rem;
+  font-size: var(--text-title);
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
 }
 
 .todayAim {
-  max-width: 42ch;
+  max-width: 26em;
+  font-size: var(--text-lead);
+  line-height: 1.4;
   color: var(--ink-2);
 }
 
-.todayActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 20px;
-}
-
-.todayAction {
-  min-height: 44px;
-  padding: 0 18px 0 22px;
-  font-size: 1rem;
-}
-
 .todayCount {
-  font-size: 0.9rem;
+  margin-top: 4px;
+  font-weight: 500;
   color: var(--ink-3);
 }
 
-/* Every task ticked: the count is ticked too, and says what comes tomorrow. */
+/* Every task ticked: the count fills with blue too, and says what comes tomorrow. */
 .todayFinished {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--accent);
 }
 
-.todayTick {
+.doneMark {
   flex: none;
-  width: 22px;
-  height: 19px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-/* A day's tasks, as on Today's checklist. */
+.todayTasks {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* A day's tasks, ticked as on Today's practice list. */
 .tasks {
   list-style: none;
   margin: 0;
@@ -358,20 +147,41 @@
   border-top: 1px solid var(--line);
 }
 
+/* The day's lick: a small label over its title, with an arrow that moves on hover. */
 .dayLick {
   justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: var(--tap);
-  font-size: 0.92rem;
-  font-weight: 600;
+  display: grid;
+  gap: 2px;
+  color: inherit;
   text-decoration: none;
 }
 
-.dayLick > :global(svg) {
-  flex: none;
-  color: var(--ink-2);
+.dayLick:hover {
+  color: inherit;
+}
+
+.dayLickLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.dayLickTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: underline 1.5px var(--line-control);
+  text-underline-offset: 0.22em;
+  transition:
+    color 0.15s ease-out,
+    text-decoration-color 0.15s ease-out;
+}
+
+.dayLick:hover .dayLickTitle {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
 .dayLickEnd {
@@ -380,158 +190,103 @@
 
 .dayLickGo {
   display: inline;
-  margin-left: 4px;
+  margin-left: 6px;
   vertical-align: -3px;
-  color: var(--ink-2);
-  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .dayLick:hover .dayLickGo {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
-.dayLickTitle {
-  text-decoration: underline 1px var(--line-control);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.15s ease-out;
-}
-
-.dayLick:hover .dayLickTitle {
-  text-decoration-color: var(--accent);
-}
-
-/* ---------------------------------------------------------------------------------------------
-   B. Listen: a track list, as on the back of a record sleeve, with the year where the running time
-   would be. */
-
-.tracks {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line-strong);
-}
-
-.track {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) auto;
-  gap: 0 20px;
-  padding: 20px 0 22px;
-  border-bottom: 1px solid var(--line);
-}
-
-.trackNumber,
-.trackYear {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.2;
-  font-variant-numeric: tabular-nums;
-}
-
-.trackNumber {
-  color: var(--ink-3);
-}
-
-.trackYear {
-  color: var(--ink-2);
-}
-
-.trackMain {
-  display: grid;
-  gap: 4px;
+/* 02 The chart: the form and keys at the left of one row, the analysis switch at the right. */
+.toolbar {
+  margin-left: var(--indent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 44px;
   min-width: 0;
 }
 
-.trackArtist {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.2;
+.facts {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 44px;
 }
 
-.trackAlbum {
-  font-style: italic;
-  font-weight: 550;
+.facts div {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
 }
 
-.trackOut {
-  display: inline;
-  margin-left: 5px;
-  vertical-align: -2px;
-  color: var(--ink-3);
-  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
-}
-
-.trackAlbum a:hover .trackOut {
-  transform: translate(2px, -2px);
-}
-
-.trackRecording {
-  font-weight: 400;
-  color: var(--ink-2);
-}
-
-.trackNote {
-  max-width: 60ch;
-  margin-top: 4px;
-  font-size: 0.98rem;
-  color: var(--ink-2);
-}
-
-.trackChecked {
+.facts dt {
   font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-3);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* How to read the chart, under it in small type. */
+.chartNotes {
+  margin-left: var(--indent);
+  display: grid;
+  gap: 4px;
+  max-width: 46rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+.chartNotes a {
+  color: var(--ink);
 }
 
 /* ---------------------------------------------------------------------------------------------
-   C. The chord chart, copied out by hand: form marks in the margin, bar numbers, chord symbols in
-   Real Book handwriting above a staff with one slash per beat, barlines, a double bar at the end of
-   each section and a final bar at the end of the form. */
+   The chord chart, copied out by hand with no frame: section marks in the index column, bar
+   numbers, chord symbols in Real Book handwriting above a staff with one slash per beat, barlines,
+   a double bar at the end of each section and a final bar at the end of the form. */
 
 .chartBlock {
   display: grid;
-  gap: 18px;
+  gap: 24px;
   min-width: 0;
 }
 
 .chart {
-  --gutter: 68px;
-  --chord: 1.8rem;
-  --pad: 10px;
+  --chord: 2rem;
+  --pad: 12px;
   display: grid;
-  gap: 26px;
-  padding: 26px 32px 32px 24px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
+  gap: 30px;
+  min-width: 0;
 }
 
 .chartSection {
   display: grid;
-  grid-template-columns: var(--gutter) minmax(0, 1fr);
+  grid-template-columns: var(--indent, calc(3.5rem + 24px)) minmax(0, 1fr);
   align-items: start;
 }
 
-/* A form section's mark, boxed and handwritten as on a chart. */
+/* A form section's mark (A, B…), as type: small, blue and level with the chords. */
 .formMark {
-  justify-self: start;
-  display: inline-grid;
-  place-items: center;
-  min-width: 38px;
-  height: 32px;
-  padding: 2px 7px 0;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
-  font-family: var(--font-chord);
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 650;
   line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink);
-  transform: rotate(-2deg);
+  letter-spacing: 0.02em;
+  color: var(--accent);
 }
 
 .chartSection > .formMark {
-  margin-top: 24px;
+  margin-top: 40px;
 }
 
 .bars {
@@ -540,19 +295,19 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  row-gap: 18px;
+  row-gap: 20px;
   min-width: 0;
 }
 
 .bar {
   position: relative;
   display: grid;
-  grid-template-rows: 18px 44px 25px;
+  grid-template-rows: 18px 48px 25px;
   min-width: 0;
 }
 
 .chartAnalysed .bar {
-  grid-template-rows: 18px 44px 25px 34px;
+  grid-template-rows: 18px 48px 25px 36px;
 }
 
 .barTop {
@@ -573,8 +328,8 @@
 
 /* Where a key centre starts, its name is written in over the bar. */
 .keyTag {
-  font-family: var(--font-chord);
-  font-size: 1rem;
+  font-size: 0.78rem;
+  font-weight: 650;
   line-height: 18px;
   color: var(--ink);
 }
@@ -589,27 +344,18 @@
 .chordAt {
   position: absolute;
   left: calc(var(--at) * (100% - var(--pad)) + var(--pad));
-  bottom: 5px;
+  bottom: 6px;
   font-family: var(--font-chord);
   font-size: var(--chord);
   line-height: 1;
   white-space: nowrap;
-  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
-}
-
-.bar:nth-child(odd):hover .barChords .chordAt {
-  transform: rotate(-2deg);
-}
-
-.bar:nth-child(even):hover .barChords .chordAt {
-  transform: rotate(2deg);
 }
 
 /* With the analysis on, roman numerals are written under the staff. */
 .romans .chordAt {
-  top: 7px;
+  top: 8px;
   bottom: auto;
-  font-size: calc(var(--chord) * 0.62);
+  font-size: calc(var(--chord) * 0.6);
   color: var(--ink-2);
 }
 
@@ -669,7 +415,7 @@
   border-right-width: 4.5px;
 }
 
-/* Key-centre shading, shown with the analysis. Analysis colours are data, not the accent. */
+/* Key-centre shading, shown with the analysis. Analysis colours are data, never the accent. */
 .kc0 {
   --kc: var(--role-resolution);
 }
@@ -686,14 +432,6 @@
   --kc: var(--role-scale);
 }
 
-.kc4 {
-  --kc: var(--role-chord);
-}
-
-.kc5 {
-  --kc: var(--ink-3);
-}
-
 .shaded {
   background: color-mix(in srgb, var(--kc) 11%, transparent);
   box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--kc) 55%, transparent);
@@ -706,26 +444,25 @@
 
 .centreLegend {
   list-style: none;
-  margin: 0;
+  margin: 0 0 0 var(--indent, calc(3.5rem + 24px));
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 28px;
-  font-size: 0.9rem;
+  gap: 8px 32px;
+  font-size: 0.95rem;
 }
 
 .centreLegend li {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .centreSwatch {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  background: color-mix(in srgb, var(--kc) 22%, var(--surface));
-  border: 1.5px solid var(--kc);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--kc);
 }
 
 .centreName {
@@ -736,84 +473,60 @@
   color: var(--ink-3);
 }
 
-.footnote {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  max-width: 86ch;
-  font-size: 0.92rem;
-  color: var(--ink-2);
+/* Smaller symbols in a narrower window, so two chords in one bar keep a clear gap between them. */
+@container lesson (max-width: 1199px) {
+  .chart {
+    --chord: 1.75rem;
+  }
 }
 
-.footnote > :global(svg) {
-  flex: none;
-  margin-top: 2px;
-  color: var(--ink-3);
-}
-
-.footnote strong {
-  color: var(--ink);
+@container lesson (max-width: 999px) {
+  .chart {
+    --chord: 1.5rem;
+  }
 }
 
 @container lesson (max-width: 879px) {
   .chart {
-    --gutter: 54px;
-    --chord: 1.5rem;
+    --chord: 1.3rem;
     --pad: 8px;
-    padding: 22px 22px 26px 16px;
-  }
-}
-
-/* In a narrow window the form marks move above their bars. */
-@container lesson (max-width: 639px) {
-  .chart {
-    --chord: 1.28rem;
-    --pad: 6px;
-    padding: 20px 14px 24px;
-  }
-
-  .chartSection {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 8px;
-  }
-
-  .chartSection > .formMark {
-    margin-top: 0;
   }
 
   .staff i::before {
-    left: 4px;
-    width: 3.5px;
+    left: 5px;
+    width: 4px;
   }
 }
 
 /* The harmonic analysis under the chart: how the changes work, and the common variations. */
 .analysis {
+  margin-left: var(--indent, 0);
   display: grid;
-  gap: 40px;
-  margin-top: 16px;
+  gap: 48px;
+  padding-top: 8px;
 }
 
-@container lesson (min-width: 880px) {
+@container lesson (min-width: 1000px) {
   .analysis {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 64px;
+    gap: 72px;
     align-items: start;
   }
 }
 
 .analysisColumn {
   display: grid;
-  gap: 20px;
+  gap: 22px;
   align-content: start;
   min-width: 0;
 }
 
 .analysisTitle {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.75rem;
-  line-height: 1.1;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .analysisPart {
@@ -825,14 +538,14 @@
 
 .analysisPartHead {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 14px;
 }
 
 .analysisRange {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
@@ -853,8 +566,8 @@
 }
 
 .variation h4 {
-  font-size: 1rem;
-  font-weight: 650;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 /* The bars a variation changes, copied out like the chart. */
@@ -915,51 +628,138 @@
 }
 
 /* ---------------------------------------------------------------------------------------------
-   D. Voicings: chord chips to choose from (the chosen one circled in pencil, like the tempo on the
-   playback bar), then that chord's shapes side by side. */
+   Inside the rows: a line that says what the row is for, then its content. */
 
+.rowBody {
+  display: grid;
+  gap: 32px;
+  min-width: 0;
+}
+
+.rowIntro {
+  max-width: 34em;
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* Listen: the recordings on hairlines, the performer large and the year at the right. */
+.tracks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 40px;
+  padding: 26px 0 28px;
+  border-top: 1px solid var(--line);
+}
+
+.trackMain {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  min-width: 0;
+}
+
+.trackArtist,
+.trackYear {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.trackYear {
+  color: var(--ink-3);
+}
+
+.trackAlbum {
+  font-size: var(--text-lead);
+  line-height: 1.35;
+}
+
+.trackAlbum a {
+  text-decoration-thickness: 1.5px;
+}
+
+.trackOut {
+  display: inline;
+  margin-left: 6px;
+  vertical-align: -1px;
+  color: var(--ink-3);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.trackAlbum a:hover .trackOut {
+  transform: translate(2px, -2px);
+  color: var(--accent);
+}
+
+.trackRecording {
+  color: var(--ink-2);
+}
+
+.trackNote {
+  max-width: 40em;
+  margin-top: 4px;
+  color: var(--ink-2);
+}
+
+.trackChecked {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+/* Voicings: the chords as words to choose from (the chosen one blue and underlined), then that
+   chord's shapes side by side. */
 .voicings {
   display: grid;
-  gap: 22px;
+  gap: 40px;
   min-width: 0;
 }
 
 .picker {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px 48px;
+  gap: 24px 72px;
 }
 
-.chipGroup {
+.choiceGroup {
   min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.chipLegend {
-  margin-bottom: 10px;
+.choiceLegend {
+  margin-bottom: 6px;
   padding: 0;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
-.chips {
+.choices {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 8px;
+  gap: 2px 28px;
 }
 
-.chip {
+.choice {
   position: relative;
   display: inline-flex;
   cursor: pointer;
 }
 
-.chip input {
+.choice input {
   position: absolute;
   opacity: 0;
   width: 1px;
@@ -967,74 +767,73 @@
   margin: 0;
 }
 
-.chipFace {
+.choiceFace {
+  position: relative;
   display: inline-flex;
-  align-items: baseline;
-  min-height: 42px;
-  padding: 3px 14px 0;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-s);
-  background: var(--surface);
+  align-items: center;
+  min-height: 52px;
+  padding-top: 4px;
   font-family: var(--font-chord);
-  font-size: 1.45rem;
-  line-height: 1.45;
-  transition:
-    transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1),
-    border-color 0.15s ease-out;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--ink-2);
+  transition: color 0.15s ease-out;
 }
 
-.chip:hover .chipFace {
-  border-color: var(--line-control);
-  transform: rotate(-2deg);
+.choiceFace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.chip:nth-child(even):hover .chipFace {
-  transform: rotate(2deg);
+.choice:hover .choiceFace {
+  color: var(--ink);
 }
 
-.chip input:checked + .chipFace {
-  border-color: transparent;
-  background: transparent;
-  transform: none;
+.choice input:checked + .choiceFace {
+  color: var(--accent);
 }
 
-.chip input:focus-visible + .chipFace {
+.choice input:checked + .choiceFace::after {
+  transform: scaleX(1);
+}
+
+.choice input:focus-visible + .choiceFace {
   outline: 2px solid var(--focus);
   outline-offset: 4px;
-}
-
-.chipMark {
-  position: absolute;
-  inset: -4px -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 8px);
+  border-radius: 4px;
 }
 
 .stage {
   display: grid;
-  gap: 22px;
-  padding: 26px 32px 24px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
+  gap: 28px;
+  min-width: 0;
 }
 
 .stageHead {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 4px 20px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
+  gap: 6px 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
 .stageSymbol {
   font-family: var(--font-chord);
-  font-size: 2.6rem;
+  font-size: clamp(2.6rem, 1.8rem + 2vw, 4rem);
   line-height: 1;
 }
 
 .stageMeta {
+  font-size: var(--text-lead);
   color: var(--ink-2);
 }
 
@@ -1043,15 +842,16 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
-  gap: 28px 48px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+  gap: 36px 56px;
 }
 
 .stageKey {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--ink-3);
 }
 
+/* One chord box: the diagram at the left, its name and where it leads at the right. */
 .voicing {
   margin: 0;
   display: grid;
@@ -1074,11 +874,11 @@
 }
 
 .voicingName {
-  font-weight: 650;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 .voicingNote {
-  font-size: 0.95rem;
   color: var(--ink-2);
 }
 
@@ -1118,19 +918,17 @@
 }
 
 .vLabel {
-  fill: var(--surface);
+  fill: var(--paper);
   font-size: 10.5px;
   font-weight: 700;
   text-anchor: middle;
 }
 
-/* ---------------------------------------------------------------------------------------------
-   E. Guide tones: the exercise, its changes bar by bar, the score sheet and the fretboard with the
-   how-to beside it, as on Today. */
-
+/* Guide tones: the exercise, its changes bar by bar, the score with its playback bar, and the
+   fretboard with the how-to beside it, as on Today. */
 .guide {
   display: grid;
-  gap: 20px;
+  gap: 28px;
   min-width: 0;
 }
 
@@ -1141,14 +939,16 @@
 
 .guideHead {
   display: grid;
-  gap: 8px;
+  gap: 14px;
 }
 
 .guideTitle {
+  max-width: 22em;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.75rem;
-  line-height: 1.15;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 .exerciseChanges {
@@ -1156,13 +956,13 @@
   flex-wrap: wrap;
   row-gap: 6px;
   font-family: var(--font-chord);
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   line-height: 1.3;
   color: var(--ink-2);
 }
 
 .exerciseBar {
-  padding: 0 14px 0 10px;
+  padding: 0 16px 0 12px;
   border-left: 1.5px solid var(--line-control);
 }
 
@@ -1170,321 +970,212 @@
   border-right: 1.5px solid var(--line-control);
 }
 
+.guidePlayer {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
 .guideNote {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   align-content: start;
-  padding-top: 6px;
-  font-size: 0.98rem;
+  padding-top: 10px;
   color: var(--ink-2);
 }
 
 .guideNote h4 {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
-/* ---------------------------------------------------------------------------------------------
-   F. Improvisation ideas: numbered notes, in two columns when there is room. */
-
+/* Improvisation ideas: the idea's name large at the left, how to play it at the right. */
 .ideas {
   list-style: none;
   margin: 0;
   padding: 0;
-  columns: 2 26rem;
-  column-gap: 64px;
+  display: grid;
 }
 
 .idea {
-  break-inside: avoid;
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  padding: 20px 0 30px;
+  gap: 12px 72px;
+  padding: 28px 0 30px;
   border-top: 1px solid var(--line);
 }
 
-.ideaNumber {
+@container lesson (min-width: 1000px) {
+  .idea {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.ideaTitle {
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2.75rem;
-  line-height: 0.9;
-  color: var(--ink-3);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
-.ideaBody {
-  display: grid;
-  gap: 8px;
-  min-width: 0;
+.ideaText {
+  color: var(--ink-2);
 }
 
-.ideaBody h3 {
-  font-size: 1.12rem;
-}
-
-/* ---------------------------------------------------------------------------------------------
-   G. The seven-day plan as a timeline: a numbered marker per day on a rail, today circled in
-   pencil and set on a card, finished days ticked. */
-
-.timeline {
-  --step: 12px;
+/* The seven-day plan: one day under another on hairlines, the day's name at the left and its
+   tasks at the right. Today's name is blue. */
+.plan {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: var(--step);
 }
 
-.day {
-  position: relative;
+.planDay {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
+  gap: 14px 72px;
+  padding: 28px 0 22px;
+  border-top: 1px solid var(--line);
 }
 
-/* The rail, from each marker to the next. */
-.day::before {
-  content: '';
-  position: absolute;
-  left: 21.25px;
-  top: 40px;
-  bottom: calc(-1 * (var(--step) + 40px));
-  width: 1.5px;
-  background: var(--line-strong);
-}
-
-.day:last-child::before {
-  display: none;
-}
-
-.dayMarker {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  margin-top: 18px;
-  border: 1.5px solid var(--line-control);
-  border-radius: 50%;
-  background: var(--paper);
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--ink-2);
-}
-
-.dayToday .dayMarker {
-  border-color: transparent;
-  color: var(--ink);
-}
-
-.dayDone .dayMarker {
-  background: var(--accent-soft);
-  border-color: transparent;
-  color: var(--ink);
-}
-
-.dayCircle {
-  position: absolute;
-  inset: -7px -9px;
-  width: calc(100% + 18px);
-  height: calc(100% + 14px);
-}
-
-.dayTick {
-  position: absolute;
-  top: -12px;
-  right: -14px;
-  width: 28px;
-  height: 24px;
-}
-
-.dayCard {
-  display: grid;
-  gap: 10px 32px;
-  min-width: 0;
-  padding: 18px 0 16px;
-  border-bottom: 1px solid var(--line);
-}
-
-@container lesson (min-width: 760px) {
-  .dayCard {
-    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+@container lesson (min-width: 1000px) {
+  .planDay {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
   }
 }
 
-.dayToday .dayCard {
-  padding: 18px 24px 14px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-}
-
-.dayHead {
+.planHead {
   display: grid;
-  gap: 4px;
+  gap: 8px;
   align-content: start;
+  justify-items: start;
 }
 
-.dayLabel {
+.planLabel {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 10px;
-  font-size: 0.88rem;
+  gap: 4px 14px;
+  font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-3);
 }
 
-/* Today, marked in blue as the current place. */
 .todayTag {
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
 }
 
-.dayFocus {
+.planFocus {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.1;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
-.dayMeta {
-  font-size: 0.85rem;
+.planToday .planFocus {
+  color: var(--accent);
+}
+
+.planMeta {
   color: var(--ink-3);
 }
 
-.dayBody {
+.planDone {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.planBody {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* The week's licks: a list of links on hairlines, today's marked in blue. */
+.licks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.licks li {
+  border-top: 1px solid var(--line);
+}
+
+.lickRow {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto 24px;
+  align-items: center;
+  gap: 4px 28px;
+  padding: 22px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lickRow:hover {
+  color: var(--ink);
+}
+
+.lickNumber {
+  align-self: start;
+  padding-top: 0.55em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.lickText {
   display: grid;
   gap: 4px;
   min-width: 0;
 }
 
-/* ---------------------------------------------------------------------------------------------
-   H. The week's licks: a set list, titles in serif, today's lick underlined in pencil. */
-
-.setlist {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line-strong);
-}
-
-.setlist li {
-  border-bottom: 1px solid var(--line);
-}
-
-.setRow {
-  display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) minmax(0, 14rem) 7.5rem 18px;
-  grid-template-areas: 'number title artist status go';
-  align-items: center;
-  gap: 4px 24px;
-  min-height: 64px;
-  padding: 12px 10px 12px 4px;
-  text-decoration: none;
-  transition: background-color 0.15s ease-out;
-}
-
-.setRow:hover {
-  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
-}
-
-.setRow > :global(svg) {
-  grid-area: go;
-  color: var(--ink-3);
-  transition:
-    transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1),
-    color 0.15s ease-out;
-}
-
-.setRow:hover > :global(svg) {
-  color: var(--ink);
-  transform: translateX(3px);
-}
-
-.setNumber {
-  grid-area: number;
+.lickTitle {
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--ink-3);
+  font-size: clamp(1.4rem, 1rem + 0.9vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  transition: color 0.2s ease-out;
 }
 
-.setTitle {
-  grid-area: title;
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  line-height: 1.2;
-  text-decoration: underline 1px transparent;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 0.15s ease-out;
+.lickRow:hover .lickTitle {
+  color: var(--accent);
 }
 
-.setRow:hover .setTitle {
-  text-decoration-color: var(--accent);
-}
-
-.setArtist {
-  grid-area: artist;
-  font-size: 0.92rem;
+.lickBy {
   color: var(--ink-2);
 }
 
-.setStatus {
-  grid-area: status;
-  justify-self: end;
-  font-size: 0.85rem;
+.lickStatus {
+  font-size: 0.95rem;
   font-weight: 600;
-}
-
-.setToday {
-  position: relative;
-  color: var(--ink);
-}
-
-.setUnderline {
-  position: absolute;
-  left: -2px;
-  bottom: -6px;
-  width: calc(100% + 4px);
-  height: 7px;
-}
-
-.setPlayed {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   color: var(--ink-3);
+  white-space: nowrap;
 }
 
-.setTick {
-  width: 20px;
-  height: 18px;
+.lickToday {
+  color: var(--accent);
+  text-decoration: underline 2px;
+  text-underline-offset: 6px;
 }
 
-/* Below the wide layout the artist goes under the title, so the title keeps its line. */
-@container lesson (max-width: 879px) {
-  .setRow {
-    grid-template-columns: 32px minmax(0, 1fr) auto 18px;
-    grid-template-areas:
-      'number title status go'
-      'number artist status go';
-    gap: 2px 16px;
-  }
-
-  .setNumber {
-    align-self: start;
-  }
+.lickGo {
+  color: var(--ink-3);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.2s ease-out;
 }
 
-/* Notes for the week, ruled like Today's. */
-.notes {
-  max-width: 760px;
-  scroll-margin-top: 24px;
+.lickRow:hover .lickGo {
+  transform: translateX(6px);
+  color: var(--accent);
 }

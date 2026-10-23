@@ -1,16 +1,14 @@
 'use client';
 
 // The standard's seven-day plan: listening, harmony, comping, arpeggios, vocabulary, improvisation
-// and self-review. Today's day is featured at the top of the page; the whole week is a timeline
-// with today circled in pencil. Ticks are drawn in blue pencil and kept per ISO week.
+// and self-review. Today's day opens This Week; the whole week is a list of days on hairlines.
+// A ticked task fills with blue. Ticks are kept per ISO week.
 
 import Link from 'next/link';
 import type { PlanDay, PlanFocus, Standard } from '@/lib/music/types';
 import { togglePlanTask } from '@/lib/progress/actions';
 import { useProgress } from '@/lib/progress/store';
 import { Icon, type IconName } from '@/components/ui/Icon';
-import { Pencil } from '@/components/ui/Pencil';
-import ui from '@/components/ui/ui.module.css';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { InlineProse, type ProseContext } from '@/components/lesson/Prose';
 import { curly, typeset } from '@/lib/text';
@@ -45,7 +43,7 @@ export interface PlanLick {
   href: string;
 }
 
-/** Where a day's work happens: a section of this page, or the day's lick. */
+/** Where a day's work happens: a part of this page, or the day's lick. */
 export interface DayAction {
   href: string;
   label: string;
@@ -92,30 +90,26 @@ function DayLick({ lick }: { lick: PlanLick }) {
   const cut = title.lastIndexOf(' ') + 1;
   return (
     <Link href={lick.href} className={styles.dayLick}>
-      <Icon name="note" size={18} />
-      <span>
-        Lick for this day:{' '}
-        <span className={styles.dayLickTitle}>
-          {title.slice(0, cut)}
-          <span className={styles.dayLickEnd}>
-            {title.slice(cut)}
-            <Icon name="chevronRight" size={16} className={styles.dayLickGo} />
-          </span>
+      <span className={styles.dayLickLabel}>The day’s lick</span>{' '}
+      <span className={styles.dayLickTitle}>
+        {title.slice(0, cut)}
+        <span className={styles.dayLickEnd}>
+          {title.slice(cut)}
+          <Icon name="arrowRight" size={18} className={styles.dayLickGo} />
         </span>
       </span>
     </Link>
   );
 }
 
-/** Today's day of the plan, featured at the top of the week with the one primary action. When every
- *  task is ticked, the count says so and names tomorrow's focus. */
+/** Today's day of the plan, open on This Week: what the day is for, its tasks and its lick. When
+ *  every task is ticked, the count says so and names tomorrow's focus. */
 export function TodayPractice({
   standardId,
   day,
   weekKey,
   ctx,
   lick,
-  action,
   next,
 }: {
   standardId: string;
@@ -123,59 +117,47 @@ export function TodayPractice({
   weekKey: string | null;
   ctx: ProseContext;
   lick?: PlanLick;
-  action: DayAction;
   next?: PlanDay;
 }) {
   const ticks = usePlanTicks(standardId, weekKey);
   const done = doneCount(day, ticks);
   const finished = done === day.tasks.length;
-  const inPage = action.href.startsWith('#');
-  const actionClass = `${ui.button} ${ui.primary} ${styles.todayAction}`;
   return (
-    <div className={styles.todayCard}>
+    <div className={styles.today}>
       <div className={styles.todayLead}>
-        <div className={styles.todayTitleRow}>
-          <span className={styles.todayNumeral} aria-hidden="true">
-            {day.day}
-            <Pencil kind="circle" draw className={styles.todayCircle} />
-          </span>
-          <div className={styles.todayTitles}>
-            <p className={styles.todayDay}>
-              Day {day.day} of 7 · {day.minutes} minutes
-            </p>
-            <h3 className={styles.todayFocus}>{FOCUS_LABEL[day.focus]}</h3>
-          </div>
-        </div>
+        <p className={styles.todayDay}>
+          Day {day.day} of 7 · {day.minutes} minutes
+        </p>
+        <h3 className={styles.todayFocus}>{FOCUS_LABEL[day.focus]}</h3>
         <p className={styles.todayAim}>{FOCUS_AIM[day.focus]}</p>
-        <div className={styles.todayActions}>
-          {inPage ? (
-            <a href={action.href} className={actionClass}>
-              {action.label}
-              <Icon name={action.icon} size={18} />
-            </a>
+        <p className={`${styles.todayCount} ${finished ? styles.todayFinished : ''} num`} aria-live="polite">
+          {finished ? (
+            <>
+              <span className={styles.doneMark} aria-hidden="true">
+                <Icon name="check" size={14} />
+              </span>
+              {done === 1 ? 'Done.' : `All ${done} done.`}
+              {next ? ` Tomorrow: ${FOCUS_LABEL[next.focus].toLowerCase()}.` : ' That’s the week.'}
+            </>
           ) : (
-            <Link href={action.href} className={actionClass}>
-              {action.label}
-              <Icon name={action.icon} size={18} />
-            </Link>
+            `${done} of ${day.tasks.length} done`
           )}
-          <p className={`${styles.todayCount} ${finished ? styles.todayFinished : ''} num`} aria-live="polite">
-            {finished ? (
-              <>
-                <Pencil kind="tick" draw className={styles.todayTick} />
-                {done === 1 ? 'Done.' : `All ${done} done.`}
-                {next ? ` Tomorrow: ${FOCUS_LABEL[next.focus]}.` : ' That’s the week.'}
-              </>
-            ) : (
-              `${done} of ${day.tasks.length} done`
-            )}
-          </p>
-        </div>
-        {lick && lick.href !== action.href ? <DayLick lick={lick} /> : null}
+        </p>
       </div>
-      <TaskList standardId={standardId} day={day} weekKey={weekKey} ctx={ctx} />
+      <div className={styles.todayTasks}>
+        <TaskList standardId={standardId} day={day} weekKey={weekKey} ctx={ctx} />
+        {lick ? <DayLick lick={lick} /> : null}
+      </div>
     </div>
   );
+}
+
+/** "9 of 21 done": the week's ticks, for the title of the row that holds the plan. */
+export function PlanCount({ standard, weekKey }: { standard: Standard; weekKey: string | null }) {
+  const ticks = usePlanTicks(standard.id, weekKey);
+  const total = standard.practicePlan.reduce((n, d) => n + d.tasks.length, 0);
+  const done = standard.practicePlan.reduce((n, d) => n + doneCount(d, ticks), 0);
+  return <span className="num">{`${done} of ${total} done`}</span>;
 }
 
 function PlanDayRow({ standardId, day, weekKey, today, ctx, lick }: { standardId: string; day: PlanDay; weekKey: string | null; today: boolean; ctx: ProseContext; lick?: PlanLick }) {
@@ -183,33 +165,26 @@ function PlanDayRow({ standardId, day, weekKey, today, ctx, lick }: { standardId
   const done = doneCount(day, ticks);
   const complete = done === day.tasks.length;
   return (
-    <li className={`${styles.day} ${today ? styles.dayToday : ''} ${complete ? styles.dayDone : ''}`} aria-current={today ? 'step' : undefined}>
-      <span className={styles.dayMarker} aria-hidden="true">
-        {day.day}
-        {today ? <Pencil kind="circle" draw className={styles.dayCircle} /> : null}
-        {complete ? <Pencil kind="tick" className={styles.dayTick} /> : null}
-      </span>
-      <div className={styles.dayCard}>
-        <div className={styles.dayHead}>
-          <p className={styles.dayLabel}>
-            <span>Day {day.day}</span>
-            {today ? <span className={styles.todayTag}>Today</span> : null}
-          </p>
-          <h3 className={styles.dayFocus}>{FOCUS_LABEL[day.focus]}</h3>
-          <p className={`${styles.dayMeta} num`}>
-            {day.minutes} min · {complete ? 'all done' : `${done} of ${day.tasks.length} done`}
-          </p>
-        </div>
-        <div className={styles.dayBody}>
-          <TaskList standardId={standardId} day={day} weekKey={weekKey} ctx={ctx} />
-          {lick ? <DayLick lick={lick} /> : null}
-        </div>
+    <li className={`${styles.planDay} ${today ? styles.planToday : ''}`} aria-current={today ? 'step' : undefined}>
+      <div className={styles.planHead}>
+        <p className={styles.planLabel}>
+          <span>Day {day.day}</span>
+          {today ? <span className={styles.todayTag}>Today</span> : null}
+        </p>
+        <h3 className={styles.planFocus}>{FOCUS_LABEL[day.focus]}</h3>
+        <p className={`${styles.planMeta} ${complete ? styles.planDone : ''} num`}>
+          {day.minutes} min · {complete ? 'all done' : `${done} of ${day.tasks.length} done`}
+        </p>
+      </div>
+      <div className={styles.planBody}>
+        <TaskList standardId={standardId} day={day} weekKey={weekKey} ctx={ctx} />
+        {lick ? <DayLick lick={lick} /> : null}
       </div>
     </li>
   );
 }
 
-/** The seven days as a timeline. */
+/** The seven days, one under another. */
 export function PracticePlan({
   standard,
   weekKey,
@@ -224,7 +199,7 @@ export function PracticePlan({
   licks: Map<string, PlanLick>;
 }) {
   return (
-    <ol className={styles.timeline}>
+    <ol className={styles.plan}>
       {standard.practicePlan.map((day) => (
         <PlanDayRow
           key={day.day}

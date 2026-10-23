@@ -1,7 +1,8 @@
 'use client';
 
 // Guide-tone exercises (3rds and 7ths through the changes), drawn and played like Today's lick: the
-// score and its playback bar on one sheet, then the fretboard with the how-to beside it.
+// score and its playback bar, then the fretboard with the how-to beside it. The player exists only
+// while its row is open.
 
 import { useMemo, useState } from 'react';
 import type { Standard } from '@/lib/music/types';
@@ -15,6 +16,7 @@ import { Segmented } from '@/components/ui/Segmented';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { Prose, lineContext } from '@/components/lesson/Prose';
 import { curly, typeset } from '@/lib/text';
+import { WhileShown } from './WhileShown';
 import styles from './standard.module.css';
 
 type Exercise = Standard['guideToneExercises'][number];
@@ -79,21 +81,25 @@ export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: S
         <h3 className={styles.guideTitle}>{curly(ex.title)}</h3>
         <ExerciseChanges ex={ex} />
       </div>
-      <PlayerProvider key={index} tex={tex} tempo={standard.tempo} label={`${ex.title}: standard notation and tablature${showAnalysis ? ' with chord degrees' : ''}`} highlights={highlights}>
-        <ScoreSheet>
-          <PlayerScore />
-          <Transport />
-        </ScoreSheet>
-        <div className={lessonStyles.fretRow}>
-          <Fretboard bars={ex.bars} showAnalysis={showAnalysis} leftHanded={leftHanded} />
-          {ex.description ? (
-            <div className={styles.guideNote}>
-              <h4>How to play it</h4>
-              <Prose text={typeset(ex.description)} ctx={ctx} />
+      <WhileShown>
+        <PlayerProvider key={index} tex={tex} tempo={standard.tempo} label={`${ex.title}: standard notation and tablature${showAnalysis ? ' with chord degrees' : ''}`} highlights={highlights}>
+          <div className={styles.guidePlayer}>
+            <ScoreSheet>
+              <PlayerScore />
+              <Transport />
+            </ScoreSheet>
+            <div className={lessonStyles.fretRow}>
+              <Fretboard bars={ex.bars} showAnalysis={showAnalysis} leftHanded={leftHanded} />
+              {ex.description ? (
+                <div className={styles.guideNote}>
+                  <h4>How to play it</h4>
+                  <Prose text={typeset(ex.description)} ctx={ctx} />
+                </div>
+              ) : null}
             </div>
-          ) : null}
-        </div>
-      </PlayerProvider>
+          </div>
+        </PlayerProvider>
+      </WhileShown>
     </div>
   );
 }

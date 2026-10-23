@@ -43,7 +43,8 @@ async function overlaps(page: Page, container: string) {
 test('the playback controls and the top bar never overlap, at any window width', async ({ page }, info) => {
   test.skip(info.project.name !== 'mac', 'the test sets its own window sizes');
   const nav = page.getByRole('navigation', { name: 'Main' });
-  for (const path of ['/', '/week']) {
+  // On This Week the player is in the Guide tones row, which the address opens.
+  for (const path of ['/', '/week#guide-tones']) {
     await page.goto(path);
     await expect(page.getByRole('group', { name: 'Playback' })).toBeVisible();
     for (const width of [720, 820, 900, 1024, 1100, 1180, 1280, 1440, 1728, 2048]) {

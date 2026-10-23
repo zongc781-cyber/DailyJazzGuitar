@@ -1,9 +1,8 @@
 'use client';
 
-// This Week: the weekly standard with today's day of the seven-day plan first, and a link back to
-// today's lick at the top right (as Today links here).
+// This Week: the weekly standard with today's day of the seven-day plan first, ending on a link to
+// today's lick (as Today ends on a link here).
 
-import Link from 'next/link';
 import { Suspense, ViewTransition, use, useMemo } from 'react';
 import type { CatalogEntry } from '@/lib/music/types';
 import { licksFor } from '@/lib/catalog';
@@ -12,21 +11,28 @@ import { useSchedule, type Schedule } from '@/lib/client/useSchedule';
 import { formatShortDate } from '@/lib/format';
 import { weekDates } from '@/lib/schedule';
 import { useProgress } from '@/lib/progress/store';
+import { curly } from '@/lib/text';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
-import { Icon } from '@/components/ui/Icon';
+import { Hero } from '@/components/ui/Hero';
+import { NextLink } from '@/components/ui/NextLink';
 import { StandardLesson, type WeekLick } from '@/components/standard/StandardLesson';
 import { LessonSkeleton, ScreenSkeleton } from './Skeletons';
 import styles from './screens.module.css';
 
-/** Today's lick, as a small link at the top right of the week. */
-function TodayLickLink({ lick, review }: { lick: CatalogEntry; review: boolean }) {
-  return (
-    <Link href="/" className={styles.weekStrip}>
-      <span className={styles.weekStripLabel}>{review ? 'Today’s lick (review)' : 'Today’s lick'}</span>
-      <span className={styles.weekStripTitle}>{lick.title}</span>
-      <Icon name="chevronRight" size={16} />
-    </Link>
-  );
+/** "19 to 25 Oct", or "28 Sep to 4 Oct" when the week spans two months. */
+function weekRange(first: string, last: string) {
+  return first.slice(0, 7) === last.slice(0, 7) ? `${Number(first.slice(8, 10))} to ${formatShortDate(last)}` : `${formatShortDate(first)} to ${formatShortDate(last)}`;
+}
+
+/** The last two words kept together, so a big title never ends on one word alone. */
+function noWidow(title: string) {
+  return title.replace(/ (\S+)$/, ' $1');
+}
+
+/** Who the lick is after, as the lick's own page says it. */
+function byline(lick: CatalogEntry) {
+  if (!lick.artist) return undefined;
+  return !lick.inspirationType || lick.inspirationType === 'in-the-style-of' ? `In the style of ${lick.artist}` : `After ${lick.artist}`;
 }
 
 function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: CatalogEntry[] }) {
@@ -51,17 +57,20 @@ function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: Cata
   }));
   const todayLick = schedule.day.lickId ? catalog.find((e) => e.id === schedule.day.lickId && e.kind === 'lick') : undefined;
   const days = weekDates(schedule.dateKey);
-  const eyebrow = `${schedule.week.review ? 'Review week' : 'This week'} · ${formatShortDate(days[0])} to ${formatShortDate(days[6])} · Day ${schedule.planDay} of 7`;
+  const eyebrow = `${schedule.week.review ? 'Review week' : 'This week'} · ${weekRange(days[0], days[6])} · Day ${schedule.planDay} of 7`;
   return (
     <StandardLesson
       key={standard.id}
       standard={standard}
       eyebrow={eyebrow}
-      aside={todayLick ? <TodayLickLink lick={todayLick} review={schedule.day.review} /> : null}
       weekKey={schedule.weekKey}
       todayDay={schedule.planDay}
       licks={licks}
-      review={schedule.week.review}
+      next={
+        todayLick ? (
+          <NextLink href="/" label={schedule.day.review ? 'Today’s lick, a review' : 'Today’s lick'} title={noWidow(curly(todayLick.title))} meta={byline(todayLick)} testId="lick-next" />
+        ) : null
+      }
     />
   );
 }
@@ -73,14 +82,16 @@ export function WeekScreen({ catalog }: { catalog: CatalogEntry[] }) {
   if (!schedule) return <ScreenSkeleton label="Finding this week’s standard" />;
   if (!schedule.week.standardId || !hasStandard) {
     return (
-      <div className={styles.screen}>
-        <p className={styles.emptyState}>The library has no standards yet.</p>
+      <div className={styles.full}>
+        <Hero top="This week" title="No standard yet">
+          <p>The library has no standards yet. Run the seed build (npm run library) or publish a lesson.</p>
+        </Hero>
       </div>
     );
   }
   return (
     <ViewTransition enter="page-in" exit="page-out" default="none">
-      <div className={styles.screen}>
+      <div className={styles.full}>
         <ErrorBoundary>
           <Suspense fallback={<LessonSkeleton />}>
             <WeekStandard schedule={schedule} catalog={catalog} />

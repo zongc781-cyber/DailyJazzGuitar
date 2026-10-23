@@ -66,9 +66,17 @@ export function LessonScreen({ lesson, standard, licks }: { lesson: Lesson; stan
           />
         </div>
       ) : (
-        <div className={styles.screen}>
-          <BackToLibrary />
-          <StandardLesson key={lesson.id} standard={lesson} eyebrow="Weekly standard" weekKey={dateKey ? isoWeekKey(dateKey) : null} todayDay={null} licks={licks} />
+        <div className={styles.full}>
+          <StandardLesson
+            key={lesson.id}
+            standard={lesson}
+            eyebrow="Weekly standard"
+            back={<BackToLibrary />}
+            weekKey={dateKey ? isoWeekKey(dateKey) : null}
+            todayDay={null}
+            licks={licks}
+            next={<NextLink href="/library?tab=all" label="Library" title="Every lesson" />}
+          />
         </div>
       )}
     </ViewTransition>

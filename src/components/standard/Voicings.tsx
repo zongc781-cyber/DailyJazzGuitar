@@ -1,13 +1,12 @@
 'use client';
 
-// Voicings, one chord at a time: pick a chord (the chosen one is circled in pencil) to see its
+// Voicings, one chord at a time: choose a chord (the chosen one is blue and underlined) to see its
 // shapes side by side, where it is played in the chart, and where each shape leads. The chords are
 // radio buttons, so arrow keys move through them and the whole set is one stop for the Tab key.
 
 import { useId, useMemo, useState } from 'react';
 import type { Standard } from '@/lib/music/types';
 import { prettyChord } from '@/lib/music/pretty';
-import { Pencil } from '@/components/ui/Pencil';
 import { ChordDiagram } from './ChordDiagram';
 import { barRuns, curly, listJoin } from '@/lib/text';
 import styles from './standard.module.css';
@@ -22,10 +21,9 @@ function voicedChords(standard: Standard) {
 
 function ChordChoice({ symbol, name, chosen, onChoose }: { symbol: string; name: string; chosen: boolean; onChoose: () => void }) {
   return (
-    <label className={styles.chip}>
+    <label className={styles.choice}>
       <input type="radio" name={name} value={symbol} checked={chosen} onChange={onChoose} />
-      <span className={styles.chipFace}>{prettyChord(symbol)}</span>
-      {chosen ? <Pencil kind="circle" draw className={styles.chipMark} /> : null}
+      <span className={styles.choiceFace}>{prettyChord(symbol)}</span>
     </label>
   );
 }
@@ -46,18 +44,18 @@ export function Voicings({ standard, showAnalysis, leftHanded }: { standard: Sta
   return (
     <div className={styles.voicings}>
       <div className={styles.picker}>
-        <fieldset className={styles.chipGroup}>
-          <legend className={styles.chipLegend}>In the chart</legend>
-          <div className={styles.chips}>
+        <fieldset className={styles.choiceGroup}>
+          <legend className={styles.choiceLegend}>In the chart</legend>
+          <div className={styles.choices}>
             {inChart.map((s) => (
               <ChordChoice key={s} symbol={s} name={name} chosen={s === symbol} onChoose={() => setSymbol(s)} />
             ))}
           </div>
         </fieldset>
         {others.length ? (
-          <fieldset className={styles.chipGroup}>
-            <legend className={styles.chipLegend}>For the variations</legend>
-            <div className={styles.chips}>
+          <fieldset className={styles.choiceGroup}>
+            <legend className={styles.choiceLegend}>For the variations</legend>
+            <div className={styles.choices}>
               {others.map((s) => (
                 <ChordChoice key={s} symbol={s} name={name} chosen={s === symbol} onChoose={() => setSymbol(s)} />
               ))}

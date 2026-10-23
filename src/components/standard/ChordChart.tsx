@@ -1,7 +1,8 @@
-// The tune's chord chart, copied out like a lead sheet: four bars to a line, chord symbols in
-// Real Book handwriting above a staff with one slash per beat, barlines, a double bar at the end of
-// each section and a final bar at the end of the form. With the analysis on, the roman numerals are
-// written under the staff and each key centre is shaded and named where it starts.
+// The tune's chord chart, copied out like a lead sheet with no frame: the section marks in the
+// margin, four bars to a line, chord symbols in Real Book handwriting above a staff with one slash
+// per beat, barlines, a double bar at the end of each section and a final bar at the end of the
+// form. With the analysis on, the roman numerals are written under the staff and each key centre
+// is shaded and named where it starts.
 
 import type { CSSProperties } from 'react';
 import type { Standard } from '@/lib/music/types';
@@ -9,7 +10,8 @@ import { prettyChord, prettyKey, prettyRoman } from '@/lib/music/pretty';
 import { barRuns } from '@/lib/text';
 import styles from './standard.module.css';
 
-const TINTS = ['kc0', 'kc1', 'kc2', 'kc3', 'kc4', 'kc5'] as const;
+// The analysis colours, never the accent blue, which marks what is chosen or done.
+const TINTS = ['kc0', 'kc1', 'kc2', 'kc3'] as const;
 
 type Centre = Standard['keyCenters'][number];
 
