@@ -1,4 +1,4 @@
-// Draws the app icons from the brand mark (the guitar pick with a note in the side rail) and
+// Draws the app icons from the brand mark (the guitar pick with a note in the top bar) and
 // writes them into the repo: the browser icon (src/app/icon.svg), the icon Safari uses for
 // File > Add to Dock (src/app/apple-icon.png) and the Mac app icon that scripts/mac/install.sh
 // gives the "Daily Jazz Guitar" app (scripts/mac/AppIcon.icns). Run it after changing the
@@ -17,34 +17,25 @@ const mark = (pick, note) => `
   <circle cx="11.6" cy="20.3" r="2.1" fill="${note}"/>
   <circle cx="18.8" cy="17.7" r="2.1" fill="${note}"/>`;
 
-// Cream manuscript paper, a blue pick (the blue pencil of the app's design) and faint staff lines.
-const defs = `
-  <defs>
-    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdfbf6"/><stop offset="1" stop-color="#ebe5d6"/></linearGradient>
-    <linearGradient id="pick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d67ea"/><stop offset="1" stop-color="#1a3db0"/></linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.25"/></filter>
-  </defs>`;
-
-// Five staff lines across a box, behind the pick.
-const staff = (x, y, w, gap, width) =>
-  [0, 1, 2, 3, 4].map((i) => `<line x1="${x}" x2="${x + w}" y1="${y + i * gap}" y2="${y + i * gap}" stroke="#15161a" stroke-opacity="0.13" stroke-width="${width}"/>`).join('');
+// The app's blue, as a field, with the mark in white on it: the way the top bar shows it over a
+// page's blue first screen.
+const BLUE = '#1f3dff';
+const shadow = `<defs><filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.18"/></filter></defs>`;
 
 // A Mac app icon: a rounded square inside the standard 1024 grid, with room for its shadow.
-const macIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">${defs}
-  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#paper)" filter="url(#shadow)"/>
-  <rect x="100.5" y="100.5" width="823" height="823" rx="184.5" fill="none" stroke="#000" stroke-opacity="0.08"/>
-  ${staff(100, 400, 824, 56, 6)}
-  <g transform="translate(512 520) scale(17) translate(-16 -16)">${mark('url(#pick)', '#fdfbf6')}</g>
+const macIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">${shadow}
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="${BLUE}" filter="url(#shadow)"/>
+  <g transform="translate(512 518) scale(17.5) translate(-16 -16)">${mark('#ffffff', BLUE)}</g>
 </svg>`;
 
 // Safari rounds the corners of a touch icon itself, so it fills the square.
-const touchIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">${defs}
-  <rect width="180" height="180" fill="url(#paper)"/>
-  ${staff(0, 62, 180, 13, 1.4)}
-  <g transform="translate(90 92) scale(3.6) translate(-16 -16)">${mark('url(#pick)', '#fdfbf6')}</g>
+const touchIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="${BLUE}"/>
+  <g transform="translate(90 91) scale(3.7) translate(-16 -16)">${mark('#ffffff', BLUE)}</g>
 </svg>`;
 
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${mark('#2450d8', '#fdfbf6')}
+// In a browser tab the mark stands on its own: a blue pick with a white note.
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${mark(BLUE, '#ffffff')}
 </svg>
 `;
 
