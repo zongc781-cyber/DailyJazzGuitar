@@ -1,128 +1,144 @@
-/* Daily Jazz Guitar: design tokens and base styles. The look is a jazz lead sheet marked up with
-   a blue pencil (see docs/design.md): cream paper, ink type, one blue accent. */
+/* Daily Jazz Guitar: design tokens and base styles. The look (docs/design.md): white pages, big
+   fields of blue, black type, very large titles and one idea per screen. Details open when asked. */
 
 :root {
   color-scheme: light;
-  --paper: #f5f2ea;
-  --surface: #fbf9f4;
-  --surface-2: #ede9df;
-  --surface-3: #e3ded2;
-  --ink: #15161a;
-  --ink-2: #44464d;
-  --ink-3: #66676d;
-  --line: #dedacf;
-  --line-strong: #c5c0b4;
-  /* Borders of inputs and other controls: 3:1 against the paper. */
-  --line-control: #857f74;
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f4fa;
+  --surface-3: #e7eaf3;
+  --ink: #0b0d12;
+  --ink-2: #3a3f4b;
+  --ink-3: #5f6573;
+  --line: #e4e7ef;
+  --line-strong: #cdd2de;
+  /* Borders of inputs and other controls: 3:1 against the page. */
+  --line-control: #868c9b;
 
-  /* The blue pencil: the primary action, the current place, focus and pencil marks. */
-  --accent: #2450d8;
-  --accent-strong: #1a3db0;
-  --accent-soft: #e4eafb;
+  /* The one accent: the primary action, the current place, focus, links and ticks. */
+  --accent: #1f3dff;
+  --accent-strong: #1530d6;
+  --accent-soft: #eef1ff;
   --accent-ink: #ffffff;
+
+  /* Fields of blue: the first screen of a page, and the link to the next one. */
+  --field: #1f3dff;
+  --field-strong: #1530d6;
+  --field-ink: #ffffff;
+  --field-ink-2: #dbe0ff;
+  --field-line: rgba(255, 255, 255, 0.34);
 
   --focus: var(--accent);
   --button: var(--ink);
   --button-ink: var(--paper);
-  --danger: #b3261e;
+  --danger: #c4231c;
   --ok: var(--accent);
   --ok-soft: var(--accent-soft);
 
   /* Analysis roles: colour plus a shape on the fretboard, so colour is never the only cue. */
-  --role-chord: #2450d8;
+  --role-chord: #1f3dff;
   --role-tension: #8e3a9d;
   --role-approach: #b4531f;
   --role-scale: #6e6f74;
   --role-resolution: #17734f;
 
-  /* The score sheet alphaTab draws on. */
-  --score-bg: #fbf9f4;
-  --score-ink: #15161a;
-  --score-line: #44464d;
-  --score-cursor: rgba(36, 80, 216, 0.1);
-  --score-beat: #2450d8;
+  /* The page alphaTab draws the score on. */
+  --score-bg: #ffffff;
+  --score-ink: #0b0d12;
+  --score-line: #3a3f4b;
+  --score-cursor: rgba(31, 61, 255, 0.08);
+  --score-beat: #1f3dff;
 
   --radius-s: 6px;
   --radius-m: 10px;
   --radius-l: 16px;
-  --shadow-1: 0 1px 0 rgba(21, 22, 26, 0.04);
-  --shadow-2: 0 1px 2px rgba(21, 22, 26, 0.05), 0 18px 40px -18px rgba(21, 22, 26, 0.18);
+  --shadow-1: none;
+  --shadow-2: none;
 
-  --font-display: var(--font-serif), 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --font-ui: var(--font-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-sans), system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-ui: var(--font-sans), system-ui, -apple-system, 'Helvetica Neue', sans-serif;
   /* Chord symbols, in Real Book-style handwriting. */
-  --font-chord: var(--font-hand), var(--font-serif), serif;
+  --font-chord: var(--font-hand), var(--font-sans), sans-serif;
 
-  /* Five staff lines, for the staff rule and other ornaments. */
+  /* Type: very large titles over plain, readable text. */
+  --text-hero: clamp(3.5rem, 0.4rem + 7.6vw, 10rem);
+  --text-display: clamp(2.6rem, 0.9rem + 4vw, 6rem);
+  --text-title: clamp(1.9rem, 1.3rem + 1.4vw, 2.75rem);
+  --text-lead: clamp(1.2rem, 1rem + 0.5vw, 1.5rem);
+
+  /* Five staff lines, for ornaments drawn from the score. */
   --staff: repeating-linear-gradient(to bottom, var(--line-strong) 0 1px, transparent 1px 6px);
 
-  --tap: 40px;
-  --content: 1120px;
-  --section-gap: 72px;
+  --tap: 44px;
+  --gutter: clamp(28px, 4.4vw, 72px);
+  /* Every block shares one left and right edge: the gutter, or wider on a very wide window so the
+     content stays within --wide. (The percentage is of the block's own container.) */
+  --wide: 1560px;
+  --page-inline: max(var(--gutter), (100% - var(--wide)) / 2);
+  --content: 1240px;
+  --measure: 38rem;
+  --section-gap: 120px;
 }
 
+/* At night the page turns deep blue, so blue and white still lead. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
-    --paper: #111214;
-    --surface: #18191c;
-    --surface-2: #202125;
-    --surface-3: #2a2b30;
-    --ink: #eeebe4;
-    --ink-2: #c9c6bf;
-    --ink-3: #9c9a94;
-    --line: #2e2f34;
-    --line-strong: #44454b;
-    --line-control: #6e6c72;
-    --accent: #8ba3ff;
-    --accent-strong: #b0c1ff;
-    --accent-soft: #1d2646;
-    --accent-ink: #0b0d14;
+    --paper: #0a1033;
+    --surface: #0a1033;
+    --surface-2: #131b46;
+    --surface-3: #1b2457;
+    --ink: #ffffff;
+    --ink-2: #c9cfe8;
+    --ink-3: #9ba4c9;
+    --line: #1f2858;
+    --line-strong: #2e3870;
+    --line-control: #7a84b3;
+    --accent: #8ea0ff;
+    --accent-strong: #b3c0ff;
+    --accent-soft: #18225a;
+    --accent-ink: #0a1033;
     --danger: #ff8a7a;
-    --role-chord: #8ba3ff;
+    --role-chord: #8ea0ff;
     --role-tension: #d9a0e6;
     --role-approach: #f0a271;
-    --role-scale: #a9aaaf;
+    --role-scale: #a9aec4;
     --role-resolution: #76cfa6;
-    --score-bg: #18191c;
-    --score-ink: #eeebe4;
-    --score-line: #b9b6af;
-    --score-cursor: rgba(139, 163, 255, 0.14);
-    --score-beat: #8ba3ff;
-    --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+    --score-bg: #0a1033;
+    --score-ink: #ffffff;
+    --score-line: #c9cfe8;
+    --score-cursor: rgba(142, 160, 255, 0.14);
+    --score-beat: #8ea0ff;
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --paper: #111214;
-  --surface: #18191c;
-  --surface-2: #202125;
-  --surface-3: #2a2b30;
-  --ink: #eeebe4;
-  --ink-2: #c9c6bf;
-  --ink-3: #9c9a94;
-  --line: #2e2f34;
-  --line-strong: #44454b;
-  --line-control: #6e6c72;
-  --accent: #8ba3ff;
-  --accent-strong: #b0c1ff;
-  --accent-soft: #1d2646;
-  --accent-ink: #0b0d14;
+  --paper: #0a1033;
+  --surface: #0a1033;
+  --surface-2: #131b46;
+  --surface-3: #1b2457;
+  --ink: #ffffff;
+  --ink-2: #c9cfe8;
+  --ink-3: #9ba4c9;
+  --line: #1f2858;
+  --line-strong: #2e3870;
+  --line-control: #7a84b3;
+  --accent: #8ea0ff;
+  --accent-strong: #b3c0ff;
+  --accent-soft: #18225a;
+  --accent-ink: #0a1033;
   --danger: #ff8a7a;
-  --role-chord: #8ba3ff;
+  --role-chord: #8ea0ff;
   --role-tension: #d9a0e6;
   --role-approach: #f0a271;
-  --role-scale: #a9aaaf;
+  --role-scale: #a9aec4;
   --role-resolution: #76cfa6;
-  --score-bg: #18191c;
-  --score-ink: #eeebe4;
-  --score-line: #b9b6af;
-  --score-cursor: rgba(139, 163, 255, 0.14);
-  --score-beat: #8ba3ff;
-  --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.3);
-  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+  --score-bg: #0a1033;
+  --score-ink: #ffffff;
+  --score-line: #c9cfe8;
+  --score-cursor: rgba(142, 160, 255, 0.14);
+  --score-beat: #8ea0ff;
 }
 
 *,
@@ -133,6 +149,7 @@
 
 html {
   overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -141,7 +158,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-ui);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -156,21 +173,22 @@ h4 {
   scroll-margin-top: 24px;
 }
 
-/* Headlines are set in the serif; small headings stay in the text face for weight. */
+/* Titles are set very large and tight; small headings stay at text size, in a heavier weight. */
 h1,
 h2 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
 }
 
 h1 {
-  font-size: clamp(2.8rem, 1.9rem + 2.4vw, 4rem);
+  font-size: var(--text-display);
 }
 
 h2 {
-  font-size: clamp(1.9rem, 1.6rem + 0.8vw, 2.25rem);
+  font-size: var(--text-title);
+  letter-spacing: -0.03em;
 }
 
 h3,
@@ -181,11 +199,11 @@ h4 {
 }
 
 h3 {
-  font-size: 1.06rem;
+  font-size: 1.1rem;
 }
 
 h4 {
-  font-size: 0.98rem;
+  font-size: 1rem;
 }
 
 p {
@@ -195,14 +213,16 @@ p {
 
 a {
   color: inherit;
-  text-decoration-color: var(--line-control);
+  text-decoration-color: currentColor;
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.15s ease-out;
+  text-underline-offset: 0.2em;
+  transition:
+    color 0.15s ease-out,
+    text-decoration-color 0.15s ease-out;
 }
 
 a:hover {
-  text-decoration-color: var(--accent);
+  color: var(--accent);
 }
 
 button,
@@ -225,7 +245,8 @@ select {
 }
 
 ::selection {
-  background: var(--accent-soft);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .visually-hidden {

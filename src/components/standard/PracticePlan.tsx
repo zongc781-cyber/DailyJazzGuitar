@@ -58,7 +58,7 @@ function usePlanTicks(standardId: string, weekKey: string | null) {
 
 const doneCount = (day: PlanDay, ticks: string[]) => day.tasks.filter((_, k) => ticks.includes(`${day.day}.${k}`)).length;
 
-/** A day's tasks as a checklist, ticked in blue pencil. */
+/** A day's tasks as a checklist. A ticked task fills with blue. */
 function TaskList({ standardId, day, weekKey, ctx }: { standardId: string; day: PlanDay; weekKey: string | null; ctx: ProseContext }) {
   const ticks = usePlanTicks(standardId, weekKey);
   return (
@@ -71,7 +71,7 @@ function TaskList({ standardId, day, weekKey, ctx }: { standardId: string; day: 
             <label className={lessonStyles.checkItem}>
               <input type="checkbox" checked={checked} disabled={!weekKey} onChange={() => weekKey && togglePlanTask(weekKey, standardId, id)} />
               <span className={lessonStyles.checkBox} aria-hidden="true">
-                {checked ? <Pencil kind="tick" draw className={lessonStyles.tick} /> : null}
+                <Icon name="check" size={16} className={lessonStyles.tick} />
               </span>
               <span className={lessonStyles.checkText}>
                 <span>

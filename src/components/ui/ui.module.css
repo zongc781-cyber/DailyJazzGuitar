@@ -1,35 +1,36 @@
-/* Shared building blocks: buttons, labels, chips, badges, cards, fields and segmented controls. */
+/* Shared building blocks: buttons, labels, chords, badges, fields and segmented controls. Nothing
+   is boxed: controls are filled shapes or plain words, and lines only divide. */
 
-/* Buttons: a blue pill for the one primary action, ink outlines for the rest. */
+/* Buttons: a blue pill for the one primary action, quiet tinted pills for the rest. */
 .button {
-  min-height: var(--tap);
-  padding: 0 18px;
+  min-height: 48px;
+  padding: 0 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   border-radius: 999px;
-  border: 1px solid var(--ink);
-  background: transparent;
+  border: 0;
+  background: var(--surface-2);
   color: var(--ink);
   font-weight: 600;
-  font-size: 0.94rem;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   transition:
     background-color 0.15s ease-out,
-    border-color 0.15s ease-out,
     color 0.15s ease-out,
     transform 0.15s ease-out;
 }
 
 .button:hover {
-  background: var(--surface-2);
+  background: var(--surface-3);
+  color: var(--ink);
 }
 
 .button:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: scale(0.98);
 }
 
 .button:disabled {
@@ -39,51 +40,96 @@
 
 .primary {
   background: var(--accent);
-  border-color: var(--accent);
   color: var(--accent-ink);
 }
 
 .primary:hover {
   background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  color: var(--accent-ink);
+}
+
+/* The one action on a first screen. */
+.large {
+  min-height: 60px;
+  padding: 0 30px;
+  font-size: 1.1rem;
+  gap: 12px;
+}
+
+.large :global(svg) {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.large:hover :global(svg) {
+  transform: translateY(3px);
+}
+
+/* The primary action on a blue field: white, with blue words. */
+.onField {
+  background: var(--field-ink);
+  color: var(--field);
+}
+
+.onField:hover {
+  background: var(--field-ink-2);
+  color: var(--field);
 }
 
 .done {
   background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--ink);
-}
-
-.done :global(svg) {
   color: var(--accent);
 }
 
 .done:hover {
   background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .danger {
-  border-color: var(--danger);
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--danger);
   color: var(--danger);
 }
 
 .ghost {
-  border-color: transparent;
   background: transparent;
 }
 
-.small {
-  min-height: 34px;
-  padding: 0 14px;
-  font-size: 0.88rem;
+.ghost:hover {
+  background: var(--surface-2);
 }
 
-/* Small uppercase labels: eyebrows above headlines, field names, table heads. */
+.small {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 0.9rem;
+}
+
+/* A text link with an arrow that moves on hover. */
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+.arrowLink :global(svg) {
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.arrowLink:hover :global(svg) {
+  transform: translateX(4px);
+}
+
+/* Small uppercase labels: above titles, beside fields. */
 .eyebrow,
 .label {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
@@ -96,11 +142,11 @@
   color: var(--ink-3);
 }
 
-/* A boxed rehearsal letter and a serif heading, like the section marks on a chart. */
+/* A section mark: a small letter in the accent beside a title. */
 .rehearsal {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  align-items: baseline;
+  gap: 20px;
 }
 
 .rehearsal h2 {
@@ -109,19 +155,15 @@
 
 .rehearsalMark {
   flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
+  min-width: 1.6em;
   font-family: var(--font-ui);
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1;
+  color: var(--accent);
 }
 
-/* Five staff lines, as an ornament between major parts of a page. */
+/* Five staff lines, as an ornament. */
 .staffRule {
   height: 25px;
   background: var(--staff);
@@ -136,47 +178,29 @@
 }
 
 .chordChip {
-  display: inline-flex;
-  align-items: baseline;
-  padding: 2px 12px 0;
-  min-height: 38px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-s);
-  background: var(--surface);
+  display: inline-block;
   font-family: var(--font-chord);
-  font-size: 1.45rem;
-  line-height: 1.45;
-  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
+  font-size: 1.6rem;
+  line-height: 1.2;
 }
 
-.chordChip:nth-child(odd):hover {
-  transform: rotate(-2deg);
-}
-
-.chordChip:nth-child(even):hover {
-  transform: rotate(2deg);
-}
-
+/* Facts about a lesson, as small words in a row. */
 .badges {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 4px 18px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 26px;
-  padding: 0 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: transparent;
-  color: var(--ink-2);
-  font-size: 0.75rem;
+  color: inherit;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -184,126 +208,132 @@
   flex: none;
 }
 
-.badgeSeed {
-  color: var(--ink-2);
-}
-
-.badgeGenerated {
-  background: var(--accent-soft);
-  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-  color: var(--ink);
-}
-
+.badgeSeed,
+.badgeGenerated,
 .badgeReview {
-  border-style: dashed;
+  color: inherit;
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  padding: 24px;
+  padding: 0;
 }
 
-/* Segmented control: a quiet track; the chosen option is marked in blue. */
+/* Segmented control: the words themselves; the chosen one is blue and underlined. */
 .segmented {
   display: inline-flex;
-  padding: 3px;
-  gap: 2px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid var(--line-control);
+  gap: 20px;
 }
 
 .segment {
-  min-height: 34px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: none;
+  position: relative;
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
   background: transparent;
-  color: var(--ink-2);
+  color: var(--ink-3);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition:
-    background-color 0.15s ease-out,
-    color 0.15s ease-out;
+  transition: color 0.15s ease-out;
+}
+
+.segment::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .segment:hover {
   color: var(--ink);
-  background: var(--surface-2);
 }
 
 .segment[aria-pressed='true'] {
-  background: var(--accent-soft);
-  color: var(--ink);
-  box-shadow: inset 0 0 0 1px var(--accent);
+  color: var(--accent);
+}
+
+.segment[aria-pressed='true']::after {
+  transform: scaleX(1);
 }
 
 .field {
   display: grid;
-  gap: 6px;
-  font-size: 0.75rem;
+  gap: 4px;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
+/* A select drawn as a word on a line. */
 .select {
   min-height: var(--tap);
-  padding: 0 40px 0 14px;
-  border-radius: var(--radius-s);
-  border: 1px solid var(--line-control);
-  background-color: var(--surface);
+  padding: 0 30px 0 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--line-control);
+  border-radius: 0;
+  background-color: transparent;
   color: var(--ink);
-  font-size: 0.98rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
   background-position:
-    calc(100% - 20px) 52%,
-    calc(100% - 14px) 52%;
+    calc(100% - 12px) 54%,
+    calc(100% - 6px) 54%;
   background-size: 6px 6px;
   background-repeat: no-repeat;
   cursor: pointer;
 }
 
 .select:hover {
-  border-color: var(--ink-2);
+  border-bottom-color: var(--accent);
 }
 
+.select option {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Text areas are ruled lines, not boxes. */
 .textarea {
   width: 100%;
-  min-height: 120px;
-  padding: 12px 14px;
-  border-radius: var(--radius-s);
-  border: 1px solid var(--line-control);
-  background: var(--surface);
-  font-size: 1rem;
-  line-height: 1.55;
+  min-height: 140px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--line-control);
+  border-radius: 0;
+  background: transparent;
+  font-size: 1.05rem;
+  line-height: 1.6;
   resize: vertical;
 }
 
+.textarea:hover {
+  border-bottom-color: var(--accent);
+}
+
 .empty {
-  padding: 32px 24px;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-m);
+  padding: 24px 0;
   color: var(--ink-3);
-  text-align: center;
+  font-size: var(--text-lead);
 }
 
 .error {
   display: grid;
   gap: 12px;
   justify-items: start;
-  padding: 24px;
-  border: 1px solid var(--danger);
-  border-radius: var(--radius-m);
-  background: var(--surface);
+  padding: 24px 0;
+  color: var(--danger);
 }
 
 .skeleton {

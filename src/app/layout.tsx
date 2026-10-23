@@ -5,18 +5,9 @@ import { AppShell } from '@/components/shell/AppShell';
 import { STORAGE_KEY } from '@/lib/progress/state';
 import './globals.css';
 
-// Instrument Serif for headlines, Instrument Sans for everything else, and Petaluma Script
-// (Steinberg's Real Book-style handwriting) for chord symbols. All are OFL and served locally.
-const serif = localFont({
-  src: [
-    { path: '../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2', weight: '400', style: 'italic' },
-  ],
-  variable: '--font-serif',
-  display: 'swap',
-  adjustFontFallback: 'Times New Roman',
-});
-
+// Instrument Sans for everything, from the very large titles down (its width axis narrows the
+// biggest ones), and Petaluma Script (Steinberg's Real Book-style handwriting) for chord symbols.
+// Both are OFL and served locally.
 const sans = localFont({
   src: [
     { path: '../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-standard-normal.woff2', weight: '400 700', style: 'normal' },
@@ -24,6 +15,7 @@ const sans = localFont({
   ],
   variable: '--font-sans',
   display: 'swap',
+  declarations: [{ prop: 'font-stretch', value: '75% 100%' }],
 });
 
 const hand = localFont({
@@ -44,8 +36,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f5f2ea' },
-    { media: '(prefers-color-scheme: dark)', color: '#111214' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a1033' },
   ],
 };
 
@@ -54,7 +46,7 @@ const THEME_SCRIPT = `try{var p=JSON.parse(localStorage.getItem(${JSON.stringify
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${hand.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>

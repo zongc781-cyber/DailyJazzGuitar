@@ -1,33 +1,18 @@
 /* Score sheet */
 
-/* The score and its playback bar on one sheet: the one card on a page with a soft shadow.
-   (overflow: clip rounds the corners without stopping the playback bar from sticking.) */
+/* The score and its playback bar, straight on the page: no card around them. */
 .sheet {
   background: var(--score-bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-l);
-  box-shadow: var(--shadow-2);
-  overflow: clip;
 }
 
 .paper {
   position: relative;
   background: var(--score-bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  box-shadow: var(--shadow-1);
-  padding: 10px 4px 6px;
+  padding: 8px 0 4px;
   min-height: 200px;
   overflow: hidden;
-  /* alphaTab gives its playback cursors a high z-index; keep them inside the score sheet. */
+  /* alphaTab gives its playback cursors a high z-index; keep them inside the score. */
   isolation: isolate;
-}
-
-.sheet > .paper {
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 16px 16px 8px;
 }
 
 .score {
@@ -86,38 +71,16 @@
 
 /* The controls follow the width of their own bar, so they never overlap in a narrow window:
    one row when there is room, otherwise play and toggles above the tempo. */
-.transport {
-  container-type: inline-size;
-  padding: 16px 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  box-shadow: var(--shadow-1);
-}
-
-/* On the sheet, the playback bar stays at the bottom of the window while a long score runs
+/* Under the score, on a hairline. It stays at the bottom of the window while a long score runs
    below it, so Play is always in reach. */
-.sheet > .transport {
+.transport {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  container-type: inline-size scroll-state;
-  border: 0;
+  container-type: inline-size;
+  padding: 20px 0;
   border-top: 1px solid var(--line);
-  border-radius: 0;
-  box-shadow: none;
-  padding: 18px 24px;
-}
-
-@container scroll-state(stuck: bottom) {
-  .transportGrid::before {
-    content: '';
-    position: absolute;
-    inset: -13px 0 auto;
-    height: 12px;
-    background: linear-gradient(to top, color-mix(in srgb, var(--ink) 8%, transparent), transparent);
-    pointer-events: none;
-  }
+  background: var(--paper);
 }
 
 .transportGrid {
@@ -154,12 +117,12 @@
   gap: 14px;
 }
 
-/* The primary action on the page: a blue button. */
+/* The primary action on the page: a blue circle. */
 .playButton {
   position: relative;
   flex: none;
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   border: none;
   display: grid;
@@ -167,7 +130,6 @@
   background: var(--accent);
   color: var(--accent-ink);
   cursor: pointer;
-  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent) 70%, transparent);
   transition:
     transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1),
     background-color 0.15s ease-out;
@@ -190,19 +152,25 @@
   transform: scale(0.96);
 }
 
-/* While it plays, a dashed ring turns around the button like a record. */
+/* While it plays, a ring pulses out from the button like sound. */
 .playButton[data-playing='true']::after {
   content: '';
   position: absolute;
-  inset: -7px;
+  inset: 0;
   border-radius: 50%;
-  border: 1.5px dashed var(--accent);
-  animation: turn 9s linear infinite;
+  border: 2px solid var(--accent);
+  animation: pulse 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+  pointer-events: none;
 }
 
-@keyframes turn {
+@keyframes pulse {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
   to {
-    transform: rotate(1turn);
+    opacity: 0;
+    transform: scale(1.45);
   }
 }
 
@@ -218,22 +186,23 @@
   width: var(--tap);
   height: var(--tap);
   border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  background: transparent;
+  border: 0;
+  background: var(--surface-2);
   color: var(--ink);
   display: grid;
   place-items: center;
   cursor: pointer;
   flex: none;
-  transition:
-    background-color 0.15s ease-out,
-    border-color 0.15s ease-out;
+  transition: background-color 0.15s ease-out;
+}
+
+.stepButton {
+  background: transparent;
 }
 
 .roundButton:hover:not(:disabled),
 .stepButton:hover:not(:disabled) {
-  background: var(--surface-2);
-  border-color: var(--line-control);
+  background: var(--surface-3);
 }
 
 .stepButton {
@@ -261,11 +230,6 @@
 .shortcut kbd {
   font: inherit;
   font-weight: 600;
-  padding: 0 5px;
-  border: 1px solid var(--line-strong);
-  border-bottom-width: 2px;
-  border-radius: 4px;
-  background: var(--paper);
   color: var(--ink-2);
 }
 
@@ -306,8 +270,10 @@
   min-width: 3.3em;
   text-align: right;
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.9rem;
+  font-weight: 500;
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .tempoValue span {
@@ -379,24 +345,35 @@
 
 .presets {
   display: flex;
-  gap: 4px;
+  gap: 4px 18px;
   flex-wrap: wrap;
 }
 
+/* The chosen preset is blue and underlined, like the chosen word of a segmented control. */
 .preset {
   position: relative;
-  min-height: 32px;
-  padding: 0 10px;
-  border-radius: 999px;
+  min-height: 36px;
+  padding: 0;
   border: none;
   background: transparent;
   color: var(--ink-2);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background-color 0.15s ease-out,
-    color 0.15s ease-out;
+  transition: color 0.15s ease-out;
+}
+
+.preset::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .preset span {
@@ -406,23 +383,19 @@
 }
 
 .preset:hover {
-  background: var(--surface-2);
   color: var(--ink);
 }
 
 .preset[aria-pressed='true'] {
-  color: var(--ink);
+  color: var(--accent);
 }
 
 .preset[aria-pressed='true'] span {
-  color: var(--ink-2);
+  color: inherit;
 }
 
-.presetMark {
-  position: absolute;
-  inset: -3px -5px;
-  width: calc(100% + 10px);
-  height: calc(100% + 6px);
+.preset[aria-pressed='true']::after {
+  transform: scaleX(1);
 }
 
 .toggles {
@@ -434,21 +407,20 @@
 
 .toggle {
   min-height: var(--tap);
-  padding: 0 14px 0 11px;
+  padding: 0 15px 0 12px;
   border-radius: 999px;
-  border: 1px solid var(--line-strong);
+  border: 0;
   background: transparent;
-  color: var(--ink-2);
+  color: var(--ink-3);
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   transition:
     background-color 0.15s ease-out,
-    color 0.15s ease-out,
-    border-color 0.15s ease-out;
+    color 0.15s ease-out;
 }
 
 .toggle:hover {
@@ -456,13 +428,8 @@
   color: var(--ink);
 }
 
-/* On: filled and blue-marked. Off: an empty outline. */
+/* On: a soft blue fill with blue words. Off: just the words. */
 .toggle[aria-pressed='true'] {
   background: var(--accent-soft);
-  border-color: transparent;
-  color: var(--ink);
-}
-
-.toggle[aria-pressed='true'] :global(svg) {
   color: var(--accent);
 }

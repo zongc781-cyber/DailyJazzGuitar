@@ -8,11 +8,7 @@
 .scroller {
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  box-shadow: var(--shadow-1);
-  padding: 12px 10px 6px;
+  padding: 4px 0;
 }
 
 .board {

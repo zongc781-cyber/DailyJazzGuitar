@@ -62,7 +62,9 @@ export function LickAnalysis({ lick, ctx, id }: { lick: Lick; ctx: ProseContext;
 
   return (
     <section className={styles.analysis} id={id} aria-labelledby={`${id}-title`}>
-      <h2 id={`${id}-title`}>Analysis</h2>
+      <h3 id={`${id}-title`} className={styles.analysisTitle}>
+        Analysis
+      </h3>
       <Prose text={analysis.summary} ctx={ctx} className={styles.lead} />
       <RoleLegend />
       <div className={styles.topics}>
@@ -71,7 +73,7 @@ export function LickAnalysis({ lick, ctx, id }: { lick: Lick; ctx: ProseContext;
           if (points.length === 0 && topic !== 'resolution') return null;
           return (
             <div key={topic} className={styles.topic}>
-              <h3>{title}</h3>
+              <h4>{title}</h4>
               {topic === 'resolution' && resEv && !resEv.rest ? (
                 <p className={styles.resolutionLine}>
                   The line lands on <span className={styles.tokNote}>{prettyPitch(resEv.pitch, { octave: false })}</span>, the{' '}

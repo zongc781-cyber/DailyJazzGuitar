@@ -83,6 +83,8 @@ const PATHS = {
     </>
   ),
   chevronRight: <path d="M9.5 5.5L16 12l-6.5 6.5" />,
+  arrowRight: <path d="M4 12h15.5M13.5 6l6 6-6 6" />,
+  arrowDown: <path d="M12 4v15.5M6 13.5l6 6 6-6" />,
   chevronDown: <path d="M5.5 9.5L12 16l6.5-6.5" />,
   eye: (
     <>

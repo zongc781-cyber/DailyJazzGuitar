@@ -33,41 +33,46 @@ export function beatText(beat: number): string {
   return beat.toFixed(2);
 }
 
-export function NotesAsText({ bars, chords, timeSignature }: { bars: Bar[]; chords: ChordPlacement[]; timeSignature: [number, number] }) {
+/** The bars as a list. `bare` leaves out the disclosure, where the page already opens and closes it. */
+export function NotesAsText({ bars, chords, timeSignature, bare = false }: { bars: Bar[]; chords: ChordPlacement[]; timeSignature: [number, number]; bare?: boolean }) {
+  const list = (
+    <ol className={styles.notesTextBars}>
+      {bars.map((bar, bi) => {
+        let onset = new Frac(0);
+        const barChords = chords.filter((c) => c.bar === bi + 1).map((c) => `${prettyChord(c.symbol)} on beat ${c.beat}`);
+        return (
+          <li key={bi}>
+            <strong>
+              Bar {bi + 1}
+              {barChords.length ? ` (${barChords.join(', ')})` : ''}
+            </strong>
+            <ul>
+              {bar.events.map((ev, ei) => {
+                const beat = onsetToBeat(onset, timeSignature);
+                onset = onset.add(eventLength(ev));
+                const length = `${ev.dots ? 'dotted ' : ''}${DUR_TEXT[ev.dur]}${ev.tuplet ? ' triplet' : ''}`;
+                if (ev.rest) return <li key={ei}>Beat {beatText(beat)}: {length} rest</li>;
+                return (
+                  <li key={ei}>
+                    Beat {beatText(beat)}: {prettyPitch(ev.pitch)}, {length}
+                    {ev.tie ? ' (tied from the previous note)' : ''}, string {ev.string} fret {ev.fret}, {ev.finger === 'T' ? 'thumb' : `finger ${ev.finger}`}
+                    {ev.degree ? `, ${degreeLabel(ev.degree)}` : ''}
+                    {ev.role ? ` (${ROLE_TEXT[ev.role]})` : ''}
+                    {ev.technique === 'h' ? ', hammer-on' : ev.technique === 'p' ? ', pull-off' : ev.technique === 'sl' ? ', slide' : ''}
+                  </li>
+                );
+              })}
+            </ul>
+          </li>
+        );
+      })}
+    </ol>
+  );
+  if (bare) return list;
   return (
     <details className={styles.notesText}>
       <summary>Notes as text</summary>
-      <ol className={styles.notesTextBars}>
-        {bars.map((bar, bi) => {
-          let onset = new Frac(0);
-          const barChords = chords.filter((c) => c.bar === bi + 1).map((c) => `${prettyChord(c.symbol)} on beat ${c.beat}`);
-          return (
-            <li key={bi}>
-              <strong>
-                Bar {bi + 1}
-                {barChords.length ? ` (${barChords.join(', ')})` : ''}
-              </strong>
-              <ul>
-                {bar.events.map((ev, ei) => {
-                  const beat = onsetToBeat(onset, timeSignature);
-                  onset = onset.add(eventLength(ev));
-                  const length = `${ev.dots ? 'dotted ' : ''}${DUR_TEXT[ev.dur]}${ev.tuplet ? ' triplet' : ''}`;
-                  if (ev.rest) return <li key={ei}>Beat {beatText(beat)}: {length} rest</li>;
-                  return (
-                    <li key={ei}>
-                      Beat {beatText(beat)}: {prettyPitch(ev.pitch)}, {length}
-                      {ev.tie ? ' (tied from the previous note)' : ''}, string {ev.string} fret {ev.fret}, {ev.finger === 'T' ? 'thumb' : `finger ${ev.finger}`}
-                      {ev.degree ? `, ${degreeLabel(ev.degree)}` : ''}
-                      {ev.role ? ` (${ROLE_TEXT[ev.role]})` : ''}
-                      {ev.technique === 'h' ? ', hammer-on' : ev.technique === 'p' ? ', pull-off' : ev.technique === 'sl' ? ', slide' : ''}
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          );
-        })}
-      </ol>
+      {list}
     </details>
   );
 }

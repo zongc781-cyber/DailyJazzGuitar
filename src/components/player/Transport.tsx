@@ -2,7 +2,6 @@
 
 import { useEffect, useId, type CSSProperties } from 'react';
 import { Icon } from '@/components/ui/Icon';
-import { Pencil } from '@/components/ui/Pencil';
 import { usePlayer } from './PlayerProvider';
 import styles from './player.module.css';
 
@@ -80,7 +79,7 @@ export function Transport({ onPlayed }: { onPlayed?: (bpm: number) => void }) {
             <label htmlFor={tempoId} className={styles.tempoLabel}>
               Tempo
             </label>
-            {/* The chosen preset is circled in pencil. */}
+            {/* The chosen preset is set in blue and underlined. */}
             <div className={styles.presets}>
               {PRESETS.map((p) => {
                 const bpm = Math.min(max, Math.max(min, Math.round((meta.tempo.default * p.percent) / 100)));
@@ -88,7 +87,6 @@ export function Transport({ onPlayed }: { onPlayed?: (bpm: number) => void }) {
                 return (
                   <button key={p.label} type="button" className={styles.preset} aria-pressed={chosen} onClick={() => actions.setBpm(bpm)}>
                     {p.label} <span className="num">{bpm}</span>
-                    {chosen ? <Pencil kind="circle" draw className={styles.presetMark} /> : null}
                   </button>
                 );
               })}

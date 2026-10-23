@@ -6,8 +6,11 @@ import { useHydrated, useProgress } from '@/lib/progress/store';
 import ui from '@/components/ui/ui.module.css';
 import styles from './lesson.module.css';
 
-/** Free-text practice notes for one lesson, saved as the learner types. */
-export function NotesField({ lessonId, placeholder }: { lessonId: string; placeholder: string }) {
+/**
+ * Free-text practice notes for one lesson, saved as the learner types. `hideLabel` keeps the label
+ * for screen readers only, where a title above already says "Your notes".
+ */
+export function NotesField({ lessonId, placeholder, hideLabel = false }: { lessonId: string; placeholder: string; hideLabel?: boolean }) {
   const id = useId();
   const hydrated = useHydrated();
   const saved = useProgress((s) => s.notes[lessonId]?.text ?? '');
@@ -35,7 +38,7 @@ export function NotesField({ lessonId, placeholder }: { lessonId: string; placeh
 
   return (
     <div className={styles.notesField}>
-      <label htmlFor={id} className={styles.notesLabel}>
+      <label htmlFor={id} className={hideLabel ? 'visually-hidden' : styles.notesLabel}>
         Your notes
       </label>
       <textarea

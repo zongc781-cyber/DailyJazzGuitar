@@ -1,134 +1,68 @@
-/* Lesson pages: the daily lick, and the parts the weekly standard shares with it. */
+/* Lesson pages: the daily lick, and the parts the weekly standard shares with it. A lesson opens on
+   a blue first screen (Hero), then the line to play on the white page, then big titles that open
+   the details. Nothing is boxed: hairlines divide, and blue marks what is chosen or done. */
 
 /* A size container has no width of its own, so it is given one rather than shrunk to fit. */
 .lesson {
   container: lesson / inline-size;
-  display: grid;
-  gap: 24px;
   width: 100%;
-  max-width: var(--content);
-  margin: 0 auto;
   min-width: 0;
 }
 
-.lesson h2 {
-  margin-bottom: 12px;
-}
-
-/* Title block: label, headline, an italic line on whose style and which tune, then the chords
-   with the Learned and Favourite buttons at the right. */
-.header {
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-  margin-bottom: 12px;
-}
-
-.eyebrowRow {
-  justify-self: stretch;
+/* The first screen: a label row, the byline and the chords, white on blue. */
+.heroLabel {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 24px;
-}
-
-.title {
-  max-width: 15em;
-  margin-top: 4px;
-  font-size: clamp(2.9rem, 1.4rem + 3.2vw, 4.25rem);
-  line-height: 1;
-  letter-spacing: -0.018em;
+  align-items: center;
+  gap: 4px 28px;
 }
 
 .byline {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.5rem;
-  line-height: 1.25;
+  font-size: var(--text-lead);
+  line-height: 1.3;
   color: var(--ink-2);
 }
 
 .byline a {
   color: var(--ink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
 }
 
-.metaRow {
-  justify-self: stretch;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px 32px;
-  margin-top: 8px;
+.byline a:hover {
+  color: var(--ink);
+  text-decoration-thickness: 3px;
 }
 
-.chordsRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 20px;
-}
-
+/* The chords, in Real Book handwriting. */
 .progression {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 2px 32px;
+  font-family: var(--font-chord);
+  font-size: clamp(1.7rem, 1.1rem + 1.2vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--ink);
 }
 
 .progressionChord {
-  composes: chordChip from '../ui/ui.module.css';
+  white-space: nowrap;
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
+/* The line to play: section 01, on the white page. */
+.play {
+  display: grid;
+  gap: 36px;
+  padding: clamp(72px, 9vw, 136px) var(--page-inline) 0;
+  min-width: 0;
 }
 
-.learnedState {
-  cursor: default;
-}
-
-.learnedTick {
-  width: 20px;
-  height: 18px;
-  margin: -2px 0 0 -2px;
-}
-
-.favourite[aria-pressed='true'] {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.favourite[aria-pressed='true'] :global(svg) {
-  color: var(--accent);
-}
-
-/* The note under the buttons wraps to their width instead of widening the row. */
-.learnedNote {
-  flex-basis: 100%;
-  contain: inline-size;
-  font-size: 0.85rem;
-  color: var(--ink-3);
-  min-height: 1.3em;
-  text-align: right;
-}
-
-.learnedNote:empty {
-  display: none;
-}
-
-/* Key, line and analysis controls */
+/* Key, line and analysis controls, as words on one row. */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  gap: 14px 44px;
 }
 
 .toolbar > * {
@@ -138,7 +72,7 @@
 .toolbar > .toolField {
   grid-auto-flow: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .analysisToggle {
@@ -147,154 +81,127 @@
 
 .analysisToggle[aria-expanded='true'] {
   background: var(--accent-soft);
-  border-color: var(--accent);
-}
-
-.analysisToggle[aria-expanded='true'] :global(svg) {
   color: var(--accent);
 }
 
 .shiftNote {
-  margin-top: -20px;
-  font-size: 0.88rem;
+  margin-top: -24px;
+  font-size: 0.92rem;
   color: var(--ink-3);
 }
 
 .variationNote {
-  padding: 4px 0 4px 20px;
-  border-left: 2px solid var(--accent);
+  display: grid;
+  gap: 8px;
+  max-width: var(--measure);
+  font-size: var(--text-lead);
+  line-height: 1.4;
 }
 
-.variationNote h2 {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
+.variationNote h3 {
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
+  color: var(--accent);
 }
 
 .player {
   display: grid;
-  gap: 20px;
+  gap: 28px;
   min-width: 0;
 }
 
 /* The fretboard, with the fingering note beside it when there is room. */
 .fretRow {
   display: grid;
-  gap: 16px;
+  gap: 20px;
   align-items: start;
 }
 
 @container lesson (min-width: 860px) {
   .fretRow {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    gap: 40px;
+    gap: 56px;
   }
 }
 
 .fingering {
   display: grid;
-  gap: 8px;
-  padding-top: 6px;
-  font-size: 0.98rem;
+  gap: 10px;
+  padding-top: 10px;
   color: var(--ink-2);
 }
 
+.fingering h3,
 .fingering h2 {
   margin: 0;
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
 .fingeringKey {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--ink-3);
 }
 
-/* Liner notes and practice */
-.columns {
-  display: grid;
-  gap: 40px;
-  align-items: start;
-  margin-top: 24px;
+/* Learned and Favourite, at the end of the line's section. */
+.doneRow {
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
-@container lesson (min-width: 820px) {
-  .columns {
-    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
-    gap: 64px;
-  }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
 }
 
-.mainColumn,
-.sideColumn {
-  display: grid;
-  gap: 32px;
-  min-width: 0;
+.learnedState {
+  cursor: default;
 }
 
-/* "Why this works", set like liner notes, with a drop cap. */
-.why {
-  display: grid;
-  gap: 4px;
+.favourite[aria-pressed='true'] {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
-.why h2 {
-  font-size: clamp(2rem, 1.6rem + 1vw, 2.6rem);
-}
-
-.why .prose {
-  font-size: 1.08rem;
-  line-height: 1.7;
-}
-
-.why .prose > p:first-child::first-letter {
-  float: left;
-  margin: 0.06em 0.1em 0 0;
-  font-family: var(--font-display);
-  font-size: 3.6em;
-  line-height: 0.8;
-  color: var(--ink);
-}
-
-.analysisHint {
-  padding: 16px 20px;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-m);
+.learnedNote {
+  flex-basis: 100%;
+  font-size: 0.9rem;
   color: var(--ink-3);
-  font-size: 0.95rem;
+  min-height: 1.3em;
 }
 
-/* The practice task: a note in the margin, marked with the blue pencil. */
-.task {
-  padding: 4px 0 4px 20px;
-  border-left: 2px solid var(--accent);
+.learnedNote:empty {
+  display: none;
 }
 
-.task h2 {
-  font-family: var(--font-ui);
-  font-size: 1.06rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 8px;
+/* The big titles that open the details. */
+.rows {
+  margin: clamp(88px, 10vw, 152px) var(--page-inline) clamp(88px, 10vw, 152px);
+}
+
+/* Text set large, for the one idea a row opens on. */
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.45;
 }
 
 .prose {
   display: grid;
-  gap: 12px;
-  max-width: 68ch;
+  gap: 0.8em;
+  max-width: var(--measure);
 }
 
-.lead {
-  font-size: 1.08rem;
+.prose.lead {
+  max-width: 34em;
 }
 
 /* Music tokens inside prose */
@@ -319,26 +226,49 @@
   color: var(--accent);
 }
 
-/* Analysis */
+/* Analysis: under the line, when it is asked for. */
 .analysis {
   display: grid;
-  gap: 16px;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.analysisTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.analysis > .lead {
+  max-width: 34em;
 }
 
 .topics {
   display: grid;
-  gap: 24px;
+  gap: 28px 56px;
+  margin-top: 12px;
+}
+
+@container lesson (min-width: 900px) {
+  .topics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .topic {
   display: grid;
-  gap: 8px;
-  padding-top: 16px;
+  align-content: start;
+  gap: 10px;
+  padding-top: 18px;
   border-top: 1px solid var(--line);
 }
 
+.topic h4,
 .topic h3 {
-  font-size: 1.04rem;
+  font-size: 1.05rem;
 }
 
 .points {
@@ -346,11 +276,11 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .resolutionLine {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
 }
 
 .legend {
@@ -359,15 +289,15 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  font-size: 0.85rem;
+  gap: 8px 22px;
+  font-size: 0.9rem;
   color: var(--ink-2);
 }
 
 .legend li {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .legend li svg {
@@ -394,24 +324,30 @@
   --legend-color: var(--role-resolution);
 }
 
+/* The notes a point is about: the pitch, its degree in the role's colour, and where it falls. */
 .noteChips {
   list-style: none;
   margin: 8px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px 18px;
 }
 
 .noteChip {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  border: 1.5px solid var(--legend-color);
-  background: var(--surface);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
+}
+
+.noteChip::before {
+  content: '';
+  align-self: center;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--legend-color);
 }
 
 .noteChipPitch {
@@ -427,39 +363,13 @@
   color: var(--ink-3);
 }
 
-/* Practice checklist: ticks are drawn in blue pencil. */
+/* Practice steps: a ring that fills with blue when the step is done. */
 .checklist {
-  padding: 22px 24px 18px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-}
-
-.checklistHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
-}
-
-.checklistHeader h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.1;
-}
-
-.checklistCount {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--ink-3);
-}
-
-.checklist ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
+  max-width: 46rem;
 }
 
 .checklist li + li {
@@ -469,10 +379,12 @@
 .checkItem {
   position: relative;
   display: flex;
-  gap: 14px;
+  gap: 18px;
   align-items: flex-start;
   min-height: var(--tap);
-  padding: 11px 4px;
+  padding: 15px 0;
+  font-size: 1.1rem;
+  line-height: 1.4;
   cursor: pointer;
 }
 
@@ -486,30 +398,44 @@
 .checkBox {
   position: relative;
   flex: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 2px;
-  border-radius: 4px;
-  border: 1.5px solid var(--line-control);
-  background: var(--surface);
-  transition: border-color 0.12s ease-out;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-top: -1px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--line-control);
+  color: var(--accent-ink);
+  transition:
+    background-color 0.15s ease-out,
+    box-shadow 0.15s ease-out;
 }
 
 .checkItem:hover .checkBox {
-  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.checkItem input:checked + .checkBox {
+  background: var(--accent);
+  box-shadow: none;
 }
 
 .tick {
-  position: absolute;
-  left: -2px;
-  top: -9px;
-  width: 30px;
-  height: 26px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.checkItem input:checked + .checkBox .tick {
+  opacity: 1;
+  transform: none;
 }
 
 .checkItem input:focus-visible + .checkBox {
   outline: 2px solid var(--focus);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .checkItem input:disabled + .checkBox {
@@ -526,34 +452,37 @@
 }
 
 .checkHint {
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: var(--ink-3);
 }
 
-/* Notes */
+/* Notes: ruled lines, not a box. */
 .notesField {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  max-width: 46rem;
 }
 
 .notesLabel {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  line-height: 1.1;
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
-/* Ruled like a notebook page; the lines scroll with the text. */
+/* The lines scroll with the text. */
 .notesField textarea {
-  min-height: 150px;
-  padding: 6px 14px;
-  line-height: 28px;
-  background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--line) 27px 28px);
-  background-position: 0 6px;
+  min-height: 176px;
+  padding: 0;
+  line-height: 32px;
+  border-bottom: 0;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--line-strong) 31px 32px);
   background-attachment: local;
+  font-size: 1.15rem;
 }
 
 .notesHint {
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   color: var(--ink-3);
 }
 
@@ -563,12 +492,11 @@
 }
 
 .notesText summary {
-  min-height: 52px;
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 0 4px;
   font-weight: 600;
   cursor: pointer;
   list-style: none;
@@ -578,7 +506,6 @@
   display: none;
 }
 
-/* A chevron that turns down when the notes are open. */
 .notesText summary::after {
   content: '';
   width: 8px;
@@ -594,40 +521,54 @@
   transform: rotate(45deg);
 }
 
+/* The bars written out, two or three to a row when there is room. */
 .notesTextBars {
   margin: 0;
-  padding: 0 22px 20px 32px;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 12px;
-  font-size: 0.92rem;
+  gap: 24px 48px;
+  font-size: 0.95rem;
+}
+
+@container lesson (min-width: 900px) {
+  .notesTextBars {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+.notesTextBars > li > strong {
+  display: block;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--line);
 }
 
 .notesTextBars ul {
-  margin: 4px 0 0;
-  padding-left: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
   color: var(--ink-2);
 }
 
-/* Credits */
+/* Sources and credits */
 .credits {
   display: grid;
-  gap: 14px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
-  font-size: 0.92rem;
+  gap: 24px;
+  max-width: 46rem;
   color: var(--ink-2);
 }
 
 .credits h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0;
+  font-size: var(--text-title);
   color: var(--ink);
 }
 
 .inspiration {
   display: grid;
-  gap: 6px;
-  max-width: 76ch;
+  gap: 8px;
 }
 
 .sources {
@@ -635,22 +576,27 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
 }
 
 .sources li {
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.sources li:last-child {
+  border-bottom: 1px solid var(--line);
 }
 
 .sourceKind {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--ink-3);
-  padding-top: 3px;
+  padding-top: 4px;
 }
 
 .sourceDetail {
@@ -661,4 +607,33 @@
   display: inline;
   margin-left: 3px;
   vertical-align: -2px;
+}
+
+/* -------------------------------------------------------------------------------------------
+   Kept for the weekly standard until its page moves to the same blocks.
+   ------------------------------------------------------------------------------------------- */
+
+.header {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.eyebrowRow {
+  justify-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.title {
+  max-width: 15ch;
+  font-size: var(--text-display);
+}
+
+.analysisHint {
+  max-width: var(--measure);
+  color: var(--ink-3);
 }

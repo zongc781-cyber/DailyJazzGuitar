@@ -1,8 +1,10 @@
 'use client';
 
-// A daily lick: notation, tab, audio, fretboard, analysis, variation, practice and notes. Everything
-// on screen comes from one transposed copy of the lesson JSON, so changing the key updates the
-// notation, tab, audio, fretboard and analysis together.
+// A daily lick, one idea per screen: a blue first screen with the title and the chords, then the
+// line itself to play (notation, tab, audio and fretboard), then big titles that open the details:
+// why it works, the practice steps, where to use it, notes, the line as text, and the sources.
+// Everything on screen comes from one transposed copy of the lesson JSON, so changing the key
+// updates the notation, tab, audio, fretboard and analysis together.
 
 import Link from 'next/link';
 import { Activity, useId, useMemo, useState, type ReactNode } from 'react';
@@ -17,7 +19,9 @@ import { PlayerProvider, type NoteHighlight } from '@/components/player/PlayerPr
 import { PlayerScore, ScoreSheet } from '@/components/player/PlayerScore';
 import { Transport } from '@/components/player/Transport';
 import { Fretboard } from '@/components/player/Fretboard';
+import { Hero, SectionHead } from '@/components/ui/Hero';
 import { Icon } from '@/components/ui/Icon';
+import { Reveal, RevealList } from '@/components/ui/Reveal';
 import { Segmented } from '@/components/ui/Segmented';
 import ui from '@/components/ui/ui.module.css';
 import { LessonActions } from './LessonActions';
@@ -25,7 +29,7 @@ import { LessonBadges, Provenance } from './LessonBadges';
 import { LickAnalysis } from './LickAnalysis';
 import { NotesAsText } from './NotesAsText';
 import { NotesField } from './NotesField';
-import { PracticeChecklist, type PracticeItem } from './PracticeChecklist';
+import { PracticeChecklist, PracticeCount, type PracticeItem } from './PracticeChecklist';
 import { Prose, lineContext } from './Prose';
 import { InspirationNote, SourceList } from './SourceList';
 import styles from './lesson.module.css';
@@ -97,21 +101,25 @@ function useLickView(lesson: Lick, tonic: string, part: Part, showAnalysis: bool
 export function LickLesson({
   lesson,
   eyebrow,
-  aside,
+  back,
   standard,
   review,
+  next,
 }: {
   lesson: Lick;
   eyebrow: string;
-  /** Shown at the right of the label row, e.g. a link to this week's standard. */
-  aside?: ReactNode;
+  /** A link back to where the lesson was opened from, at the start of the label row. */
+  back?: ReactNode;
   /** The standard this lick prepares, with where to open it. */
   standard?: { title: string; href: string } | null;
   review?: boolean;
+  /** The end of the page: a link on to the next place. */
+  next?: ReactNode;
 }) {
   const dateKey = useLocalDate();
   const showByDefault = useProgress((s) => s.prefs.showAnalysis);
   const leftHanded = useProgress((s) => s.prefs.leftHanded);
+  const hasNote = useProgress((s) => Boolean(s.notes[lesson.id]?.text.trim()));
   const [tonic, setTonic] = useState(lesson.key.tonic);
   const [part, setPart] = useState<Part>('lick');
   const [analysisChoice, setAnalysisChoice] = useState<boolean | null>(null);
@@ -139,135 +147,151 @@ export function LickLesson({
       : null;
   const label = `${isVariation ? 'Variation' : 'Lick'} in ${prettyKey(current.key)}, ${bars.length} bars, standard notation and tablature${showAnalysis ? ' with chord degrees' : ''}`;
 
+  // The rows below the line are numbered on from "01 Play it"; not every lick has a practice task.
+  const rows = ['why', 'practice', ...(current.practiceTask ? ['use-it'] : []), 'notes', 'as-text', 'credits'];
+  const index = (id: string) => String(rows.indexOf(id) + 2).padStart(2, '0');
+
   return (
     <article className={styles.lesson}>
-      <header className={styles.header}>
-        <div className={styles.eyebrowRow}>
-          <p className={ui.eyebrow}>{eyebrow}</p>
-          {aside}
-        </div>
-        <h1 className={styles.title}>{lesson.title}</h1>
+      <Hero
+        top={
+          <>
+            <span className={styles.heroLabel}>
+              {back}
+              <span>{eyebrow}</span>
+            </span>
+            <LessonBadges lesson={lesson} review={review} />
+          </>
+        }
+        title={lesson.title}
+        actions={
+          <a href="#play" className={`${ui.button} ${ui.onField} ${ui.large}`}>
+            Start practising
+            <Icon name="arrowDown" />
+          </a>
+        }
+      >
         <p className={styles.byline}>
           {byline}
           {standard ? (
             <>
-              {' · for '}
+              {', for '}
               <Link href={standard.href}>{standard.title}</Link>
             </>
           ) : null}
         </p>
-        <div className={styles.metaRow}>
-          <div className={styles.chordsRow}>
-            <p className={styles.progression} data-testid="chords">
-              <span className="visually-hidden">Chords: </span>
-              {current.chords.map((c, i) => (
-                <span key={i} className={styles.progressionChord}>
-                  {prettyChord(c.symbol)}
-                </span>
-              ))}
-            </p>
-            <LessonBadges lesson={lesson} review={review} />
+        <p className={styles.progression} data-testid="chords">
+          <span className="visually-hidden">Chords: </span>
+          {current.chords.map((c, i) => (
+            <span key={i} className={styles.progressionChord}>
+              {prettyChord(c.symbol)}
+            </span>
+          ))}
+        </p>
+      </Hero>
+
+      <section id="play" className={styles.play} aria-labelledby={`${analysisId}-play`}>
+        <SectionHead index="01" id={`${analysisId}-play`}>
+          Play it
+        </SectionHead>
+
+        <div className={styles.toolbar}>
+          <KeySelect options={options} value={selected.tonic} written={lesson.key.tonic} mode={lesson.key.mode} onChange={setTonic} />
+          <div className={`${ui.field} ${styles.toolField}`}>
+            <span aria-hidden="true">Line</span>
+            <Segmented
+              label="Line"
+              value={part}
+              options={[
+                { value: 'lick', label: 'Lick' },
+                { value: 'variation', label: 'Variation' },
+              ]}
+              onChange={setPart}
+            />
           </div>
+          <button
+            type="button"
+            className={`${ui.button} ${styles.analysisToggle}`}
+            aria-expanded={showAnalysis}
+            aria-controls={analysisId}
+            onClick={() => setAnalysisChoice(!showAnalysis)}
+            data-testid="analysis-toggle"
+          >
+            <Icon name={showAnalysis ? 'eyeOff' : 'eye'} />
+            {showAnalysis ? 'Hide analysis' : 'Show analysis'}
+          </button>
+        </div>
+        {shiftNote ? <p className={styles.shiftNote}>{shiftNote}</p> : null}
+
+        {isVariation ? (
+          <div className={styles.variationNote}>
+            <h3>The variation</h3>
+            <Prose text={current.variation.description} ctx={variationCtx} />
+          </div>
+        ) : null}
+
+        <PlayerProvider tex={tex} tempo={lesson.tempo} label={label} highlights={highlights}>
+          <section className={styles.player} aria-label="Notation and playback">
+            <ScoreSheet>
+              <PlayerScore />
+              <Transport onPlayed={() => dateKey && markPracticeItem(dateKey, lesson.id, 'listen')} />
+            </ScoreSheet>
+            <div className={styles.fretRow}>
+              <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
+              {current.fingeringNote ? (
+                <div className={styles.fingering}>
+                  <h3>Fingering</h3>
+                  <Prose text={current.fingeringNote} ctx={lickCtx} />
+                  {selected.tonic !== lesson.key.tonic ? (
+                    <p className={styles.fingeringKey}>Any fret numbers in this note are for the written key, {prettyKey(lesson.key)}.</p>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          </section>
+        </PlayerProvider>
+
+        <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
+          <LickAnalysis lick={current} ctx={lickCtx} id={analysisId} />
+        </Activity>
+
+        <div className={styles.doneRow}>
           <LessonActions
             id={lesson.id}
             dateKey={dateKey}
             entry={{ kind: 'lick', title: lesson.title, origin: lesson.origin, artist: inspiration.artist, key: prettyKey(current.key) }}
           />
         </div>
-      </header>
+      </section>
 
-      <div className={styles.toolbar}>
-        <KeySelect options={options} value={selected.tonic} written={lesson.key.tonic} mode={lesson.key.mode} onChange={setTonic} />
-        <div className={`${ui.field} ${styles.toolField}`}>
-          <span aria-hidden="true">Line</span>
-          <Segmented
-            label="Line"
-            value={part}
-            options={[
-              { value: 'lick', label: 'Lick' },
-              { value: 'variation', label: 'Variation' },
-            ]}
-            onChange={setPart}
-          />
-        </div>
-        <button
-          type="button"
-          className={`${ui.button} ${styles.analysisToggle}`}
-          aria-expanded={showAnalysis}
-          aria-controls={analysisId}
-          onClick={() => setAnalysisChoice(!showAnalysis)}
-          data-testid="analysis-toggle"
-        >
-          <Icon name={showAnalysis ? 'eyeOff' : 'eye'} />
-          {showAnalysis ? 'Hide analysis' : 'Show analysis'}
-        </button>
-      </div>
-      {shiftNote ? <p className={styles.shiftNote}>{shiftNote}</p> : null}
-
-      {isVariation ? (
-        <div className={styles.variationNote}>
-          <h2>Variation</h2>
-          <Prose text={current.variation.description} ctx={variationCtx} />
-        </div>
-      ) : null}
-
-      <PlayerProvider tex={tex} tempo={lesson.tempo} label={label} highlights={highlights}>
-        <section className={styles.player} aria-label="Notation and playback">
-          <ScoreSheet>
-            <PlayerScore />
-            <Transport onPlayed={() => dateKey && markPracticeItem(dateKey, lesson.id, 'listen')} />
-          </ScoreSheet>
-          <div className={styles.fretRow}>
-            <Fretboard bars={bars} showAnalysis={showAnalysis} leftHanded={leftHanded} resolution={isVariation ? undefined : current.analysis.resolution.note} />
-            {current.fingeringNote ? (
-              <div className={styles.fingering}>
-                <h2>Fingering</h2>
-                <Prose text={current.fingeringNote} ctx={lickCtx} />
-                {selected.tonic !== lesson.key.tonic ? (
-                  <p className={styles.fingeringKey}>Any fret numbers in this note are for the written key, {prettyKey(lesson.key)}.</p>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
-        </section>
-      </PlayerProvider>
-
-      <div className={styles.columns}>
-        <div className={styles.mainColumn}>
-          <section className={styles.why} aria-labelledby={`${analysisId}-why`}>
-            <h2 id={`${analysisId}-why`}>Why this works</h2>
-            <Prose text={current.whyItWorks} ctx={lickCtx} />
-          </section>
-          {current.practiceTask ? (
-            <section className={styles.task}>
-              <h2>{standard ? `Use it on ${standard.title}` : 'Practice task'}</h2>
-              <Prose text={current.practiceTask} ctx={lickCtx} />
-            </section>
-          ) : null}
-          <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
-            <LickAnalysis lick={current} ctx={lickCtx} id={analysisId} />
-          </Activity>
-          {showAnalysis ? null : (
-            <p className={styles.analysisHint}>
-              The analysis is hidden so you can work the line out first. Press <strong>Show analysis</strong> to see the chord tones, extensions, approach
-              notes, rhythmic placement and resolution, with each note coloured on the score and fretboard.
-            </p>
-          )}
-        </div>
-        <aside className={styles.sideColumn} aria-label="Practice">
+      <RevealList className={styles.rows}>
+        <Reveal id="why" index={index('why')} title="Why it works">
+          <Prose text={current.whyItWorks} ctx={lickCtx} className={styles.lead} />
+        </Reveal>
+        <Reveal id="practice" index={index('practice')} title="Practice" meta={<PracticeCount lessonId={lesson.id} dateKey={dateKey} items={items} />}>
           <PracticeChecklist lessonId={lesson.id} dateKey={dateKey} items={items} />
-          <NotesField lessonId={lesson.id} placeholder="What felt awkward? Which fingering worked? Where will you use it?" />
-        </aside>
-      </div>
+        </Reveal>
+        {current.practiceTask ? (
+          <Reveal id="use-it" index={index('use-it')} title={standard ? `Use it on ${standard.title}` : 'Use it in a tune'}>
+            <Prose text={current.practiceTask} ctx={lickCtx} className={styles.lead} />
+          </Reveal>
+        ) : null}
+        <Reveal id="notes" index={index('notes')} title="Your notes" meta={hasNote ? 'Written' : null}>
+          <NotesField lessonId={lesson.id} placeholder="What felt awkward? Which fingering worked? Where will you use it?" hideLabel />
+        </Reveal>
+        <Reveal id="as-text" index={index('as-text')} title="The notes as text">
+          <NotesAsText bars={bars} chords={chords} timeSignature={lesson.timeSignature} bare />
+        </Reveal>
+        <Reveal id="credits" index={index('credits')} title="Sources and credits">
+          <div className={styles.credits}>
+            <InspirationNote inspiration={inspiration} />
+            <SourceList sources={lesson.sources} />
+            <Provenance lesson={lesson} />
+          </div>
+        </Reveal>
+      </RevealList>
 
-      <NotesAsText bars={bars} chords={chords} timeSignature={lesson.timeSignature} />
-
-      <footer className={styles.credits}>
-        <h2>Sources and credits</h2>
-        <InspirationNote inspiration={inspiration} />
-        <SourceList sources={lesson.sources} />
-        <Provenance lesson={lesson} />
-      </footer>
+      {next}
     </article>
   );
 }

@@ -1,45 +1,41 @@
 'use client';
 
-// Today: the daily lick, with a link to this week's standard and today's plan day.
+// Today: the daily lick, ending on a link to this week's standard and today's plan day.
 
-import Link from 'next/link';
 import { Suspense, ViewTransition, use, useMemo, type ReactNode } from 'react';
 import type { CatalogEntry } from '@/lib/music/types';
 import { lessonPromise } from '@/lib/client/lessons';
 import { useSchedule, type Schedule } from '@/lib/client/useSchedule';
 import { formatLongDate } from '@/lib/format';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
-import { Icon } from '@/components/ui/Icon';
+import { NextLink } from '@/components/ui/NextLink';
 import { LickLesson } from '@/components/lesson/LickLesson';
 import { FOCUS_LABEL } from '@/components/standard/PracticePlan';
 import { LessonSkeleton, ScreenSkeleton } from './Skeletons';
 import styles from './screens.module.css';
 
-// This week's standard and today's plan day, as a small link at the top right of the lesson.
-function WeekStrip({ standardId, schedule }: { standardId: string; schedule: Schedule }) {
+// This week's standard and today's plan day, as the band at the end of the page.
+function WeekNext({ standardId, schedule }: { standardId: string; schedule: Schedule }) {
   const standard = use(lessonPromise(standardId));
   if (standard.kind !== 'standard') return null;
   const day = standard.practicePlan.find((d) => d.day === schedule.planDay);
   return (
-    <Link href="/week" className={styles.weekStrip} data-testid="week-strip">
-      <span className={styles.weekStripLabel}>{schedule.week.review ? 'This week (review)' : 'This week'}</span>
-      <span className={styles.weekStripTitle}>{standard.title}</span>
-      {day ? (
-        <span className={styles.weekStripDay}>
-          day {day.day} of 7, {FOCUS_LABEL[day.focus].toLowerCase()}
-        </span>
-      ) : null}
-      <Icon name="chevronRight" size={16} />
-    </Link>
+    <NextLink
+      href="/week"
+      label={schedule.week.review ? 'This week, a review' : 'This week'}
+      title={standard.title}
+      meta={day ? `Day ${day.day} of 7: ${FOCUS_LABEL[day.focus].toLowerCase()}` : undefined}
+      testId="week-next"
+    />
   );
 }
 
-function TodayLick({ id, schedule, standard, week }: { id: string; schedule: Schedule; standard: CatalogEntry | undefined; week: ReactNode }) {
+function TodayLick({ id, schedule, standard, next }: { id: string; schedule: Schedule; standard: CatalogEntry | undefined; next: ReactNode }) {
   const lesson = use(lessonPromise(id));
   if (lesson.kind !== 'lick') throw new Error('Today’s lesson is not a lick.');
   const eyebrow = `${schedule.day.review ? 'Review lick' : 'Today’s lick'} · ${formatLongDate(schedule.dateKey)}`;
   const forStandard = lesson.standardId && lesson.standardId === standard?.id ? { title: standard.title, href: '/week' } : null;
-  return <LickLesson key={lesson.id} lesson={lesson} eyebrow={eyebrow} aside={week} standard={forStandard} review={schedule.day.review} />;
+  return <LickLesson key={lesson.id} lesson={lesson} eyebrow={eyebrow} standard={forStandard} review={schedule.day.review} next={next} />;
 }
 
 export function TodayScreen({ catalog }: { catalog: CatalogEntry[] }) {
@@ -55,24 +51,24 @@ export function TodayScreen({ catalog }: { catalog: CatalogEntry[] }) {
       </div>
     );
   }
-  // Start both requests now so the lick and the week card load in parallel.
+  // Start both requests now so the lick and the week's standard load in parallel.
   lessonPromise(day.lickId);
   if (week.standardId) lessonPromise(week.standardId);
 
   return (
     <ViewTransition enter="page-in" exit="page-out" default="none">
-      <div className={styles.screen}>
+      <div className={styles.full}>
         <ErrorBoundary>
           <Suspense fallback={<LessonSkeleton />}>
             <TodayLick
               id={day.lickId}
               schedule={schedule}
               standard={week.standardId ? byId.get(week.standardId) : undefined}
-              week={
+              next={
                 week.standardId ? (
                   <ErrorBoundary fallback={null}>
                     <Suspense fallback={null}>
-                      <WeekStrip standardId={week.standardId} schedule={schedule} />
+                      <WeekNext standardId={week.standardId} schedule={schedule} />
                     </Suspense>
                   </ErrorBoundary>
                 ) : null
