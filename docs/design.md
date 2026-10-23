@@ -1,115 +1,105 @@
-# Design: the lead sheet and the blue pencil
+# Design: big type on white and blue
 
-Daily Jazz Guitar looks like a jazz lead sheet that a teacher has marked up with a blue pencil:
-cream manuscript paper, black ink type, staff-line hairlines, Real Book handwriting for chord
-symbols and boxed rehearsal letters for sections. Blue is the only accent. It is the pencil, so it
-marks what matters: the primary action, where you are, and the playful hand-drawn marks (ticks
-that draw themselves, circles, underlines).
+Daily Jazz Guitar is set like a studio's portfolio site (the reference was cominvi.com.mx and its
+Awwwards entry): white pages, big fields of blue, black type, very large titles, and one idea per
+screen. Details wait behind a big title until you click it.
 
 The app is for a desktop browser on a Mac. Layouts are designed at 1440×900 and still work down to
-a 720-pixel window, where the side rail shrinks to icons.
+a 720-pixel window.
 
 ## Principles
 
-- **Calm.** Paper, ink and space do most of the work. Hairlines instead of shadows; one soft shadow
-  for the score sheet.
-- **Editorial.** Big serif headlines, readable text at 17px, small uppercase labels, strong
-  contrast between the three. Copy is specific: it says what to do and why.
-- **One accent.** Blue marks the primary action, the current place, focus and pencil marks. Nothing
-  else on the page is blue. The analysis colours on the score and fretboard are data, shown only
-  when the analysis is on.
-- **Playful in the details.** Handwritten notation and chords, pencil ticks that draw themselves,
-  the chosen tempo circled in pencil, a dashed ring that turns round Play like a record while it
-  plays, chips that tilt a little on hover. Never at the cost of clarity, and motion is always off
-  under reduced motion.
-- **Varied composition, one system.** Each section of a page takes a different shape (title block,
-  track list, chart, grid, numbered notes, timeline) built from the same tokens and parts.
+- **Little text per screen.** A screen holds one idea: a title, a line or two, one action. The
+  rest sits behind big titles that open when asked.
+- **Very big titles.** A page's first title is set at `--text-hero` (56–160px); section and row
+  titles at `--text-display` (42–96px). Instrument Sans at weight 500, tight tracking.
+- **No frames.** No cards, no boxes around content, no shadows. Hairlines (`--line`) divide rows;
+  controls are filled pills (`--surface-2`, or blue for the one primary action) or plain words.
+- **White, blue and black.** White pages, blue fields (each lesson's first screen, the closing
+  link), black type. Blue also marks what is chosen or done: the chosen word is blue and
+  underlined, a done task fills with blue. At night the page turns deep navy and the fields stay
+  blue, so blue and white still lead.
+- **Motion with a purpose.** A first title's words rise into place, rows open with a short fade,
+  arrows move on hover, Play pulses while it plays. All of it is off under reduced motion.
+- **The jazz is in the music.** The score is in Petaluma (handwritten SMuFL notation) and chord
+  symbols are in Petaluma Script, the Real Book hand. Those are the only handwriting on the page.
 
 ## Tokens (src/app/globals.css)
 
-| Token | Light | Dark | Use |
+| Token | Light | Night | Use |
 | --- | --- | --- | --- |
-| `--paper` | #F5F2EA | #111214 | page |
-| `--surface` | #FBF9F4 | #18191C | cards, score sheet |
-| `--surface-2` | #EDE9DF | #202125 | quiet fills, hover |
-| `--ink` | #15161A | #EEEBE4 | text |
-| `--ink-2` | #44464D | #C9C6BF | supporting text |
-| `--ink-3` | #66676D | #9C9A94 | labels, meta (4.5:1 or better) |
-| `--line` | #DEDACF | #2E2F34 | hairlines |
-| `--line-strong` | #C5C0B4 | #44454B | control borders |
-| `--accent` | #2450D8 | #8BA3FF | the blue pencil |
-| `--accent-strong` | #1A3DB0 | #B0C1FF | hover and pressed |
-| `--accent-soft` | #E4EAFB | #1D2646 | selected fills |
-| `--accent-ink` | #FFFFFF | #0B0D14 | text on blue |
+| `--paper` | #FFFFFF | #0A1033 | page |
+| `--surface-2` | #F2F4FA | #131B46 | quiet fills: secondary buttons, icons, hover |
+| `--surface-3` | #E7EAF3 | #1B2457 | hover on a quiet fill |
+| `--ink` | #0B0D12 | #FFFFFF | text |
+| `--ink-2` | #3A3F4B | #C9CFE8 | supporting text |
+| `--ink-3` | #5F6573 | #9BA4C9 | labels, meta (4.5:1 or better) |
+| `--line` | #E4E7EF | #1F2858 | hairlines |
+| `--line-control` | #868C9B | #7A84B3 | lines that are controls (3:1) |
+| `--accent` | #1F3DFF | #8EA0FF | chosen, done, links on hover, focus |
+| `--accent-soft` | #EEF1FF | #18225A | soft fill of a chosen pill |
+| `--field` | #1F3DFF | #1F3DFF | blue fields |
+| `--field-ink` / `--field-ink-2` | #FFFFFF / #DBE0FF | same | text on a field (6.6:1, 5.1:1) |
 
-Type:
+Inside a blue field (`.blue` in blocks.module.css) the ink, accent and line tokens are remapped to
+the field's whites, so any part placed on blue works without changes.
 
-- `--font-display`: Instrument Serif (400, italic). Headlines and big numbers. Italic for the
-  supporting line under a headline and for pencil-like asides.
-- `--font-ui`: Instrument Sans (variable weight and width). Everything else.
-- `--font-chord`: Petaluma Script (Steinberg's handwriting font, after the Real Book). Chord
-  symbols only, plus the occasional handwritten note.
-- The score: alphaTab draws the notation in Petaluma, Steinberg's handwritten SMuFL music font,
-  and the chord names above the staff in Petaluma Script, so the sheet reads like a hand-copied
-  chart. `scripts/copy-alphatab.mjs` copies the font and its SMuFL metrics beside alphaTab; if
-  they fail to load, alphaTab falls back to its engraved Bravura.
+Type, all Instrument Sans (`--font-display` and `--font-ui` are the same family):
 
-Scale: hero headline 56–84px (line-height 1), page headline 48–64px, section heading 34px,
-card heading 22px, body 17px/1.6, small 14px, label 12px uppercase with 0.08em tracking.
+- `--text-hero` clamp(56px, 0.4rem + 7.6vw, 160px): the first title of a page, line-height 0.9,
+  tracking −0.05em, slightly narrowed (`font-stretch: 94%`).
+- `--text-display` clamp(42px, 0.9rem + 4vw, 96px): section titles and row titles.
+- `--text-title` clamp(30px, 1.3rem + 1.4vw, 44px): titles inside a section.
+- `--text-lead` clamp(19px, 1rem + 0.5vw, 24px): the line under a title, and text a row opens on.
+- Body 18px/1.6; labels 12.5px uppercase, tracking 0.08em.
+- `--font-chord`: Petaluma Script, for chord symbols only.
 
-Space: 4px grid. Sections are 72px apart in a wide window and 48px in a narrow one. Cards have
-24–32px padding. Radii: 6px (chips, inputs), 10px (cards), pill (buttons).
+Space: `--page-inline` is every block's left and right padding (the gutter, 28–72px, or wider on
+a very wide window so content stays within `--wide`, 1560px). Sections sit 72–136px apart.
 
-## Parts
+## Blocks (src/components/ui)
 
-- **Rehearsal heading**: a boxed letter (A, B, C…) and a serif heading, like the section marks of a
-  chart. Letters run in order down a page.
-- **Buttons**: primary is a blue pill; secondary is an ink outline pill; quiet is text that
-  underlines on hover. One primary action per view.
-- **Chord chip**: the chord in Petaluma Script on paper with a hairline border.
-- **Score sheet** (`ScoreSheet` in `PlayerScore.tsx`): the score and its playback bar joined on
-  one sheet, the one card with a soft shadow. The bar sticks to the bottom of the window while the
-  sheet runs on below it, so Play is always in reach.
-- **Playback bar**: the blue Play (the page's primary action), an outline Stop, tempo presets (the
-  chosen one circled in pencil), a thin slider that fills with blue, and pill toggles for loop,
-  count-in and metronome: filled when on, an empty outline when off. It follows its own width: one
-  row when there is room, play and toggles over a one-line tempo in a narrower window, and
-  everything stacked below 560px.
-- **Pencil marks**: hand-drawn SVG strokes in `--accent`: a tick (draws itself when you tick a
-  task), an underline (active tab, current place) and a circle.
-- **Staff rule**: five hairlines, used sparingly as an ornament between major parts.
-- **Labels**: 12px uppercase Instrument Sans, `--ink-3`.
-- **Copy**: lesson text is set with real flats and sharps on degrees and roman numerals ("the ♭9",
-  "V7♭9") and curly quotes, by `typeset` in `src/lib/text.ts`. Chord symbols are drawn by
-  `prettyChord`. Lesson data itself stays in ASCII.
+- **Hero** (`Hero.tsx`): the first screen of a page. A top row (small uppercase label at the
+  left, facts or a back link at the right), then the title, a line or two, and one action.
+  `tone="blue"` fills the window below the bar and turns the bar blue with it (the shell uses
+  `:has(main [data-hero='blue'])`). `tone="plain"` is a white header with the same huge title and
+  no fixed height, for pages that are tools rather than lessons. The action on blue is
+  `ui.button ui.onField ui.large`; on white, `ui.button ui.primary ui.large`.
+- **SectionHead** (`Hero.tsx`): "01  Play it": a small blue index and a `--text-display` title,
+  for a section that is always open because it is the point of the page.
+- **Reveal** (`Reveal.tsx`): a row with a small blue index, a `--text-display` title, an optional
+  fact at the right ("2 of 7 done") and a round plus that turns into a minus. Rows stack on
+  hairlines in a `RevealList`. A row opens when clicked, when the address names its id, or when a
+  link to `#id` is followed, so a button in the hero can lead straight into it. Its panel is
+  indented to the title's left edge; text in it is set at `--text-lead` when it is a few lines.
+- **NextLink** (`NextLink.tsx`): the end of a page: a blue band with a small label, the next
+  place's name at `--text-display`, a line under it and a white circle with an arrow.
+- **Buttons** (`ui.module.css`): `button` is a quiet pill on `--surface-2`; `primary` is blue;
+  `onField` is white with blue words; `large` for a first screen's action; `small` for minor
+  actions. One primary action per screen.
+- **Chosen words**: a segmented control, tempo presets and similar choices are plain words; the
+  chosen one is blue with a 2px underline that grows from the left.
+- **Checkboxes**: a ring that fills with blue and shows a white check.
+- **Fields**: a select is a word on a line; notes are ruled lines with no box.
 
 ## Screens
 
-- **Today**: a title block: the label with a small "This week" link at its right, the lick's
-  title as the headline, an italic line saying whose style it is and which tune it is for, then
-  the chords in handwriting with Learned and Favourite at the right. A hairline, the key, line and
-  analysis controls, then the score sheet, where the blue Play is the primary action. At 1440×900
-  the whole sheet is on the first screen. Then the fretboard with the fingering note, the liner
-  notes ("Why this works", with a drop cap) and the practice task beside the checklist and a
-  ruled notes field, the line as text, and the credits.
-- **This Week**: the tune's title block (feel and tempo handwritten at the left, composer and
-  year at the right, over a staff rule), links to each section by its rehearsal letter, then
-  sections A to H. A: today's practice as a card with the day circled in pencil and one blue
-  button that depends on the day. B: the recordings as a track list. C: the chord chart copied out
-  by hand, one slash per beat, with boxed section marks; with the analysis shown, roman numerals
-  under the staff and key centres shaded in green and purple (never the accent blue), then how
-  the changes work and common variations. D: voicings as a chord picker with the shapes of the
-  chosen chord. E: guide-tone exercises on a score sheet. F: improvisation ideas as numbered
-  notes. G: the seven-day plan as a timeline with today circled. H: the week's licks as a set
-  list.
-- **Library** ("Your back catalogue"): serif tabs with a pencil underline and counts as
-  superscripts. History files each day's lick under its week's standard with today's date
-  circled; Learned is grouped by month; Favourites is a two-column shelf; All lessons groups the
-  book by standard under rehearsal letters, with search and filters. Learned ticks and favourite
-  hearts line up in one column.
-- **Progress** ("The woodshed"): the streak as a big serif number with one blue button, a
-  six-month practice calendar in shades of blue with today circled, lessons learned drawn as
-  filled note heads on a staff, then notes, preferences (with small previews) and your data
-  (import and reset each ask first).
-- **Not found and errors**: a multi-bar rest marked 404, and a line with the wrong note circled;
-  one sentence and one primary button each.
+- **Today** and a lick opened from the library: a blue first screen with the label (date, or a
+  link back to the library tab), the facts at the right, the lick's title, whose style it is and
+  which tune it is for, the chords in handwriting and "Start practising". Then **01 Play it**:
+  key, line and analysis controls; the score and its playback bar with no frame (the bar sticks to
+  the bottom of the window while the score runs on); the fretboard with the fingering note; the
+  analysis when it is asked for; Learned and Favourite. Then rows: Why it works, Practice (with
+  "n of 7 done"), Use it on the tune, Your notes, The notes as text, Sources and credits. The page
+  ends on a blue band that leads to this week's standard.
+- **This Week** and a standard opened from the library: a blue first screen with the tune's
+  title, composer and feel, today's focus and one action that depends on the day. Then the parts
+  you use every day are always open (today's tasks and the chord chart, under section heads) and
+  the rest are rows (listening, voicings, guide tones, ideas, the seven-day plan, the week's
+  licks, notes, sources). The page ends on a blue band that leads to the day's lick.
+- **Library**: a white header with a huge title, the tabs as large words with counts, and lists
+  as rows on hairlines: the title large, the details small, learned and favourite marks in one
+  column.
+- **Progress**: the streak as the title of a blue first screen, then the practice calendar in
+  shades of blue, and rows for what you have learned, your notes, preferences and your data.
+- **Not found and errors**: a blue first screen with a big title, one sentence and one button.

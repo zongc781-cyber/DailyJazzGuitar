@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useSyncExternalStore, type ReactNode } from 'react';
+import { useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
 import styles from './blocks.module.css';
 
 const subscribeHash = (onChange: () => void) => {
@@ -17,7 +17,8 @@ export function RevealList({ children, className }: { children: ReactNode; class
 
 /**
  * A very large title that opens its details below it. It starts closed unless `defaultOpen`, and
- * opens by itself when the address names it (#id), so a link can point straight into it.
+ * opens by itself when the address names it (#id) or a link to #id is followed, so a button
+ * elsewhere on the page can lead straight into it.
  */
 export function Reveal({
   id,
@@ -39,6 +40,17 @@ export function Reveal({
   const [choice, setChoice] = useState<boolean | null>(null);
   const open = choice ?? (defaultOpen || hash === `#${id}`);
   const panelId = `${id}-panel`;
+
+  // Following a link to this row opens it, even when the address already names it (no hashchange).
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href]');
+      if (link?.getAttribute('href') === `#${id}`) setChoice(true);
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, [id]);
+
   return (
     <section id={id} className={styles.reveal}>
       <h2 className={styles.revealHeading}>
