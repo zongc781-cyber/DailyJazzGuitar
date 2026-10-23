@@ -274,6 +274,7 @@
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .nextMeta {

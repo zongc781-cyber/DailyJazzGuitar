@@ -24,11 +24,6 @@ function weekRange(first: string, last: string) {
   return first.slice(0, 7) === last.slice(0, 7) ? `${Number(first.slice(8, 10))} to ${formatShortDate(last)}` : `${formatShortDate(first)} to ${formatShortDate(last)}`;
 }
 
-/** The last two words kept together, so a big title never ends on one word alone. */
-function noWidow(title: string) {
-  return title.replace(/ (\S+)$/, ' $1');
-}
-
 /** Who the lick is after, as the lick's own page says it. */
 function byline(lick: CatalogEntry) {
   if (!lick.artist) return undefined;
@@ -68,7 +63,7 @@ function WeekStandard({ schedule, catalog }: { schedule: Schedule; catalog: Cata
       licks={licks}
       next={
         todayLick ? (
-          <NextLink href="/" label={schedule.day.review ? 'Today’s lick, a review' : 'Today’s lick'} title={noWidow(curly(todayLick.title))} meta={byline(todayLick)} testId="lick-next" />
+          <NextLink href="/" label={schedule.day.review ? 'Today’s lick, a review' : 'Today’s lick'} title={curly(todayLick.title)} meta={byline(todayLick)} testId="lick-next" />
         ) : null
       }
     />

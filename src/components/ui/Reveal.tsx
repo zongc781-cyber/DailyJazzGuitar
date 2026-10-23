@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
+import { createContext, use, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
 import styles from './blocks.module.css';
 
 const subscribeHash = (onChange: () => void) => {
@@ -9,6 +9,13 @@ const subscribeHash = (onChange: () => void) => {
 };
 const readHash = () => window.location.hash;
 const noHash = () => '';
+
+const RevealOpen = createContext(true);
+
+/** Whether the row this sits in is open (always true outside a row), so a heavy part can wait. */
+export function useRevealOpen() {
+  return use(RevealOpen);
+}
 
 /** Big titles stacked on hairlines, each opening its own details. */
 export function RevealList({ children, className }: { children: ReactNode; className?: string }) {
@@ -64,7 +71,7 @@ export function Reveal({
         </button>
       </h2>
       <div id={panelId} className={styles.revealPanel} hidden={!open}>
-        {children}
+        <RevealOpen value={open}>{children}</RevealOpen>
       </div>
     </section>
   );

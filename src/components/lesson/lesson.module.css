@@ -608,32 +608,3 @@
   margin-left: 3px;
   vertical-align: -2px;
 }
-
-/* -------------------------------------------------------------------------------------------
-   Kept for the weekly standard until its page moves to the same blocks.
-   ------------------------------------------------------------------------------------------- */
-
-.header {
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-}
-
-.eyebrowRow {
-  justify-self: stretch;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 24px;
-}
-
-.title {
-  max-width: 15ch;
-  font-size: var(--text-display);
-}
-
-.analysisHint {
-  max-width: var(--measure);
-  color: var(--ink-3);
-}

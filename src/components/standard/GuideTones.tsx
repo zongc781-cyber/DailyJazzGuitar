@@ -12,11 +12,11 @@ import { PlayerProvider, type NoteHighlight } from '@/components/player/PlayerPr
 import { PlayerScore, ScoreSheet } from '@/components/player/PlayerScore';
 import { Transport } from '@/components/player/Transport';
 import { Fretboard } from '@/components/player/Fretboard';
+import { useRevealOpen } from '@/components/ui/Reveal';
 import { Segmented } from '@/components/ui/Segmented';
 import lessonStyles from '@/components/lesson/lesson.module.css';
 import { Prose, lineContext } from '@/components/lesson/Prose';
 import { curly, typeset } from '@/lib/text';
-import { WhileShown } from './WhileShown';
 import styles from './standard.module.css';
 
 type Exercise = Standard['guideToneExercises'][number];
@@ -69,6 +69,8 @@ export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: S
     [ex, showAnalysis],
   );
   const ctx = useMemo(() => lineContext(ex.bars, ex.chords, standard.key), [ex, standard.key]);
+  // The player (and its Space key) exists only while the row it sits in is open.
+  const shown = useRevealOpen();
 
   return (
     <div className={styles.guide}>
@@ -81,7 +83,7 @@ export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: S
         <h3 className={styles.guideTitle}>{curly(ex.title)}</h3>
         <ExerciseChanges ex={ex} />
       </div>
-      <WhileShown>
+      {shown ? (
         <PlayerProvider key={index} tex={tex} tempo={standard.tempo} label={`${ex.title}: standard notation and tablature${showAnalysis ? ' with chord degrees' : ''}`} highlights={highlights}>
           <div className={styles.guidePlayer}>
             <ScoreSheet>
@@ -99,7 +101,7 @@ export function GuideTones({ standard, showAnalysis, leftHanded }: { standard: S
             </div>
           </div>
         </PlayerProvider>
-      </WhileShown>
+      ) : null}
     </div>
   );
 }
