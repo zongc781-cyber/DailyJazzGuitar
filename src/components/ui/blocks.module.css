@@ -158,9 +158,15 @@
     color 0.2s ease-out;
 }
 
-.revealButton:hover .revealTitle {
+.revealButton:hover .revealTitle,
+.revealButton:focus-visible .revealTitle {
   transform: translateX(14px);
   color: var(--accent);
+}
+
+.revealButton:focus-visible {
+  outline-offset: 6px;
+  border-radius: 6px;
 }
 
 .revealMeta {
@@ -200,12 +206,15 @@
   transform: rotate(90deg);
 }
 
-.revealButton:hover .revealIcon {
+.revealButton:hover .revealIcon,
+.revealButton:focus-visible .revealIcon {
   background: var(--accent);
 }
 
 .revealButton:hover .revealIcon::before,
-.revealButton:hover .revealIcon::after {
+.revealButton:hover .revealIcon::after,
+.revealButton:focus-visible .revealIcon::before,
+.revealButton:focus-visible .revealIcon::after {
   background: var(--accent-ink);
 }
 
@@ -283,8 +292,14 @@
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.next:hover .nextArrow {
+.next:hover .nextArrow,
+.next:focus-visible .nextArrow {
   transform: translateX(10px);
+}
+
+/* The ring sits inside the band, where it shows against the blue. */
+.next:focus-visible {
+  outline-offset: -12px;
 }
 
 /* A page section: an index and a title over its content. */

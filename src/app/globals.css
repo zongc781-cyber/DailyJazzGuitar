@@ -268,8 +268,8 @@ select {
   z-index: 100;
   padding: 10px 16px;
   border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--ink);
+  color: var(--paper);
   font-weight: 600;
   text-decoration: none;
   transition: top 0.15s ease-out;
