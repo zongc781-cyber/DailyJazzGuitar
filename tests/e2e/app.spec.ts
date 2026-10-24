@@ -86,7 +86,7 @@ test('a learned lick and a favourite appear in the library', async ({ page }) =>
   await openToday(page);
   const title = (await page.getByRole('heading', { level: 1 }).innerText()).trim();
   await page.getByTestId('learned').click();
-  await expect(page.getByTestId('learned-state')).toBeVisible();
+  await expect(page.getByTestId('learned')).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('favourite').click();
   await expect(page.getByTestId('favourite')).toHaveAttribute('aria-pressed', 'true');
 

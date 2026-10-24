@@ -80,28 +80,12 @@
   color: var(--field);
 }
 
-.done {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.done:hover {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
 .ghost {
   background: transparent;
 }
 
 .ghost:hover {
   background: var(--surface-2);
-}
-
-.small {
-  min-height: 38px;
-  padding: 0 16px;
-  font-size: 0.9rem;
 }
 
 /* A text link with an arrow that moves on hover. */

@@ -170,7 +170,12 @@ export function StandardLesson({
           </>
         }
         title={standard.title}
-        actions={<ActionLink action={action} />}
+        actions={
+          <>
+            <ActionLink action={action} />
+            <LessonActions id={standard.id} dateKey={dateKey} entry={{ kind: 'standard', title: standard.title, origin: standard.origin }} />
+          </>
+        }
       >
         <p className={lessonStyles.byline}>
           {listJoin(standard.composers)}, {standard.year} · {standard.feel === 'swing' ? 'Swing' : 'Straight eighths'},{' '}
@@ -252,9 +257,6 @@ export function StandardLesson({
         <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
           <HarmonicAnalysis standard={standard} ctx={chartCtx} id={analysisId} />
         </Activity>
-        <div className={`${lessonStyles.doneRow} ${styles.indent}`}>
-          <LessonActions id={standard.id} dateKey={dateKey} entry={{ kind: 'standard', title: standard.title, origin: standard.origin }} />
-        </div>
       </section>
 
       <RevealList className={lessonStyles.rows}>

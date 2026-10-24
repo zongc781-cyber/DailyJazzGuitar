@@ -46,10 +46,6 @@
   min-width: 0;
 }
 
-.indent {
-  margin-left: var(--indent);
-}
-
 /* 01 Today: what the day is for at the left, its tasks at the right. */
 .today {
   display: grid;

@@ -167,10 +167,17 @@ export function LickLesson({
         }
         title={lesson.title}
         actions={
-          <a href="#play" className={`${ui.button} ${ui.onField} ${ui.large}`}>
-            Start practising
-            <Icon name="arrowDown" />
-          </a>
+          <>
+            <a href="#play" className={`${ui.button} ${ui.onField} ${ui.large}`}>
+              Start practising
+              <Icon name="arrowDown" />
+            </a>
+            <LessonActions
+              id={lesson.id}
+              dateKey={dateKey}
+              entry={{ kind: 'lick', title: lesson.title, origin: lesson.origin, artist: inspiration.artist, key: prettyKey(current.key) }}
+            />
+          </>
         }
       >
         <p className={styles.byline}>
@@ -253,14 +260,6 @@ export function LickLesson({
         <Activity mode={showAnalysis ? 'visible' : 'hidden'}>
           <LickAnalysis lick={current} ctx={lickCtx} id={analysisId} />
         </Activity>
-
-        <div className={styles.doneRow}>
-          <LessonActions
-            id={lesson.id}
-            dateKey={dateKey}
-            entry={{ kind: 'lick', title: lesson.title, origin: lesson.origin, artist: inspiration.artist, key: prettyKey(current.key) }}
-          />
-        </div>
       </section>
 
       <RevealList className={styles.rows}>

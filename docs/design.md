@@ -80,6 +80,12 @@ a very wide window so content stays within `--wide`, 1560px). Sections sit 72–
   One primary action per screen.
 - **Chosen words**: a segmented control, tempo presets and similar choices are plain words; the
   chosen one is blue with a 2px underline that grows from the left.
+- **Learned and Favourite** (`LessonActions.tsx`): two round buttons beside a lesson's first
+  action, on its blue field: a check and a heart, a quiet white tint when off and solid white with
+  the mark in blue when on. Their words are in the tooltip, not on the page.
+- **Playback bar** (`Transport.tsx`): Play, Stop and the tempo slider with its number, and no
+  words. While the sounds load, its top line fills with blue; only a failure is written out. Loop,
+  count-in and the metronome are switches in Preferences.
 - **Checkboxes**: a ring that fills with blue and shows a white check.
 - **Fields**: a select is a word on a line; notes are ruled lines with no box.
 
@@ -87,14 +93,16 @@ a very wide window so content stays within `--wide`, 1560px). Sections sit 72–
 
 - **Today** and a lick opened from the library: a blue first screen with the label (date, or a
   link back to the library tab), the facts at the right, the lick's title, whose style it is and
-  which tune it is for, the chords in handwriting and "Start practising". Then **01 Play it**:
-  key, line and analysis controls; the score and its playback bar with no frame (the bar sticks to
-  the bottom of the window while the score runs on); the fretboard with the fingering note; the
-  analysis when it is asked for; Learned and Favourite. Then rows: Why it works, Practice (with
+  which tune it is for, the chords in handwriting, "Start practising" and Learned and Favourite.
+  Then **01 Play it**: the key (a word on a line), Lick or Variation, and Show analysis, with no
+  labels; the score and its playback bar with no frame (the bar sticks to the bottom of the window
+  while the score runs on); the fretboard with the fingering note; the analysis when it is asked
+  for. Then rows: Why it works, Practice (with
   "n of 7 done"), Use it on the tune, Your notes, The notes as text, Sources and credits. The page
   ends on a blue band that leads to this week's standard.
 - **This Week** and a standard opened from the library: a blue first screen with the tune's
-  title, composer and feel, today's focus and one action that depends on the day. Then the parts
+  title, composer and feel, today's focus, one action that depends on the day, and Learned and
+  Favourite. Then the parts
   you use every day are always open (today's tasks and the chord chart, under section heads) and
   the rest are rows (listening, voicings, guide tones, ideas, the seven-day plan, the week's
   licks, notes, sources). The page ends on a blue band that leads to the day's lick.
