@@ -1,6 +1,6 @@
 #!/bin/bash
-# Opens Daily Jazz Guitar in the browser, first starting the app's local server if it is not
-# already running. The "Daily Jazz Guitar" app that install.sh adds to ~/Applications runs this.
+# Opens Journal in the browser, first starting the app's local server if it is not already
+# running. The "Journal" app that install.sh adds to ~/Applications runs this.
 # The server only answers this Mac, and it keeps running in the background until you log out or
 # run stop.sh. With --no-open it only makes sure the server is running.
 set -euo pipefail

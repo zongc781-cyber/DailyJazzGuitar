@@ -1,11 +1,11 @@
 ---
 name: jazz-lick-validator
-description: Lesson data format and musical-accuracy gate for the Daily Jazz Guitar app. Use whenever you write, edit, generate, transpose, render or save a daily lick or weekly jazz standard lesson; whenever you touch notation, tablature, fretboard diagrams, chord voicings, swing/metronome playback or the alphaTab integration; and whenever you build or change the lesson-generation service or the seed library. Also use it to answer "is this lick right?" questions about pitches, fingering, rhythm or analysis.
+description: Lesson data format and musical-accuracy gate for the Journal app (daily jazz guitar lessons). Use whenever you write, edit, generate, transpose, render or save a daily lick or weekly jazz standard lesson; whenever you touch notation, tablature, fretboard diagrams, chord voicings, swing/metronome playback or the alphaTab integration; and whenever you build or change the lesson-generation service or the seed library. Also use it to answer "is this lick right?" questions about pitches, fingering, rhythm or analysis.
 ---
 
 # Jazz lick validator
 
-Daily Jazz Guitar teaches one jazz standard a week and one lick a day. Every lick and standard
+Journal teaches one jazz standard a week and one lick a day. Every lick and standard
 is a single JSON file, and that file is the only source for notation, tab, fretboard diagrams,
 chord names, analysis and audio. This skill defines that format and ships a validator that every
 lesson must pass before anyone can see it.

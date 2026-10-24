@@ -53,10 +53,13 @@
   color: var(--mark);
 }
 
+/* The name is set like a title, only small. */
 .brandName {
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  font-stretch: 94%;
+  letter-spacing: -0.035em;
 }
 
 .links {

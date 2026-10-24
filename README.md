@@ -1,13 +1,14 @@
-# Daily Jazz Guitar
+# Journal
 
-One jazz standard each week, and one short lick each day that helps you improvise over it.
+A jazz guitar practice journal: one jazz standard each week, and one short lick each day that helps
+you improvise over it.
 
 - **Today**: the day's lick (2–4 bars) with standard notation, tab, fingering, chord symbols and a
-  fretboard diagram. Playback has adjustable tempo, looping, count-in and metronome. You can
-  move the lick to any key, and notation, tab, audio and analysis move together. The analysis
-  (chord tones, extensions, approach notes, rhythmic placement and resolution) stays hidden until
-  you press **Show analysis**. Each lick also has "Why this works", a variation and a practice task
-  over the week's standard.
+  fretboard diagram. Playback has adjustable tempo, and looping, count-in and the metronome are
+  switches in Preferences. You can move the lick to any key, and notation, tab, audio and analysis
+  move together. The analysis (chord tones, extensions, approach notes, rhythmic placement and
+  resolution) stays hidden until you press **Show analysis**. Each lick also has "Why it works", a
+  variation and a practice task over the week's standard.
 - **This Week**: the standard: composer, form, key centres, checked listening links, a chord chart
   with roman-numeral analysis and common variations, guitar voicings, guide-tone exercises,
   improvisation ideas and a seven-day plan (listening, harmony, comping, arpeggios, vocabulary,
@@ -36,8 +37,10 @@ git clone https://github.com/zongc781-cyber/DailyJazzGuitar.git ~/Code/DailyJazz
 ~/Code/DailyJazzGuitar/scripts/mac/install.sh
 ```
 
-The installer builds the app and adds **Daily Jazz Guitar** to `~/Applications`, with its own
-icon; open it from there, from Spotlight or from the Dock. It starts the app's server on this Mac
+The installer builds the app and adds **Journal** to `~/Applications`, with its own icon (a white
+"j" on blue); open it from there, from Spotlight or from the Dock. On macOS 26 and later Apple's
+own Journal app has the same name, so look for the blue icon. The installer also removes the
+"Daily Jazz Guitar" app that earlier versions added. It starts the app's server on this Mac
 (port 4747, not reachable from other computers) and opens http://localhost:4747 in your browser.
 Your progress is saved in that browser, so keep using the same one. For a window of its own, choose
 **File > Add to Dock** in Safari.

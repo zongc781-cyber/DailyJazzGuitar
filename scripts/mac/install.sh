@@ -1,6 +1,6 @@
 #!/bin/bash
-# Installs Daily Jazz Guitar on this Mac: builds the app in this folder and adds a "Daily Jazz
-# Guitar" app to ~/Applications, which starts the app's local server and opens it in the browser.
+# Installs Journal on this Mac: builds the app in this folder and adds a "Journal" app to
+# ~/Applications, which starts the app's local server and opens it in the browser.
 # Run it again after pulling changes to rebuild. It needs no admin rights: if the Mac has no
 # Node.js 22.6 or later, it downloads a private copy into .mac/ in this folder.
 set -euo pipefail
@@ -17,7 +17,7 @@ case "$(uname -s)-$(uname -m)" in
   Darwin-x86_64) NODE_DIST=darwin-x64 NODE_SHA256=d132557e7ee2b85af08b0c8c34338e65c6430f2238d01f727728ef42dc83b035 ;;
   # Linux too, so the installer can be tested off a Mac. The app it adds is Mac-only.
   Linux-x86_64) NODE_DIST=linux-x64 NODE_SHA256=eb6728e77c576a35162c122c45ccadf224d89ff00abc8dae46cc2897c6002d7c ;;
-  *) echo "Daily Jazz Guitar does not support $(uname -sm)." >&2; exit 1 ;;
+  *) echo "Journal does not support $(uname -sm)." >&2; exit 1 ;;
 esac
 
 new_enough() {
@@ -61,28 +61,34 @@ npm run build
 bash "$ROOT/scripts/mac/stop.sh"
 
 if [ "$(uname -s)" = Darwin ]; then
-  APP="$HOME/Applications/Daily Jazz Guitar.app"
+  APP="$HOME/Applications/Journal.app"
   start="$ROOT/scripts/mac/start.sh"
   start=${start//\\/\\\\}
   start=${start//\"/\\\"}
   mkdir -p "$HOME/Applications"
   rm -rf "$APP"
+  # The app was called Daily Jazz Guitar before; this installer made that copy, so it goes.
+  rm -rf "$HOME/Applications/Daily Jazz Guitar.app"
   osacompile -o "$APP" \
     -e 'try' \
     -e "  do shell script \"/bin/bash \" & quoted form of \"$start\"" \
     -e 'on error errorText' \
-    -e '  display alert "Daily Jazz Guitar could not start" message errorText as critical' \
+    -e '  display alert "Journal could not start" message errorText as critical' \
     -e 'end try'
   cp scripts/mac/AppIcon.icns "$APP/Contents/Resources/applet.icns"
   # Changing the icon breaks the applet's local signature, so it is signed again.
   codesign --force --sign - "$APP" >/dev/null 2>&1 || true
   touch "$APP"
+  # Tell Finder and the Dock about the new icon now rather than at the next log-in.
+  LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
+  [ -x "$LSREGISTER" ] && "$LSREGISTER" -f "$APP" >/dev/null 2>&1 || true
   bash "$ROOT/scripts/mac/start.sh" --no-open
   open "$APP"
   echo
-  echo "Daily Jazz Guitar is installed in ~/Applications and open in your browser."
+  echo "Journal is installed in ~/Applications and open in your browser."
   echo "Open it from there, from Spotlight or from the Dock (drag it there to keep it)."
+  echo "If the Dock still holds the old Daily Jazz Guitar app, drag that one out."
 else
   bash "$ROOT/scripts/mac/start.sh" --no-open
-  echo "Daily Jazz Guitar is running at http://localhost:${DJG_PORT:-4747}"
+  echo "Journal is running at http://localhost:${DJG_PORT:-4747}"
 fi

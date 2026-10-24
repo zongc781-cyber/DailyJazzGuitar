@@ -1,41 +1,38 @@
-// Draws the app icons from the brand mark (the guitar pick with a note in the top bar) and
+// Draws the app icons from the Journal mark (src/components/shell/mark.json: the "j" of the site's
+// titles, Instrument Sans at weight 500, whose dot is Petaluma's note head, on a square tile) and
 // writes them into the repo: the browser icon (src/app/icon.svg), the icon Safari uses for
 // File > Add to Dock (src/app/apple-icon.png) and the Mac app icon that scripts/mac/install.sh
-// gives the "Daily Jazz Guitar" app (scripts/mac/AppIcon.icns). Run it after changing the
-// artwork: `node scripts/make-icons.mjs` (it renders with Playwright's Chromium).
-import { writeFileSync } from 'node:fs';
+// gives the Journal app (scripts/mac/AppIcon.icns). Run it after changing the mark:
+// `node scripts/make-icons.mjs` (it renders with Playwright's Chromium).
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const MARK = JSON.parse(readFileSync(join(root, 'src/components/shell/mark.json'), 'utf8'));
 
-// The mark on a 32×32 grid, as in AppShell's BrandMark.
-const mark = (pick, note) => `
-  <path d="M16 2.5c7 0 12.5 3 12.5 7.8 0 6.4-7.4 15.6-12.5 19.2C10.9 25.9 3.5 16.7 3.5 10.3 3.5 5.5 9 2.5 16 2.5z" fill="${pick}"/>
-  <path d="M13.4 20.2V10.6l7.2-1.6v8.6" fill="none" stroke="${note}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="11.6" cy="20.3" r="2.1" fill="${note}"/>
-  <circle cx="18.8" cy="17.7" r="2.1" fill="${note}"/>`;
-
-// The app's blue, as a field, with the mark in white on it: the way the top bar shows it over a
-// page's blue first screen.
+// White on the app's blue, as a page's first screen sets its title.
 const BLUE = '#1f3dff';
+const glyph = (scale, x = 0, y = 0) => `<g transform="translate(${x} ${y}) scale(${scale})" fill="#ffffff"><path d="${MARK.j}"/><path d="${MARK.head}"/></g>`;
 const shadow = `<defs><filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.18"/></filter></defs>`;
 
 // A Mac app icon: a rounded square inside the standard 1024 grid, with room for its shadow.
 const macIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">${shadow}
   <rect x="100" y="100" width="824" height="824" rx="185" fill="${BLUE}" filter="url(#shadow)"/>
-  <g transform="translate(512 518) scale(17.5) translate(-16 -16)">${mark('#ffffff', BLUE)}</g>
+  ${glyph(824 / MARK.size, 100, 100)}
 </svg>`;
 
 // Safari rounds the corners of a touch icon itself, so it fills the square.
 const touchIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
   <rect width="180" height="180" fill="${BLUE}"/>
-  <g transform="translate(90 91) scale(3.7) translate(-16 -16)">${mark('#ffffff', BLUE)}</g>
+  ${glyph(180 / MARK.size)}
 </svg>`;
 
-// In a browser tab the mark stands on its own: a blue pick with a white note.
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${mark(BLUE, '#ffffff')}
+// In a browser tab the tile keeps its rounded corners.
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="${((32 * MARK.radius) / MARK.size).toFixed(2)}" fill="${BLUE}"/>
+  ${glyph(32 / MARK.size)}
 </svg>
 `;
 

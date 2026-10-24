@@ -27,9 +27,9 @@ const hand = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'Daily Jazz Guitar', template: '%s · Daily Jazz Guitar' },
+  title: { default: 'Journal', template: '%s · Journal' },
   description: 'One jazz standard each week and one lick each day, with notation, tab, audio, fretboard and analysis.',
-  applicationName: 'Daily Jazz Guitar',
+  applicationName: 'Journal',
 };
 
 export const viewport: Viewport = {

@@ -7,6 +7,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
+import MARK from './mark.json';
 import styles from './shell.module.css';
 
 const NAV: { href: string; label: string; match: (path: string) => boolean }[] = [
@@ -16,13 +17,13 @@ const NAV: { href: string; label: string; match: (path: string) => boolean }[] =
   { href: '/progress', label: 'Progress', match: (p) => p.startsWith('/progress') },
 ];
 
+/** The app icon in small: a tile with the "j" of the titles, its dot a note head. */
 function BrandMark() {
   return (
-    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false" className={styles.mark}>
-      <path d="M16 2.5c7 0 12.5 3 12.5 7.8 0 6.4-7.4 15.6-12.5 19.2C10.9 25.9 3.5 16.7 3.5 10.3 3.5 5.5 9 2.5 16 2.5z" fill="currentColor" />
-      <path d="M13.4 20.2V10.6l7.2-1.6v8.6" fill="none" stroke="var(--mark-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="11.6" cy="20.3" r="2.1" fill="var(--mark-ink)" />
-      <circle cx="18.8" cy="17.7" r="2.1" fill="var(--mark-ink)" />
+    <svg width="30" height="30" viewBox={`0 0 ${MARK.size} ${MARK.size}`} aria-hidden="true" focusable="false" className={styles.mark}>
+      <rect width={MARK.size} height={MARK.size} rx={MARK.radius} fill="currentColor" />
+      <path d={MARK.j} fill="var(--mark-ink)" />
+      <path d={MARK.head} fill="var(--mark-ink)" />
     </svg>
   );
 }
@@ -34,7 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className={styles.bar}>
         <Link href="/" className={styles.brand}>
           <BrandMark />
-          <span className={styles.brandName}>Daily Jazz Guitar</span>
+          <span className={styles.brandName}>Journal</span>
         </Link>
         <nav className={styles.nav} aria-label="Main">
           <ul className={styles.links}>

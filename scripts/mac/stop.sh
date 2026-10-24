@@ -1,5 +1,5 @@
 #!/bin/bash
-# Stops Daily Jazz Guitar's local server, if start.sh started one from this folder.
+# Stops Journal's local server, if start.sh started one from this folder.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"

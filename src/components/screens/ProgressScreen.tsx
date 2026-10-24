@@ -505,7 +505,7 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
     if (confirmReset || pendingImport) keepRef.current?.focus();
   }, [confirmReset, pendingImport]);
 
-  const fileName = `daily-jazz-guitar-progress-${dateKey}.json`;
+  const fileName = `journal-progress-${dateKey}.json`;
   const held = holdings(state);
   const exportData = () => {
     const blob = new Blob([JSON.stringify(getProgress(), null, 2)], { type: 'application/json' });
@@ -529,7 +529,7 @@ function DataControls({ dateKey, state }: { dateKey: string; state: ProgressStat
       setPendingImport({ state: migrate(raw), name: file.name });
       setMessage(null);
     } catch {
-      setMessage(`${file.name} is not a Daily Jazz Guitar progress export.`);
+      setMessage(`${file.name} is not a Journal progress export.`);
     }
   };
 

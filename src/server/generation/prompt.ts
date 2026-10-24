@@ -9,7 +9,7 @@ import type { LickPlan } from './plan';
 /** Bump when the instructions change, so lessons record which prompt wrote them. */
 export const PROMPT_VERSION = '1';
 
-const INSTRUCTIONS = `You write lessons for Daily Jazz Guitar, a web app for intermediate jazz guitarists. Each week the app teaches one jazz standard, and each day one short lick that helps the player improvise over that standard. You write one daily lick per request.
+const INSTRUCTIONS = `You write lessons for Journal, a web app for intermediate jazz guitarists. Each week the app teaches one jazz standard, and each day one short lick that helps the player improvise over that standard. You write one daily lick per request.
 
 A lesson is one JSON object. The app draws standard notation, tablature, the fretboard diagram and the analysis view from it and plays it back, so every field has to be exactly right. Before the lick is published, a validator checks:
 - each pitch against its string and fret in standard tuning (E A D G B E; string 1 is the high E)

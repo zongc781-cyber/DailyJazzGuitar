@@ -1,6 +1,6 @@
 # Design: big type on white and blue
 
-Daily Jazz Guitar is set like a studio's portfolio site (the reference was cominvi.com.mx and its
+Journal is set like a studio's portfolio site (the reference was cominvi.com.mx and its
 Awwwards entry): white pages, big fields of blue, black type, very large titles, and one idea per
 screen. Details wait behind a big title until you click it.
 
@@ -113,3 +113,11 @@ a very wide window so content stays within `--wide`, 1560px). Sections sit 72–
   shades of blue, and rows for what you have learned, your notes, preferences and your data. The
   page ends on a blue band that leads to today's lick.
 - **Not found and errors**: a blue first screen with a big title, one sentence and one button.
+
+## The name and the icon
+
+The app is called Journal. Its icon is a blue tile with the "j" of the titles (Instrument Sans at
+weight 500) in white, its dot drawn as Petaluma's note head. `src/components/shell/mark.json` holds
+the mark; the top bar draws it small, and `scripts/make-icons.mjs` turns it into the browser icon,
+the touch icon and the Mac app icon. On a blue first screen the bar's mark turns white with a blue
+"j".
