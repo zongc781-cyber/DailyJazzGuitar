@@ -5,7 +5,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { validateForPublish } from './lib/index.mjs';
+import { validateForPublish } from '../../../../src/lib/music/index.mjs';
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a) => a.startsWith('--')));

@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "bb-03-tal-farlow-minor-ii-v",
+  "title": "Minor ii–V–i: wide leaps and the b9 falling to the 5th",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "blue-bossa",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Tal Farlow",
+    "note": "Farlow, whose large hands earned him the nickname 'the Octopus', had what Stuart Nicholson calls a very personal way of using large intervals, and he strung chains of arpeggios together to contrast his single-note lines. This phrase borrows the wide-interval arpeggio and the arpeggio chain, in a version that fits a normal hand."
+  },
+  "sources": [
+    {
+      "title": "The Swinging Guitar of Tal Farlow",
+      "author": "Tal Farlow",
+      "kind": "recording",
+      "year": 1957,
+      "url": "https://en.wikipedia.org/wiki/The_Swinging_Guitar_of_Tal_Farlow",
+      "detail": "Trio session with Eddie Costa (piano) and Vinnie Burke (bass), recorded in May 1956"
+    },
+    {
+      "title": "Tal",
+      "author": "Tal Farlow",
+      "kind": "recording",
+      "year": 1956,
+      "url": "https://en.wikipedia.org/wiki/Tal_(album)",
+      "detail": "Norgran trio album with the same rhythm section, recorded in June 1956"
+    },
+    {
+      "title": "Tal Farlow Interview: 23 September 1981",
+      "author": "Stuart Nicholson",
+      "kind": "website",
+      "url": "https://stuartnicholson.uk/tal-farlow-interview-23-september-1981/",
+      "detail": "Introduction describing Farlow's 'very personal way of using large intervals' and his chains of arpeggios"
+    },
+    {
+      "title": "The IIm7b5-V7b9-Im Progression",
+      "author": "James Rosocha",
+      "kind": "website",
+      "url": "https://www.guitar9.com/node/59899",
+      "detail": "Guide tones in the minor ii–V–i, including the b9 of the V resolving down a half step to the 5th of the i"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "C",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "straight",
+  "tempo": {
+    "min": 60,
+    "default": 132,
+    "max": 200
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Dm7b5",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "G7b9",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Cm7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 1,
+          "degree": "b13",
+          "role": "approach-chromatic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 9,
+          "pitch": "B3",
+          "finger": 2,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 12,
+          "pitch": "D4",
+          "finger": 4,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 12,
+          "pitch": "B4",
+          "finger": 4,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 12,
+          "pitch": "B4",
+          "finger": 4,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b9",
+          "role": "tension"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Over {{chord 1}} the line leaps down through the chord in wide intervals, then a half-step approach pushes up into the 3rd of {{chord 2}}. Bar 2 climbs a diminished-7th arpeggio from that 3rd (3rd, 5th, 7th, b9) and comes back down, and the b9 at the end of the bar falls a half step to the 5th of {{chord 3}} on beat 1.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "text": "Until its last note, bar 1 uses only the four notes of {{chord 1}} (root, b3, b5 and b7) in a zigzag: three downward leaps (root to b5, 7th to b3, b5 to 7th) with a rising 3rd between them. Bar 2 starts on the 3rd of {{chord 2}} ({{note 2.1}}) and stacks its 5th and 7th on top."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "The b9 is the sound of the V chord in a minor key. Starting the arpeggio on the 3rd turns it into a diminished-7th shape with the b9 on top: the line passes it on the way up ({{note 2.4}}) and ends the bar on it ({{note 2.8}})."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            8
+          ]
+        ],
+        "text": "{{note 1.8}} sits a half step below the 3rd of {{chord 2}}, right after the 7th of {{chord 1}} a half step above it, so the two notes squeeze the 3rd from both sides. Played on the 'and' of 4, it pushes into the new chord so the 3rd arrives right on beat 1."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          4.5,
+          1,
+          4.5,
+          1
+        ],
+        "text": "A steady eighth-note line that starts on the 'and' of 1. Both chord changes are prepared on the 'and' of 4 and arrive on beat 1, so the harmony moves exactly where the ear expects it. The long final note gives the phrase room to breathe."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 5th of {{chord 3}}, reached by the b9 falling a half step. The tension releases into a stable chord tone, and it is the same note that was the root of {{chord 2}}, so the V seems to settle into the i."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "5",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Each chord gets its own shape: wide leaps for {{chord 1}}, a climbing diminished arpeggio for {{chord 2}}. The moves that carry the cadence are both half steps, a half-step approach into the 3rd of the V and the b9 down to the 5th of the i. Half steps pull the hardest, so the line sounds inevitable even though it leaps a lot.",
+  "fingeringNote": "Eighth position in the lesson's original key, one finger per fret, starting with the ring finger on the high E string. Bar 1 skips a string twice, so pick it slowly at first. In bar 2 the pinky reaches one fret above the position three times, once on the D string and twice on the B string; let the hand lean up the neck for those notes, then come back for the landing note under the index finger.",
+  "practiceTask": "Play the lick over bars 5 to 7 of the weekly standard, then over bars 13 to 15, which have the same chords. Practise bar 1 alone and slowly until the string skips sound even, then join it to bar 2.",
+  "variation": {
+    "description": "The last two notes of bar 2 swap places, so the 3rd of {{chord 2}} ({{note 2.8}}) comes last and rises a half step to the root of {{chord 3}} ({{note 3.1}}). In a minor key, a V7b9 has two strong half-step pulls: the b9 falls to the 5th, as in the lick, and the 3rd rises to the root, as here.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 3,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 10,
+            "pitch": "C4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 1,
+            "degree": "b13",
+            "role": "approach-chromatic"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 9,
+            "pitch": "B3",
+            "finger": 2,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 12,
+            "pitch": "D4",
+            "finger": 4,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 12,
+            "pitch": "B4",
+            "finger": 4,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 3,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 12,
+            "pitch": "B4",
+            "finger": 4,
+            "degree": "3",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "2",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "minor-ii-v-i",
+    "b9",
+    "diminished-arpeggio",
+    "wide-intervals",
+    "chromatic-approach"
+  ]
+}

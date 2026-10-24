@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-03-django-diminished-minor-ii-v",
+  "title": "Diminished flourish into the minor 6 chord",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Django Reinhardt",
+    "note": "Django often turned a dominant chord into a 7b9 by playing a diminished 7th arpeggio over it, and used minor 6 arpeggios on minor chords; this phrase borrows both habits."
+  },
+  "sources": [
+    {
+      "title": "Djangology",
+      "kind": "recording",
+      "author": "Django Reinhardt and Stéphane Grappelli",
+      "year": 1961,
+      "detail": "Recorded in Italy in 1949 with Stéphane Grappelli; includes 'Minor Swing'.",
+      "url": "https://en.wikipedia.org/wiki/Djangology"
+    },
+    {
+      "title": "Style Guide: Django Reinhardt and Gypsy Jazz",
+      "kind": "website",
+      "author": "Mike Cramer",
+      "year": 2013,
+      "detail": "Premier Guitar: the diminished 7th arpeggio played over a dominant 7th chord for a 7b9 sound (over F7, an Adim7 arpeggio, which starts on the 3rd), and the added 6th on minor chords.",
+      "url": "https://www.premierguitar.com/style-guide-django-reinhardt-and-gypsy-jazz"
+    },
+    {
+      "title": "How To Play Gypsy Jazz Guitar in The Style of Django Reinhardt",
+      "kind": "website",
+      "author": "Yaakov Hoter",
+      "detail": "JazzGuitar.be: a diminished chord on the 3rd, 5th, b7 or b9 of a dominant 7th gives the 7b9 sound, a substitution Django used a lot; one of the phrases uses a minor 6 arpeggio.",
+      "url": "https://www.jazzguitar.be/blog/django-reinhardt/"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "G",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 140,
+    "max": 220
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Am7b5",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "D7b9",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Gm6",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 11,
+          "pitch": "Eb5",
+          "finger": 4,
+          "degree": "b5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 10,
+          "pitch": "A4",
+          "finger": 3,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "b7",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "tuplet": 3,
+          "string": 3,
+          "fret": 11,
+          "pitch": "F#4",
+          "finger": 4,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "tuplet": 3,
+          "string": 2,
+          "fret": 10,
+          "pitch": "A4",
+          "finger": 3,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "tuplet": 3,
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "dots": 1,
+          "string": 1,
+          "fret": 11,
+          "pitch": "Eb5",
+          "finger": 4,
+          "degree": "b9",
+          "role": "tension"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "passing"
+        },
+        {
+          "dur": "2",
+          "string": 3,
+          "fret": 9,
+          "pitch": "E4",
+          "finger": 2,
+          "degree": "6",
+          "role": "chord-tone"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "A falling {{chord 1}} arpeggio ends on its b7, which drops a half step to the 3rd of the dominant. The chart's plain V7 is played here as {{chord 2}}, the usual Gypsy-jazz reading of the dominant in a minor key: a quick triplet sweeps up a diminished 7th arpeggio from its 3rd to the b9. The b9 is held, then falls a half step to the 5th of {{chord 3}}, and the line walks down the minor 6 arpeggio to finish on the 6th.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "text": "Bar 1 spells all of {{chord 1}} from the top: b5, b3, root and b7. The triplet in bar 2 is the 3rd, 5th and b7 of {{chord 2}}, and bar 3 comes down through the 5th, b3 and root of {{chord 3}} to its 6th, {{note 3.5}}, the note that gives a minor 6 chord its sound."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            4
+          ]
+        ],
+        "text": "{{note 2.4}} is the b9 of {{chord 2}}, the dark, tense colour of a dominant chord in a minor key. It is the same pitch as {{note 1.2}}, the b5 of {{chord 1}}, so that note ties the whole minor ii–V together."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            3,
+            4
+          ]
+        ],
+        "text": "{{note 3.4}} is a passing note that fills the gap of a minor 3rd between the root and the 6th, so the last three notes walk down instead of jumping."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1,
+          2,
+          1,
+          3
+        ],
+        "text": "The line starts on the 'and' of one. The triplet on beat one of bar 2 is the flourish: three quick notes swept across three strings so the b9 lands on beat two and can ring with vibrato. The final note sits on beat three, leaving the end of the phrase open."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 5th of {{chord 3}}, exactly a half step below the b9 that was held before it. That half-step fall is the signature sound of a minor ii–V–i."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "5",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "A diminished 7th arpeggio built on the 3rd of a dominant chord holds its 3rd, 5th and b7 plus the b9, so one easy shape gives you the whole dark dominant sound. The b9 sits a half step above the 5th of the minor chord that follows, so holding it builds tension the ear wants released, and the fall into {{chord 3}} releases it.",
+  "fingeringNote": "Eighth position: index finger on fret 8, little finger on fret 11, one finger per fret with no stretch or shift. The triplet in bar 2 puts one note on each of three strings (little, ring, index), which suits one smooth downward sweep of the pick; the little finger then takes the b9 on the high E string.",
+  "practiceTask": "Play the lick over bars 5 to 7 of the weekly standard, then over bars 13 to 15 and 17 to 19, where the same minor ii–V–i returns.",
+  "variation": {
+    "description": "Keep the triplets going over {{chord 1}}: the diminished arpeggio runs up, down and up again, so the b9 arrives on beat four, right before it falls into {{chord 2}}. The variation starts at the dominant bar: play the iiø bar as before, and the {{chord 2}} bar is unchanged.",
+    "chords": [
+      {
+        "symbol": "D7b9",
+        "bar": 1,
+        "beat": 1
+      },
+      {
+        "symbol": "Gm6",
+        "bar": 2,
+        "beat": 1
+      }
+    ],
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 3,
+            "fret": 11,
+            "pitch": "F#4",
+            "finger": 4,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 3,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 1,
+            "fret": 11,
+            "pitch": "Eb5",
+            "finger": 4,
+            "degree": "b9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 3,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 3,
+            "fret": 11,
+            "pitch": "F#4",
+            "finger": 4,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 3,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "tuplet": 3,
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 1,
+            "fret": 11,
+            "pitch": "Eb5",
+            "finger": 4,
+            "degree": "b9",
+            "role": "tension"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 3,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 11,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "passing"
+          },
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 9,
+            "pitch": "E4",
+            "finger": 2,
+            "degree": "6",
+            "role": "chord-tone"
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "minor ii-V-i",
+    "diminished arpeggio",
+    "b9",
+    "minor 6",
+    "triplets",
+    "gypsy jazz"
+  ]
+}

@@ -23,7 +23,9 @@ These keep the app honest about where material comes from and how reliable it is
 
 ## Seed vs generated
 
-- `origin: "seed"`: written for the starter library and reviewed by a person (`review` block).
+- `origin: "seed"`: written for the starter library (`review` block). `review.status` is
+  `"reviewed"` only after a person has done the accuracy review below; until then it is
+  `"awaiting-play-through"`, and the UI says nobody has played the lesson yet.
 - `origin: "generated"`: created by the lesson-generation service (`generator` block). It is
   validated automatically, and is never a transcription.
 - The UI labels each lesson's origin, and the library can filter by it.

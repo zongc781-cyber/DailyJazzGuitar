@@ -1,0 +1,538 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-05-barney-kessel-upper-arpeggios",
+  "title": "3-to-9 arpeggios over the major 7th chords",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Barney Kessel",
+    "note": "Kessel often built lines from arpeggios placed over a chord rather than on its root, such as a major 7th arpeggio started on the 3rd of a minor 7th chord (a 3-to-9 arpeggio). This phrase applies the same idea to two major 7th chords: a minor 7th arpeggio started on the 3rd of each."
+  },
+  "sources": [
+    {
+      "title": "Kessel Plays Standards",
+      "author": "Barney Kessel",
+      "kind": "recording",
+      "year": 1956,
+      "url": "https://en.wikipedia.org/wiki/Kessel_Plays_Standards",
+      "detail": "Contemporary C3512, recorded 1954-55. 'Speak Low' and 'On a Slow Boat to China' from this album are among the Kessel performances broken down in Wolf Marshall's Signature Licks book."
+    },
+    {
+      "title": "Barney Kessel Jazz Guitar Licks",
+      "kind": "website",
+      "url": "https://jazzguitar.be/blog/barney-kessel",
+      "detail": "Jazz Guitar Online lesson. Lick 9 uses the '3-9 arpeggio' (a major 7th arpeggio from the 3rd of a minor 7th chord), and licks 6 and 7 show other arpeggios Kessel placed over a chord, such as a minor 7th arpeggio over a dominant 7th."
+    },
+    {
+      "title": "Barney Kessel: A Step-by-Step Breakdown of His Guitar Styles and Techniques",
+      "author": "Wolf Marshall",
+      "kind": "book",
+      "url": "https://www.halleonard.com/product/696009",
+      "detail": "Hal Leonard Signature Licks series. Breaks down 14 Kessel performances, including 'Speak Low', 'On a Slow Boat to China' and 'Minor Mood'."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 132,
+    "max": 220
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Bbmaj7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "Ebmaj7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Am7b5",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 5,
+          "pitch": "A4",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 4,
+          "degree": "9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 5,
+          "pitch": "A4",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 7,
+          "pitch": "F#4",
+          "finger": 3,
+          "degree": "#5",
+          "role": "approach-chromatic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 4,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 6,
+          "pitch": "F4",
+          "finger": 2,
+          "degree": "9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 5,
+          "pitch": "G3",
+          "finger": 1,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 4,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 3,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 6,
+          "pitch": "Db4",
+          "finger": 2,
+          "degree": "b7",
+          "role": "passing"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 3,
+          "fret": 5,
+          "pitch": "C4",
+          "finger": 1,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Each major 7th chord gets the minor 7th arpeggio that starts on its 3rd. Over {{chord 1}} that shape climbs through the 3rd, 5th and 7th to the 9th, {{note 1.5}}; over {{chord 2}} the same shape, now built on that chord's 3rd, runs down from {{note 2.1}} and turns back up. Half steps connect the pieces, and the line lands on the b3 of {{chord 3}} on beat one, where the tune's minor ii–V begins.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "text": "{{note 1.2}}, {{note 1.3}} and {{note 1.4}} are the 3rd, 5th and 7th of {{chord 1}}; {{note 2.1}}, {{note 2.3}} and {{note 2.4}} are the 3rd, 7th and 5th of {{chord 2}}. Neither arpeggio plays the root. The bass already has it, so the line can stay on the notes that give each chord its colour."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "text": "{{note 1.5}} is the 9th of {{chord 1}} and {{note 2.2}} is the 9th of {{chord 2}}. Stack each arpeggio in 3rds from the 3rd and the 9th is simply its fourth note, so the extension comes for free. On a major 7th chord the 9th is a smooth, consonant colour, which is why it can sit on beat three of bar 1."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "{{note 1.8}} sits a half step below {{note 2.1}} and pushes into the 3rd of {{chord 2}} right on the bar line. {{note 2.8}} is a chromatic passing note: it walks the 7th of {{chord 2}} down by half steps into the b3 of {{chord 3}}."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1,
+          2,
+          3,
+          4,
+          1
+        ],
+        "text": "The line starts on the 'and' of beat one, just after the downbeat, so the first arpeggio pushes up towards the 9th on beat three. In bar 2 every beat carries a guide tone of {{chord 2}}: 3rd, 7th, 3rd, 7th, with the 9th, the 5th and one passing note on the off-beats. The landing note falls on beat one and is held for two beats."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the b3 of {{chord 3}}, reached by half steps from the 7th of {{chord 2}}. It is also the 7th of the dominant chord that comes next in the tune, so it carries straight on into the minor ii–V."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "b3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Start a minor 7th arpeggio on the 3rd of a major 7th chord and you get the chord's 3rd, 5th and 7th plus its 9th: all of its colour without the root, which the bass already plays. A shape you already know gives you a richer sound. Half steps link each shape to the next chord, so the line never loses the harmony.",
+  "fingeringNote": "One position throughout, with no stretches or shifts: as written, the index finger covers fret 5 and nothing goes past fret 8. The third finger starts the line on the G string, and the first arpeggio climbs across the strings to the high E string, where the index and little fingers take the 7th and 9th. In bar 2 the shape walks down to the D string, with the little finger on the 5th of {{chord 2}}; the closing half steps on the G string use fingers 3, 2 and 1.",
+  "practiceTask": "Play it over bars 3 to 5 of the weekly standard, then over bars 11 to 13 and 23 to 25, where the same three chords come back. Then improvise a chorus in which every major 7th chord in the tune gets only the minor 7th arpeggio built on its 3rd.",
+  "variation": {
+    "description": "Same two arpeggios, new target. At the end of bar 2 the line climbs instead of falling, so the 7th of {{chord 2}} rises a half step to {{note 3.1}}, the b5 of {{chord 3}}: the note that makes the chord half-diminished.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 6,
+            "pitch": "F4",
+            "finger": 2,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 5,
+            "pitch": "A4",
+            "finger": 1,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 4,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 5,
+            "pitch": "A4",
+            "finger": 1,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 6,
+            "pitch": "F4",
+            "finger": 2,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 7,
+            "pitch": "F#4",
+            "finger": 3,
+            "degree": "#5",
+            "role": "approach-chromatic"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 4,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 6,
+            "pitch": "F4",
+            "finger": 2,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 3,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 4,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 5,
+            "pitch": "G3",
+            "finger": 1,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 4,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 5,
+            "pitch": "C4",
+            "finger": 1,
+            "degree": "13",
+            "role": "passing"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 3,
+            "degree": "7",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 4,
+            "degree": "b5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "2",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "arpeggios",
+    "upper-structure",
+    "major-7th",
+    "9th",
+    "chromatic-approach"
+  ]
+}

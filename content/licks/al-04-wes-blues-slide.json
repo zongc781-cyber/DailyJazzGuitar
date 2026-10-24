@@ -1,0 +1,470 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-04-wes-blues-slide",
+  "title": "Blues slide from the #9 into the 3rd",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Wes Montgomery",
+    "note": "Wes often mixed blue notes into his ii–V lines, such as the minor-3rd blue note over the dominant chord, and slid into target notes from a fret below; this phrase uses both habits."
+  },
+  "sources": [
+    {
+      "title": "The Incredible Jazz Guitar of Wes Montgomery",
+      "kind": "recording",
+      "author": "Wes Montgomery",
+      "year": 1960,
+      "detail": "Riverside, recorded January 1960; includes his own blues 'D-Natural Blues' and 'West Coast Blues'.",
+      "url": "https://en.wikipedia.org/wiki/The_Incredible_Jazz_Guitar_of_Wes_Montgomery"
+    },
+    {
+      "title": "40 Wes Montgomery Jazz Guitar Licks, Patterns, Chords & Solos",
+      "kind": "website",
+      "author": "Dirk Laukens",
+      "detail": "JazzGuitar.be: blue notes mixed into ii–V–I lines, including the b3 blue note (G#/Ab) over F7, the minor pentatonic of the ii over the V, and approaching notes chromatically by sliding into them.",
+      "url": "https://www.jazzguitar.be/blog/wes-montgomery-jazz-guitar-licks/"
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 140,
+    "max": 220
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Cm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "F7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Bbmaj7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "11",
+          "role": "neighbor"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "G#4",
+          "finger": 2,
+          "degree": "#9",
+          "role": "tension"
+        },
+        {
+          "dur": "4",
+          "string": 2,
+          "fret": 10,
+          "pitch": "A4",
+          "finger": 2,
+          "degree": "3",
+          "role": "chord-tone",
+          "technique": "sl"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "string": 1,
+          "fret": 11,
+          "pitch": "Eb5",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 9,
+          "pitch": "C#5",
+          "finger": 2,
+          "degree": "#5",
+          "role": "approach-chromatic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "4",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "9",
+          "role": "passing"
+        },
+        {
+          "dur": "4",
+          "dots": 1,
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Over {{chord 1}} the line stays inside the minor pentatonic scale, with a little bluesy turn around the 5th. That 5th then rises chromatically: {{note 2.1}}, the #9 of {{chord 2}}, slides up a half step into {{note 2.2}}, its 3rd, the classic blues move from a minor-3rd sound to a major 3rd. The b7 and a chromatic note from below then frame the 3rd of {{chord 3}}, which lands on beat one.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "text": "The pentatonic notes in bar 1 are strong notes of {{chord 1}}: b7, root and 5th. In bar 2, {{note 2.2}}, {{note 2.3}} and {{note 2.4}} are the 3rd, 5th and b7 of {{chord 2}}, and bar 3 lands on the 3rd of {{chord 3}} and finishes on its root."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            1
+          ]
+        ],
+        "text": "{{note 2.1}} is the #9 of {{chord 2}}. It sounds like a minor 3rd, the blue note, rubbing against the major 3rd of the chord. Sliding it up into {{note 2.2}} turns that rub into the blues-inspired sound heard in many Wes Montgomery solos."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "text": "{{note 1.6}} is a lower neighbour that dips under the 5th and comes straight back. {{note 2.6}} approaches the 3rd of {{chord 3}} from a half step below, and with {{note 2.4}} a half step above, the target is framed from both sides. {{note 3.2}} passes between the 3rd and the root at the end."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1,
+          1.5,
+          4.5,
+          1
+        ],
+        "text": "The phrase starts on the 'and' of one. The slide is timed so the #9 hits the downbeat of bar 2 and the 3rd arrives on the 'and'. The rest on beat four of bar 2 is a short breath before the pickup into {{chord 3}}; rests like this make a line sound spoken rather than run."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 3rd of {{chord 3}}, reached from a half step below on beat one. After the blues colour of the first two bars, a plain chord tone on the downbeat makes the arrival sound settled."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Over {{chord 1}}, the minor pentatonic scale built on its root sounds bluesy with no clashing notes. On {{chord 2}} the #9 is the blues' minor 3rd: sliding it up into the major 3rd gives the ear a moment of grit and then the right note, which is what makes blues phrasing sound vocal.",
+  "fingeringNote": "Eighth position: index finger on fret 8, little finger on fret 11; bar 1 sits in the minor pentatonic box here. For the slide in bar 2, put the middle finger on fret 9 of the B string, pick once and slide it up to fret 10 while the rest of the hand stays put; the index finger is then ready for fret 8 on the high E string.",
+  "practiceTask": "Play the lick over bars 9 to 11 of the weekly standard, then over bars 1 to 3 and 21 to 23, which use the same chords. Practise the slide on its own first: pick the #9 exactly on the beat and arrive on the 3rd exactly on the 'and'.",
+  "variation": {
+    "description": "Slide into the landing as well: {{note 1.6}} now slides up a half step into {{note 2.1}}, the 3rd of {{chord 2}}, just as the #9 slid into the 3rd of {{chord 1}}. Use the middle finger for both slides, and both arrivals sound sung rather than picked. Only these last two bars change; play the first bar as written.",
+    "chords": [
+      {
+        "symbol": "F7",
+        "bar": 1,
+        "beat": 1
+      },
+      {
+        "symbol": "Bbmaj7",
+        "bar": 2,
+        "beat": 1
+      }
+    ],
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "G#4",
+            "finger": 2,
+            "degree": "#9",
+            "role": "tension"
+          },
+          {
+            "dur": "4",
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 2,
+            "degree": "3",
+            "role": "chord-tone",
+            "technique": "sl"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "string": 1,
+            "fret": 11,
+            "pitch": "Eb5",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 9,
+            "pitch": "C#5",
+            "finger": 2,
+            "degree": "#5",
+            "role": "approach-chromatic"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "4",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 2,
+            "degree": "3",
+            "role": "chord-tone",
+            "technique": "sl"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "9",
+            "role": "passing"
+          },
+          {
+            "dur": "4",
+            "dots": 1,
+            "string": 2,
+            "fret": 11,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "blues",
+    "slide",
+    "#9",
+    "minor pentatonic",
+    "ii-V-I"
+  ]
+}

@@ -1,0 +1,2443 @@
+{
+  "schemaVersion": 1,
+  "kind": "standard",
+  "id": "autumn-leaves",
+  "title": "Autumn Leaves",
+  "composers": [
+    "Joseph Kosma"
+  ],
+  "year": 1945,
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "sources": [
+    {
+      "title": "The Real Book – Volume I, Sixth Edition (C Edition)",
+      "kind": "lead-sheet",
+      "url": "https://www.halleonard.com/product/1018191/the-real-book-volume-i-sixth-edition",
+      "detail": "Hal Leonard, HL 240221. \"Autumn Leaves\" is in the song list. Its chart differs from this one in places; see the simplification note."
+    },
+    {
+      "title": "Jamey Aebersold Jazz, Volume 54: Maiden Voyage",
+      "author": "Jamey Aebersold",
+      "kind": "method",
+      "url": "https://www.tapestrymusic.com/p-18306-jamey-aebersold-jazz-volume-54-maiden-voyage.aspx",
+      "detail": "Play-along book and recording; \"Autumn Leaves\" is in the song list."
+    },
+    {
+      "title": "Maiden Voyage Play-Along (Real Book Multi-Tracks, Volume 1)",
+      "kind": "method",
+      "url": "https://www.halleonard.com/product/196616/maiden-voyage-play-along",
+      "detail": "Hal Leonard HL 196616: online play-along tracks for 10 songs, including \"Autumn Leaves\", with each instrument switchable on or off."
+    },
+    {
+      "title": "The Jazz Theory Book",
+      "author": "Mark Levine",
+      "kind": "book",
+      "year": 1995,
+      "url": "https://en.wikipedia.org/wiki/The_Jazz_Theory_Book",
+      "detail": "Sher Music. Background for the analysis: ii–V–I progressions, minor-key harmony and the melodic minor modes, and reharmonisation such as tritone substitution."
+    },
+    {
+      "title": "Learn Autumn Leaves Chords (And Many Other Jazz Standards)",
+      "author": "James Melton",
+      "kind": "website",
+      "year": 2024,
+      "url": "https://www.learnjazzstandards.com/blog/autumn-leaves-chords/",
+      "detail": "Learn Jazz Standards lesson in G minor: the two key centres, guide tones and voice leading between them."
+    },
+    {
+      "title": "Autumn Leaves Jazz Guitar Chords (Tabs and Chord Chart)",
+      "author": "Dirk Laukens",
+      "kind": "website",
+      "year": 2026,
+      "url": "https://jazzguitar.be/blog/autumn-leaves-jazz-guitar-chords",
+      "detail": "Jazz Guitar Online chord study in E minor with drop 2 and drop 3 voicings, tritone substitutes in bars 27–28, a diminished sound for the b9 dominant and a secondary dominant in bar 11."
+    },
+    {
+      "title": "Autumn Leaves (1945 song)",
+      "kind": "website",
+      "url": "https://en.wikipedia.org/wiki/Autumn_Leaves_(1945_song)",
+      "detail": "Wikipedia: composer, year, original French title and notable jazz recordings."
+    },
+    {
+      "title": "Drop 3 Chords & Inversions",
+      "author": "Dirk Laukens",
+      "kind": "website",
+      "url": "https://www.jazzguitar.be/blog/drop-3-chords-and-inversions/",
+      "detail": "Jazz Guitar Online: drop 3 shapes on the 6-4-3-2 and 5-3-2-1 string sets, the root-on-6th-string shapes used here."
+    },
+    {
+      "title": "Drop 2 Chords",
+      "kind": "website",
+      "url": "https://www.jazzguitar.be/blog/drop-2-chords/",
+      "detail": "Jazz Guitar Online: drop 2 shapes on adjacent string sets, and how each chord type differs from the maj7 shape by one fret."
+    }
+  ],
+  "simplified": true,
+  "simplificationNote": "One common version of the chord changes, in G minor as most jam sessions play it, with a 32-bar AABC form and the minor tonic written as m6. Lead sheets and recordings differ: many charts are in E minor, the minor-key V is often written with a b9 or as an altered chord, the tonic appears as m6, m7 or a plain minor triad, bars 27–28 and the last two bars are often reharmonised, and some sources call the form AABA. Chords only: no melody or lyrics are included.",
+  "key": {
+    "tonic": "G",
+    "mode": "minor"
+  },
+  "keyCenters": [
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        1,
+        4
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        5,
+        8
+      ]
+    },
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        9,
+        12
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        13,
+        20
+      ]
+    },
+    {
+      "tonic": "Bb",
+      "mode": "major",
+      "bars": [
+        21,
+        24
+      ]
+    },
+    {
+      "tonic": "G",
+      "mode": "minor",
+      "bars": [
+        25,
+        32
+      ]
+    }
+  ],
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "tags": [
+    "swing",
+    "minor key",
+    "ii–V–I",
+    "relative major",
+    "guide tones"
+  ],
+  "form": {
+    "label": "AABC",
+    "bars": 32,
+    "sections": [
+      {
+        "label": "A1",
+        "bars": 8
+      },
+      {
+        "label": "A2",
+        "bars": 8
+      },
+      {
+        "label": "B",
+        "bars": 8
+      },
+      {
+        "label": "C",
+        "bars": 8
+      }
+    ]
+  },
+  "chart": [
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "beat": 1,
+          "roman": "ii7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "F7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Bbmaj7",
+          "beat": 1,
+          "roman": "Imaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "IVmaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "D7",
+          "beat": 1,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm7",
+          "beat": 1,
+          "roman": "i7"
+        },
+        {
+          "symbol": "C7",
+          "beat": 3,
+          "roman": "IV7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Fm7",
+          "beat": 1,
+          "roman": "bvii7"
+        },
+        {
+          "symbol": "Bb7",
+          "beat": 3,
+          "roman": "bIII7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Ebmaj7",
+          "beat": 1,
+          "roman": "bVImaj7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "beat": 1,
+          "roman": "iiø7"
+        },
+        {
+          "symbol": "D7",
+          "beat": 3,
+          "roman": "V7"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    },
+    {
+      "chords": [
+        {
+          "symbol": "Gm6",
+          "beat": 1,
+          "roman": "i6"
+        }
+      ]
+    }
+  ],
+  "listening": [
+    {
+      "performer": "Cannonball Adderley with Miles Davis",
+      "recording": "Autumn Leaves",
+      "album": "Somethin' Else",
+      "year": 1958,
+      "url": "https://en.wikipedia.org/wiki/Somethin%27_Else_(Cannonball_Adderley_album)",
+      "verifiedOn": "2026-10-21",
+      "note": "Track 1, recorded March 9, 1958 for Blue Note, with Miles Davis on trumpet and Hank Jones on piano."
+    },
+    {
+      "performer": "Bill Evans Trio",
+      "recording": "Autumn Leaves",
+      "album": "Portrait in Jazz",
+      "year": 1960,
+      "url": "https://en.wikipedia.org/wiki/Portrait_in_Jazz",
+      "verifiedOn": "2026-10-21",
+      "note": "Track 2, recorded December 28, 1959, with Scott LaFaro on bass and Paul Motian on drums."
+    },
+    {
+      "performer": "Jim Hall and Ron Carter",
+      "recording": "Autumn Leaves",
+      "album": "Alone Together",
+      "year": 1973,
+      "url": "https://en.wikipedia.org/wiki/Alone_Together_(Ron_Carter_and_Jim_Hall_album)",
+      "verifiedOn": "2026-10-21",
+      "note": "Guitar and bass duo, recorded live at the Playboy Club in New York on August 4, 1972; the closing track. Listen for how the guitar comps and solos with no piano."
+    },
+    {
+      "performer": "Miles Davis",
+      "recording": "Autumn Leaves",
+      "album": "Miles Davis in Europe",
+      "year": 1964,
+      "url": "https://en.wikipedia.org/wiki/Miles_Davis_in_Europe",
+      "verifiedOn": "2026-10-21",
+      "note": "Recorded live at Antibes on July 27, 1963, with George Coleman, Herbie Hancock, Ron Carter and Tony Williams."
+    }
+  ],
+  "analysis": {
+    "summary": "Autumn Leaves is built almost entirely from ii–V progressions. The first A section pairs a major ii–V–I–IV in the relative major (bars 1–4) with a minor iiø–V–i in {{key}} (bars 5–8), and the roots fall in 5ths around the diatonic cycle, so the same few shapes cover nearly every bar. The main exception is the tritone drop from the IV chord to the iiø, where the relative major hands over to the minor key; it sounds smooth because the IVmaj7 of the relative major is the same chord as the bVImaj7 of the home key.",
+    "sections": [
+      {
+        "label": "A1",
+        "text": "Bars 1–4 are a ii–V–I–IV in the relative major and bars 5–8 a iiø–V–i in {{key}}. The move from {{chord 4}} to {{chord 5}} is the hinge: the root drops a tritone and the IV chord of the relative major becomes the doorway into the minor ii–V. Each chord's 7th falls by a half or whole step to the next chord's 3rd, so a guide-tone line moves by step through the whole section."
+      },
+      {
+        "label": "A2",
+        "text": "Bars 9–16 repeat the first eight bars exactly: the same ii–V–I–IV in the relative major, then the same iiø–V–i in the home key. Use the second A section to check what you learned the first time. Players often vary only its two tonic bars, for example with the line cliché in the variations."
+      },
+      {
+        "label": "B",
+        "text": "Section B swaps the order of the two halves. Bars 17–20 open with the minor iiø–V–i and give two bars of the tonic ({{chord 19}}); bars 21–24 return to the ii–V–I–IV of the relative major. Because the minor ii–V comes straight after the tonic of bar 16, the root moves up a whole step here instead of falling a 5th."
+      },
+      {
+        "label": "C",
+        "text": "Section C begins with the same iiø–V in {{key}} (bars 25–26), but the tonic it reaches lasts only two beats: {{chord 27}} immediately becomes the ii of a new ii–V. Bar 27 holds that i7–IV7, which works as a ii–V a whole step lower, and bar 28 holds another ii–V a whole step lower again, landing on {{chord 31}}, the bVImaj7 of the home key. One guide-tone line falls by half steps through these two-beat chords (the 7th of {{chord 27}}, the 3rd of {{chord 28}}, the 7th of {{chord 29}} and the 3rd of {{chord 30}}, which becomes the 7th of {{chord 31}}); the other holds each note across a ii–V and then steps down. Bars 30–32 finish with a quick iiø–V, two beats per chord, and two bars of the tonic."
+      }
+    ],
+    "variations": [
+      {
+        "name": "Tritone substitutes in bars 27–28",
+        "chords": [
+          {
+            "bar": 27,
+            "beat": 1,
+            "symbol": "Gm7",
+            "roman": "i7"
+          },
+          {
+            "bar": 27,
+            "beat": 3,
+            "symbol": "Gb7",
+            "roman": "bII7/bvii"
+          },
+          {
+            "bar": 28,
+            "beat": 1,
+            "symbol": "Fm7",
+            "roman": "bvii7"
+          },
+          {
+            "bar": 28,
+            "beat": 3,
+            "symbol": "E7",
+            "roman": "bII7/bVI"
+          },
+          {
+            "bar": 29,
+            "beat": 1,
+            "symbol": "Ebmaj7",
+            "roman": "bVImaj7"
+          }
+        ],
+        "text": "Replace each dominant with the dominant a tritone away: {{chord 2}} for the IV7 and {{chord 4}} for the bIII7. The bass then falls by half steps all the way from {{chord 1}} to {{chord 5}}, and each substitute keeps the 3rd and 7th of the chord it replaces, with the two notes swapped."
+      },
+      {
+        "name": "Flat-nine on the minor-key V",
+        "chords": [
+          {
+            "bar": 6,
+            "beat": 1,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          },
+          {
+            "bar": 14,
+            "beat": 1,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          },
+          {
+            "bar": 18,
+            "beat": 1,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          },
+          {
+            "bar": 26,
+            "beat": 1,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          },
+          {
+            "bar": 30,
+            "beat": 3,
+            "symbol": "D7b9",
+            "roman": "V7b9"
+          }
+        ],
+        "text": "Play the V chord of the minor key as {{chord 1}} wherever it appears. The b9 is the b6 of the harmonic minor scale of the home key, so it falls a half step to the 5th of the tonic. With the voicings below, the upper notes of the iiø7 need only one change, a single note sliding down a fret, to become the V7b9."
+      },
+      {
+        "name": "Line cliché on the tonic",
+        "chords": [
+          {
+            "bar": 7,
+            "beat": 1,
+            "symbol": "Gm",
+            "roman": "i"
+          },
+          {
+            "bar": 7,
+            "beat": 3,
+            "symbol": "GmMaj7",
+            "roman": "imaj7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "symbol": "Gm7",
+            "roman": "i7"
+          },
+          {
+            "bar": 8,
+            "beat": 3,
+            "symbol": "Gm6",
+            "roman": "i6"
+          }
+        ],
+        "text": "Over two bars of the tonic, move one inner voice down by half steps from the root: {{chord 1}}, {{chord 2}}, {{chord 3}}, {{chord 4}}. The same idea fits bars 15–16, 19–20 and 31–32. After bars 7–8, 19–20 and 31–32, one more half step down lands on the b3 of the ii7 that follows; after bars 15–16 it lands on the b5 of the iiø7."
+      },
+      {
+        "name": "Turnaround in the last two bars",
+        "chords": [
+          {
+            "bar": 31,
+            "beat": 1,
+            "symbol": "Gm7",
+            "roman": "i7"
+          },
+          {
+            "bar": 32,
+            "beat": 1,
+            "symbol": "Dm7b5",
+            "roman": "iiø7/iv"
+          },
+          {
+            "bar": 32,
+            "beat": 3,
+            "symbol": "G7b9",
+            "roman": "V7b9/iv"
+          }
+        ],
+        "text": "To lead back to the top of the form, play a iiø–V of the iv chord in the last bar. {{chord 3}} points at the iv7, which is exactly the first chord of the tune, because the ii7 of the relative major is the iv7 of the home key."
+      },
+      {
+        "name": "Secondary dominant into the IV",
+        "chords": [
+          {
+            "bar": 3,
+            "beat": 1,
+            "symbol": "Bbmaj7",
+            "roman": "Imaj7"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "symbol": "Bb7",
+            "roman": "V7/IV"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "symbol": "Ebmaj7",
+            "roman": "IVmaj7"
+          }
+        ],
+        "text": "Turn the second half of the I chord into a dominant: {{chord 2}} is the V7 of the IV chord, so it pushes into {{chord 3}}. Only the 7th changes: it drops a half step, then falls another half step to the 3rd of the IV chord. Bars 11 and 23 can take the same move."
+      }
+    ]
+  },
+  "voicings": [
+    {
+      "symbol": "Cm7",
+      "name": "Drop 3, root on 6th string (8th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 8,
+          "finger": 2,
+          "pitch": "C3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 8,
+          "finger": 3,
+          "pitch": "Bb3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 8,
+          "finger": 4,
+          "pitch": "Eb4",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "G4",
+          "degree": "5"
+        }
+      ],
+      "note": "Mid-neck path, bars 1, 9 and 21. The b3 on the 3rd string stays on the same fret as the 7th of the V chord (drop 2, root on 5th string, 8th fret)."
+    },
+    {
+      "symbol": "Cm7",
+      "name": "Drop 2, root on 5th string (3rd fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "C3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "G3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "Bb3",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 4,
+          "finger": 2,
+          "pitch": "Eb4",
+          "degree": "b3"
+        }
+      ],
+      "note": "Low path. The 7th on the 3rd string slides down one fret to the 3rd of the V chord (drop 3, root on 6th string, 1st fret)."
+    },
+    {
+      "symbol": "F7",
+      "name": "Drop 2, root on 5th string (8th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "F3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 10,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "Eb4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 10,
+          "finger": 4,
+          "pitch": "A4",
+          "degree": "3"
+        }
+      ],
+      "note": "Mid-neck path. The 7th on the 3rd string falls one fret to the 3rd of the I chord (drop 3, root on 6th string, 6th fret)."
+    },
+    {
+      "symbol": "F7",
+      "name": "Drop 3, root on 6th string (1st fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 1,
+          "finger": 2,
+          "pitch": "F2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 1,
+          "finger": 3,
+          "pitch": "Eb3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 2,
+          "finger": 4,
+          "pitch": "A3",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "C4",
+          "degree": "5"
+        }
+      ],
+      "note": "Low path. The 3rd on the 3rd string stays on the same fret as the 7th of the I chord (drop 2, root on 5th string, 1st fret)."
+    },
+    {
+      "symbol": "Bbmaj7",
+      "name": "Drop 3, root on 6th string (6th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 6,
+          "finger": 2,
+          "pitch": "Bb2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 7,
+          "finger": 3,
+          "pitch": "A3",
+          "degree": "7"
+        },
+        {
+          "string": 3,
+          "fret": 7,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 6,
+          "finger": 1,
+          "pitch": "F4",
+          "degree": "5"
+        }
+      ],
+      "note": "Mid-neck path. The 3rd on the 3rd string stays on the same fret as the 7th of the IV chord (drop 2, root on 5th string, 6th fret)."
+    },
+    {
+      "symbol": "Bbmaj7",
+      "name": "Drop 2, root on 5th string (1st fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "Bb2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "F3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 2,
+          "finger": 2,
+          "pitch": "A3",
+          "degree": "7"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "3"
+        }
+      ],
+      "note": "Low path. From here, move up to the 6th fret for the IV chord (drop 2, root on 5th string). In the secondary-dominant variation, lower the 7th on the 3rd string one fret to get the V7 of the IV chord."
+    },
+    {
+      "symbol": "Ebmaj7",
+      "name": "Drop 2, root on 5th string (6th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 6,
+          "finger": 1,
+          "pitch": "Eb3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 8,
+          "finger": 3,
+          "pitch": "Bb3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 7,
+          "finger": 2,
+          "pitch": "D4",
+          "degree": "7"
+        },
+        {
+          "string": 2,
+          "fret": 8,
+          "finger": 4,
+          "pitch": "G4",
+          "degree": "3"
+        }
+      ],
+      "note": "Bars 4, 12, 24 and 29. The 7th on the 3rd string falls two frets to the b3 of the iiø (drop 3, root on 6th string, 5th fret)."
+    },
+    {
+      "symbol": "Ebmaj7",
+      "name": "Drop 3, root on 6th string (11th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 11,
+          "finger": 2,
+          "pitch": "Eb3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 12,
+          "finger": 3,
+          "pitch": "D4",
+          "degree": "7"
+        },
+        {
+          "string": 3,
+          "fret": 12,
+          "finger": 4,
+          "pitch": "G4",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 1,
+          "pitch": "Bb4",
+          "degree": "5"
+        }
+      ],
+      "note": "Higher option. The 3rd on the 3rd string stays on the same fret as the 7th of the iiø (drop 2, root on 5th string, 12th fret)."
+    },
+    {
+      "symbol": "Am7b5",
+      "name": "Drop 3, root on 6th string (5th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 5,
+          "finger": 2,
+          "pitch": "A2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "G3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 5,
+          "finger": 4,
+          "pitch": "C4",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "Eb4",
+          "degree": "b5"
+        }
+      ],
+      "note": "Bars 5, 13, 17, 25 and 30. For the V7b9 (root on 5th string, 5th fret) the top two notes stay where they are and the 7th on the 4th string drops one fret to the 3rd of the V chord."
+    },
+    {
+      "symbol": "Am7b5",
+      "name": "Drop 2, root on 5th string (12th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 12,
+          "finger": 1,
+          "pitch": "A3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 13,
+          "finger": 3,
+          "pitch": "Eb4",
+          "degree": "b5"
+        },
+        {
+          "string": 3,
+          "fret": 12,
+          "finger": 2,
+          "pitch": "G4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 13,
+          "finger": 4,
+          "pitch": "C5",
+          "degree": "b3"
+        }
+      ],
+      "note": "High path for section C. The 7th on the 3rd string drops one fret to the 3rd of the V chord (drop 3, root on 6th string, 10th fret)."
+    },
+    {
+      "symbol": "D7",
+      "name": "Shell, root on 5th string (5th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 5,
+          "finger": 2,
+          "pitch": "D3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "F#3",
+          "degree": "3"
+        },
+        {
+          "string": 3,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "b7"
+        }
+      ],
+      "note": "Root, 3rd and 7th only: the easiest V chord. The 7th on the 3rd string falls two frets to the b3 of the tonic (drop 3, root on 6th string, 3rd fret)."
+    },
+    {
+      "symbol": "D7",
+      "name": "Drop 3, root on 6th string (10th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 10,
+          "finger": 2,
+          "pitch": "D3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 10,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 11,
+          "finger": 4,
+          "pitch": "F#4",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 10,
+          "finger": 1,
+          "pitch": "A4",
+          "degree": "5"
+        }
+      ],
+      "note": "High path. The 3rd on the 3rd string drops one fret to the 7th of the i7 in bar 27 (drop 2, root on 5th string, 10th fret)."
+    },
+    {
+      "symbol": "D7b9",
+      "name": "7b9, root on 5th string (5th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 5,
+          "finger": 2,
+          "pitch": "D3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "F#3",
+          "degree": "3"
+        },
+        {
+          "string": 3,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 4,
+          "finger": 1,
+          "pitch": "Eb4",
+          "degree": "b9"
+        }
+      ],
+      "note": "The shell plus the b9 on the 2nd string, under a small barre with the 1st finger. The b9 falls one fret to the 5th of the tonic and the 7th falls two frets to its b3 (drop 3, root on 6th string, 3rd fret)."
+    },
+    {
+      "symbol": "Gm6",
+      "name": "Drop 3, root on 6th string (3rd fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 3,
+          "finger": 2,
+          "pitch": "G2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 2,
+          "finger": 1,
+          "pitch": "E3",
+          "degree": "6"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "Bb3",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "5"
+        }
+      ],
+      "note": "Bars 7–8, 15–16, 19–20 and 31–32. From here, the ii7 of bars 9 and 21 is the drop 2 shape with the root on the 5th string at the 3rd fret."
+    },
+    {
+      "symbol": "Gm6",
+      "name": "Drop 2, root on 5th string (10th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 10,
+          "finger": 2,
+          "pitch": "G3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 12,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 9,
+          "finger": 1,
+          "pitch": "E4",
+          "degree": "6"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 3,
+          "pitch": "Bb4",
+          "degree": "b3"
+        }
+      ],
+      "note": "The 6th sits on the 3rd string. This is also the last chord of the line cliché in the variations."
+    },
+    {
+      "symbol": "Gm7",
+      "name": "Drop 2, root on 5th string (10th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 10,
+          "finger": 1,
+          "pitch": "G3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 12,
+          "finger": 3,
+          "pitch": "D4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 10,
+          "finger": 1,
+          "pitch": "F4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 2,
+          "pitch": "Bb4",
+          "degree": "b3"
+        }
+      ],
+      "note": "Bar 27, high path. The 7th on the 3rd string drops one fret to the 3rd of the IV7 (drop 3, root on 6th string, 8th fret)."
+    },
+    {
+      "symbol": "Gm7",
+      "name": "Drop 3, root on 6th string (3rd fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 3,
+          "finger": 2,
+          "pitch": "G2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "F3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "Bb3",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "D4",
+          "degree": "5"
+        }
+      ],
+      "note": "Bar 27, low path. The b3 on the 3rd string stays on the same fret as the 7th of the IV7 (drop 2, root on 5th string, 3rd fret)."
+    },
+    {
+      "symbol": "C7",
+      "name": "Drop 3, root on 6th string (8th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 8,
+          "finger": 2,
+          "pitch": "C3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 8,
+          "finger": 3,
+          "pitch": "Bb3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 9,
+          "finger": 4,
+          "pitch": "E4",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "G4",
+          "degree": "5"
+        }
+      ],
+      "note": "High path. The 3rd on the 3rd string drops one fret to the 7th of the bvii7 (drop 2, root on 5th string, 8th fret)."
+    },
+    {
+      "symbol": "C7",
+      "name": "Drop 2, root on 5th string (3rd fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "C3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 5,
+          "finger": 3,
+          "pitch": "G3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 3,
+          "finger": 1,
+          "pitch": "Bb3",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 5,
+          "finger": 4,
+          "pitch": "E4",
+          "degree": "3"
+        }
+      ],
+      "note": "Low path. The 7th on the 3rd string drops two frets to the b3 of the bvii7 (drop 3, root on 6th string, 1st fret)."
+    },
+    {
+      "symbol": "Fm7",
+      "name": "Drop 2, root on 5th string (8th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "F3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 10,
+          "finger": 3,
+          "pitch": "C4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 8,
+          "finger": 1,
+          "pitch": "Eb4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 9,
+          "finger": 2,
+          "pitch": "Ab4",
+          "degree": "b3"
+        }
+      ],
+      "note": "High path. The 7th on the 3rd string drops one fret to the 3rd of the bIII7 (drop 3, root on 6th string, 6th fret)."
+    },
+    {
+      "symbol": "Fm7",
+      "name": "Drop 3, root on 6th string (1st fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 1,
+          "finger": 2,
+          "pitch": "F2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 1,
+          "finger": 3,
+          "pitch": "Eb3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 1,
+          "finger": 4,
+          "pitch": "Ab3",
+          "degree": "b3"
+        },
+        {
+          "string": 2,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "C4",
+          "degree": "5"
+        }
+      ],
+      "note": "Low path. The b3 on the 3rd string stays on the same fret as the 7th of the bIII7 (drop 2, root on 5th string, 1st fret)."
+    },
+    {
+      "symbol": "Bb7",
+      "name": "Drop 3, root on 6th string (6th fret)",
+      "notes": [
+        {
+          "string": 6,
+          "fret": 6,
+          "finger": 2,
+          "pitch": "Bb2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 6,
+          "finger": 3,
+          "pitch": "Ab3",
+          "degree": "b7"
+        },
+        {
+          "string": 3,
+          "fret": 7,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "3"
+        },
+        {
+          "string": 2,
+          "fret": 6,
+          "finger": 1,
+          "pitch": "F4",
+          "degree": "5"
+        }
+      ],
+      "note": "High path. The 3rd on the 3rd string stays on the same fret as the 7th of the bVImaj7 (drop 2, root on 5th string, 6th fret)."
+    },
+    {
+      "symbol": "Bb7",
+      "name": "Drop 2, root on 5th string (1st fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "Bb2",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 3,
+          "finger": 3,
+          "pitch": "F3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 1,
+          "finger": 1,
+          "pitch": "Ab3",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 3,
+          "finger": 4,
+          "pitch": "D4",
+          "degree": "3"
+        }
+      ],
+      "note": "Low path. Shift up to the 6th fret for the bVImaj7 (drop 2, root on 5th string). The same shape is the V7 of the IV chord in the secondary-dominant variation."
+    },
+    {
+      "symbol": "Gb7",
+      "name": "Drop 2, root on 5th string (9th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 9,
+          "finger": 1,
+          "pitch": "Gb3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 11,
+          "finger": 3,
+          "pitch": "Db4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 9,
+          "finger": 1,
+          "pitch": "Fb4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 4,
+          "pitch": "Bb4",
+          "degree": "3"
+        }
+      ],
+      "note": "Tritone-substitute variation, bar 27. Between the i7 at the 10th fret and the bvii7 at the 8th fret, so the bass falls one fret per chord and the 3rd-string line is the same as with the original chords."
+    },
+    {
+      "symbol": "E7",
+      "name": "Drop 2, root on 5th string (7th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 7,
+          "finger": 1,
+          "pitch": "E3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 9,
+          "finger": 3,
+          "pitch": "B3",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 7,
+          "finger": 1,
+          "pitch": "D4",
+          "degree": "b7"
+        },
+        {
+          "string": 2,
+          "fret": 9,
+          "finger": 4,
+          "pitch": "G#4",
+          "degree": "3"
+        }
+      ],
+      "note": "Tritone-substitute variation, bar 28. One fret below the bvii7 and one fret above the bVImaj7 at the 6th fret; its 3rd on the 2nd string is the same pitch as the b3 of the bvii7."
+    },
+    {
+      "symbol": "Gm",
+      "name": "Minor triad with doubled root, root on 5th string (10th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 10,
+          "finger": 1,
+          "pitch": "G3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 12,
+          "finger": 3,
+          "pitch": "D4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 12,
+          "finger": 4,
+          "pitch": "G4",
+          "degree": "1"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 2,
+          "pitch": "Bb4",
+          "degree": "b3"
+        }
+      ],
+      "note": "Start of the line cliché: the root on the 3rd string walks down one fret at a time through the mMaj7, m7 and m6 voicings at the same fret."
+    },
+    {
+      "symbol": "GmMaj7",
+      "name": "mMaj7, root on 5th string (10th fret)",
+      "notes": [
+        {
+          "string": 5,
+          "fret": 10,
+          "finger": 1,
+          "pitch": "G3",
+          "degree": "1"
+        },
+        {
+          "string": 4,
+          "fret": 12,
+          "finger": 3,
+          "pitch": "D4",
+          "degree": "5"
+        },
+        {
+          "string": 3,
+          "fret": 11,
+          "finger": 2,
+          "pitch": "F#4",
+          "degree": "7"
+        },
+        {
+          "string": 2,
+          "fret": 11,
+          "finger": 2,
+          "pitch": "Bb4",
+          "degree": "b3"
+        }
+      ],
+      "note": "Line cliché, second chord: the 3rd-string note has dropped one fret to the major 7th. Barre the 3rd and 2nd strings with the 2nd finger."
+    }
+  ],
+  "guideToneExercises": [
+    {
+      "title": "Guide tones in half notes, bars 1–8 (first A section)",
+      "description": "Play the 3rd of each chord on beat 1 and its 7th (the 6th on {{chord 7}}) on beat 3, all in second position. Each 7th falls by a half or whole step to the next 3rd: hear {{note 1.2}} fall to {{note 2.1}}, and {{note 2.2}} fall to {{note 3.1}}. When you loop the exercise, the last note falls a half step back to the first.",
+      "chords": [
+        {
+          "symbol": "Cm7",
+          "bar": 1,
+          "beat": 1
+        },
+        {
+          "symbol": "F7",
+          "bar": 2,
+          "beat": 1
+        },
+        {
+          "symbol": "Bbmaj7",
+          "bar": 3,
+          "beat": 1
+        },
+        {
+          "symbol": "Ebmaj7",
+          "bar": 4,
+          "beat": 1
+        },
+        {
+          "symbol": "Am7b5",
+          "bar": 5,
+          "beat": 1
+        },
+        {
+          "symbol": "D7",
+          "bar": 6,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 7,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 8,
+          "beat": 1
+        }
+      ],
+      "bars": [
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 3,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 3,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 2,
+              "pitch": "A3",
+              "finger": 1,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 4,
+              "pitch": "Eb4",
+              "finger": 3,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 3,
+              "pitch": "D4",
+              "finger": 2,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 2,
+              "pitch": "A3",
+              "finger": 1,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 5,
+              "pitch": "G3",
+              "finger": 4,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 3,
+              "pitch": "D4",
+              "finger": 2,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 5,
+              "pitch": "C4",
+              "finger": 4,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 5,
+              "pitch": "G3",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 4,
+              "pitch": "F#3",
+              "finger": 3,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 5,
+              "pitch": "C4",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 3,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 5,
+              "pitch": "E4",
+              "finger": 4,
+              "degree": "6",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 3,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 5,
+              "pitch": "E4",
+              "finger": 4,
+              "degree": "6",
+              "role": "chord-tone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "One guide tone per chord, bars 25–32 (section C)",
+      "description": "One guide tone per chord, chosen so the line falls by half steps: the 7th of {{chord 1}}, the 3rd of {{chord 2}}, the 7th of {{chord 3}}, the 3rd of {{chord 4}}, the 7th of {{chord 5}} and the 3rd of {{chord 6}}, which is played again as the 7th of {{chord 7}}. This is the inner voice that makes bars 27–28 sound like a slide. In bar 6 of the exercise, {{note 6.1}} is the b3 of {{chord 8}} and stays as the 7th of {{chord 9}} before falling a whole step to the b3 of the tonic. Stay in fifth position throughout.",
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "bar": 1,
+          "beat": 1
+        },
+        {
+          "symbol": "D7",
+          "bar": 2,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm7",
+          "bar": 3,
+          "beat": 1
+        },
+        {
+          "symbol": "C7",
+          "bar": 3,
+          "beat": 3
+        },
+        {
+          "symbol": "Fm7",
+          "bar": 4,
+          "beat": 1
+        },
+        {
+          "symbol": "Bb7",
+          "bar": 4,
+          "beat": 3
+        },
+        {
+          "symbol": "Ebmaj7",
+          "bar": 5,
+          "beat": 1
+        },
+        {
+          "symbol": "Am7b5",
+          "bar": 6,
+          "beat": 1
+        },
+        {
+          "symbol": "D7",
+          "bar": 6,
+          "beat": 3
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 7,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 8,
+          "beat": 1
+        }
+      ],
+      "bars": [
+        {
+          "events": [
+            {
+              "dur": "1",
+              "string": 2,
+              "fret": 8,
+              "pitch": "G4",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "1",
+              "string": 2,
+              "fret": 7,
+              "pitch": "F#4",
+              "finger": 3,
+              "degree": "3",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 6,
+              "pitch": "F4",
+              "finger": 2,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 2,
+              "fret": 5,
+              "pitch": "E4",
+              "finger": 1,
+              "degree": "3",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 8,
+              "pitch": "Eb4",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 3,
+              "degree": "3",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "1",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 3,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 5,
+              "pitch": "C4",
+              "finger": 1,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 5,
+              "pitch": "C4",
+              "finger": 1,
+              "degree": "b7",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "1",
+              "string": 4,
+              "fret": 8,
+              "pitch": "Bb3",
+              "finger": 4,
+              "degree": "b3",
+              "role": "chord-tone"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "1",
+              "string": 4,
+              "fret": 8,
+              "pitch": "Bb3",
+              "finger": 4,
+              "degree": "b3",
+              "role": "chord-tone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Approach notes, bars 17–24 (section B)",
+      "description": "Each bar plays two chord tones and then, on beat 4, a note that leads by step into the next bar's target, usually its 3rd. Most of these approaches are chromatic, like {{note 1.3}} rising a half step to the 3rd of {{chord 2}}; {{note 4.3}} is a diatonic step into the b3 of {{chord 5}}, and {{note 7.3}} is a passing note between two chord tones. Play bars 1–7 around seventh position, then slide the 1st finger down one fret into the last bar.",
+      "chords": [
+        {
+          "symbol": "Am7b5",
+          "bar": 1,
+          "beat": 1
+        },
+        {
+          "symbol": "D7",
+          "bar": 2,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 3,
+          "beat": 1
+        },
+        {
+          "symbol": "Gm6",
+          "bar": 4,
+          "beat": 1
+        },
+        {
+          "symbol": "Cm7",
+          "bar": 5,
+          "beat": 1
+        },
+        {
+          "symbol": "F7",
+          "bar": 6,
+          "beat": 1
+        },
+        {
+          "symbol": "Bbmaj7",
+          "bar": 7,
+          "beat": 1
+        },
+        {
+          "symbol": "Ebmaj7",
+          "bar": 8,
+          "beat": 1
+        }
+      ],
+      "bars": [
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 10,
+              "pitch": "C4",
+              "finger": 4,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 5,
+              "fret": 10,
+              "pitch": "G3",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 5,
+              "fret": 8,
+              "pitch": "F3",
+              "finger": 2,
+              "degree": "b13",
+              "role": "approach-chromatic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 5,
+              "fret": 9,
+              "pitch": "F#3",
+              "finger": 3,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 10,
+              "pitch": "C4",
+              "finger": 4,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 9,
+              "pitch": "B3",
+              "finger": 3,
+              "degree": "13",
+              "role": "approach-chromatic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 8,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 1,
+              "degree": "5",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 3,
+              "fret": 8,
+              "pitch": "D#4",
+              "finger": 2,
+              "degree": "#5",
+              "role": "approach-chromatic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 9,
+              "pitch": "E4",
+              "finger": 3,
+              "degree": "6",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 8,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 1,
+              "degree": "5",
+              "role": "approach-diatonic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 8,
+              "pitch": "Eb4",
+              "finger": 2,
+              "degree": "b3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 8,
+              "pitch": "Bb3",
+              "finger": 2,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 6,
+              "pitch": "G#3",
+              "finger": 1,
+              "degree": "#5",
+              "role": "approach-chromatic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 7,
+              "pitch": "A3",
+              "finger": 2,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 3,
+              "fret": 8,
+              "pitch": "Eb4",
+              "finger": 3,
+              "degree": "b7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 3,
+              "fret": 6,
+              "pitch": "C#4",
+              "finger": 1,
+              "degree": "#5",
+              "role": "approach-chromatic"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 2,
+              "degree": "3",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 7,
+              "pitch": "A3",
+              "finger": 2,
+              "degree": "7",
+              "role": "chord-tone"
+            },
+            {
+              "dur": "4",
+              "string": 4,
+              "fret": 6,
+              "pitch": "Ab3",
+              "finger": 1,
+              "degree": "b7",
+              "role": "passing"
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "dur": "2",
+              "string": 4,
+              "fret": 5,
+              "pitch": "G3",
+              "finger": 1,
+              "degree": "3",
+              "role": "chord-tone",
+              "shift": true
+            },
+            {
+              "dur": "2",
+              "string": 3,
+              "fret": 7,
+              "pitch": "D4",
+              "finger": 3,
+              "degree": "7",
+              "role": "chord-tone"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "improvisation": [
+    {
+      "title": "One scale per key centre",
+      "text": "Use the major scale of the relative major for bars 1–4, 9–12 and 21–24; it has the same notes as the natural minor of {{key}}. Over each iiø–V, switch to harmonic minor of the home key: its raised 7th is the 3rd of the V chord and its b6 is the b9 of the V chord. On the tonic, try melodic minor, whose natural 6th matches the 6th in {{chord 7}}. Bars 27–28 are the exception: the key centre stays {{key}}, but each pair of chords there works as a ii–V of its own, so over {{chord 27}} and {{chord 28}} use the major scale built a whole step below the tonic of {{key}}, and over {{chord 29}} and {{chord 30}} the major scale a whole step lower again, which is also the major scale of {{chord 31}} in bar 29."
+    },
+    {
+      "title": "Land on the 3rd",
+      "text": "Aim for the 3rd of each new chord on beat 1. The 3rd of {{chord 6}} is the leading tone of the key, and the b3 of {{chord 7}} is the note that makes the tonic sound minor. Approach each target from a half step above or below on beat 4 of the bar before, as in the approach-note exercise."
+    },
+    {
+      "title": "Two-bar phrases with space",
+      "text": "Phrase in two-bar units that follow the ii–V pairs. Start phrases on the \"and\" of beat 1 or on beat 2 instead of on the downbeat, and end each one on a guide tone. Leave the two tonic bars of section B (bars 19–20) mostly empty, so the return of the relative major in bar 21 sounds fresh."
+    },
+    {
+      "title": "Use this week's licks",
+      "text": "Place the licks where their chords fall in the tune: the Charlie Christian and Wes Montgomery licks over bars 1–3, 9–11 and 21–23; the Barney Kessel arpeggio lick over bars 3–5, 11–13 and 23–25; the Grant Green riff over bars 7–9, 19–21 and 31–32; and the Joe Pass descending ii–V lick over bars 27–29. Use the Django minor ii–V lick wherever the iiø–V–i comes back, and take the Jim Hall motif lick through every ii–V of a chorus, changing only the notes needed to fit each chord."
+    },
+    {
+      "title": "Develop one motif",
+      "text": "Choose a three- or four-note idea and keep it through a whole A section, changing only the note that clashes with each new chord (often just the 3rd or 7th). Developing one motif like this is a hallmark of Jim Hall's playing, and on a tune this repetitive it makes a solo sound planned rather than run together."
+    }
+  ],
+  "practicePlan": [
+    {
+      "day": 1,
+      "focus": "listening",
+      "minutes": 30,
+      "tasks": [
+        "Listen to the Somethin' Else and Portrait in Jazz versions with the chart open, counting the 32 bars and saying each section name as it starts. Start counting when the melody comes in: the Somethin' Else version opens with an introduction that is not part of the form.",
+        "Listen to the Jim Hall and Ron Carter duo and notice when the guitar comps behind the bass and when it plays single lines.",
+        "Sing the root of each chord along with one chorus of a recording."
+      ]
+    },
+    {
+      "day": 2,
+      "focus": "harmony",
+      "minutes": 20,
+      "tasks": [
+        "Play the root of every chord on one string while saying its roman numeral out loud.",
+        "Mark the key centres on the chart: the relative major in bars 1–4, 9–12 and 21–24, and {{key}} everywhere else. Then circle bars 27 and 28, where each pair of chords works as a ii–V of its own.",
+        "Play the first guide-tone exercise slowly, then sing the 3rds while you play the roots."
+      ]
+    },
+    {
+      "day": 3,
+      "focus": "comping",
+      "minutes": 25,
+      "tasks": [
+        "Comp bars 1–8 with the mid-neck voicings, alternating root-on-6th and root-on-5th shapes: play each chord twice per bar, on beats 1 and 3, while the metronome clicks on beats 2 and 4.",
+        "Comp the whole form with a play-along, starting slowly and working up to 120 bpm, four light beats per bar.",
+        "Learn both paths through bars 27–30, the low shapes and the high shapes. On the high path the 3rd-string notes fall by half steps from bar 27 to bar 29; on the low path the 3rd string keeps one note through each ii–V and drops a whole step between them."
+      ]
+    },
+    {
+      "day": 4,
+      "focus": "arpeggios",
+      "minutes": 25,
+      "tasks": [
+        "Play each chord's arpeggio up from the root (1–3–5–7) through bars 1–8 in one position.",
+        "Start each arpeggio on the 3rd instead (3–5–7–9), the sound of the Charlie Christian and Barney Kessel licks. Use the b9 on {{chord 6}}, which gives the diminished shape of the Django lick, play 3–5–6–9 on {{chord 7}}, and stop at the 7th on {{chord 5}}, where the 9th from the key is a clashing b9.",
+        "Connect the arpeggios in eighth notes: when the chord changes, move to the nearest chord tone of the new chord."
+      ]
+    },
+    {
+      "day": 5,
+      "focus": "vocabulary",
+      "minutes": 25,
+      "lickId": "al-05-barney-kessel-upper-arpeggios",
+      "tasks": [
+        "Learn today's lick slowly from the tab, then play it with the play-along at its default tempo.",
+        "Place it in the tune over bars 3–5, then over bars 11–13 and 23–25, where the same chords return.",
+        "Play its variation, then change one rhythm or one note to make your own version."
+      ]
+    },
+    {
+      "day": 6,
+      "focus": "improvisation",
+      "minutes": 30,
+      "tasks": [
+        "Improvise one chorus using only guide tones (3rds and 7ths), then a chorus that adds chromatic approach notes.",
+        "Solo over the whole form with one scale per key centre, switching to the two ii–V scales in bars 27–28, and fit in two of this week's licks.",
+        "Try the tritone substitutes in bars 27–28 while a play-along keeps the original chords, and listen to the extra tension."
+      ]
+    },
+    {
+      "day": 7,
+      "focus": "self-review",
+      "minutes": 20,
+      "tasks": [
+        "Record yourself comping one chorus and soloing one chorus with a play-along.",
+        "Listen back: do you land on the 3rd in bars 2, 6, 27 and 28, and do you always know where you are in the form?",
+        "Write down one strength and one thing to fix next week."
+      ]
+    }
+  ],
+  "lickIds": [
+    "al-01-jim-hall-motif",
+    "al-02-charlie-christian-ninth-arpeggio",
+    "al-03-django-diminished-minor-ii-v",
+    "al-04-wes-blues-slide",
+    "al-05-barney-kessel-upper-arpeggios",
+    "al-06-grant-green-riff",
+    "al-07-joe-pass-descending-ii-v"
+  ]
+}

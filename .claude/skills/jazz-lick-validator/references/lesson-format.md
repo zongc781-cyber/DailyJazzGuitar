@@ -20,7 +20,7 @@ Complete, passing examples are in `../examples/`. Unknown fields are errors.
 | `id` | slug | Unique across the library, e.g. `"wes-octave-approach-01"` |
 | `title` | string | |
 | `origin` | `"seed"` or `"generated"` | Shown to the user |
-| `review` | `{status:"reviewed", reviewedBy, reviewedOn}` | Required for seed lessons |
+| `review` | `{status, reviewedBy, reviewedOn}` | Required for seed lessons. `status` is `"reviewed"` once a person has played the lesson through (the accuracy review in content-rules.md), and `"awaiting-play-through"` while it has only been checked |
 | `generator` | `{service, version, generatedAt}` | Required for generated lessons, forbidden on seed |
 | `sources` | `[{title, kind, author?, url?, year?, detail?}]` | `kind` is one of recording, book, method, website, video or lead-sheet. Seed lessons need at least one source. URLs must be https |
 | `simplified` | boolean | Always stated |

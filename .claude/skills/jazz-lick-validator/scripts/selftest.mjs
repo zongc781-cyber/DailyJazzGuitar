@@ -4,7 +4,7 @@
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { validateForPublish, transposeLick, fingerprint } from './lib/index.mjs';
+import { validateForPublish, transposeLick, fingerprint } from '../../../../src/lib/music/index.mjs';
 
 const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 const lick = JSON.parse(readFileSync(here('../examples/lick.example.json'), 'utf8'));
@@ -16,14 +16,16 @@ const fail = (name, why) => { failed++; console.log(`FAIL  ${name}\n      ${why}
 
 async function expectPass(name, lesson) {
   const r = await validateForPublish(lesson, { library: [lick, standard] });
-  r.ok ? pass(name) : fail(name, r.errors.map((e) => `${e.path}: ${e.message}`).join('\n      '));
+  if (r.ok) pass(name);
+  else fail(name, r.errors.map((e) => `${e.path}: ${e.message}`).join('\n      '));
 }
 async function expectError(name, base, mutate, needle) {
   const lesson = structuredClone(base);
   mutate(lesson);
   const r = await validateForPublish(lesson);
   const hit = r.errors.find((e) => `${e.path} ${e.message}`.includes(needle));
-  hit ? pass(name) : fail(name, `expected an error containing "${needle}", got: ${r.errors.map((e) => e.message).join(' | ') || 'no errors'}`);
+  if (hit) pass(name);
+  else fail(name, `expected an error containing "${needle}", got: ${r.errors.map((e) => e.message).join(' | ') || 'no errors'}`);
 }
 
 await expectPass('example lick passes', lick);
@@ -59,10 +61,12 @@ await expectError('generated lesson claiming transcription', lick, (l) => { l.or
 await expectError('transcription without recording source', lick, (l) => { l.inspiration = { type: 'transcription', artist: 'Wes Montgomery', recording: 'Four on Six' }; }, 'cite the recording');
 await expectError('simplified not stated', lick, (l) => { delete l.simplified; }, 'simplified must be');
 await expectError('seed without review', lick, (l) => { delete l.review; }, 'seed lessons need review');
+await expectError('seed with an unknown review status', lick, (l) => { l.review.status = 'checked'; }, 'seed lessons need review');
 // Transposition
 await expectError('open string blocks transposition', lick, (l) => { Object.assign(l.bars[3].events[0], { tie: undefined, string: 2, fret: 0, pitch: 'B3', finger: 0, degree: 'b9', role: 'scale' }); }, 'open strings');
 const up = transposeLick(lick, 'E');
-up.error || fingerprint(up.lesson) !== fingerprint(lick) ? fail('transposition keeps intervals', up.error ?? 'fingerprint changed') : pass('transposition keeps intervals');
+if (up.error || fingerprint(up.lesson) !== fingerprint(lick)) fail('transposition keeps intervals', up.error ?? 'fingerprint changed');
+else pass('transposition keeps intervals');
 // Standards
 await expectError('plan missing a focus', standard, (s) => { s.practicePlan[2].focus = 'harmony'; }, 'missing comping');
 await expectError('chart shorter than form', standard, (s) => { s.chart.pop(); }, 'one entry per bar');
@@ -76,7 +80,8 @@ await expectError('guide tone degree wrong', standard, (s) => { s.guideToneExerc
   const copy = transposeLick(lick, 'D').lesson;
   copy.id = 'copy';
   const r = await validateForPublish(copy, { library: [lick] });
-  r.errors.some((e) => e.message.includes('same intervals and rhythm')) ? pass('transposed copy flagged as repeat') : fail('transposed copy flagged as repeat', 'not flagged');
+  if (r.errors.some((e) => e.message.includes('same intervals and rhythm'))) pass('transposed copy flagged as repeat');
+  else fail('transposed copy flagged as repeat', 'not flagged');
 }
 
 console.log(failed ? `\n${failed} self-test(s) failed` : '\nall self-tests passed');

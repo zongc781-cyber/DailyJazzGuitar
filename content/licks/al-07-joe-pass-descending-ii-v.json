@@ -1,0 +1,557 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "al-07-joe-pass-descending-ii-v",
+  "title": "Chromatic guide tones through descending ii–Vs",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "autumn-leaves",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Joe Pass",
+    "note": "Pass often joined chord tones with chromatic approach notes and enclosures in long eighth-note lines, keeping the line moving through fast changes. This phrase borrows that habit for two quick ii–Vs."
+  },
+  "sources": [
+    {
+      "title": "Virtuoso No. 4",
+      "author": "Joe Pass",
+      "kind": "recording",
+      "year": 1983,
+      "url": "https://en.wikipedia.org/wiki/Virtuoso_No._4",
+      "detail": "Pablo; solo guitar, recorded November 1973 and released in 1983. Track 3 is Pass's solo 'Autumn Leaves', this week's tune."
+    },
+    {
+      "title": "Joe Pass Guitar Style",
+      "author": "Joe Pass and Bill Thrasher",
+      "kind": "method",
+      "detail": "Method book (Alfred Music). Its subjects include chord construction, substitution, connection, resolution and chromatic movement, with an emphasis on improvisation."
+    },
+    {
+      "title": "Joe Pass Jazz Guitar Licks",
+      "author": "Dirk Laukens",
+      "kind": "website",
+      "url": "https://jazzguitar.be/blog/joe-pass-jazz-guitar-licks",
+      "detail": "Jazz Guitar Online lesson on Pass's vocabulary. It points out an enclosure around the b7 of a dominant chord (lick 12) and approach notes that are 'characteristic of Joe's improvisations' (lick 3), and ends with a study over the changes of 'Autumn Leaves'."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "swing",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "difficulty": 4,
+  "chords": [
+    {
+      "symbol": "Gm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "C7",
+      "bar": 1,
+      "beat": 3
+    },
+    {
+      "symbol": "Fm7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Bb7",
+      "bar": 2,
+      "beat": 3
+    },
+    {
+      "symbol": "Ebmaj7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 9,
+          "pitch": "E4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 10,
+          "pitch": "A4",
+          "finger": 3,
+          "degree": "13",
+          "role": "passing"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "9",
+          "role": "passing"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "enclosure"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 7,
+          "pitch": "F#4",
+          "finger": 1,
+          "degree": "#5",
+          "role": "enclosure"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 2,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "A non-stop eighth-note line through two quick ii–Vs. After the opening rest, every beat carries a chord tone, and at every chord change a 3rd or 7th moves by half steps into the next chord: the 7th of {{chord 1}} falls to the 3rd of {{chord 2}}, the 7th of {{chord 2}} slides down two half steps to the b3 of {{chord 3}}, the 7th of {{chord 3}} falls to the 3rd of {{chord 4}}, and an enclosure delivers the 3rd of {{chord 5}} on beat one.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "text": "{{note 1.4}}, the 7th of {{chord 1}}, falls a half step to {{note 1.5}}, the 3rd of {{chord 2}}; {{note 2.4}}, the 7th of {{chord 3}}, falls a half step to {{note 2.5}}, the 3rd of {{chord 4}}. In between, {{note 1.7}} (the 7th of {{chord 2}}) heads for {{note 2.1}} (the b3 of {{chord 3}}). Three of the chords are spelled straight up from 3rd to 7th, and {{chord 3}} comes down from its b3 to its 7th."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "{{note 1.8}} is a chromatic passing note that carries the 7th of {{chord 2}} down to the b3 of {{chord 3}}, and {{note 2.2}} is a passing step on the way down. At the end, {{note 2.7}} (the 7th of {{chord 4}}) and {{note 2.8}} surround the target from above and below: a classic bebop enclosure."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          2,
+          3,
+          4,
+          1,
+          2,
+          3,
+          4,
+          1
+        ],
+        "text": "The line starts on the 'and' of beat one and runs in unbroken eighth notes to the landing. From beat two on, a chord tone sits on every beat, and the chromatic and passing notes all fall on the 'ands', where they sound like movement rather than wrong notes."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the 3rd of {{chord 5}}, on beat one. It is exactly where the 7th of {{chord 4}} wants to go, a half step down, and the enclosure around it makes the arrival sound inevitable."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "When the chords change every two beats there is no time to think in scales. Put a chord tone on every beat and the line spells the harmony by itself; let the 3rds and 7ths step by half steps into the next chord and each change sounds smooth. The chromatic notes on the off-beats are just bridges between those strong notes.",
+  "fingeringNote": "One position with one small stretch, no shifts. As written, the index finger sits at fret 7 and the second finger starts the line on the D string. In bar 1 the little finger stretches up to fret 11 on the B string, four frets above the index, and the chromatic run back down uses one finger per fret (4, 3, 2, 1), so the hand briefly sits one fret higher. Let it settle back as the line returns to the G string.",
+  "practiceTask": "Play it over bars 27 to 29 of the weekly standard, the two descending ii–Vs near the end of the form. First play only a 3rd or 7th on each chord change, moving each one to the nearest 3rd or 7th of the next chord, then add the full line slowly.",
+  "variation": {
+    "description": "Aim one step lower: instead of enclosing the 3rd, the line falls from the 7th of {{chord 4}} through its b13 ({{note 2.8}}) and lands on the 9th of {{chord 5}}, a brighter, more open ending.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 9,
+            "pitch": "E4",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 2,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 11,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 3,
+            "degree": "13",
+            "role": "passing"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "9",
+            "role": "passing"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 2,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 7,
+            "pitch": "Gb4",
+            "finger": 1,
+            "degree": "b13",
+            "role": "passing"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "2",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "ii-V",
+    "guide-tones",
+    "chromatic-passing",
+    "enclosure",
+    "bebop"
+  ]
+}

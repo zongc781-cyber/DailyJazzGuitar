@@ -1,0 +1,368 @@
+/* Page-sized blocks every screen is built from: the first screen (a Hero), big titles that open
+   their details (Reveal), and the link on to the next place (NextLink). */
+
+/* Hero: the first screen of a page. One label, one very large title, one line, one action. */
+.hero {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 32px;
+  padding: 20px var(--page-inline) clamp(44px, 7vh, 80px);
+}
+
+.blue {
+  /* Inside the field, everything that is normally ink or accent turns white. */
+  --accent: var(--field-ink);
+  --accent-ink: var(--field);
+  --accent-soft: rgba(255, 255, 255, 0.14);
+  --ink: var(--field-ink);
+  --ink-2: var(--field-ink-2);
+  --ink-3: var(--field-ink-2);
+  --line: var(--field-line);
+  --focus: var(--field-ink);
+  min-height: calc(100svh - var(--bar, 76px));
+  background: var(--field);
+  color: var(--field-ink);
+}
+
+.plain {
+  padding-top: clamp(40px, 9vh, 112px);
+}
+
+.heroTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 32px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.heroTop a {
+  color: inherit;
+}
+
+.heroMain {
+  align-self: end;
+  display: grid;
+  gap: clamp(24px, 3.4vh, 40px);
+  justify-items: start;
+  min-width: 0;
+}
+
+.heroTitle {
+  max-width: 11.5em;
+  font-size: var(--text-hero);
+  font-weight: 500;
+  font-stretch: 94%;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  overflow-wrap: break-word;
+}
+
+.heroTitle.long {
+  font-size: calc(var(--text-hero) * 0.82);
+}
+
+.heroBody {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  max-width: var(--measure);
+  font-size: var(--text-lead);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.heroBody a {
+  color: var(--ink);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+/* Each word of a big title rises into place, one after another. */
+.word {
+  display: inline-block;
+  overflow: clip;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+  vertical-align: top;
+}
+
+.word > span {
+  display: inline-block;
+  animation: rise 0.9s cubic-bezier(0.2, 0.75, 0.15, 1) both;
+  animation-delay: calc(var(--i, 0) * 45ms + 60ms);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(108%);
+  }
+}
+
+/* Reveal: a very large title that opens its details below it. */
+.revealList {
+  border-top: 1px solid var(--line);
+}
+
+.reveal {
+  border-bottom: 1px solid var(--line);
+}
+
+.revealHeading {
+  font-size: inherit;
+  letter-spacing: normal;
+  line-height: inherit;
+}
+
+.revealButton {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) auto 48px;
+  align-items: center;
+  gap: 8px 24px;
+  padding: clamp(22px, 3.2vw, 40px) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.revealIndex {
+  align-self: start;
+  padding-top: 0.6em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.revealTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.2s ease-out;
+}
+
+.revealButton:hover .revealTitle,
+.revealButton:focus-visible .revealTitle {
+  transform: translateX(14px);
+  color: var(--accent);
+}
+
+.revealButton:focus-visible {
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+.revealMeta {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* A plus that turns into a minus. */
+.revealIcon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  transition: background-color 0.2s ease-out;
+}
+
+.revealIcon::before,
+.revealIcon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  margin: -1px 0 0 -9px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 0.2s ease-out;
+}
+
+.revealIcon::after {
+  transform: rotate(90deg);
+}
+
+.revealButton:hover .revealIcon,
+.revealButton:focus-visible .revealIcon {
+  background: var(--accent);
+}
+
+.revealButton:hover .revealIcon::before,
+.revealButton:hover .revealIcon::after,
+.revealButton:focus-visible .revealIcon::before,
+.revealButton:focus-visible .revealIcon::after {
+  background: var(--accent-ink);
+}
+
+.revealButton[aria-expanded='true'] .revealIcon::after {
+  transform: rotate(0deg);
+}
+
+.revealPanel {
+  padding: 0 0 clamp(40px, 5vw, 72px) calc(3.5rem + 24px);
+}
+
+.revealPanel:not([hidden]) {
+  animation: open 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* NextLink: the end of a page leads on to the next place, on a field of blue. */
+.next {
+  --accent: var(--field-ink);
+  --focus: var(--field-ink);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 16px 40px;
+  padding: clamp(56px, 8vw, 120px) var(--page-inline);
+  background: var(--field);
+  color: var(--field-ink);
+  text-decoration: none;
+}
+
+.next:hover {
+  color: var(--field-ink);
+}
+
+.nextText {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.nextLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--field-ink-2);
+}
+
+.nextTitle {
+  font-size: var(--text-display);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.nextMeta {
+  font-size: var(--text-lead);
+  color: var(--field-ink-2);
+}
+
+.nextArrow {
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 7vw, 104px);
+  height: clamp(64px, 7vw, 104px);
+  border-radius: 50%;
+  background: var(--field-ink);
+  color: var(--field);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.next:hover .nextArrow,
+.next:focus-visible .nextArrow {
+  transform: translateX(10px);
+}
+
+/* The ring sits inside the band, where it shows against the blue. */
+.next:focus-visible {
+  outline-offset: -12px;
+}
+
+/* A page section: an index and a title over its content. */
+.section {
+  display: grid;
+  gap: 32px;
+  padding: clamp(64px, 9vw, 128px) var(--page-inline) 0;
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: start;
+  gap: 8px 24px;
+}
+
+.sectionIndex {
+  padding-top: 0.6em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.sectionTitle {
+  font-size: var(--text-display);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+/* A link back, at the start of a first screen's label row: "‹ Library / Learned". */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  margin-block: -12px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--ink);
+}
+
+.backIcon {
+  transform: scaleX(-1);
+  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.back:hover .backIcon {
+  transform: scaleX(-1) translateX(3px);
+}
+
+.backTab {
+  color: var(--ink-2);
+}
+
+/* A slash between "Library" and the tab, left out of the link's accessible name. */
+.backTab::before {
+  content: '/';
+  content: '/' / '';
+  margin: 0 6px 0 4px;
+}

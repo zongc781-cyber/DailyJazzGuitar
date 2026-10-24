@@ -1,0 +1,129 @@
+/* The app's chrome: a bar across the top, the page, and a one-line footer. Nothing is boxed. */
+
+.shell {
+  --bar: 76px;
+  min-height: 100vh;
+  min-width: 720px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.bar {
+  --mark: var(--accent);
+  --mark-ink: var(--paper);
+  height: var(--bar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 var(--page-inline);
+  background: var(--paper);
+  color: var(--ink);
+  transition:
+    background-color 0.3s ease-out,
+    color 0.3s ease-out;
+}
+
+/* A page that opens on a blue field (a Hero with tone="blue") takes the bar into it. */
+.shell:has(main [data-hero='blue']) .bar {
+  --mark: var(--field-ink);
+  --mark-ink: var(--field);
+  --accent: var(--field-ink);
+  --ink: var(--field-ink);
+  --ink-2: var(--field-ink-2);
+  --focus: var(--field-ink);
+  background: var(--field);
+  color: var(--field-ink);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: inherit;
+}
+
+.mark {
+  flex: none;
+  color: var(--mark);
+}
+
+/* The name is set like a title, only small. */
+.brandName {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-stretch: 94%;
+  letter-spacing: -0.035em;
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: clamp(20px, 2.6vw, 40px);
+}
+
+/* The current place carries a short bar underneath, in the accent. */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.15s ease-out;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.link:hover::after {
+  transform: scaleX(0.4);
+}
+
+.link[aria-current='page'] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.link[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.main {
+  min-width: 0;
+  outline: none;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 28px var(--page-inline) 36px;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}

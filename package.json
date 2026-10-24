@@ -1,0 +1,50 @@
+{
+  "name": "daily-jazz-guitar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "One jazz standard a week and one lick a day, with notation, tab, playback and analysis from a single validated lesson format.",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "postinstall": "node scripts/copy-alphatab.mjs",
+    "library": "node scripts/build-library.mjs",
+    "predev": "npm run library",
+    "dev": "next dev",
+    "prebuild": "npm run library",
+    "build": "next build",
+    "start": "next start",
+    "validate": "node .claude/skills/jazz-lick-validator/scripts/validate.mjs content/standards content/licks content/generated --require-alphatab",
+    "selftest": "node .claude/skills/jazz-lick-validator/scripts/selftest.mjs",
+    "print": "node scripts/print-lesson.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "pretest": "npm run library",
+    "test": "tsx --test \"tests/unit/**/*.test.ts\"",
+    "test:e2e": "playwright test",
+    "pregenerate": "npm run library",
+    "generate": "tsx scripts/generate-lessons.ts",
+    "pretypecheck": "npm run library"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.135.0",
+    "@coderline/alphatab": "1.8.4",
+    "@fontsource-variable/instrument-sans": "5.3.0",
+    "@vexflow-fonts/petaluma": "1.0.1",
+    "@vexflow-fonts/petalumascript": "1.0.0",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.2",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

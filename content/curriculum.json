@@ -1,0 +1,4 @@
+{
+  "description": "Order of the seed library. Each week follows the next standard; that week's daily licks come from the standard's lickIds, in order.",
+  "standards": ["autumn-leaves", "blue-bossa"]
+}

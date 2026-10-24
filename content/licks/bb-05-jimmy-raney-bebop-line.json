@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "bb-05-jimmy-raney-bebop-line",
+  "title": "Long bebop line that steps back home",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "blue-bossa",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Jimmy Raney",
+    "note": "Raney was known for long, flowing eighth-note lines that move smoothly from one chord to the next; in his liner notes for 2 Guitars, Ira Gitler writes that Raney plays a long melodic line while Kenny Burrell is choppier. This phrase borrows that habit: one unbroken line that keeps the chord tones on the beats, slips chromatic passing notes in between and steps by half step into the next chord."
+  },
+  "sources": [
+    {
+      "title": "A",
+      "author": "Jimmy Raney",
+      "kind": "recording",
+      "year": 1957,
+      "url": "https://en.wikipedia.org/wiki/A_(Jimmy_Raney_album)",
+      "detail": "Prestige quartet and quintet sessions from 1954 and 1955 with Hall Overton and Teddy Kotick; JazzGuitarLessons.net lists it among the Raney albums to start with."
+    },
+    {
+      "title": "2 Guitars",
+      "author": "Kenny Burrell and Jimmy Raney",
+      "kind": "recording",
+      "year": 1957,
+      "url": "https://thejazztome.info/kenny-burrell-jimmy-raney-2-guitars/",
+      "detail": "Raney's solo on 'Blue Duke', which Ira Gitler's liner notes single out; the notes contrast Raney's long melodic lines with Burrell's choppier phrasing."
+    },
+    {
+      "title": "Jimmy Raney (1927-1995)",
+      "author": "Marc-André Seguin",
+      "kind": "website",
+      "year": 2015,
+      "url": "https://www.jazzguitarlessons.net/blog/jimmy-raney",
+      "detail": "JazzGuitarLessons.net profile: his long lines flow from one change to another, with clearly articulated bebop phrasing."
+    },
+    {
+      "title": "The Jimmy Raney Book",
+      "author": "Jimmy Raney and Jon Raney",
+      "kind": "book",
+      "year": 2024,
+      "url": "https://www.shermusic.com/9781883217853.php",
+      "detail": "Sher Music Co. study of Raney's melodic lines, including his techniques for building long lines."
+    },
+    {
+      "title": "The Jazz Theory Book",
+      "author": "Mark Levine",
+      "kind": "book",
+      "year": 1995,
+      "detail": "Sher Music, chapter 7, 'The Bebop Scales'."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "C",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "straight",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "difficulty": 3,
+  "chords": [
+    {
+      "symbol": "Dbmaj7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "Dbmaj7",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Dm7b5",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 3,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 11,
+          "pitch": "Db4",
+          "finger": 4,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 11,
+          "pitch": "Eb5",
+          "finger": 4,
+          "degree": "9",
+          "role": "enclosure"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "7",
+          "role": "enclosure"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 9,
+          "pitch": "Db5",
+          "finger": 2,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "13",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 10,
+          "pitch": "A4",
+          "finger": 3,
+          "degree": "#5",
+          "role": "passing"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 7,
+          "pitch": "Gb4",
+          "finger": 1,
+          "degree": "4",
+          "role": "passing",
+          "shift": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "9",
+          "role": "approach-diatonic"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Two bars of {{chord 1}} as one long eighth-note line: up the chord's arpeggio, over the top with an enclosure into the root, then down the major bebop scale, whose extra chromatic note keeps the strong notes on the beats. The descent ends a half step above the root of {{chord 3}}, so the line steps straight into the home key's ii chord on beat 1.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "text": "Bar 1 climbs the chord from its 7th: {{note 1.2}} leads into the root {{note 1.3}}, then the 3rd, 5th and 7th ({{note 1.4}}, {{note 1.5}}, {{note 1.6}}) stack up one string at a time. In bar 2 the root, 5th and 3rd ({{note 2.1}}, {{note 2.5}}, {{note 2.7}}) fall on beats 1, 3 and 4."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            3
+          ]
+        ],
+        "text": "{{note 2.3}} on beat 2 is the 6th (13th) of {{chord 1}}. A major bebop line treats the 6th like a chord tone, which is why it can sit on a beat here."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "{{note 1.7}} and {{note 1.8}} surround the root from a step above and a half step below before it arrives on beat 1 of bar 2. On the way down, {{note 2.4}} is the major bebop scale's extra chromatic note, between the 6th and the 5th, and {{note 2.6}} passes between the 5th and the 3rd. Last, {{note 2.8}}, the 9th, sits a half step above the root of {{chord 3}} and steps down into it."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1,
+          2.5,
+          3.5,
+          1
+        ],
+        "text": "The line starts on the 'and' of beat 1 and runs in even eighths for two bars. In bar 2 every beat gets a chord tone or the 6th, and the passing notes ({{note 2.4}}, {{note 2.6}}) fall on the 'ands': that is what the added bebop note is for. The landing comes on beat 1 of bar 3 and is held for two beats."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the root of {{chord 3}}. The two chords share three notes, and the only note that changes is the root, which moves up a half step. So this is the note that tells the ear the music has left the major key and come home, and the line reaches it by the smallest possible step."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "1",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "The two chords share three notes; only the root moves, up a half step. A line that walks down the scale and lands on that new root on beat 1 carries the ear from one key to the other with no jump. The extra chromatic note in the scale keeps the chord tones on the beats, so the arrival sounds planned rather than lucky.",
+  "fingeringNote": "Eighth position in the lesson's original key, index finger at fret 8, starting with the ring finger on the D string. Bar 1 climbs the chord one string at a time with fingers 3, 4, 3, 2 and 1, and the pinky reaches up to fret 11 for the top note. In bar 2 fingers 4, 3 and 2 walk down the B string; on {{note 2.6}} the index drops back one fret (marked as a shift) and the last three notes sit in seventh position.",
+  "practiceTask": "Play the lick over bars 11 to 13 of the weekly standard: the two bars of the major chord a half step above the tonic, then the first chord of the closing ii–V. Then sing the last note of the lick's second bar and the landing note while the chords play, so you hear the half step into bar 13 before you play it.",
+  "variation": {
+    "description": "The variation changes the approach. Bar 2 skips the 4th, so the last two notes become an enclosure: {{note 2.7}}, a step above the target, and {{note 2.8}}, the root of {{chord 1}}, a half step below it. The old root then rises a half step into the new one ({{note 3.1}}), which is the voice leading of the whole passage in a single step. Without the bebop passing note the 3rd moves to the 'and' of 3 and the 9th lands on beat 4; that is fine here, because the beat-4 note is part of the enclosure.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 10,
+            "pitch": "C4",
+            "finger": 3,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 11,
+            "pitch": "Db4",
+            "finger": 4,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 11,
+            "pitch": "Eb5",
+            "finger": 4,
+            "degree": "9",
+            "role": "enclosure"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "7",
+            "role": "enclosure"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 9,
+            "pitch": "Db5",
+            "finger": 2,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 11,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "13",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 10,
+            "pitch": "A4",
+            "finger": 3,
+            "degree": "#5",
+            "role": "passing"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 1,
+            "degree": "9",
+            "role": "enclosure"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 11,
+            "pitch": "Db4",
+            "finger": 4,
+            "degree": "1",
+            "role": "enclosure"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "2",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "bebop-scale",
+    "chromatic-passing",
+    "enclosure",
+    "half-step-voice-leading",
+    "key-change"
+  ]
+}

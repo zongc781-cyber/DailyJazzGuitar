@@ -1,0 +1,556 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "bb-06-pat-martino-minor-conversion",
+  "title": "One minor sound for each chord",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "blue-bossa",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "Pat Martino",
+    "note": "The 'minor conversion' habit associated with Martino: hearing other chords as minor ones, so one familiar minor sound covers each chord. Premier Guitar's Shawn Purcell names the technique and shows a Martino motive from 'Just Friends' whose melodic minor scale also fits the half-diminished chord a minor 3rd below and the altered dominant a half step below. This phrase applies that thinking to a minor ii–V in continuous eighth notes."
+  },
+  "sources": [
+    {
+      "title": "El Hombre",
+      "author": "Pat Martino",
+      "kind": "recording",
+      "year": 1967,
+      "url": "https://en.wikipedia.org/wiki/El_Hombre",
+      "detail": "'Just Friends': the solo the Premier Guitar lesson below draws its melodic-minor motive from."
+    },
+    {
+      "title": "Pat Martino's Repetitive Rhythms",
+      "author": "Shawn Purcell",
+      "kind": "website",
+      "year": 2022,
+      "url": "https://www.premierguitar.com/lessons/jazz/pat-martino-lesson",
+      "detail": "Premier Guitar lesson. Ex. 1 hears a motive from 'Just Friends' as arpeggios of one melodic minor scale and lists other chords that scale covers, including a half-diminished chord and an altered dominant; the article also names his minor conversion technique."
+    },
+    {
+      "title": "Linear Expressions",
+      "author": "Pat Martino",
+      "kind": "book",
+      "detail": "Martino's own book (REH) presenting his personal system of chord conversions."
+    },
+    {
+      "title": "The Jazz Theory Book",
+      "author": "Mark Levine",
+      "kind": "book",
+      "year": 1995,
+      "detail": "Sher Music, chapter 3, 'Chord/Scale Theory', section 'Melodic Minor Scale Harmony'."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "C",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "straight",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "difficulty": 4,
+  "chords": [
+    {
+      "symbol": "Dm7b5",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "G7alt",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "Cm7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 2,
+          "degree": "b5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 12,
+          "pitch": "D4",
+          "finger": 4,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 8,
+          "pitch": "Bb3",
+          "finger": 1,
+          "degree": "b13",
+          "role": "passing"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 5,
+          "fret": 11,
+          "pitch": "Ab3",
+          "finger": 4,
+          "degree": "b9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 9,
+          "pitch": "B3",
+          "finger": 2,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 1,
+          "degree": "b13",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 3,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 1,
+          "degree": "b13",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 11,
+          "pitch": "Db4",
+          "finger": 4,
+          "degree": "b5",
+          "role": "enclosure"
+        },
+        {
+          "dur": "8",
+          "string": 4,
+          "fret": 9,
+          "pitch": "B3",
+          "finger": 2,
+          "degree": "3",
+          "role": "enclosure"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 4,
+          "fret": 10,
+          "pitch": "C4",
+          "finger": 3,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "2",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "Each chord gets one minor sound. Over {{chord 1}} the line falls through the minor-6th arpeggio built a minor 3rd above its root, which is made of exactly the same four notes. Over {{chord 2}}, the altered reading of the chart's b9 dominant, it climbs the minor-major-7th arpeggio built a half step above the root and runs back down that melodic minor scale. Two notes of the same scale then enclose the root of {{chord 3}}, which arrives on beat 1.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "text": "Bar 1 falls straight down the arpeggio: {{note 1.2}}, {{note 1.3}}, {{note 1.4}} and {{note 1.5}} are the root, b7, b5 and b3 of {{chord 1}}, and also the 6th, 5th, b3 and root of the minor-6th chord a minor 3rd higher. Same notes, two names. In bar 2, {{note 2.2}}, {{note 2.4}} and {{note 2.5}} are the 3rd, root and b7 of {{chord 2}}, which keep the altered line tied to the dominant."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "text": "{{note 2.1}} is the b9 and {{note 2.3}} the b13 of {{chord 2}}. Thinking of the minor chord a half step above the root turns its root, b3, 5th and major 7th into the b9, 3rd, b13 and root of the dominant: the core of the altered sound. {{note 2.6}} touches the b13 again on the way down."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "text": "{{note 1.8}} is a passing note that carries the descent over the bar line. At the end, {{note 2.7}} (a half step above) and {{note 2.8}} (a half step below) enclose the root of {{chord 3}}. Both come straight from the melodic minor scale, so the approach needs no outside notes."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          1,
+          4.5,
+          1
+        ],
+        "text": "Fifteen even eighth notes, from the 'and' of beat 1 to the 'and' of beat 4 in bar 2, then the landing on beat 1. The shape supplies the accents: the line falls for a bar, turns at the bar line on {{note 2.1}} and climbs, so the change of chord is also the change of direction."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the root of {{chord 3}}. The melodic minor scale over {{chord 2}} holds the notes a half step on either side of it, so the enclosure points straight at it, and the 3rd of the dominant ({{note 2.8}}) rising a half step into the root is the strongest pull in a minor key."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "1",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "Thinking 'minor' turns two awkward chords into shapes you already know. The minor-6th chord a minor 3rd above a half-diminished chord has the same four notes, and the melodic minor a half step above an altered dominant holds its root, 3rd and 7th plus every altered tension. So one familiar minor sound per chord gives you the right notes, and the two half steps around the tonic root make the landing sound inevitable.",
+  "fingeringNote": "Eighth position in the lesson's original key, index finger at fret 8, starting with the ring finger on the high E string. The pinky stretches up one fret for {{note 1.6}} on the D string. In bar 2 the arpeggio climbs one string at a time; {{note 2.3}} and {{note 2.4}} share fret 8 on neighbouring strings, so roll the index finger across. No shifts.",
+  "practiceTask": "Play the lick over bars 13 to 15 of the weekly standard; bars 5 to 7 have the same chords, so use it there too. Before you play it, name the two minor sounds over the chords (a minor 3rd above the first root, a half step above the second) so the conversion becomes a habit rather than a memorised lick.",
+  "variation": {
+    "description": "The variation changes the target. After the same climb, the line turns at the b9 and aims for the b3 of {{chord 3}} instead: {{note 2.7}} below it and {{note 2.8}} above it, each a whole step away. The upper note is the 7th of {{chord 2}} falling to the 3rd of {{chord 3}} ({{note 3.1}}), the classic guide-tone resolution, and the minor 3rd gives the landing a darker, less final sound than the root.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 3,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 12,
+            "pitch": "D4",
+            "finger": 4,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 10,
+            "pitch": "C4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 8,
+            "pitch": "Bb3",
+            "finger": 1,
+            "degree": "b13",
+            "role": "passing"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 5,
+            "fret": 11,
+            "pitch": "Ab3",
+            "finger": 4,
+            "degree": "b9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 9,
+            "pitch": "B3",
+            "finger": 2,
+            "degree": "3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 1,
+            "degree": "b13",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 2,
+            "degree": "b9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 4,
+            "fret": 11,
+            "pitch": "Db4",
+            "finger": 4,
+            "degree": "b5",
+            "role": "enclosure"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 3,
+            "degree": "b7",
+            "role": "enclosure"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 1,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "2",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "minor-ii-v-i",
+    "minor-conversion",
+    "melodic-minor",
+    "altered-dominant",
+    "enclosure"
+  ]
+}

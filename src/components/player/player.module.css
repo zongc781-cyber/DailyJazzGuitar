@@ -1,0 +1,268 @@
+/* Score sheet */
+
+/* The score and its playback bar, straight on the page: no card around them. */
+.sheet {
+  background: var(--score-bg);
+}
+
+.paper {
+  position: relative;
+  background: var(--score-bg);
+  padding: 8px 0 4px;
+  min-height: 200px;
+  overflow: hidden;
+  /* alphaTab gives its playback cursors a high z-index; keep them inside the score. */
+  isolation: isolate;
+}
+
+.score {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  color: var(--score-ink);
+}
+
+.scoreLoading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  background: linear-gradient(90deg, transparent 0%, var(--surface-2) 50%, transparent 100%) var(--score-bg);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.scoreError {
+  padding: 24px;
+  color: var(--danger);
+}
+
+/* alphaTab's playback cursor and highlighted notes */
+.score :global(.at-cursor-bar) {
+  background: var(--score-cursor);
+}
+
+.score :global(.at-cursor-beat) {
+  background: var(--score-beat);
+  width: 3px;
+}
+
+.score :global(.at-highlight *) {
+  fill: var(--score-beat);
+  stroke: var(--score-beat);
+}
+
+.score :global(.at-selection div) {
+  background: var(--score-cursor);
+}
+
+/* Transport */
+
+/* Under the score, on a hairline: play, stop and the tempo on one line, with no words. It stays at
+   the bottom of the window while a long score runs below it, so Play is always in reach. */
+.transport {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+/* While the sounds load, the hairline fills with blue from the left. */
+.transport::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: var(--load, 0%);
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition:
+    width 0.3s ease-out,
+    opacity 0.4s ease-out;
+}
+
+.transport[data-loading='true']::before {
+  opacity: 1;
+}
+
+.transportRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* The primary action on the page: a blue circle. */
+.playButton {
+  position: relative;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+  transition:
+    transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1),
+    background-color 0.15s ease-out;
+}
+
+.playButton :global(svg) {
+  margin-left: 2px;
+}
+
+.playButton[data-playing='true'] :global(svg) {
+  margin-left: 0;
+}
+
+.playButton:hover:not(:disabled) {
+  background: var(--accent-strong);
+  transform: scale(1.05);
+}
+
+.playButton:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* While it plays, a ring pulses out from the button like sound. */
+.playButton[data-playing='true']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: pulse 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+.playButton:disabled,
+.roundButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.roundButton {
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  border: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 0.15s ease-out;
+}
+
+.roundButton:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+/* A thin rule that fills with blue up to the thumb. */
+.slider {
+  --fill: 50%;
+  flex: 1;
+  min-width: 0;
+  height: var(--tap);
+  /* A little more room after Stop sets the tempo apart from the two buttons. */
+  margin: 0 0 0 14px;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--line-control) var(--fill));
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7.5px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  transition: transform 0.15s ease-out;
+}
+
+.slider:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.slider::-moz-range-track {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-control);
+}
+
+.slider::-moz-range-progress {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+}
+
+.tempoValue {
+  flex: none;
+  min-width: 3.3em;
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.tempoValue span {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+/* Written out only when playback fails. */
+.playError {
+  margin-top: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--danger);
+}

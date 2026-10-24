@@ -1,0 +1,69 @@
+/* Layout shared by the screens. The Library and Progress pages keep their own parts in
+   library.module.css and progress.module.css; lessons are built from the blocks in components/ui. */
+
+.screen {
+  display: grid;
+  gap: 24px;
+  max-width: var(--content);
+  margin: 0 auto;
+  min-width: 0;
+}
+
+/* A page that runs edge to edge; its blocks set their own padding (see blocks.module.css). */
+.full {
+  display: grid;
+  min-width: 0;
+}
+
+/* Nothing to show yet: one line, set large, with no box around it. */
+.emptyState {
+  padding: clamp(48px, 8vw, 96px) 20px;
+  font-size: var(--text-lead);
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* While a lesson loads: its first screen in blue, with soft bars where the words will be. */
+.heroSkeleton {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 32px;
+  min-height: calc(100svh - var(--bar, 76px));
+  padding: 26px var(--page-inline) clamp(44px, 7vh, 80px);
+  background: var(--field);
+}
+
+.heroSkeletonMain {
+  align-self: end;
+  display: grid;
+  gap: clamp(20px, 3vh, 32px);
+}
+
+.heroSkeleton span {
+  display: block;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  animation: skeleton-pulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-pulse {
+  from {
+    opacity: 0.5;
+  }
+}
+
+/* Not found and error pages: a blue first screen with one action; the way back to Today is a
+   quieter link beside it. */
+.quietLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+
+.quietLink:hover {
+  color: var(--ink);
+}

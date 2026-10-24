@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 1,
+  "kind": "lick",
+  "id": "bb-07-george-benson-turnaround",
+  "title": "Turnaround launch with a slurred triplet",
+  "origin": "seed",
+  "review": {
+    "status": "awaiting-play-through",
+    "reviewedBy": "Claude, the AI that wrote it",
+    "reviewedOn": "2026-10-21"
+  },
+  "standardId": "blue-bossa",
+  "inspiration": {
+    "type": "in-the-style-of",
+    "artist": "George Benson",
+    "note": "Premier Guitar's Cecil Alexander describes Benson's bebop as dense chromatic lines and 'blazing triplets', with targets reached by chromatic enclosure, and a JazzGuitar.be study of his licks shows him playing the major-7th arpeggio from the b3 of a minor chord for a minor-9th sound. This phrase borrows the arpeggio, the quick triplet and the chromatic enclosure for a turnaround."
+  },
+  "sources": [
+    {
+      "title": "Beyond the Blue Horizon",
+      "author": "George Benson",
+      "kind": "recording",
+      "year": 1971,
+      "url": "https://en.wikipedia.org/wiki/Beyond_the_Blue_Horizon_(album)",
+      "detail": "CTI. Includes 'The Gentle Rain', a Luiz Bonfá bossa nova, so you can hear Benson solo over a straight-eighth bossa groove."
+    },
+    {
+      "title": "It's Uptown",
+      "author": "The George Benson Quartet",
+      "kind": "recording",
+      "year": 1966,
+      "url": "https://en.wikipedia.org/wiki/It%27s_Uptown",
+      "detail": "Columbia. One of the straight-ahead Benson albums the Premier Guitar lesson below recommends."
+    },
+    {
+      "title": "George Benson's Badass Bebop",
+      "author": "Cecil Alexander",
+      "kind": "website",
+      "year": 2021,
+      "url": "https://www.premierguitar.com/lessons/george-benson-lesson-guitar",
+      "detail": "Premier Guitar lesson on his dense chromatic lines, chromatic enclosures and triplet runs."
+    },
+    {
+      "title": "19 George Benson Jazz Guitar Licks",
+      "author": "Dirk Laukens",
+      "kind": "website",
+      "year": 2018,
+      "url": "https://www.jazzguitar.be/blog/george-benson-jazz-guitar-licks/",
+      "detail": "JazzGuitar.be. Its first major ii–V–I lick plays the major-7th arpeggio from the b3 of the ii chord, outlining b3, 5, b7 and 9 like a rootless minor 9th."
+    }
+  ],
+  "simplified": false,
+  "key": {
+    "tonic": "C",
+    "mode": "minor"
+  },
+  "timeSignature": [
+    4,
+    4
+  ],
+  "feel": "straight",
+  "tempo": {
+    "min": 60,
+    "default": 120,
+    "max": 200
+  },
+  "difficulty": 4,
+  "chords": [
+    {
+      "symbol": "Cm7",
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "symbol": "Dm7b5",
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "symbol": "G7b9",
+      "bar": 2,
+      "beat": 3
+    },
+    {
+      "symbol": "Cm7",
+      "bar": 3,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "events": [
+        {
+          "dur": "8",
+          "rest": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 1,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 11,
+          "pitch": "Bb4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 10,
+          "pitch": "D5",
+          "finger": 3,
+          "degree": "9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 8,
+          "pitch": "G4",
+          "finger": 1,
+          "degree": "5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 1,
+          "degree": "b3",
+          "role": "chord-tone"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "1",
+          "role": "chord-tone",
+          "shift": true
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "b3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 3,
+          "degree": "b5",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 8,
+          "pitch": "C5",
+          "finger": 2,
+          "degree": "b7",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 1,
+          "fret": 7,
+          "pitch": "B4",
+          "finger": 1,
+          "degree": "3",
+          "role": "chord-tone"
+        },
+        {
+          "dur": "8",
+          "string": 2,
+          "fret": 9,
+          "pitch": "Ab4",
+          "finger": 3,
+          "degree": "b9",
+          "role": "tension"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 10,
+          "pitch": "F4",
+          "finger": 4,
+          "degree": "b7",
+          "role": "chord-tone",
+          "tuplet": 3
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 9,
+          "pitch": "E4",
+          "finger": 3,
+          "degree": "13",
+          "role": "enclosure",
+          "tuplet": 3,
+          "technique": "p"
+        },
+        {
+          "dur": "8",
+          "string": 3,
+          "fret": 7,
+          "pitch": "D4",
+          "finger": 1,
+          "degree": "5",
+          "role": "enclosure",
+          "tuplet": 3,
+          "technique": "p"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "dur": "2",
+          "string": 3,
+          "fret": 8,
+          "pitch": "Eb4",
+          "finger": 2,
+          "degree": "b3",
+          "role": "chord-tone",
+          "dots": 1
+        },
+        {
+          "dur": "4",
+          "rest": true
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "summary": "The first bar (bar 15 of the tune) sets up the turnaround with a minor-9th sound: the major-7th arpeggio built on the b3 of {{chord 1}}. The turnaround itself is a run: straight up {{chord 2}}, then the 3rd, b9 and b7 of {{chord 3}}, and a slurred triplet that encloses the b3 of {{chord 4}} chromatically, so the next chorus starts on a strong, minor-sounding downbeat.",
+    "points": [
+      {
+        "topic": "chord-tones",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "text": "{{note 1.2}}, {{note 1.3}} and {{note 1.4}} are the b3, 5th and b7 of {{chord 1}}, and {{note 1.6}} is its root. Bar 2 climbs straight up {{chord 2}} (root, b3, b5, b7), and its top note {{note 2.4}} falls a half step to {{note 2.5}}, the 3rd of {{chord 3}}. {{note 2.7}}, the b7 of the dominant, starts the triplet that leads home."
+      },
+      {
+        "topic": "tensions",
+        "notes": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "text": "{{note 1.5}} is the 9th of {{chord 1}}: with the three notes before it, it forms the major-7th arpeggio a minor 3rd above the root, a rootless minor-9th sound. {{note 2.6}} is the b9 of {{chord 3}}, the dark note that marks the V chord of a minor key."
+      },
+      {
+        "topic": "approach",
+        "notes": [
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "text": "The last two notes of the triplet, {{note 2.8}} and {{note 2.9}}, sit a half step above and a half step below the b3 of {{chord 4}}: a chromatic enclosure. Over {{chord 3}} they are its 13th and 5th, both in the half-whole diminished scale that suits a b9 dominant, so they pass smoothly while they point at the landing note."
+      },
+      {
+        "topic": "rhythm",
+        "notes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "onsetBeats": [
+          1.5,
+          4,
+          1
+        ],
+        "text": "The line starts on the 'and' of beat 1 and runs in even eighths until beat 4 of bar 2, where {{note 2.7}} starts an eighth-note triplet: three notes in the time of two. That sudden burst, slurred with two pull-offs, throws the line onto beat 1 of the next chorus, and the landing note is held for three beats."
+      },
+      {
+        "topic": "resolution",
+        "notes": [
+          [
+            3,
+            1
+          ]
+        ],
+        "text": "{{note 3.1}} is the b3 of {{chord 4}}, the note that makes the chord minor. The b7 of the dominant ({{note 2.7}}) reaches it by way of the enclosure, a decorated version of the classic 7th-to-3rd resolution, and holding it lets the new chorus begin on a clear, strong note rather than a passing one."
+      }
+    ],
+    "resolution": {
+      "note": [
+        3,
+        1
+      ],
+      "degree": "b3",
+      "onsetBeat": 1
+    }
+  },
+  "whyItWorks": "A turnaround works like a run-up: everything in it leans toward beat 1 of the next chorus. The arpeggio climbs, the dominant adds its 3rd and b9, and the triplet speeds the line up just before the bar line. The two chromatic notes squeeze the target from both sides, so when the minor 3rd arrives it sounds like the only possible landing.",
+  "fingeringNote": "Bar 1 is in eighth position in the lesson's original key, index finger across fret 8: roll it from string to string for the notes on that fret, and use the ring finger and pinky for the two higher frets. At bar 2 the index moves back one fret (marked as a shift), and the rest of the lick sits in seventh position, one finger per fret. In the triplet, pick the first note with the pinky, then pull off to the ring finger and to the index on the G string.",
+  "practiceTask": "Play the lick over bars 15 and 16 of the weekly standard and let it land on bar 1 as the next chorus starts. Loop all three bars, then play the triplet alone, slowly, until the two pulled-off notes are as loud as the picked one.",
+  "variation": {
+    "description": "The variation keeps every note and changes the rhythm: the triplet moves to beat 3, so the 3rd, b9 and b7 of {{chord 3}} fly past as one quick arpeggio, and the enclosure ({{note 2.8}}, {{note 2.9}}) arrives on beat 4 in plain eighths, with a pull-off into {{note 2.9}}. Compare the two and keep the push into the next chorus you like better.",
+    "bars": [
+      {
+        "events": [
+          {
+            "dur": "8",
+            "rest": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 1,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 11,
+            "pitch": "Bb4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 10,
+            "pitch": "D5",
+            "finger": 3,
+            "degree": "9",
+            "role": "tension"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 8,
+            "pitch": "G4",
+            "finger": 1,
+            "degree": "5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 1,
+            "degree": "b3",
+            "role": "chord-tone"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "1",
+            "role": "chord-tone",
+            "shift": true
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "b3",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 3,
+            "degree": "b5",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 8,
+            "pitch": "C5",
+            "finger": 2,
+            "degree": "b7",
+            "role": "chord-tone"
+          },
+          {
+            "dur": "8",
+            "string": 1,
+            "fret": 7,
+            "pitch": "B4",
+            "finger": 1,
+            "degree": "3",
+            "role": "chord-tone",
+            "tuplet": 3
+          },
+          {
+            "dur": "8",
+            "string": 2,
+            "fret": 9,
+            "pitch": "Ab4",
+            "finger": 3,
+            "degree": "b9",
+            "role": "tension",
+            "tuplet": 3
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 10,
+            "pitch": "F4",
+            "finger": 4,
+            "degree": "b7",
+            "role": "chord-tone",
+            "tuplet": 3
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 9,
+            "pitch": "E4",
+            "finger": 3,
+            "degree": "13",
+            "role": "enclosure"
+          },
+          {
+            "dur": "8",
+            "string": 3,
+            "fret": 7,
+            "pitch": "D4",
+            "finger": 1,
+            "degree": "5",
+            "role": "enclosure",
+            "technique": "p"
+          }
+        ]
+      },
+      {
+        "events": [
+          {
+            "dur": "2",
+            "string": 3,
+            "fret": 8,
+            "pitch": "Eb4",
+            "finger": 2,
+            "degree": "b3",
+            "role": "chord-tone",
+            "dots": 1
+          },
+          {
+            "dur": "4",
+            "rest": true
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "turnaround",
+    "triplet",
+    "pull-off",
+    "chromatic-enclosure",
+    "minor-ii-v-i"
+  ]
+}

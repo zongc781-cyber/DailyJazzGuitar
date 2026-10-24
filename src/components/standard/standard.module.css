@@ -1,0 +1,1172 @@
+/* This Week, and a standard opened from the library (see docs/design.md): a blue first screen, then
+   today's tasks and the chord chart, always open, then big titles that open the rest. Nothing is
+   boxed: hairlines divide, and blue marks what is chosen or done. */
+
+/* The page. A size container named like the lesson page, so the fretboard row shared with
+   lesson.module.css follows its width too. */
+.week {
+  container: lesson / inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   The first screen: the composer, feel and tempo, then today's focus, white on blue. */
+
+/* The tempo as it is marked on a chart: ♩ = 120. */
+.tempoMark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28em;
+  white-space: nowrap;
+}
+
+.quarter {
+  width: 0.48em;
+  height: 1.05em;
+  overflow: visible;
+  transform: translateY(0.12em);
+}
+
+.heroFocus {
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------------------------------
+   The sections that stay open: 01 Today and 02 The chart. Their content starts at the title's left
+   edge, as a row's details do, and the chart's section marks sit in the index column. */
+
+.section {
+  --indent: calc(3.5rem + 24px);
+  display: grid;
+  gap: 36px;
+  padding: clamp(72px, 9vw, 136px) var(--page-inline) 0;
+  min-width: 0;
+}
+
+/* 01 Today: what the day is for at the left, its tasks at the right. */
+.today {
+  display: grid;
+  gap: 32px 72px;
+  margin-left: var(--indent);
+  min-width: 0;
+}
+
+@container lesson (min-width: 1000px) {
+  .today {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.todayLead {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  justify-items: start;
+  min-width: 0;
+}
+
+.todayDay {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.todayFocus {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.todayAim {
+  max-width: 26em;
+  font-size: var(--text-lead);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.todayCount {
+  margin-top: 4px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+/* Every task ticked: the count fills with blue too, and says what comes tomorrow. */
+.todayFinished {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.doneMark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.todayTasks {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* A day's tasks, ticked as on Today's practice list. */
+.tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  min-width: 0;
+}
+
+.tasks li + li {
+  border-top: 1px solid var(--line);
+}
+
+/* The day's lick: a small label over its title, with an arrow that moves on hover. */
+.dayLick {
+  justify-self: start;
+  display: grid;
+  gap: 2px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dayLick:hover {
+  color: inherit;
+}
+
+.dayLickLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.dayLickTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: underline 1.5px var(--line-control);
+  text-underline-offset: 0.22em;
+  transition:
+    color 0.15s ease-out,
+    text-decoration-color 0.15s ease-out;
+}
+
+.dayLick:hover .dayLickTitle {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.dayLickEnd {
+  white-space: nowrap;
+}
+
+.dayLickGo {
+  display: inline;
+  margin-left: 6px;
+  vertical-align: -3px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dayLick:hover .dayLickGo {
+  transform: translateX(4px);
+}
+
+/* 02 The chart: the form and keys at the left of one row, the analysis switch at the right. */
+.toolbar {
+  margin-left: var(--indent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 44px;
+  min-width: 0;
+}
+
+.facts {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 44px;
+}
+
+.facts div {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.facts dt {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* How to read the chart, under it in small type. */
+.chartNotes {
+  margin-left: var(--indent);
+  display: grid;
+  gap: 4px;
+  max-width: 46rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+.chartNotes a {
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------------------------------
+   The chord chart, copied out by hand with no frame: section marks in the index column, bar
+   numbers, chord symbols in Real Book handwriting above a staff with one slash per beat, barlines,
+   a double bar at the end of each section and a final bar at the end of the form. */
+
+.chartBlock {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.chart {
+  --chord: 2rem;
+  --pad: 12px;
+  display: grid;
+  gap: 30px;
+  min-width: 0;
+}
+
+.chartSection {
+  display: grid;
+  grid-template-columns: var(--indent, calc(3.5rem + 24px)) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* A form section's mark (A, B…), as type: small, blue and level with the chords. */
+.formMark {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.chartSection > .formMark {
+  margin-top: 40px;
+}
+
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  row-gap: 20px;
+  min-width: 0;
+}
+
+.bar {
+  position: relative;
+  display: grid;
+  grid-template-rows: 18px 48px 25px;
+  min-width: 0;
+}
+
+.chartAnalysed .bar {
+  grid-template-rows: 18px 48px 25px 36px;
+}
+
+.barTop {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding-left: var(--pad);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.barNumber {
+  font-size: 0.7rem;
+  line-height: 18px;
+  color: var(--ink-3);
+}
+
+/* Where a key centre starts, its name is written in over the bar. */
+.keyTag {
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 18px;
+  color: var(--ink);
+}
+
+.barChords,
+.romans {
+  position: relative;
+  min-width: 0;
+}
+
+/* A chord sits over its beat: beat 3 of a 4/4 bar starts halfway along. */
+.chordAt {
+  position: absolute;
+  left: calc(var(--at) * (100% - var(--pad)) + var(--pad));
+  bottom: 6px;
+  font-family: var(--font-chord);
+  font-size: var(--chord);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* With the analysis on, roman numerals are written under the staff. */
+.romans .chordAt {
+  top: 8px;
+  bottom: auto;
+  font-size: calc(var(--chord) * 0.6);
+  color: var(--ink-2);
+}
+
+.staff {
+  position: relative;
+  display: flex;
+  padding-left: var(--pad);
+  background: var(--staff);
+}
+
+.staff i {
+  position: relative;
+  flex: 1;
+}
+
+/* A rhythm slash on the middle three lines, as on a chart: play one chord per slash. */
+.staff i::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 6.5px;
+  width: 4.5px;
+  height: 12px;
+  border-radius: 1px;
+  background: var(--ink-2);
+  transform: skewX(-32deg);
+}
+
+/* Barlines run the height of the staff. */
+.staff::after,
+.bar:nth-child(4n + 1) .staff::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.5px;
+  height: 100%;
+  background: var(--ink);
+}
+
+.bar:nth-child(4n + 1) .staff::before {
+  right: auto;
+  left: 0;
+}
+
+/* A double bar at the end of a section, a final bar at the end of the form. */
+.sectionEnd .staff::after,
+.finalBar .staff::after {
+  width: 6px;
+  background: transparent;
+  border-left: 1.5px solid var(--ink);
+  border-right: 1.5px solid var(--ink);
+}
+
+.finalBar .staff::after {
+  width: 8px;
+  border-right-width: 4.5px;
+}
+
+/* Key-centre shading, shown with the analysis. Analysis colours are data, never the accent. */
+.kc0 {
+  --kc: var(--role-resolution);
+}
+
+.kc1 {
+  --kc: var(--role-tension);
+}
+
+.kc2 {
+  --kc: var(--role-approach);
+}
+
+.kc3 {
+  --kc: var(--role-scale);
+}
+
+.shaded {
+  background: color-mix(in srgb, var(--kc) 11%, transparent);
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--kc) 55%, transparent);
+}
+
+/* On a tint the small bar numbers need the darker ink to stay readable. */
+.shaded .barNumber {
+  color: var(--ink-2);
+}
+
+.centreLegend {
+  list-style: none;
+  margin: 0 0 0 var(--indent, calc(3.5rem + 24px));
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  font-size: 0.95rem;
+}
+
+.centreLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.centreSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--kc);
+}
+
+.centreName {
+  font-weight: 650;
+}
+
+.centreBars {
+  color: var(--ink-3);
+}
+
+/* Smaller symbols in a narrower window, so two chords in one bar keep a clear gap between them. */
+@container lesson (max-width: 1199px) {
+  .chart {
+    --chord: 1.75rem;
+  }
+}
+
+@container lesson (max-width: 999px) {
+  .chart {
+    --chord: 1.5rem;
+  }
+}
+
+@container lesson (max-width: 879px) {
+  .chart {
+    --chord: 1.3rem;
+    --pad: 8px;
+  }
+
+  .staff i::before {
+    left: 5px;
+    width: 4px;
+  }
+}
+
+/* The harmonic analysis under the chart: how the changes work, and the common variations. */
+.analysis {
+  margin-left: var(--indent, 0);
+  display: grid;
+  gap: 48px;
+  padding-top: 8px;
+}
+
+@container lesson (min-width: 1000px) {
+  .analysis {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 72px;
+    align-items: start;
+  }
+}
+
+.analysisColumn {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+  min-width: 0;
+}
+
+.analysisTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.analysisPart {
+  display: grid;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.analysisPartHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.analysisRange {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.variations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+}
+
+.variation {
+  display: grid;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.variation h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* The bars a variation changes, copied out like the chart. */
+.miniChart {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.miniBar {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 14px;
+  min-height: 58px;
+  padding: 16px 14px 2px 10px;
+  border-left: 1.5px solid var(--ink);
+}
+
+.miniBar:last-child,
+.miniBreak {
+  border-right: 1.5px solid var(--ink);
+}
+
+.miniBreak {
+  margin-right: 12px;
+}
+
+.miniNumber {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  color: var(--ink-3);
+}
+
+.miniChord {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+}
+
+.miniSymbol {
+  font-family: var(--font-chord);
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.miniRoman {
+  font-family: var(--font-chord);
+  font-size: 0.92rem;
+  line-height: 1.1;
+  color: var(--ink-2);
+}
+
+/* ---------------------------------------------------------------------------------------------
+   Inside the rows: a line that says what the row is for, then its content. */
+
+.rowBody {
+  display: grid;
+  gap: 32px;
+  min-width: 0;
+}
+
+.rowIntro {
+  max-width: 34em;
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* Listen: the recordings on hairlines, the performer large and the year at the right. */
+.tracks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 40px;
+  padding: 26px 0 28px;
+  border-top: 1px solid var(--line);
+}
+
+.trackMain {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  min-width: 0;
+}
+
+.trackArtist,
+.trackYear {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.trackYear {
+  color: var(--ink-3);
+}
+
+.trackAlbum {
+  font-size: var(--text-lead);
+  line-height: 1.35;
+}
+
+.trackAlbum a {
+  text-decoration-thickness: 1.5px;
+}
+
+.trackOut {
+  display: inline;
+  margin-left: 6px;
+  vertical-align: -1px;
+  color: var(--ink-3);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.trackAlbum a:hover .trackOut {
+  transform: translate(2px, -2px);
+  color: var(--accent);
+}
+
+.trackRecording {
+  color: var(--ink-2);
+}
+
+.trackNote {
+  max-width: 40em;
+  margin-top: 4px;
+  color: var(--ink-2);
+}
+
+.trackChecked {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+/* Voicings: the chords as words to choose from (the chosen one blue and underlined), then that
+   chord's shapes side by side. */
+.voicings {
+  display: grid;
+  gap: 40px;
+  min-width: 0;
+}
+
+.picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 72px;
+}
+
+.choiceGroup {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.choiceLegend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 28px;
+}
+
+.choice {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.choiceFace {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding-top: 4px;
+  font-family: var(--font-chord);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--ink-2);
+  transition: color 0.15s ease-out;
+}
+
+.choiceFace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.choice:hover .choiceFace {
+  color: var(--ink);
+}
+
+.choice input:checked + .choiceFace {
+  color: var(--accent);
+}
+
+.choice input:checked + .choiceFace::after {
+  transform: scaleX(1);
+}
+
+.choice input:focus-visible + .choiceFace {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.stage {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.stageHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.stageSymbol {
+  font-family: var(--font-chord);
+  font-size: clamp(2.6rem, 1.8rem + 2vw, 4rem);
+  line-height: 1;
+}
+
+.stageMeta {
+  font-size: var(--text-lead);
+  color: var(--ink-2);
+}
+
+.shapes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+  gap: 36px 56px;
+}
+
+.stageKey {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+/* One chord box: the diagram at the left, its name and where it leads at the right. */
+.voicing {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 24px;
+  align-items: start;
+}
+
+.voicingSvg {
+  display: block;
+  width: 160px;
+  height: auto;
+  font-family: var(--font-ui);
+}
+
+.voicingCaption {
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.voicingName {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.voicingNote {
+  color: var(--ink-2);
+}
+
+.vNut {
+  fill: var(--ink);
+}
+
+.vFret {
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+}
+
+.vString {
+  stroke: var(--ink-3);
+  stroke-width: 1.2;
+}
+
+.vBase {
+  fill: var(--ink-3);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vMuted {
+  fill: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.vDot {
+  fill: var(--ink);
+}
+
+.vRoot {
+  fill: var(--role-chord);
+}
+
+.vLabel {
+  fill: var(--paper);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* Guide tones: the exercise, its changes bar by bar, the score with its playback bar, and the
+   fretboard with the how-to beside it, as on Today. */
+.guide {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.guidePicker {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.guideHead {
+  display: grid;
+  gap: 14px;
+}
+
+.guideTitle {
+  max-width: 22em;
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.exerciseChanges {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  font-family: var(--font-chord);
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+
+.exerciseBar {
+  padding: 0 16px 0 12px;
+  border-left: 1.5px solid var(--line-control);
+}
+
+.exerciseBar:last-child {
+  border-right: 1.5px solid var(--line-control);
+}
+
+.guidePlayer {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.guideNote {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding-top: 10px;
+  color: var(--ink-2);
+}
+
+.guideNote h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Improvisation ideas: the idea's name large at the left, how to play it at the right. */
+.ideas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.idea {
+  display: grid;
+  gap: 12px 72px;
+  padding: 28px 0 30px;
+  border-top: 1px solid var(--line);
+}
+
+@container lesson (min-width: 1000px) {
+  .idea {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.ideaTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.ideaText {
+  color: var(--ink-2);
+}
+
+/* The seven-day plan: one day under another on hairlines, the day's name at the left and its
+   tasks at the right. Today's name is blue. */
+.plan {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.planDay {
+  display: grid;
+  gap: 14px 72px;
+  padding: 28px 0 22px;
+  border-top: 1px solid var(--line);
+}
+
+@container lesson (min-width: 1000px) {
+  .planDay {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.planHead {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  justify-items: start;
+}
+
+.planLabel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.todayTag {
+  color: var(--accent);
+}
+
+.planFocus {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.planToday .planFocus {
+  color: var(--accent);
+}
+
+.planMeta {
+  color: var(--ink-3);
+}
+
+.planDone {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.planBody {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* The week's licks: a list of links on hairlines, today's marked in blue. */
+.licks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.licks li {
+  border-top: 1px solid var(--line);
+}
+
+.lickRow {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto 24px;
+  align-items: center;
+  gap: 4px 28px;
+  padding: 22px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lickRow:hover {
+  color: var(--ink);
+}
+
+.lickNumber {
+  align-self: start;
+  padding-top: 0.55em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.lickText {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.lickTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1rem + 0.9vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  transition: color 0.2s ease-out;
+}
+
+.lickRow:hover .lickTitle {
+  color: var(--accent);
+}
+
+.lickBy {
+  color: var(--ink-2);
+}
+
+.lickStatus {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.lickToday {
+  color: var(--accent);
+  text-decoration: underline 2px;
+  text-underline-offset: 6px;
+}
+
+.lickGo {
+  color: var(--ink-3);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.2s ease-out;
+}
+
+.lickRow:hover .lickGo {
+  transform: translateX(6px);
+  color: var(--accent);
+}

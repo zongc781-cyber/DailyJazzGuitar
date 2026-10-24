@@ -1,0 +1,266 @@
+/* Shared building blocks: buttons, badges, fields and segmented controls. Nothing
+   is boxed: controls are filled shapes or plain words, and lines only divide. */
+
+/* Buttons: a blue pill for the one primary action, quiet tinted pills for the rest. */
+.button {
+  min-height: 48px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.button:hover {
+  background: var(--surface-3);
+  color: var(--ink);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.primary:hover {
+  background: var(--accent-strong);
+  color: var(--accent-ink);
+}
+
+/* The one action on a first screen. */
+.large {
+  min-height: 60px;
+  padding: 0 30px;
+  font-size: 1.1rem;
+  gap: 12px;
+}
+
+.large :global(svg) {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.large:hover :global(svg) {
+  transform: translateY(3px);
+}
+
+/* An arrow that leads on to another page moves along the line instead. */
+.large:hover :global(svg[data-icon='arrowRight']) {
+  transform: translateX(4px);
+}
+
+/* The primary action on a blue field: white, with blue words. */
+.onField {
+  background: var(--field-ink);
+  color: var(--field);
+}
+
+.onField:hover {
+  background: var(--field-ink-2);
+  color: var(--field);
+}
+
+.ghost {
+  background: transparent;
+}
+
+.ghost:hover {
+  background: var(--surface-2);
+}
+
+/* A text link with an arrow that moves on hover. */
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+.arrowLink :global(svg) {
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.arrowLink:hover :global(svg) {
+  transform: translateX(4px);
+}
+
+/* Facts about a lesson, as small words in a row. */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge :global(svg) {
+  flex: none;
+}
+
+.badgeSeed,
+.badgeGenerated,
+.badgeReview {
+  color: inherit;
+}
+
+/* Segmented control: the words themselves; the chosen one is blue and underlined. */
+.segmented {
+  display: inline-flex;
+  gap: 20px;
+}
+
+.segment {
+  position: relative;
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-3);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+
+.segment::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.segment:hover {
+  color: var(--ink);
+}
+
+.segment[aria-pressed='true'] {
+  color: var(--accent);
+}
+
+.segment[aria-pressed='true']::after {
+  transform: scaleX(1);
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* A select drawn as a word on a line. */
+.select {
+  min-height: var(--tap);
+  padding: 0 30px 0 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--line-control);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 12px) 54%,
+    calc(100% - 6px) 54%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.select:hover {
+  border-bottom-color: var(--accent);
+}
+
+.select option {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Text areas are ruled lines, not boxes. */
+.textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--line-control);
+  border-radius: 0;
+  background: transparent;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.textarea:hover {
+  border-bottom-color: var(--accent);
+}
+
+.error {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  padding: 24px 0;
+  color: var(--danger);
+}
+
+.skeleton {
+  border-radius: var(--radius-m);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: skeleton 1.4s linear infinite;
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

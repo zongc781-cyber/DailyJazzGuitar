@@ -13,6 +13,8 @@ export const ROLES = ['chord-tone', 'tension', 'approach-chromatic', 'approach-d
 const APPROACH_ROLES = new Set(['approach-chromatic', 'approach-diatonic', 'enclosure', 'passing', 'neighbor']);
 const TARGET_ROLES = new Set(['chord-tone', 'tension']);
 export const TOPICS = ['chord-tones', 'tensions', 'approach', 'rhythm', 'resolution'];
+/** "reviewed": a person has played the lesson through. "awaiting-play-through": checked, not yet played. */
+export const REVIEW_STATUSES = ['reviewed', 'awaiting-play-through'];
 export const PLAN_FOCUSES = ['listening', 'harmony', 'comping', 'arpeggios', 'vocabulary', 'improvisation', 'self-review'];
 const INSPIRATION_TYPES = ['transcription', 'in-the-style-of', 'original', 'method-exercise'];
 const SOURCE_KINDS = ['recording', 'book', 'method', 'website', 'video', 'lead-sheet'];
@@ -40,8 +42,8 @@ function onlyKeys(obj, allowed, path, r) {
 function checkProvenance(l, r) {
   if (!['seed', 'generated'].includes(l.origin)) r.error('origin', 'origin must be "seed" or "generated"');
   if (l.origin === 'seed') {
-    if (!isObj(l.review) || l.review.status !== 'reviewed' || !isStr(l.review.reviewedBy) || !isDate(l.review.reviewedOn))
-      r.error('review', 'seed lessons need review {status:"reviewed", reviewedBy, reviewedOn:"YYYY-MM-DD"}');
+    if (!isObj(l.review) || !REVIEW_STATUSES.includes(l.review.status) || !isStr(l.review.reviewedBy) || !isDate(l.review.reviewedOn))
+      r.error('review', 'seed lessons need review {status:"reviewed" or "awaiting-play-through", reviewedBy, reviewedOn:"YYYY-MM-DD"}');
     if (l.generator !== undefined) r.error('generator', 'seed lessons must not carry a generator block');
   }
   if (l.origin === 'generated') {
