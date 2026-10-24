@@ -46,7 +46,9 @@ function KeySelect({ options, value, written, mode, onChange }: { options: KeyOp
   const id = useId();
   return (
     <div className={`${ui.field} ${styles.toolField}`}>
-      <label htmlFor={id}>Key</label>
+      <label htmlFor={id} className="visually-hidden">
+        Key
+      </label>
       <select id={id} className={ui.select} value={value} onChange={(e) => onChange(e.target.value)} data-testid="key-select">
         {options.map((k) => (
           <option key={k.tonic} value={k.tonic} disabled={!k.lesson}>
@@ -197,18 +199,15 @@ export function LickLesson({
 
         <div className={styles.toolbar}>
           <KeySelect options={options} value={selected.tonic} written={lesson.key.tonic} mode={lesson.key.mode} onChange={setTonic} />
-          <div className={`${ui.field} ${styles.toolField}`}>
-            <span aria-hidden="true">Line</span>
-            <Segmented
-              label="Line"
-              value={part}
-              options={[
-                { value: 'lick', label: 'Lick' },
-                { value: 'variation', label: 'Variation' },
-              ]}
-              onChange={setPart}
-            />
-          </div>
+          <Segmented
+            label="Lick or variation"
+            value={part}
+            options={[
+              { value: 'lick', label: 'Lick' },
+              { value: 'variation', label: 'Variation' },
+            ]}
+            onChange={setPart}
+          />
           <button
             type="button"
             className={`${ui.button} ${styles.analysisToggle}`}

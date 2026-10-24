@@ -69,49 +69,37 @@
 
 /* Transport */
 
-/* The controls follow the width of their own bar, so they never overlap in a narrow window:
-   one row when there is room, otherwise play and toggles above the tempo. */
-/* Under the score, on a hairline. It stays at the bottom of the window while a long score runs
-   below it, so Play is always in reach. */
+/* Under the score, on a hairline: play, stop and the tempo on one line, with no words. It stays at
+   the bottom of the window while a long score runs below it, so Play is always in reach. */
 .transport {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  container-type: inline-size;
   padding: 20px 0;
   border-top: 1px solid var(--line);
   background: var(--paper);
 }
 
-.transportGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    'main toggles'
-    'tempo tempo';
-  align-items: center;
-  gap: 16px 24px;
+/* While the sounds load, the hairline fills with blue from the left. */
+.transport::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: var(--load, 0%);
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition:
+    width 0.3s ease-out,
+    opacity 0.4s ease-out;
 }
 
-@container (min-width: 1040px) {
-  .transportGrid {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: 'main tempo toggles';
-  }
+.transport[data-loading='true']::before {
+  opacity: 1;
 }
 
-@container (max-width: 559px) {
-  .transportGrid {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'main'
-      'tempo'
-      'toggles';
-  }
-}
-
-.mainControls {
-  grid-area: main;
+.transportRow {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -175,14 +163,12 @@
 }
 
 .playButton:disabled,
-.roundButton:disabled,
-.stepButton:disabled {
+.roundButton:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
 
-.roundButton,
-.stepButton {
+.roundButton {
   width: var(--tap);
   height: var(--tap);
   border-radius: 50%;
@@ -196,98 +182,8 @@
   transition: background-color 0.15s ease-out;
 }
 
-.stepButton {
-  background: transparent;
-}
-
-.roundButton:hover:not(:disabled),
-.stepButton:hover:not(:disabled) {
+.roundButton:hover:not(:disabled) {
   background: var(--surface-3);
-}
-
-.stepButton {
-  width: 34px;
-  height: 34px;
-}
-
-.statusBlock {
-  display: grid;
-  gap: 2px;
-  min-width: 8.5em;
-}
-
-.status {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.shortcut {
-  font-size: 0.78rem;
-  color: var(--ink-3);
-}
-
-.shortcut kbd {
-  font: inherit;
-  font-weight: 600;
-  color: var(--ink-2);
-}
-
-.tempo {
-  grid-area: tempo;
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-/* With the tempo on a row of its own, the presets and the slider share one line, which keeps the
-   bar low over the score. */
-@container (min-width: 640px) and (max-width: 1039px) {
-  .tempo {
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    column-gap: 28px;
-  }
-}
-
-.tempoHeader {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 12px;
-}
-
-.tempoLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.tempoValue {
-  flex: none;
-  min-width: 3.3em;
-  text-align: right;
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.tempoValue span {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-}
-
-.tempoRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 /* A thin rule that fills with blue up to the thumb. */
@@ -296,7 +192,8 @@
   flex: 1;
   min-width: 0;
   height: var(--tap);
-  margin: 0;
+  /* A little more room after Stop sets the tempo apart from the two buttons. */
+  margin: 0 0 0 14px;
   appearance: none;
   background: transparent;
   cursor: pointer;
@@ -343,93 +240,29 @@
   background: var(--surface);
 }
 
-.presets {
-  display: flex;
-  gap: 4px 18px;
-  flex-wrap: wrap;
-}
-
-/* The chosen preset is blue and underlined, like the chosen word of a segmented control. */
-.preset {
-  position: relative;
-  min-height: 36px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: var(--ink-2);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.15s ease-out;
-}
-
-.preset::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.preset span {
-  color: var(--ink-3);
+.tempoValue {
+  flex: none;
+  min-width: 3.3em;
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
   font-weight: 500;
-  margin-left: 2px;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
-.preset:hover {
-  color: var(--ink);
-}
-
-.preset[aria-pressed='true'] {
-  color: var(--accent);
-}
-
-.preset[aria-pressed='true'] span {
-  color: inherit;
-}
-
-.preset[aria-pressed='true']::after {
-  transform: scaleX(1);
-}
-
-.toggles {
-  grid-area: toggles;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.toggle {
-  min-height: var(--tap);
-  padding: 0 15px 0 12px;
-  border-radius: 999px;
-  border: 0;
-  background: transparent;
-  color: var(--ink-3);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.88rem;
+.tempoValue span {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
   font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.15s ease-out,
-    color 0.15s ease-out;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
 }
 
-.toggle:hover {
-  background: var(--surface-2);
-  color: var(--ink);
-}
-
-/* On: a soft blue fill with blue words. Off: just the words. */
-.toggle[aria-pressed='true'] {
-  background: var(--accent-soft);
-  color: var(--accent);
+/* Written out only when playback fails. */
+.playError {
+  margin-top: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--danger);
 }
